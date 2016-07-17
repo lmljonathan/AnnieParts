@@ -21,12 +21,13 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.navigationBarHidden = true
     }
     
     // MARK: - IB Outlet Functions
     
     @IBAction func loginPressed(sender: UIButton) {
-        
+        self.checkCredentials()
     }
     
     @IBAction func forgetPasswordPressed(sender: UIButton) {
