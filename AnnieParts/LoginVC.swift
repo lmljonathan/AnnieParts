@@ -10,6 +10,7 @@ import UIKit
 
 class LoginVC: UIViewController {
     
+    // MARK: - IB Outlets
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -24,7 +25,7 @@ class LoginVC: UIViewController {
         self.navigationController?.navigationBarHidden = true
     }
     
-    // MARK: - IB Outlet Functions
+    // MARK: - IB Outlet Actions
     
     @IBAction func loginPressed(sender: UIButton) {
         self.checkCredentials()
