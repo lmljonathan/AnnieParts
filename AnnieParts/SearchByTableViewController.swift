@@ -11,7 +11,7 @@ import DropDown
 
 class SearchByTableViewController: UITableViewController {
     
-    var dropDown = DropDown()
+    private var dropDown = DropDown()
 
     override func viewDidLoad() {
         super.viewDidLoad()
