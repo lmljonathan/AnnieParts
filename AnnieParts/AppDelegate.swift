@@ -19,6 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         DropDown.startListeningToKeyboard()
+        
+        // Set navigation bar tint / background colour
+        UINavigationBar.appearance().barTintColor = UIColor.darkGrayColor()
+        
+        // Set Navigation bar Title colour
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        
+        // Set navigation bar ItemButton tint colour
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        
+        //Set navigation bar Back button tint colour
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
         return true
     }
 

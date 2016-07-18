@@ -23,6 +23,8 @@ class SearchByViewController: UIViewController {
         self.navigationController?.navigationBarHidden = false
         self.navigationItem.title = "Search By"
         
+        selectView.layer.cornerRadius = 5
+        
         // UIGestureRecognizer
         
         let selectGR = UITapGestureRecognizer(target: self, action: "activateDropDown:")
@@ -33,6 +35,11 @@ class SearchByViewController: UIViewController {
     func activateDropDown(gr: UITapGestureRecognizer){
         // The view to which the drop down will appear on
         dropDown.anchorView = selectView // UIView or UIBarButtonItem
+        dropDown.direction = .Bottom
+        dropDown.bottomOffset = CGPoint(x: 0, y:selectView.bounds.height)
+        dropDown.cellHeight = 44
+        dropDown.backgroundColor = UIColor.lightGrayColor()
+
         
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = ["Car", "Motorcycle", "Truck"]
