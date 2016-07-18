@@ -722,22 +722,20 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XoV-Rt-T6R">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="IU4-5c-kKm">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="54"/>
-                                                </constraint>
-                                                <constraint firstAttribute="width" constant="46" id="Pfp-wO-Ket"/>
+                                                <constraint firstAttribute="height" constant="40" id="mep-rL-vOb"/>
+                                                <constraint firstAttribute="width" constant="40" id="wr9-ac-lIa"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" title="Add"/>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="IU4-5c-kKm"/>
-                                                    <exclude reference="Pfp-wO-Ket"/>
+                                                    <exclude reference="mep-rL-vOb"/>
+                                                    <exclude reference="wr9-ac-lIa"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
-                                                    <include reference="IU4-5c-kKm"/>
-                                                    <include reference="Pfp-wO-Ket"/>
+                                                    <include reference="mep-rL-vOb"/>
+                                                    <include reference="wr9-ac-lIa"/>
                                                 </mask>
                                             </variation>
                                         </button>
@@ -751,11 +749,11 @@
                                         <constraint firstItem="DIK-g8-jaU" firstAttribute="top" secondItem="X1r-xt-yau" secondAttribute="topMargin" constant="2" id="7HH-9Y-GtI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="J3U-HQ-1GH" secondAttribute="trailing" id="8oE-vM-wqp"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="NUh-l9-YwB" secondAttribute="trailing" id="EkS-yA-vuV"/>
-                                        <constraint firstItem="XoV-Rt-T6R" firstAttribute="centerY" secondItem="X1r-xt-yau" secondAttribute="centerY" id="G6Q-dt-QSa"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="8Y4-lZ-tFG" secondAttribute="trailing" id="HBD-hd-1hO"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="xQH-OD-NRf" secondAttribute="trailing" constant="147" id="LBD-Cq-faW"/>
+                                        <constraint firstItem="XoV-Rt-T6R" firstAttribute="centerY" secondItem="X1r-xt-yau" secondAttribute="centerY" id="MJa-ww-ou0"/>
                                         <constraint firstItem="NUh-l9-YwB" firstAttribute="leading" secondItem="DIK-g8-jaU" secondAttribute="trailing" constant="8" id="Oh1-qU-Bwt"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="XoV-Rt-T6R" secondAttribute="trailing" id="Whc-kl-ueO"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XoV-Rt-T6R" secondAttribute="trailing" id="Omp-DI-2B4"/>
                                         <constraint firstItem="J3U-HQ-1GH" firstAttribute="top" secondItem="xQH-OD-NRf" secondAttribute="bottom" constant="1" id="ZCE-dn-lFs"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="DIK-g8-jaU" secondAttribute="bottom" constant="1.5" id="ZTG-HM-RBQ"/>
                                         <constraint firstItem="8Y4-lZ-tFG" firstAttribute="leading" secondItem="DIK-g8-jaU" secondAttribute="trailing" constant="8" id="Zhh-0Z-WfS"/>
@@ -797,8 +795,8 @@
                                             <exclude reference="boA-jo-dBS"/>
                                             <exclude reference="xa2-hv-59a"/>
                                             <exclude reference="yLE-c6-DSZ"/>
-                                            <exclude reference="G6Q-dt-QSa"/>
-                                            <exclude reference="Whc-kl-ueO"/>
+                                            <exclude reference="MJa-ww-ou0"/>
+                                            <exclude reference="Omp-DI-2B4"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
@@ -830,8 +828,8 @@
                                             <include reference="boA-jo-dBS"/>
                                             <include reference="xa2-hv-59a"/>
                                             <include reference="yLE-c6-DSZ"/>
-                                            <include reference="G6Q-dt-QSa"/>
-                                            <include reference="Whc-kl-ueO"/>
+                                            <include reference="MJa-ww-ou0"/>
+                                            <include reference="Omp-DI-2B4"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
