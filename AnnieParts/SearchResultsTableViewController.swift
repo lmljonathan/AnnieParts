@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PopupController
 
 class SearchResultsTableViewController: UITableViewController {
 
@@ -51,6 +52,16 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     func addProductToCart(button: UIButton) {
-        print(button.tag)
+        PopupController.create(self).customize(
+            [
+                .Layout(.Center),
+                .Animation(.SlideUp),
+                .Scrollable(false),
+                .BackgroundStyle(.BlackFilter(alpha: 0.7)),
+                .MovesAlongWithKeyboard(true)
+            ]
+        ).didShowHandler { (popup) in
+            print("showed popup")
+        }.show(AddProductPopupViewController.instance())
     }
 }
