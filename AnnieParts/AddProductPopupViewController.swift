@@ -60,10 +60,12 @@ class AddProductPopupViewController: UIViewController, PopupContentViewControlle
     @IBAction func addProductToCart(sender: UIButton) {
         print(id_number)
         print("\(self.quantity) Items Added to cart")
+        self.view.endEditing(true)
         closeHandler?()
     }
     @IBAction func cancel(sender: UIButton) {
         print("No items added")
+        self.view.endEditing(true)
         closeHandler?()
     }
     // PopupContentViewController Protocol
