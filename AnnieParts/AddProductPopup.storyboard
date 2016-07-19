@@ -28,15 +28,24 @@
                                             <constraint firstAttribute="width" constant="113" id="t7a-Y5-FOz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="userEnteredNumber:" destination="Pml-ex-gcX" eventType="editingChanged" id="Fws-jU-t4l"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZA4-X2-43G">
                                         <rect key="frame" x="146" y="50" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="increaseQuantity:" destination="Pml-ex-gcX" eventType="touchUpInside" id="Ihz-br-9kf"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB8-JU-55t">
                                         <rect key="frame" x="146" y="70" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="decreaseQuantity:" destination="Pml-ex-gcX" eventType="touchUpInside" id="o6i-2I-u9L"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDV-4L-lmP">
                                         <rect key="frame" x="8" y="118" width="184" height="30"/>
@@ -47,6 +56,9 @@
                                         <state key="normal" title="Add to Cart">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addProductToCart:" destination="Pml-ex-gcX" eventType="touchUpInside" id="Rb4-WK-NDt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kX4-US-Lu9">
                                         <rect key="frame" x="8" y="156" width="184" height="30"/>
@@ -57,6 +69,9 @@
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="Pml-ex-gcX" eventType="touchUpInside" id="dyF-2R-6kj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,6 +105,9 @@
                             <constraint firstItem="NmX-SC-gje" firstAttribute="centerY" secondItem="djG-l6-U2O" secondAttribute="centerY" id="PJU-w2-FLq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="productQuantity" destination="fVg-s0-VAX" id="gNN-Mc-rmK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aX-ki-4bB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
