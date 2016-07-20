@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import DropDown
 
 class SelectorTableViewCell: UITableViewCell {
 
     // MARK: - IB Outlets
     @IBOutlet weak var selectView: UIView!
     @IBOutlet weak var selectLabel: UILabel!
+    
+    // MARK: - Variables
+    private var dropDown = DropDown()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +32,23 @@ class SelectorTableViewCell: UITableViewCell {
     // MARK: - Configure Function
     func configureCell(){
         self.selectView.layer.cornerRadius = 5
+    }
+    
+    func showDropDown(selectorData: [String]){
+        setupDropDown(selectView, data: selectorData)
+        dropDown.show()
+    }
+    
+    private func setupDropDown(view: UIView, data: [String]){
+        // The view to which the drop down will appear on
+        dropDown.anchorView = view // UIView or UIBarButtonItem
+        dropDown.direction = .Bottom
+        dropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
+        dropDown.cellHeight = 44
+        dropDown.backgroundColor = UIColor.lightGrayColor()
+        
+        // The list of items to display. Can be changed dynamically
+        dropDown.dataSource = data
     }
 
 }
