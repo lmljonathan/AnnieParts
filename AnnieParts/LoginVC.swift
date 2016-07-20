@@ -28,7 +28,7 @@ class LoginVC: UIViewController {
     // MARK: - IB Outlet Actions
     
     @IBAction func loginPressed(sender: UIButton) {
-        self.checkCredentials()
+        //self.checkCredentials()
     }
     
     @IBAction func forgetPasswordPressed(sender: UIButton) {
