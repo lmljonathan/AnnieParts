@@ -25,7 +25,6 @@ class SelectorTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
@@ -46,9 +45,13 @@ class SelectorTableViewCell: UITableViewCell {
         dropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
         dropDown.cellHeight = 44
         dropDown.backgroundColor = UIColor.lightGrayColor()
+        dropDown.selectionAction = { [unowned self] (index, item) in
+            self.selectLabel.text = item
+        }
         
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = data
     }
+    
 
 }
