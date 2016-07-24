@@ -8,6 +8,8 @@
 
 import UIKit
 import DropDown
+import SideMenuController
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -30,7 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Set navigation bar Back button tint colour
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        
+        SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
+        SideMenuController.preferences.drawing.sidePanelPosition = .UnderCenterPanelLeft
+        SideMenuController.preferences.drawing.sidePanelWidth = 300
+        SideMenuController.preferences.drawing.centerPanelShadow = true
+        SideMenuController.preferences.animating.statusBarBehaviour = .HorizontalPan
+        SideMenuController.preferences.animating.transitionAnimator = FadeAnimator.self
         return true
     }
 
