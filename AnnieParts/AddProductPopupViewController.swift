@@ -12,11 +12,13 @@ import PopupController
 class AddProductPopupViewController: UIViewController, PopupContentViewController {
 
     @IBOutlet weak var productQuantity: UITextField!
+    @IBOutlet weak var addButton: UIButton!
     private var popupSize: CGSize!
     var closeHandler: (() -> Void)?
     
     private var quantity = 1
     var id_number: Int!
+    var button_label = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,7 @@ class AddProductPopupViewController: UIViewController, PopupContentViewControlle
         if (self.id_number == nil) {
             id_number = -1
         }
+        self.addButton.setTitle(self.button_label, forState: UIControlState.Normal)
     }
 
     override func didReceiveMemoryWarning() {
