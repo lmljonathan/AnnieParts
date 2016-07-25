@@ -63,8 +63,7 @@ class SearchResultsTableViewController: UITableViewController {
             ]
             ).didShowHandler { (popup) in
                 print("showed popup")
-        }
-        productPopup.button_label = "Add to Cart"
+            }
         productPopup.id_number = button.tag
         productPopup.closeHandler = { _ in
             popup.dismiss()
