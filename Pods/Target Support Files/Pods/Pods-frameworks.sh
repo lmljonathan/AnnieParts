@@ -85,15 +85,19 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/Auk.framework"
   install_framework "Pods/DropDown.framework"
   install_framework "Pods/PopupController.framework"
   install_framework "Pods/SideMenuController.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/moa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/Auk.framework"
   install_framework "Pods/DropDown.framework"
   install_framework "Pods/PopupController.framework"
   install_framework "Pods/SideMenuController.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/moa.framework"
 fi

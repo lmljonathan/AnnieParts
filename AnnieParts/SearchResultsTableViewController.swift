@@ -51,6 +51,10 @@ class SearchResultsTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("showDetailed", sender: self)
+    }
+    
     func addProductToCart(button: UIButton) {
         let productPopup = AddProductPopupViewController.instance()
         let popup = PopupController.create(self).customize(
