@@ -11,6 +11,7 @@ import UIKit
 class SideMenuTableViewController: UITableViewController {
 
     private let segues = ["showCenterSearch", "showCenterShoppingCart"]
+    private let vcNames = ["Search", "Shopping Cart"]
     private var previousIndex: NSIndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,7 @@ class SideMenuTableViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("menuCell")!
-        cell.textLabel?.text = "Switch to controller"
+        cell.textLabel?.text = self.vcNames[indexPath.row]
         return cell
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

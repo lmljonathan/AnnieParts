@@ -47,19 +47,6 @@
                                             <action selector="decreaseQuantity:" destination="Pml-ex-gcX" eventType="touchUpInside" id="o6i-2I-u9L"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDV-4L-lmP">
-                                        <rect key="frame" x="8" y="118" width="184" height="30"/>
-                                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="184" id="0KO-an-sHy"/>
-                                        </constraints>
-                                        <state key="normal" title="Add to Cart">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="addProductToCart:" destination="Pml-ex-gcX" eventType="touchUpInside" id="Rb4-WK-NDt"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kX4-US-Lu9">
                                         <rect key="frame" x="8" y="156" width="184" height="30"/>
                                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,6 +58,19 @@
                                         </state>
                                         <connections>
                                             <action selector="cancel:" destination="Pml-ex-gcX" eventType="touchUpInside" id="dyF-2R-6kj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDV-4L-lmP">
+                                        <rect key="frame" x="8" y="118" width="184" height="30"/>
+                                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="184" id="0KO-an-sHy"/>
+                                        </constraints>
+                                        <state key="normal" title="Add to Cart">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addProductToCart:" destination="Pml-ex-gcX" eventType="touchUpInside" id="Rb4-WK-NDt"/>
                                         </connections>
                                     </button>
                                 </subviews>

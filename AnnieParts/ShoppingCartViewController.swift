@@ -15,7 +15,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.layer.borderWidth = 1.0
         self.tableView.delegate = self
         self.tableView.dataSource = self
         // Do any additional setup after loading the view.
@@ -35,23 +34,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     @IBAction func editItemQuantity(sender: UIButton) {
-        let productPopup = AddProductPopupViewController.instance()
-        let popup = PopupController.create(self).customize(
-            [
-                .Layout(.Center),
-                .Animation(.SlideUp),
-                .Scrollable(false),
-                .BackgroundStyle(.BlackFilter(alpha: 0.7)),
-                .MovesAlongWithKeyboard(true)
-            ]
-            ).didShowHandler { (popup) in
-                print("showed popup")
-        }
-        productPopup.button_label = "Update"
-        productPopup.closeHandler = { _ in
-            popup.dismiss()
-        }
-        popup.show(productPopup)
+    
     }
     /*
     // MARK: - Navigation
