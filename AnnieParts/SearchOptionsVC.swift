@@ -17,6 +17,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var oneView: UIView!
     @IBOutlet weak var twoView: UIView!
     @IBOutlet weak var threeView: UIView!
+    @IBOutlet weak var searchButton: UIView!
     
     // MARK: - Variables
     private var dropDown = DropDown()
@@ -32,6 +33,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         for view in options.keys{
             self.addTapGR(view, action: Selector(options[view]!))
         }
+        
+        self.searchButton.layer.cornerRadius = 5
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -52,14 +55,14 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return 1
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return data[activeIndex][section]
-    }
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return data[activeIndex][section]
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("selectCell", forIndexPath: indexPath) as! SelectorTableViewCell
         
-        cell.configureCell()
+        cell.configureCell(data[activeIndex][indexPath.section])
         return cell
     }
     

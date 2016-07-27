@@ -14,6 +14,7 @@ class SelectorTableViewCell: UITableViewCell {
     // MARK: - IB Outlets
     @IBOutlet weak var selectView: UIView!
     @IBOutlet weak var selectLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Variables
     private var dropDown = DropDown()
@@ -29,8 +30,9 @@ class SelectorTableViewCell: UITableViewCell {
     }
     
     // MARK: - Configure Function
-    func configureCell(){
+    func configureCell(title: String){
         self.selectView.layer.cornerRadius = 5
+        self.titleLabel.text = title
     }
     
     func showDropDown(selectorData: [String]){
