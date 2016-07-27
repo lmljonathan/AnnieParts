@@ -11,10 +11,16 @@ import Auk
 
 class ProductDetailViewController: UIViewController {
 
+    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var imageCaroselScrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
+        mainScrollView.showsVerticalScrollIndicator = true
+        mainScrollView.scrollEnabled = true
+        
         //imageCaroselScrollView.frame.size.width = self.view.frame.width * 0.8
         imageCaroselScrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
         

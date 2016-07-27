@@ -14,6 +14,7 @@ class LoginVC: UIViewController {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var loginLayer: UIView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgetPassButton: UIButton!
     
@@ -21,7 +22,8 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.loginLayer.layer.borderWidth = 1.0
+        self.loginLayer.layer.borderColor = UIColor.whiteColor().CGColor
         self.navigationController?.navigationBarHidden = true
     }
     
@@ -43,6 +45,10 @@ class LoginVC: UIViewController {
         }else{
             // Display error
         }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 }
 
