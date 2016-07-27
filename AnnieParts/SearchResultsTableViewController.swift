@@ -66,6 +66,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
         vc.id = "slkdfjklds"
+        vc.buttonString = "Add to Cart"
         customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {

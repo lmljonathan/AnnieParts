@@ -15,16 +15,22 @@ class AddProductModalViewController: UIViewController {
 
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var confirmButton: UIButton!
     var name: String!
     var id: String!
     var delegate: AddProductModalView?
-    private var quantity = 1
+    var buttonString: String!
+    var quantity = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         if (self.name != nil) {
             self.productName.text = self.name
         }
+        if (self.buttonString != nil) {
+            self.confirmButton.setTitle(self.buttonString, forState: .Normal)
+        }
         self.quantityTextField.becomeFirstResponder()
+        
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
