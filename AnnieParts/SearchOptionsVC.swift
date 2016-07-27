@@ -52,14 +52,14 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return 1
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return data[activeIndex][section]
-    }
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return data[activeIndex][section]
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("selectCell", forIndexPath: indexPath) as! SelectorTableViewCell
         
-        cell.configureCell()
+        cell.configureCell(data[activeIndex][indexPath.section])
         return cell
     }
     
