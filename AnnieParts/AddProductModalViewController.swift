@@ -24,8 +24,12 @@ class AddProductModalViewController: UIViewController {
         if (self.name != nil) {
             self.productName.text = self.name
         }
+        self.quantityTextField.becomeFirstResponder()
     }
-
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        self.view.endEditing(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,7 +48,6 @@ class AddProductModalViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func cancel(sender: UIButton) {
-        self.quantityTextField.resignFirstResponder()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
