@@ -10,8 +10,7 @@
 		3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */; };
 		3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */; };
 		3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */; };
-		3C7B8CBA1D3DBEF000DAE60B /* AddProductPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B8CB91D3DBEF000DAE60B /* AddProductPopupViewController.swift */; };
-		3C7B8CBE1D3DC3CB00DAE60B /* AddProductPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C7B8CBD1D3DC3CB00DAE60B /* AddProductPopup.storyboard */; };
+		3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */; };
 		3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */; };
 		3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */; };
 		3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */; };
@@ -59,8 +58,7 @@
 		3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSideMenuViewController.swift; sourceTree = "<group>"; };
 		3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
-		3C7B8CB91D3DBEF000DAE60B /* AddProductPopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductPopupViewController.swift; sourceTree = "<group>"; };
-		3C7B8CBD1D3DC3CB00DAE60B /* AddProductPopup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddProductPopup.storyboard; sourceTree = "<group>"; };
+		3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductModalViewController.swift; sourceTree = "<group>"; };
 		3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
@@ -122,8 +120,7 @@
 		3C7B8CBF1D3DE39D00DAE60B /* Popup */ = {
 			isa = PBXGroup;
 			children = (
-				3C7B8CBD1D3DC3CB00DAE60B /* AddProductPopup.storyboard */,
-				3C7B8CB91D3DBEF000DAE60B /* AddProductPopupViewController.swift */,
+				3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */,
 			);
 			name = Popup;
 			sourceTree = "<group>";
@@ -205,11 +202,11 @@
 		907256541D3C45C700C46A8B /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */,
-				3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */,
-				90EA32211D3F20850066B281 /* SearchOptionsVC.swift */,
-				3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */,
 				907256241D397EF200C46A8B /* LoginVC.swift */,
+				90EA32211D3F20850066B281 /* SearchOptionsVC.swift */,
+				3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */,
+				900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */,
+				3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */,
 				3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */,
 				3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */,
 			);
@@ -437,11 +434,11 @@
 				3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */,
 				90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */,
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
-				3C7B8CBA1D3DBEF000DAE60B /* AddProductPopupViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */,
 				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
+				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
 				3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */,

@@ -16,7 +16,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.otf">
+        <mutableArray key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
@@ -352,6 +352,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1009.5" y="291.75"/>
+        </scene>
+        <!--Add Product Modal View Controller-->
+        <scene sceneID="4uK-D2-kKj">
+            <objects>
+                <viewController storyboardIdentifier="popup" id="bhf-jV-N1h" customClass="AddProductModalViewController" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="duF-dw-pYl"/>
+                        <viewControllerLayoutGuide type="bottom" id="CaP-6Q-hdB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2RQ-dN-aem">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8n-eb-xRh">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i8n-eb-xRh" firstAttribute="centerY" secondItem="2RQ-dN-aem" secondAttribute="centerY" id="EZm-YJ-oPL"/>
+                            <constraint firstItem="i8n-eb-xRh" firstAttribute="centerX" secondItem="2RQ-dN-aem" secondAttribute="centerX" id="luX-Ff-KeM"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="i8n-eb-xRh"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="EZm-YJ-oPL"/>
+                                <exclude reference="luX-Ff-KeM"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="i8n-eb-xRh"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="EZm-YJ-oPL"/>
+                                <include reference="luX-Ff-KeM"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pRb-jF-07V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732.5" y="-374.25"/>
         </scene>
         <!--Custom Side Menu View Controller-->
         <scene sceneID="ees-y2-ObZ">
@@ -1842,24 +1890,10 @@
                             <mask key="subviews">
                                 <exclude reference="Gc0-cv-FfY"/>
                             </mask>
-                            <mask key="constraints">
-                                <exclude reference="0Tn-Vu-Gqq"/>
-                                <exclude reference="Mn2-Jb-18e"/>
-                                <exclude reference="SnU-dt-iPo"/>
-                                <exclude reference="e0b-jM-EKc"/>
-                                <exclude reference="hlo-IE-oYp"/>
-                            </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Gc0-cv-FfY"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="0Tn-Vu-Gqq"/>
-                                <include reference="Mn2-Jb-18e"/>
-                                <include reference="SnU-dt-iPo"/>
-                                <include reference="e0b-jM-EKc"/>
-                                <include reference="hlo-IE-oYp"/>
                             </mask>
                         </variation>
                     </view>

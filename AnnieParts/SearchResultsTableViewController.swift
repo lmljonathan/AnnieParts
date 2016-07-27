@@ -8,9 +8,11 @@
 
 import UIKit
 import PopupController
+import Presentr
 
-class SearchResultsTableViewController: UITableViewController {
+class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delaysContentTouches = false
@@ -56,22 +58,17 @@ class SearchResultsTableViewController: UITableViewController {
     }
     
     func addProductToCart(button: UIButton) {
-        let productPopup = AddProductPopupViewController.instance()
-        let popup = PopupController.create(self).customize(
-            [
-                .Layout(.Center),
-                .Animation(.SlideUp),
-                .Scrollable(false),
-                .BackgroundStyle(.BlackFilter(alpha: 0.7)),
-                .MovesAlongWithKeyboard(true)
-            ]
-            ).didShowHandler { (popup) in
-                print("showed popup")
-            }
-        productPopup.id_number = button.tag
-        productPopup.closeHandler = { _ in
-            popup.dismiss()
-        }
-        popup.show(productPopup)
+        let width = ModalSize.Default
+        let height = ModalSize.Custom(size: 200)
+        let center = ModalCenterPosition.TopCenter
+        let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
+        presenter.blurBackground = true
+        presenter.blurStyle = UIBlurEffectStyle.Light
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
+        vc.delegate = self
+        customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+    }
+    func returnIDandQuantity(id: String, quantity: Int) {
+        // send product id to shopping cart (http request)
     }
 }
