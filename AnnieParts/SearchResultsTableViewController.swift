@@ -63,12 +63,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         let center = ModalCenterPosition.TopCenter
         let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
         presenter.blurBackground = true
-        presenter.blurStyle = UIBlurEffectStyle.Light
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
+        vc.id = "slkdfjklds"
+        vc.buttonString = "Add to Cart"
         customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
+        print(id)
+        print(quantity)
         // send product id to shopping cart (http request)
     }
 }

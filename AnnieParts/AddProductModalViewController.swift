@@ -13,28 +13,47 @@ protocol AddProductModalView {
 }
 class AddProductModalViewController: UIViewController {
 
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var confirmButton: UIButton!
+    var name: String!
+    var id: String!
     var delegate: AddProductModalView?
+    var buttonString: String!
+    var quantity = 1
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        delegate?.returnIDandQuantity("hello", quantity: 21)
+        if (self.name != nil) {
+            self.productName.text = self.name
+        }
+        if (self.buttonString != nil) {
+            self.confirmButton.setTitle(self.buttonString, forState: .Normal)
+        }
+        self.quantityTextField.becomeFirstResponder()
+        
     }
-
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        self.view.endEditing(true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func numberInputChanged(sender: UITextField) {
+        if (Int(sender.text!) != nil){
+            self.quantity = Int(sender.text!)!
+        } else {
+            self.quantity = 0
+        }
+        print(self.quantity)
     }
-    */
-
+    @IBAction func addToCart(sender: UIButton) {
+        self.delegate?.returnIDandQuantity(self.id, quantity: self.quantity)
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    @IBAction func cancel(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
