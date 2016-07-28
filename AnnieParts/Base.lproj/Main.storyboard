@@ -16,7 +16,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.otf">
+        <mutableArray key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
@@ -44,9 +44,6 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="79" y="145" width="243" height="47"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtD-WY-k15">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -61,8 +58,7 @@
                                         <exclude reference="DEo-a3-dj5"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="62" y="242" width="278" height="24"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="DEo-a3-dj5"/>
                                     </mask>
@@ -81,8 +77,7 @@
                                         <exclude reference="OGn-eT-7wv"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="62" y="274" width="276" height="1"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="0a0-1B-vat"/>
                                         <include reference="OGn-eT-7wv"/>
@@ -94,9 +89,6 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="147" y="284" width="105" height="22.5"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYS-Mp-0IV">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -111,8 +103,7 @@
                                         <exclude reference="GLc-sS-8t5"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="62" y="366" width="276" height="24"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="GLc-sS-8t5"/>
                                     </mask>
@@ -131,8 +122,7 @@
                                         <exclude reference="Mbf-43-ugg"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="62" y="398" width="276" height="1"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="5DD-Ob-gRb"/>
                                         <include reference="Mbf-43-ugg"/>
@@ -144,9 +134,6 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="147" y="408" width="106.5" height="22.5"/>
-                                </variation>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgG-WU-ozT" userLabel="Login Layer">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -159,7 +146,6 @@
                                         </state>
                                         <connections>
                                             <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dtG-8f-jrQ"/>
-                                            <segue destination="TxM-f3-gMf" kind="show" identifier="" id="YFa-Ca-rwd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -347,6 +333,7 @@
                         <outlet property="loginLayer" destination="RgG-WU-ozT" id="1ep-gl-nUN"/>
                         <outlet property="password" destination="ZYS-Mp-0IV" id="uz1-br-5k3"/>
                         <outlet property="username" destination="FtD-WY-k15" id="TZ2-Bk-JrD"/>
+                        <segue destination="TxM-f3-gMf" kind="show" identifier="pushToSearch" id="qhH-Ci-N69"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -541,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRb-jF-07V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1731" y="-652.5"/>
+            <point key="canvasLocation" x="1732" y="-605"/>
         </scene>
         <!--Custom Side Menu View Controller-->
         <scene sceneID="ees-y2-ObZ">
@@ -560,6 +547,7 @@
                         <segue destination="v7b-zZ-B25" kind="show" identifier="showCenterSearch" customClass="CenterContainmentSegue" customModule="SideMenuController" id="I62-eB-UFp"/>
                         <segue destination="pna-Em-7Gp" kind="show" identifier="showCenterShoppingCart" customClass="CenterContainmentSegue" customModule="SideMenuController" id="Txy-IZ-0IG"/>
                         <segue destination="aBu-J9-MND" kind="show" identifier="containSideMenu" customClass="SideContainmentSegue" customModule="SideMenuController" id="nGn-hp-c07"/>
+                        <segue destination="dIb-tI-phW" kind="show" identifier="showCenterLogin" customClass="CenterContainmentSegue" customModule="SideMenuController" id="Ec7-gd-o3V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tb1-21-TS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -575,7 +563,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="0R2-F1-v5o" userLabel="Profile">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan Yue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IN1-Fu-gML">
@@ -630,7 +618,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="60" id="8TN-oI-8rm">
-                                <rect key="frame" x="0.0" y="49.5" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="177.5" width="600" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8TN-oI-8rm" id="AzZ-pc-rlM">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -649,7 +637,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0M-QF-dFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1741.5" y="1261.5"/>
+            <point key="canvasLocation" x="1732" y="1240"/>
         </scene>
         <!--SEARCH OPTIONS-->
         <scene sceneID="deg-hl-JEh">
@@ -1102,7 +1090,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVu-e5-6cS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3637.5" y="-184.5"/>
+            <point key="canvasLocation" x="3583" y="-167"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j1l-WM-7E6">
@@ -1122,7 +1110,7 @@
             </objects>
             <point key="canvasLocation" x="259.5" y="291.75"/>
         </scene>
-        <!--Search Results Table View Controller-->
+        <!--Results-->
         <scene sceneID="CUu-iE-IVJ">
             <objects>
                 <tableViewController id="pyR-Ut-Ka6" customClass="SearchResultsTableViewController" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -1359,13 +1347,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" id="QVn-HA-acN"/>
+                    <navigationItem key="navigationItem" title="Results" id="QVn-HA-acN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qm-8D-gVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4531.5" y="-184.5"/>
+            <point key="canvasLocation" x="4327" y="-167"/>
         </scene>
-        <!--Shopping Cart View Controller-->
+        <!--Shopping Cart-->
         <scene sceneID="HKo-gJ-A6q">
             <objects>
                 <viewController id="Ehm-3K-Yke" customClass="ShoppingCartViewController" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -1405,7 +1393,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="shoppingCartCell" rowHeight="160" id="0qV-xF-r5y" customClass="ShoppingCartCell" customModule="AnnieParts" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0qV-xF-r5y" id="ffZ-6S-Qu0">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="159.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Re1-NI-ggo">
@@ -1585,33 +1573,33 @@
                                                     <exclude reference="nF6-yW-o6b"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="BtV-3x-JHs"/>
-                                                    <exclude reference="dH5-OI-F4q"/>
-                                                    <exclude reference="3g7-gR-tCq"/>
-                                                    <exclude reference="qZe-YS-49i"/>
-                                                    <exclude reference="uJK-BO-Evb"/>
                                                     <exclude reference="268-Bp-R0H"/>
                                                     <exclude reference="Tg3-sW-yg1"/>
                                                     <exclude reference="cls-Jy-fwh"/>
-                                                    <exclude reference="1jk-Ms-wCp"/>
-                                                    <exclude reference="bea-p0-tXQ"/>
-                                                    <exclude reference="fTR-gj-4Uq"/>
-                                                    <exclude reference="olb-cq-ebU"/>
-                                                    <exclude reference="8S6-lp-myx"/>
-                                                    <exclude reference="OD3-cj-oCc"/>
-                                                    <exclude reference="bdP-Gk-eDX"/>
-                                                    <exclude reference="tpS-6i-eKe"/>
-                                                    <exclude reference="1o3-IA-6Z0"/>
-                                                    <exclude reference="OVP-Jo-UHL"/>
-                                                    <exclude reference="oVP-yZ-IiY"/>
-                                                    <exclude reference="tec-kG-L5B"/>
+                                                    <exclude reference="LUt-TP-2Ge"/>
+                                                    <exclude reference="WIO-aD-hdW"/>
+                                                    <exclude reference="qAB-hg-g5Y"/>
+                                                    <exclude reference="3g7-gR-tCq"/>
+                                                    <exclude reference="qZe-YS-49i"/>
+                                                    <exclude reference="uJK-BO-Evb"/>
                                                     <exclude reference="1Vd-da-dV3"/>
                                                     <exclude reference="C0A-pN-bh4"/>
                                                     <exclude reference="pzU-4K-ol1"/>
                                                     <exclude reference="vfi-3d-SGu"/>
-                                                    <exclude reference="LUt-TP-2Ge"/>
-                                                    <exclude reference="WIO-aD-hdW"/>
-                                                    <exclude reference="qAB-hg-g5Y"/>
+                                                    <exclude reference="1o3-IA-6Z0"/>
+                                                    <exclude reference="OVP-Jo-UHL"/>
+                                                    <exclude reference="oVP-yZ-IiY"/>
+                                                    <exclude reference="tec-kG-L5B"/>
+                                                    <exclude reference="8S6-lp-myx"/>
+                                                    <exclude reference="OD3-cj-oCc"/>
+                                                    <exclude reference="bdP-Gk-eDX"/>
+                                                    <exclude reference="tpS-6i-eKe"/>
+                                                    <exclude reference="BtV-3x-JHs"/>
+                                                    <exclude reference="dH5-OI-F4q"/>
+                                                    <exclude reference="1jk-Ms-wCp"/>
+                                                    <exclude reference="bea-p0-tXQ"/>
+                                                    <exclude reference="fTR-gj-4Uq"/>
+                                                    <exclude reference="olb-cq-ebU"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -1626,33 +1614,33 @@
                                                     <include reference="nF6-yW-o6b"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="BtV-3x-JHs"/>
-                                                    <include reference="dH5-OI-F4q"/>
-                                                    <include reference="3g7-gR-tCq"/>
-                                                    <include reference="qZe-YS-49i"/>
-                                                    <include reference="uJK-BO-Evb"/>
                                                     <include reference="268-Bp-R0H"/>
                                                     <include reference="Tg3-sW-yg1"/>
                                                     <include reference="cls-Jy-fwh"/>
-                                                    <include reference="1jk-Ms-wCp"/>
-                                                    <include reference="bea-p0-tXQ"/>
-                                                    <include reference="fTR-gj-4Uq"/>
-                                                    <include reference="olb-cq-ebU"/>
-                                                    <include reference="8S6-lp-myx"/>
-                                                    <include reference="OD3-cj-oCc"/>
-                                                    <include reference="bdP-Gk-eDX"/>
-                                                    <include reference="tpS-6i-eKe"/>
-                                                    <include reference="1o3-IA-6Z0"/>
-                                                    <include reference="OVP-Jo-UHL"/>
-                                                    <include reference="oVP-yZ-IiY"/>
-                                                    <include reference="tec-kG-L5B"/>
+                                                    <include reference="LUt-TP-2Ge"/>
+                                                    <include reference="WIO-aD-hdW"/>
+                                                    <include reference="qAB-hg-g5Y"/>
+                                                    <include reference="3g7-gR-tCq"/>
+                                                    <include reference="qZe-YS-49i"/>
+                                                    <include reference="uJK-BO-Evb"/>
                                                     <include reference="1Vd-da-dV3"/>
                                                     <include reference="C0A-pN-bh4"/>
                                                     <include reference="pzU-4K-ol1"/>
                                                     <include reference="vfi-3d-SGu"/>
-                                                    <include reference="LUt-TP-2Ge"/>
-                                                    <include reference="WIO-aD-hdW"/>
-                                                    <include reference="qAB-hg-g5Y"/>
+                                                    <include reference="1o3-IA-6Z0"/>
+                                                    <include reference="OVP-Jo-UHL"/>
+                                                    <include reference="oVP-yZ-IiY"/>
+                                                    <include reference="tec-kG-L5B"/>
+                                                    <include reference="8S6-lp-myx"/>
+                                                    <include reference="OD3-cj-oCc"/>
+                                                    <include reference="bdP-Gk-eDX"/>
+                                                    <include reference="tpS-6i-eKe"/>
+                                                    <include reference="BtV-3x-JHs"/>
+                                                    <include reference="dH5-OI-F4q"/>
+                                                    <include reference="1jk-Ms-wCp"/>
+                                                    <include reference="bea-p0-tXQ"/>
+                                                    <include reference="fTR-gj-4Uq"/>
+                                                    <include reference="olb-cq-ebU"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1706,14 +1694,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="AYd-ZG-1yy"/>
+                    <navigationItem key="navigationItem" title="Shopping Cart" id="AYd-ZG-1yy"/>
                     <connections>
                         <outlet property="tableView" destination="qRs-ed-ZwW" id="c3l-QB-mnx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LW-iu-V4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3637.5" y="682.5"/>
+            <point key="canvasLocation" x="3583" y="843"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="A2W-7W-8nT">
@@ -2153,7 +2141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn1-0W-J60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4459.5" y="1314.75"/>
+            <point key="canvasLocation" x="4327" y="932"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WPH-MR-5yN">
@@ -2171,7 +2159,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfA-Sy-hhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2719.5" y="-184.5"/>
+            <point key="canvasLocation" x="2700" y="-171.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OUd-4g-0gJ">
@@ -2189,7 +2177,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qcd-a0-gCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2719.5" y="682.5"/>
+            <point key="canvasLocation" x="2701" y="843"/>
         </scene>
     </scenes>
     <resources>

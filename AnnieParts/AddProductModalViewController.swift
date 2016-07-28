@@ -30,7 +30,6 @@ class AddProductModalViewController: UIViewController {
             self.confirmButton.setTitle(self.buttonString, forState: .Normal)
         }
         self.quantityTextField.becomeFirstResponder()
-        
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
@@ -40,7 +39,6 @@ class AddProductModalViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     @IBAction func numberInputChanged(sender: UITextField) {
         if (Int(sender.text!) != nil){
             self.quantity = Int(sender.text!)!
