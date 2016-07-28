@@ -476,7 +476,7 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="38" y="14" width="58" height="16"/>
+                                                    <rect key="frame" x="37" y="13" width="58" height="16"/>
                                                 </variation>
                                             </label>
                                         </subviews>
@@ -516,7 +516,7 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="43" y="14" width="48" height="16"/>
+                                                    <rect key="frame" x="42" y="13" width="48" height="16"/>
                                                 </variation>
                                             </label>
                                         </subviews>
@@ -556,7 +556,7 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="33" y="14" width="68" height="16"/>
+                                                    <rect key="frame" x="33" y="13" width="68" height="16"/>
                                                 </variation>
                                             </label>
                                         </subviews>
@@ -666,7 +666,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="44" y="2" width="41" height="19"/>
+                                                        <rect key="frame" x="43.5" y="2" width="41" height="19"/>
                                                     </variation>
                                                 </label>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-bS-Mc9">
@@ -678,7 +678,7 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="134" y="12" width="46" height="20"/>
+                                                                <rect key="frame" x="133" y="12" width="46" height="20"/>
                                                             </variation>
                                                         </label>
                                                     </subviews>
@@ -1176,6 +1176,9 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" id="QVn-HA-acN"/>
+                    <connections>
+                        <segue destination="t50-4V-ZHN" kind="show" identifier="showDetail" id="EbE-xK-QVB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qm-8D-gVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1938,7 +1941,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zn1-0W-J60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4459.5" y="1314.75"/>
+            <point key="canvasLocation" x="5347.5" y="-109.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WPH-MR-5yN">

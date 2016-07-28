@@ -54,7 +54,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("showDetailed", sender: self)
+        self.performSegueWithIdentifier("showDetail", sender: self)
     }
     
     func addProductToCart(button: UIButton) {
