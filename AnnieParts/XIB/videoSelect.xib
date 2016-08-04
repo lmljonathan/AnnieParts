@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="pDl-rE-Bv4" userLabel="VideoView">
+        <view contentMode="scaleToFill" id="pDl-rE-Bv4" userLabel="videoSelect">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -17,7 +17,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="332" id="0wz-xG-Yk3"/>
                         <constraint firstAttribute="height" constant="695" id="dBd-5t-bBk">
-                            <variation key="heightClass=regular-widthClass=compact" constant="543"/>
+                            <variation key="heightClass=regular-widthClass=compact" constant="518"/>
                         </constraint>
                     </constraints>
                     <mutableString key="text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</mutableString>
@@ -40,7 +40,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="UvP-P6-o7e" firstAttribute="centerY" secondItem="pDl-rE-Bv4" secondAttribute="centerY" id="GUL-LW-3eb">
-                    <variation key="heightClass=regular-widthClass=compact" constant="27.5"/>
+                    <variation key="heightClass=regular-widthClass=compact" constant="40"/>
                 </constraint>
                 <constraint firstItem="UvP-P6-o7e" firstAttribute="centerX" secondItem="pDl-rE-Bv4" secondAttribute="centerX" id="Vt2-7L-4OK"/>
             </constraints>
