@@ -13,8 +13,8 @@ class SideMenuTableViewController: UITableViewController {
     
     @IBOutlet weak var userInfoView: UIView!
     
-    private let segues = ["showCenterSearch", "showCenterShoppingCart"]
-    private let vcNames = ["Search", "Shopping Cart"]
+    private let segues = ["showCenterSearch", "showCenterShoppingCart", "showCenterLogin"]
+    private let vcNames = ["Search", "Shopping Cart", "Logout"]
     private var previousIndex: NSIndexPath?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +45,14 @@ class SideMenuTableViewController: UITableViewController {
         if let index = previousIndex {
             tableView.deselectRowAtIndexPath(index, animated: true)
         }
-        
-        sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)
+        if indexPath.row == 2 {
+            logout({ (json) in
+                self.sideMenuController?.performSegueWithIdentifier(self.segues[indexPath.row], sender: nil)
+            })
+        }
+        else {
+            sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)
+        }
         previousIndex = indexPath
     }
 }

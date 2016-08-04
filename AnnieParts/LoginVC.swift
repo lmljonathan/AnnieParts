@@ -30,7 +30,18 @@ class LoginVC: UIViewController {
     // MARK: - IB Outlet Actions
     
     @IBAction func loginPressed(sender: UIButton) {
-        //self.checkCredentials()
+        if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
+            print(self.username.text!)
+            print(self.password.text!)
+            login(self.username.text!, password: self.password.text!, completion: { (json) in
+                print("login success")
+                
+            })
+        }
+        else {
+            print("username or password field empty")
+        }
+        self.performSegueWithIdentifier("pushToSearch", sender: self)
     }
     
     @IBAction func forgetPasswordPressed(sender: UIButton) {
@@ -39,13 +50,6 @@ class LoginVC: UIViewController {
     
     // MARK: - Main Functions
     
-    func checkCredentials(){
-        if true { // Insert post request
-            self.performSegueWithIdentifier("pushToSearch", sender: self)
-        }else{
-            // Display error
-        }
-    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)

@@ -16,7 +16,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.otf">
+        <mutableArray key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
@@ -55,9 +55,6 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="40"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="79" y="145" width="243" height="47"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtD-WY-k15">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
@@ -72,8 +69,7 @@
                                         <exclude reference="DEo-a3-dj5"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="62" y="242" width="278" height="24"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="DEo-a3-dj5"/>
                                     </mask>
@@ -92,8 +88,7 @@
                                         <exclude reference="OGn-eT-7wv"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="62" y="274" width="276" height="1"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="0a0-1B-vat"/>
                                         <include reference="OGn-eT-7wv"/>
@@ -170,7 +165,6 @@
                                         </state>
                                         <connections>
                                             <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dtG-8f-jrQ"/>
-                                            <segue destination="TxM-f3-gMf" kind="show" identifier="" id="YFa-Ca-rwd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -358,6 +352,7 @@
                         <outlet property="loginLayer" destination="RgG-WU-ozT" id="1ep-gl-nUN"/>
                         <outlet property="password" destination="ZYS-Mp-0IV" id="uz1-br-5k3"/>
                         <outlet property="username" destination="FtD-WY-k15" id="TZ2-Bk-JrD"/>
+                        <segue destination="TxM-f3-gMf" kind="show" identifier="pushToSearch" id="qhH-Ci-N69"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -552,7 +547,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pRb-jF-07V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1731" y="-652.5"/>
+            <point key="canvasLocation" x="1732" y="-605"/>
         </scene>
         <!--Custom Side Menu View Controller-->
         <scene sceneID="ees-y2-ObZ">
@@ -571,6 +566,7 @@
                         <segue destination="v7b-zZ-B25" kind="show" identifier="showCenterSearch" customClass="CenterContainmentSegue" customModule="SideMenuController" id="I62-eB-UFp"/>
                         <segue destination="pna-Em-7Gp" kind="show" identifier="showCenterShoppingCart" customClass="CenterContainmentSegue" customModule="SideMenuController" id="Txy-IZ-0IG"/>
                         <segue destination="aBu-J9-MND" kind="show" identifier="containSideMenu" customClass="SideContainmentSegue" customModule="SideMenuController" id="nGn-hp-c07"/>
+                        <segue destination="dIb-tI-phW" kind="show" identifier="showCenterLogin" customClass="CenterContainmentSegue" customModule="SideMenuController" id="Ec7-gd-o3V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tb1-21-TS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -660,7 +656,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0M-QF-dFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1741.5" y="1261.5"/>
+            <point key="canvasLocation" x="1732" y="1240"/>
         </scene>
         <!--SEARCH OPTIONS-->
         <scene sceneID="deg-hl-JEh">
@@ -1129,7 +1125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVu-e5-6cS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3637.5" y="-184.5"/>
+            <point key="canvasLocation" x="3583" y="-167"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j1l-WM-7E6">
@@ -1149,7 +1145,7 @@
             </objects>
             <point key="canvasLocation" x="259.5" y="291.75"/>
         </scene>
-        <!--Search Results Table View Controller-->
+        <!--Results-->
         <scene sceneID="CUu-iE-IVJ">
             <objects>
                 <tableViewController id="pyR-Ut-Ka6" customClass="SearchResultsTableViewController" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -1393,9 +1389,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qm-8D-gVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4531.5" y="-184.5"/>
+            <point key="canvasLocation" x="4327" y="-167"/>
         </scene>
-        <!--Shopping Cart View Controller-->
+        <!--Shopping Cart-->
         <scene sceneID="HKo-gJ-A6q">
             <objects>
                 <viewController id="Ehm-3K-Yke" customClass="ShoppingCartViewController" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -1750,14 +1746,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="AYd-ZG-1yy"/>
+                    <navigationItem key="navigationItem" title="Shopping Cart" id="AYd-ZG-1yy"/>
                     <connections>
                         <outlet property="tableView" destination="qRs-ed-ZwW" id="c3l-QB-mnx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6LW-iu-V4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3637.5" y="682.5"/>
+            <point key="canvasLocation" x="3583" y="843"/>
         </scene>
         <!--Product Detail View Controller-->
         <scene sceneID="A2W-7W-8nT">
@@ -2564,7 +2560,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfA-Sy-hhp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2719.5" y="-184.5"/>
+            <point key="canvasLocation" x="2700" y="-171.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OUd-4g-0gJ">
@@ -2582,7 +2578,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qcd-a0-gCU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2719.5" y="682.5"/>
+            <point key="canvasLocation" x="2701" y="843"/>
         </scene>
     </scenes>
     <resources>

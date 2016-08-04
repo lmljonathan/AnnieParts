@@ -15,6 +15,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.addSideMenuButton()
         self.tableView.delaysContentTouches = false
         for view in self.tableView.subviews {
             if view is UIScrollView {
@@ -65,6 +66,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         presenter.blurBackground = true
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
+        
+        //TODO: - SEND ID OF PRODUCT TO VIEW CONTROLLER
         vc.id = "slkdfjklds"
         vc.buttonString = "Add to Cart"
         customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)

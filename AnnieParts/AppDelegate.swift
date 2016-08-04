@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Set navigation bar Back button tint colour
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
         SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
         SideMenuController.preferences.drawing.sidePanelPosition = .UnderCenterPanelLeft
         SideMenuController.preferences.drawing.sidePanelWidth = 240

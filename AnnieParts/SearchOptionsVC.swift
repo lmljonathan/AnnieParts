@@ -27,7 +27,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let options = [oneView: "searchByBrand:", twoView: "searchByCar:", threeView: "searchByProduct:"]
         
         for view in options.keys{
