@@ -343,6 +343,7 @@
 				TargetAttributes = {
 					9072561E1D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = G6YM58LRJE;
 					};
 					907256321D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -623,10 +624,13 @@
 			baseConfigurationReference = 38E5935BB870C91E5307CD8C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AnnieParts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Boyang.AnnieParts.AnnieParts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -635,10 +639,13 @@
 			baseConfigurationReference = A1A932F42A1CDAF8DA2EEFE4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AnnieParts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Boyang.AnnieParts.AnnieParts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
