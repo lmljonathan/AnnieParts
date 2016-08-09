@@ -34,14 +34,21 @@ class LoginVC: UIViewController {
             print(self.username.text!)
             print(self.password.text!)
             login(self.username.text!, password: self.password.text!, completion: { (json) in
-                print("login success")
-                
+                if let status = json!["status"] as? Int {
+                    if status == 1 {
+                        print("login success")
+                        self.performSegueWithIdentifier("pushToSearch", sender: self)
+                    }
+                    else {
+                        print("login failed")
+                    }
+                }
             })
         }
         else {
             print("username or password field empty")
         }
-        self.performSegueWithIdentifier("pushToSearch", sender: self)
+        
     }
     
     @IBAction func forgetPasswordPressed(sender: UIButton) {

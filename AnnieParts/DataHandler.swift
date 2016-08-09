@@ -17,7 +17,7 @@ var manufacturer_list  = []
 var model_list = []
 var product_type_list = []
 
-private let BASE_URL = "http://192.168.1.127/www/"
+private let BASE_URL = "http://www.annieparts.com/"
 private let query_type_url = [
     "config": "appGetCfg.php",
     "catalog": "appSearch.php",
@@ -45,10 +45,10 @@ func logout(completion: (NSDictionary?) -> Void) {
         .GET,
         query_url,
         parameters: ["act": "logout"]
-        ).validate().responseJSON { (response) in
-            if let json = response.result.value {
-                completion(json as? NSDictionary)
-            }
+    ).validate().responseJSON { (response) in
+        if let json = response.result.value {
+            completion(json as? NSDictionary)
+        }
     }
 }
 
