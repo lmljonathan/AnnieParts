@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PopupController
 import Presentr
 
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
