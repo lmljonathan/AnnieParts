@@ -38,6 +38,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("shoppingCartCell") as! ShoppingCartCell
+        cell.configureCell()
         cell.changeQuantityButton.tag = indexPath.row
         cell.deleteButton.tag = indexPath.row
         cell.changeQuantityButton.addTarget(self, action: #selector(ShoppingCartViewController.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
