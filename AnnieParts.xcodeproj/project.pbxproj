@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C0681D81D4A952900FDBC40 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0681D71D4A952900FDBC40 /* DataHandler.swift */; };
 		3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */; };
 		3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */; };
 		3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */; };
@@ -25,6 +24,9 @@
 		9072562D1D397EF200C46A8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9072562B1D397EF200C46A8B /* LaunchScreen.storyboard */; };
 		907256381D397EF200C46A8B /* AnniePartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256371D397EF200C46A8B /* AnniePartsTests.swift */; };
 		907256431D397EF200C46A8B /* AnniePartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256421D397EF200C46A8B /* AnniePartsUITests.swift */; };
+		9075AA151D531F7E004272F4 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9075AA141D531F7E004272F4 /* DataHandler.swift */; };
+		9075AA171D5324D1004272F4 /* SearchOptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9075AA161D5324D1004272F4 /* SearchOptionsCell.xib */; };
+		9075AA191D5325EA004272F4 /* SearchOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */; };
 		9087E6691D4C284000FCF09B /* aboutSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9087E6681D4C284000FCF09B /* aboutSelectView.swift */; };
 		90898C7E1D47DD1900719F20 /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C761D47DD1900719F20 /* Montserrat-ExtraBold.otf */; };
 		90898C7F1D47DD1900719F20 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C771D47DD1900719F20 /* Montserrat-SemiBold.otf */; };
@@ -59,7 +61,6 @@
 
 /* Begin PBXFileReference section */
 		38E5935BB870C91E5307CD8C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		3C0681D71D4A952900FDBC40 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSideMenuViewController.swift; sourceTree = "<group>"; };
 		3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +85,9 @@
 		9072563E1D397EF200C46A8B /* AnniePartsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnniePartsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		907256421D397EF200C46A8B /* AnniePartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsUITests.swift; sourceTree = "<group>"; };
 		907256441D397EF200C46A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9075AA141D531F7E004272F4 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		9075AA161D5324D1004272F4 /* SearchOptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchOptionsCell.xib; path = XIB/SearchOptionsCell.xib; sourceTree = "<group>"; };
+		9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchOptionsCell.swift; path = Cells/SearchOptionsCell.swift; sourceTree = "<group>"; };
 		9087E6681D4C284000FCF09B /* aboutSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutSelectView.swift; sourceTree = "<group>"; };
 		90898C761D47DD1900719F20 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
 		90898C771D47DD1900719F20 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 		907256211D397EF200C46A8B /* AnnieParts */ = {
 			isa = PBXGroup;
 			children = (
+				9075AA141D531F7E004272F4 /* DataHandler.swift */,
 				907256261D397EF200C46A8B /* Main.storyboard */,
 				90EA32231D3F253A0066B281 /* SearchByData.swift */,
 				90898C861D47DD1F00719F20 /* Fonts */,
@@ -249,6 +254,7 @@
 		90A7957E1D4A8A6000CCD179 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				9075AA161D5324D1004272F4 /* SearchOptionsCell.xib */,
 				906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */,
 				906287DB1D4A8DD8007C6D86 /* videoSelect.xib */,
 			);
@@ -258,6 +264,7 @@
 		90EA32201D3E98A90066B281 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */,
 				3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */,
 				3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */,
 				90EA321E1D3E989E0066B281 /* SelectorTableViewCell.swift */,
@@ -374,6 +381,7 @@
 			files = (
 				90898C841D47DD1900719F20 /* Montserrat-Light.otf in Resources */,
 				90898C7E1D47DD1900719F20 /* Montserrat-ExtraBold.otf in Resources */,
+				9075AA171D5324D1004272F4 /* SearchOptionsCell.xib in Resources */,
 				9072562D1D397EF200C46A8B /* LaunchScreen.storyboard in Resources */,
 				90898C801D47DD1900719F20 /* Montserrat-UltraLight.otf in Resources */,
 				9072562A1D397EF200C46A8B /* Assets.xcassets in Resources */,
@@ -461,12 +469,13 @@
 				3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */,
 				3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */,
 				90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */,
+				9075AA191D5325EA004272F4 /* SearchOptionsCell.swift in Sources */,
+				9075AA151D531F7E004272F4 /* DataHandler.swift in Sources */,
 				9087E6691D4C284000FCF09B /* aboutSelectView.swift in Sources */,
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */,
-				3C0681D81D4A952900FDBC40 /* DataHandler.swift in Sources */,
 				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,

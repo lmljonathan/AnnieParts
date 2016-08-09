@@ -31,11 +31,11 @@ func login(username: String, password: String, completion: (NSDictionary?) -> Vo
         .GET,
         query_url,
         parameters: ["act": "login", "u":username, "p":password]
-    ).validate().responseJSON { (response) in
-        print(response.request!.URL!.URLString)
-        if let json = response.result.value {
-            completion(json as? NSDictionary)
-        }
+        ).validate().responseJSON { (response) in
+            print(response.request!.URL!.URLString)
+            if let json = response.result.value {
+                completion(json as? NSDictionary)
+            }
     }
 }
 
@@ -58,11 +58,11 @@ func get_json_data(query_type: String, query_paramters: [String: AnyObject], com
         .GET,
         query_url,
         parameters: query_paramters
-    ).validate().responseJSON { response in
-        print(response.request!.URL!.URLString)
-        if let json = response.result.value {
-            completion(json as? NSDictionary)
-        }
+        ).validate().responseJSON { response in
+            print(response.request!.URL!.URLString)
+            if let json = response.result.value {
+                completion(json as? NSDictionary)
+            }
     }
 }
 // Given name of the selected item in each search category, find the corresponding ID to use in the GET request.

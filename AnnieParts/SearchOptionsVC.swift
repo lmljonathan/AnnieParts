@@ -22,6 +22,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - Variables
     private var dropDown = DropDown()
     private var data = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT TYPE"]]
+    private var brandData = brand()
+    private var vehicleData = vehicle()
+    private var productData = product()
     private var activeIndex = 0
     
     // MARK: - View Loading Functions
@@ -70,24 +73,24 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         var dataSource: [String]!
         switch indexPath.section {
         case 0:
-            dataSource = brand().options
+            dataSource = brandData.options
         case 1:
-            let v = vehicle()
             switch indexPath.row {
             case 0:
-                dataSource = v.year
+                dataSource = vehicleData.year
             case 1:
-                dataSource = v.make
+                dataSource = vehicleData.make
             case 2:
-                dataSource = v.model
+                dataSource = vehicleData.model
             default:
                 break
             }
         case 2:
-            dataSource = product().products
+            dataSource = productData.products
         default:
             break
         }
+        
         
         cell.showDropDown(dataSource)
     }
