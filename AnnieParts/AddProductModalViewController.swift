@@ -29,6 +29,7 @@ class AddProductModalViewController: UIViewController {
         if (self.buttonString != nil) {
             self.confirmButton.setTitle(self.buttonString, forState: .Normal)
         }
+        self.quantityTextField.text = ""
         self.quantityTextField.becomeFirstResponder()
     }
     override func viewWillDisappear(animated: Bool) {

@@ -13,8 +13,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
 
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+       
         self.navigationController?.addSideMenuButton()
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Bordered, target: nil, action: nil), atIndex:0)
         self.tableView.delaysContentTouches = false
         for view in self.tableView.subviews {
             if view is UIScrollView {
@@ -22,6 +23,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                 break
             }
         }
+        super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

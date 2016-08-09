@@ -29,23 +29,24 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - View Loading Functions
     override func viewDidLoad() {
-        super.viewDidLoad()
+        self.navigationController?.addSideMenuButton()
+        
         let options = [oneView: "searchByBrand:", twoView: "searchByCar:", threeView: "searchByProduct:"]
         
         for view in options.keys{
             self.addTapGR(view, action: Selector(options[view]!))
         }
-        get_json_data("config", query_paramters: [:]) { (json) in
-            if json!["status"] as! Int == 1 {
-                print("hello")
-                self.brandData.options = json!["pinpai"] as! [String]
-                self.productData.products = json!["attributes"] as! [String]
-                self.vehicleData.year = json!["years"] as! [String]
-                self.vehicleData.make = json!["manufactures"] as! [String]
-                self.vehicleData.model = json!["models"] as! [String]
-                self.tableView.reloadData()
-            }
-        }
+//        get_json_data("config", query_paramters: [:]) { (json) in
+//            if json!["status"] as! Int == 1 {
+//                print("hello")
+//                self.brandData.options = json!["pinpai"] as! [String]
+//                self.productData.products = json!["attributes"] as! [String]
+//                self.vehicleData.year = json!["years"] as! [String]
+//                self.vehicleData.make = json!["manufactures"] as! [String]
+//                self.vehicleData.model = json!["models"] as! [String]
+//                self.tableView.reloadData()
+//            }
+//        }
         self.searchButton.layer.cornerRadius = 5
         
         // Uncomment the following line to preserve selection between presentations
@@ -55,6 +56,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.navigationController?.navigationBarHidden = false
+        super.viewDidLoad()
     }
     
     // MARK: - Table View Delegate Functions

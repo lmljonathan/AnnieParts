@@ -14,7 +14,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        self.navigationController?.addSideMenuButton()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.delaysContentTouches = false
@@ -24,6 +24,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 break
             }
         }
+        super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
 
