@@ -17,6 +17,8 @@ private let query_type_url = [
     "catalog": "appSearch.php",
     "keyword": "appSearchKeyword.php",
     "product": "appGetGoodsInfor.php",
+    "shoppingCart": "appGetShoppingCart.php",
+    "addToCart": "appAddGoods2Cart.php",
 ]
 
 func login(username: String, password: String, completion: (NSDictionary?) -> Void) {
@@ -42,7 +44,14 @@ func logout() {
         parameters: ["act": "logout"]
     ).validate()
 }
-
+func send_request(query_type: String, query_paramters: [String: AnyObject]) {
+    let query_url = BASE_URL + query_type_url[query_type]! + "?"
+    Alamofire.request(
+        .GET,
+        query_url,
+        parameters: query_paramters
+    ).validate()
+}
 func get_json_data(query_type: String, query_paramters: [String: AnyObject], completion: (NSDictionary?) -> Void) {
     let query_url = BASE_URL + query_type_url[query_type]! + "?"
     Alamofire.request(

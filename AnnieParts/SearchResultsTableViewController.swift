@@ -92,14 +92,12 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         vc.delegate = self
         
         //TODO: - SEND ID OF PRODUCT TO VIEW CONTROLLER
-        vc.id = "slkdfjklds"
+        vc.id = String(self.catalogData[button.tag].productID)
         vc.buttonString = "Add to Cart"
         customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
-        print(id)
-        print(quantity)
-        // send product id to shopping cart (http request)
+        send_request("addToCart", query_paramters: ["id": id, "cnt": quantity])
     }
     
     func unwind() {
