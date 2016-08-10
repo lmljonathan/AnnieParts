@@ -85,6 +85,8 @@ class ProductDetailViewController: UIViewController {
             switch activeTab {
             case aboutSelect:
                 self.addNib("aboutSelect", toView: self.contentView)
+                let view = self.contentView.subviews[0] as! aboutSelectView
+                view.configure("There is no information at the moment.")
             case videoSelect:
                 self.addNib("videoSelect", toView: self.contentView)
             case installSelect:
@@ -104,7 +106,7 @@ class ProductDetailViewController: UIViewController {
         view.addGestureRecognizer(gr)
     }
     func unwind() {
-        print("ksjf")
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     

@@ -34,17 +34,13 @@ func login(username: String, password: String, completion: (NSDictionary?) -> Vo
     }
 }
 
-func logout(completion: (NSDictionary?) -> Void) {
+func logout() {
     let query_url = BASE_URL + "appLogin.php" + "?"
     Alamofire.request(
         .GET,
         query_url,
         parameters: ["act": "logout"]
-    ).validate().responseJSON { (response) in
-        if let json = response.result.value {
-            completion(json as? NSDictionary)
-        }
-    }
+    ).validate()
 }
 
 func get_json_data(query_type: String, query_paramters: [String: AnyObject], completion: (NSDictionary?) -> Void) {

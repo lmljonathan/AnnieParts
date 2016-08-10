@@ -10,6 +10,7 @@ import UIKit
 
 class SearchResultsCell: UITableViewCell {
 
+    @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
     override func awakeFromNib() {

@@ -46,9 +46,8 @@ class SideMenuTableViewController: UITableViewController {
             tableView.deselectRowAtIndexPath(index, animated: true)
         }
         if indexPath.row == 2 {
-            logout({ (json) in
-                self.sideMenuController?.performSegueWithIdentifier(self.segues[indexPath.row], sender: nil)
-            })
+            logout()
+            self.sideMenuController?.performSegueWithIdentifier(self.segues[indexPath.row], sender: nil)
         }
         else {
             sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)

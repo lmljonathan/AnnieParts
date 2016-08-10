@@ -16,13 +16,6 @@ class CustomSideMenuViewController: SideMenuController {
         performSegueWithIdentifier("containSideMenu", sender: nil)
         // Do any additional setup after loading the view.
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showCenterLogin") {
-            logout({ (json) in
-                
-            })
-        }
-    }
     /*
     // MARK: - Navigation
 
