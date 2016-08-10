@@ -11,11 +11,10 @@ import Presentr
 
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
-    
     override func viewDidLoad() {
-       
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Bordered, target: nil, action: nil), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(SearchResultsTableViewController.unwind)), atIndex:0)
+        
         self.tableView.delaysContentTouches = false
         for view in self.tableView.subviews {
             if view is UIScrollView {
@@ -77,5 +76,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         print(id)
         print(quantity)
         // send product id to shopping cart (http request)
+    }
+    
+    func unwind() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

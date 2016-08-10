@@ -30,7 +30,10 @@ class ProductDetailViewController: UIViewController {
     private var activeTab: UIView!
         
     override func viewDidLoad() {
-        super.viewDidLoad()
+
+        self.navigationController?.addSideMenuButton()
+        let button = UIBarButtonItem()
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(ProductDetailViewController.unwind)), atIndex:0)
         
         activeTab = aboutSelect
         
@@ -51,6 +54,7 @@ class ProductDetailViewController: UIViewController {
         imageCaroselScrollView.auk.settings.pageControl.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.3)
         imageCaroselScrollView.auk.show(url: "https://bit.ly/auk_image")
         imageCaroselScrollView.auk.show(url: "https://bit.ly/moa_image")
+        super.viewDidLoad()
     }
 
     func addNib(named: String, toView: UIView){
@@ -99,7 +103,9 @@ class ProductDetailViewController: UIViewController {
         let gr = UITapGestureRecognizer(target: self, action: action)
         view.addGestureRecognizer(gr)
     }
-    
+    func unwind() {
+        print("ksjf")
+    }
     
     
 
