@@ -19,6 +19,7 @@ private let query_type_url = [
     "product": "appGetGoodsInfor.php",
     "shoppingCart": "appGetShoppingCart.php",
     "addToCart": "appAddGoods2Cart.php",
+    "deleteFromCart": "appDeleteFromCart.php",
 ]
 
 func login(username: String, password: String, completion: (NSDictionary?) -> Void) {

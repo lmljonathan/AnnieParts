@@ -13,6 +13,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var tableView: UITableView!
     private var shoppingCart: [Product]!
+    private var updatedItem = -1
     override func viewDidLoad() {
         if self.shoppingCart == nil {
             self.shoppingCart = []
@@ -60,31 +61,35 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.changeQuantityButton.tag = indexPath.row
         cell.deleteButton.tag = indexPath.row
         cell.changeQuantityButton.addTarget(self, action: #selector(ShoppingCartViewController.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(ShoppingCartViewController.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
         return cell
     }
     @IBAction func editItemQuantity(sender: UIButton) {
+        self.updatedItem = sender.tag
         let width = ModalSize.Default
         let height = ModalSize.Custom(size: 200)
         let center = ModalCenterPosition.TopCenter
         let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
         presenter.blurBackground = true
+        
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
-        vc.id = "slkdfjklds"
+        
+        vc.id = self.shoppingCart[sender.tag].productID
         vc.buttonString = "Update"
+        
         customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
     }
+    @IBAction func deleteItemFromCart(sender:UIButton) {
+        // may have to change productID to recordID????
+        send_request("deleteFromCart", query_paramters: ["rec_id": self.shoppingCart[sender.tag].productID])
+        self.shoppingCart.removeAtIndex(sender.tag)
+    }
     func returnIDandQuantity(id: String, quantity: Int) {
-        
+        send_request("addToCart", query_paramters: ["id": id, "cnt": quantity, "act": "set"])
+        if (self.updatedItem != -1) {
+            // update the table view data
+        }
+        self.tableView.reloadData()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
