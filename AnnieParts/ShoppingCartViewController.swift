@@ -14,20 +14,24 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     private var shoppingCart: [Product]!
     private var updatedItem = -1
+    var viewFromNavButton = true;
     override func viewDidLoad() {
+        self.navigationController?.addSideMenuButton()
+        if (self.viewFromNavButton) {
+            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+            viewFromNavButton = false
+        } else {
+            
+            if self.navigationItem.leftBarButtonItems?.count == 3 {
+                self.navigationItem.leftBarButtonItems?.removeAtIndex(0)
+            }
+        }
         if self.shoppingCart == nil {
             self.shoppingCart = []
         }
-        self.navigationController?.addSideMenuButton()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.delaysContentTouches = false
-        for view in self.tableView.subviews {
-            if view is UIScrollView {
-                (view as? UIScrollView)!.delaysContentTouches = false
-                break
-            }
-        }
+        MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         //loadData()
         super.viewDidLoad()
         // Do any additional setup after loading the view.

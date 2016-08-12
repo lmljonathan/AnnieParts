@@ -12,6 +12,8 @@
 		3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */; };
 		3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */; };
 		3C6A48AD1D5BD2A4006FB3E4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */; };
+		3C9D321A1D5E53520099BC50 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D32191D5E53520099BC50 /* Singleton.swift */; };
+		3C9D321C1D5E58430099BC50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D321B1D5E58430099BC50 /* User.swift */; };
 		3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */; };
 		3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */; };
 		3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */; };
@@ -68,6 +70,8 @@
 		3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductModalViewController.swift; sourceTree = "<group>"; };
 		3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		3C9D32191D5E53520099BC50 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
+		3C9D321B1D5E58430099BC50 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizePopup.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */,
+				3C9D321B1D5E58430099BC50 /* User.swift */,
+				3C9D32191D5E53520099BC50 /* Singleton.swift */,
 				9075AA141D531F7E004272F4 /* DataHandler.swift */,
 				90EA32231D3F253A0066B281 /* SearchByData.swift */,
 				90898C861D47DD1F00719F20 /* Fonts */,
@@ -488,6 +494,7 @@
 				3C6A48AD1D5BD2A4006FB3E4 /* Product.swift in Sources */,
 				9075AA151D531F7E004272F4 /* DataHandler.swift in Sources */,
 				9087E6691D4C284000FCF09B /* aboutSelectView.swift in Sources */,
+				3C9D321C1D5E58430099BC50 /* User.swift in Sources */,
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
@@ -497,6 +504,7 @@
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
+				3C9D321A1D5E53520099BC50 /* Singleton.swift in Sources */,
 				3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

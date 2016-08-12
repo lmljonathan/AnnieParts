@@ -648,6 +648,7 @@
                     </tableView>
                     <connections>
                         <outlet property="userInfoView" destination="0R2-F1-v5o" id="V8b-eo-pUp"/>
+                        <outlet property="userStatus" destination="Zlu-t3-lRd" id="lTA-n0-NJp"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0M-QF-dFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -943,9 +944,6 @@
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="-37" y="2" width="42" height="19"/>
-                                                    </variation>
                                                 </label>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-bS-Mc9">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -977,8 +975,7 @@
                                                             <exclude reference="tBh-bY-H6F"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="-37" y="31" width="313" height="44"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="subviews">
                                                             <include reference="YGO-TX-9er"/>
                                                         </mask>

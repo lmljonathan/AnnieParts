@@ -20,15 +20,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
         self.searchParameters = ["brand": 0, "model": 0, "attr": 3, "year": 0, "pinpai": 0]
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(SearchResultsTableViewController.unwind)), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         
-        self.tableView.delaysContentTouches = false
-        for view in self.tableView.subviews {
-            if view is UIScrollView {
-                (view as? UIScrollView)!.delaysContentTouches = false
-                break
-            }
-        }
         loadData()
         
         super.viewDidLoad()
@@ -93,9 +87,5 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request("addToCart", query_paramters: ["id": id, "cnt": quantity])
-    }
-    
-    func unwind() {
-        self.navigationController?.popViewControllerAnimated(true)
     }
 }

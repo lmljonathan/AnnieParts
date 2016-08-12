@@ -33,7 +33,7 @@ class ProductDetailViewController: UIViewController {
 
         self.navigationController?.addSideMenuButton()
         let button = UIBarButtonItem()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(ProductDetailViewController.unwind)), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         
         activeTab = aboutSelect
         
