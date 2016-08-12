@@ -36,25 +36,38 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         for view in options.keys{
             self.addTapGR(view, action: Selector(options[view]!))
         }
-//        get_json_data("config", query_paramters: [:]) { (json) in
-//            if json!["status"] as! Int == 1 {
-//                print("hello")
-//                self.brandData.options = json!["pinpai"] as! [String]
-//                self.productData.products = json!["attributes"] as! [String]
-//                self.vehicleData.year = json!["years"] as! [String]
-//                self.vehicleData.make = json!["manufactures"] as! [String]
-//                self.vehicleData.model = json!["models"] as! [String]
-//                self.tableView.reloadData()
-//            }
-//        }
+        get_json_data("config", query_paramters: [:]) { (json) in
+            if json!["status"] as! Int == 1 {
+                for dict in (json!["pinpai"] as! NSArray){
+                    self.brandData.optionsIDs.append(dict["id"] as! Int)
+                    self.brandData.options.append(dict["name"] as! String)
+                }
+                
+                for dict in (json!["attributes"] as! NSArray){
+                    self.productData.productsIDs.append(dict["id"] as! Int)
+                    self.productData.products.append(dict["name"] as! String)
+                }
+                
+                for dict in (json!["years"] as! NSArray){
+                    self.vehicleData.yearIDs.append(dict["id"] as! Int)
+                    self.vehicleData.year.append(String(dict["name"] as! Int))
+                }
+                
+                for dict in (json!["manufactures"] as! NSArray){
+                    self.vehicleData.makeIDs.append(dict["id"] as! Int)
+                    self.vehicleData.make.append(dict["name"] as! String)
+                    
+                }
+                
+                for dict in (json!["models"] as! NSArray){
+                    self.vehicleData.modelIDs.append(dict["id"] as! Int)
+                    self.vehicleData.model.append(dict["name"] as! String)
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
         self.searchButton.layer.cornerRadius = 5
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         self.navigationController?.navigationBarHidden = false
         super.viewDidLoad()
     }
@@ -82,7 +95,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! SelectorTableViewCell
-        var dataSource: [String]!
+        var dataSource = []
         switch indexPath.section {
         case 0:
             dataSource = brandData.options
@@ -104,7 +117,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         
         
-        cell.showDropDown(dataSource)
+        cell.showDropDown(dataSource as! [String])
     }
     
     // MARK: - Main Functions
