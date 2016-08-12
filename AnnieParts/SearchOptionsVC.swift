@@ -73,6 +73,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.tableView.reloadData()
             }
         }
+
         self.searchButton.layer.cornerRadius = 5
         self.navigationController?.navigationBarHidden = false
         

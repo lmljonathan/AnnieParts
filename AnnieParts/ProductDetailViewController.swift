@@ -33,13 +33,13 @@ class ProductDetailViewController: UIViewController {
 
         self.navigationController?.addSideMenuButton()
         let button = UIBarButtonItem()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(ProductDetailViewController.unwind)), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         
         activeTab = aboutSelect
         
         addNib("aboutSelect", toView: self.contentView)
         for tab in [aboutSelect, videoSelect, installSelect, docsSelect]{
-            self.addTapGR(tab, action: Selector("switchTab:"))
+            self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
         }
         
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)

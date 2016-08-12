@@ -12,13 +12,15 @@ class SideMenuTableViewController: UITableViewController {
 
     
     @IBOutlet weak var userInfoView: UIView!
+    @IBOutlet weak var userStatus: UILabel!
     
     private let segues = ["showCenterSearch", "showCenterShoppingCart", "showCenterLogin"]
     private let vcNames = ["Search", "Shopping Cart", "Logout"]
     private var previousIndex: NSIndexPath?
     override func viewDidLoad() {
-        super.viewDidLoad()
         self.tableView.tableHeaderView = self.userInfoView
+        self.userStatus.text = User.getUserStatus()
+        super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

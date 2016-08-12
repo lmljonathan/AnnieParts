@@ -14,20 +14,24 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     private var shoppingCart: [Product]!
     private var updatedItem = -1
+    var viewFromNavButton = true;
     override func viewDidLoad() {
+        self.navigationController?.addSideMenuButton()
+        if (self.viewFromNavButton) {
+            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+            viewFromNavButton = false
+        } else {
+            
+            if self.navigationItem.leftBarButtonItems?.count == 3 {
+                self.navigationItem.leftBarButtonItems?.removeAtIndex(0)
+            }
+        }
         if self.shoppingCart == nil {
             self.shoppingCart = []
         }
-        self.navigationController?.addSideMenuButton()
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.delaysContentTouches = false
-        for view in self.tableView.subviews {
-            if view is UIScrollView {
-                (view as? UIScrollView)!.delaysContentTouches = false
-                break
-            }
-        }
+        MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         //loadData()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -66,11 +70,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     @IBAction func editItemQuantity(sender: UIButton) {
         self.updatedItem = sender.tag
-        let width = ModalSize.Default
-        let height = ModalSize.Custom(size: 200)
-        let center = ModalCenterPosition.TopCenter
-        let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
-        presenter.blurBackground = true
         
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
@@ -78,7 +77,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         vc.id = self.shoppingCart[sender.tag].productID
         vc.buttonString = "Update"
         
-        customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
         // may have to change productID to recordID????

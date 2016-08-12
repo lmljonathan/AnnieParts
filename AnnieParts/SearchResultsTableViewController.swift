@@ -20,15 +20,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
         self.searchParameters = ["brand": 0, "model": 0, "attr": 3, "year": 0, "pinpai": 0]
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self, action: #selector(SearchResultsTableViewController.unwind)), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         
-        self.tableView.delaysContentTouches = false
-        for view in self.tableView.subviews {
-            if view is UIScrollView {
-                (view as? UIScrollView)!.delaysContentTouches = false
-                break
-            }
-        }
         loadData()
         
         super.viewDidLoad()
@@ -83,24 +77,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     func addProductToCart(button: UIButton) {
-        let width = ModalSize.Default
-        let height = ModalSize.Custom(size: 200)
-        let center = ModalCenterPosition.TopCenter
-        let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
-        presenter.blurBackground = true
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
         
         //TODO: - SEND ID OF PRODUCT TO VIEW CONTROLLER
         vc.id = String(self.catalogData[button.tag].productID)
         vc.buttonString = "Add to Cart"
-        customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request("addToCart", query_paramters: ["id": id, "cnt": quantity])
-    }
-    
-    func unwind() {
-        self.navigationController?.popViewControllerAnimated(true)
     }
 }

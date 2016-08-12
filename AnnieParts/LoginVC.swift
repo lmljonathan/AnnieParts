@@ -43,11 +43,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func performLogin(){
         if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
-            print(self.username.text!)
-            print(self.password.text!)
             login(self.username.text!, password: self.password.text!, completion: { (json) in
                 if let status = json!["status"] as? Int {
                     if status == 1 {
+                        if let rank = json!["user_rank"] as? Int {
+                            User.setUserRank(rank)
+                        }
                         print("login success")
                         self.performSegueWithIdentifier("pushToSearch", sender: self)
                     }
