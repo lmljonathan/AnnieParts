@@ -36,6 +36,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         for view in options.keys{
             self.addTapGR(view, action: Selector(options[view]!))
         }
+<<<<<<< Updated upstream
         get_json_data("config", query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
                 for dict in (json!["pinpai"] as! NSArray){
@@ -67,6 +68,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.tableView.reloadData()
             }
         }
+=======
+>>>>>>> Stashed changes
         self.searchButton.layer.cornerRadius = 5
         self.navigationController?.navigationBarHidden = false
         super.viewDidLoad()

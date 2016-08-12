@@ -39,7 +39,7 @@ class ProductDetailViewController: UIViewController {
         
         addNib("aboutSelect", toView: self.contentView)
         for tab in [aboutSelect, videoSelect, installSelect, docsSelect]{
-            self.addTapGR(tab, action: Selector("switchTab:"))
+            self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
         }
         
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)

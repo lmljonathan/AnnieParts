@@ -83,18 +83,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     func addProductToCart(button: UIButton) {
-        let width = ModalSize.Default
-        let height = ModalSize.Custom(size: 200)
-        let center = ModalCenterPosition.TopCenter
-        let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
-        presenter.blurBackground = true
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
         
         //TODO: - SEND ID OF PRODUCT TO VIEW CONTROLLER
         vc.id = String(self.catalogData[button.tag].productID)
         vc.buttonString = "Add to Cart"
-        customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request("addToCart", query_paramters: ["id": id, "cnt": quantity])

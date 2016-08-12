@@ -66,11 +66,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     @IBAction func editItemQuantity(sender: UIButton) {
         self.updatedItem = sender.tag
-        let width = ModalSize.Default
-        let height = ModalSize.Custom(size: 200)
-        let center = ModalCenterPosition.TopCenter
-        let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
-        presenter.blurBackground = true
         
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
@@ -78,7 +73,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         vc.id = self.shoppingCart[sender.tag].productID
         vc.buttonString = "Update"
         
-        customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
         // may have to change productID to recordID????

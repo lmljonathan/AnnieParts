@@ -12,7 +12,6 @@ struct brand{
     var options: [String]! = []
     var optionsIDs: [Int]! = []
 }
-
 struct vehicle{
     var year: [String!] = []
     var yearIDs: [Int]! = []
