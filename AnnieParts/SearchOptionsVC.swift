@@ -228,5 +228,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
 
+    @IBAction func queryProducts(sender: UIButton) {
+        self.performSegueWithIdentifier("showResults", sender: self)
+    }
 }
 
