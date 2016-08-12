@@ -9,7 +9,11 @@
 import UIKit
 import DropDown
 
-class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol PassBackOptionDelegate {
+    func selectOption(sender: SelectorTableViewCell, option: String)
+}
+
+class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, PassBackOptionDelegate {
     
     // MARK: - IB Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -26,6 +30,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var vehicleData = vehicle()
     private var productData = product()
     private var activeIndex = 0
+    
+    private var selectedOptions = [[""], ["", "", ""], [""]]
     
     // MARK: - View Loading Functions
     override func viewDidLoad() {
@@ -69,6 +75,10 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         self.searchButton.layer.cornerRadius = 5
         self.navigationController?.navigationBarHidden = false
+        
+        self.searchButton.backgroundColor = UIColor.grayColor()
+        self.searchButton.userInteractionEnabled = false
+        
         super.viewDidLoad()
     }
     
@@ -82,13 +92,10 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return 1
     }
     
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return data[activeIndex][section]
-//    }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("selectCell", forIndexPath: indexPath) as! SelectorTableViewCell
         
+        cell.delegate = self
         cell.configureCell(data[activeIndex][indexPath.section])
         return cell
     }
@@ -169,5 +176,56 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let gr = UITapGestureRecognizer(target: self, action: action)
         view.addGestureRecognizer(gr)
     }
+    
+    // MARK: - Get data selected by selector
+    func selectOption(sender: SelectorTableViewCell, option: String) {
+        
+        switch sender.titleLabel.text! {
+        case "BRAND":
+            (self.selectedOptions[0])[0] = option
+        case "YEAR":
+            (self.selectedOptions[1])[0] = option
+        case "MAKE":
+            (self.selectedOptions[1])[1] = option
+        case "MODEL":
+            (self.selectedOptions[1])[2] = option
+        case "PRODUCT TYPE":
+            (self.selectedOptions[2])[0] = option
+        default:
+            break
+        }
+        
+        switch activeIndex {
+        case 0:
+            if self.selectedOptions[0] != [""]{
+                self.searchButton.backgroundColor = UIColor.redColor()
+                self.searchButton.userInteractionEnabled = true
+            }else{
+                self.searchButton.backgroundColor = UIColor.redColor()
+                self.searchButton.userInteractionEnabled = true
+            }
+        case 1:
+            if self.selectedOptions[1] != ["", "", ""]{
+                self.searchButton.backgroundColor = UIColor.redColor()
+                self.searchButton.userInteractionEnabled = true
+            }
+        case 2:
+            if self.selectedOptions[2] != [""]{
+                self.searchButton.backgroundColor = UIColor.redColor()
+                self.searchButton.userInteractionEnabled = true
+            }
+        default:
+            break
+        }
+        print(self.selectedOptions)
+    }
+    
+    func performSearch(){
+        
+    }
+    
+    
+    
 
 }
+

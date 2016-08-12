@@ -17,6 +17,7 @@ class SelectorTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Variables
+    var delegate: PassBackOptionDelegate?
     private var dropDown = DropDown()
     
     override func awakeFromNib() {
@@ -49,6 +50,7 @@ class SelectorTableViewCell: UITableViewCell {
         dropDown.backgroundColor = UIColor.lightGrayColor()
         dropDown.selectionAction = { [unowned self] (index, item) in
             self.selectLabel.text = item
+            self.delegate?.selectOption(self, option: item)
         }
         
         // The list of items to display. Can be changed dynamically
