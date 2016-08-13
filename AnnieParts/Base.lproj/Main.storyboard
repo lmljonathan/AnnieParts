@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1520,6 +1520,7 @@
                                                 <constraint firstItem="YF1-RP-dzb" firstAttribute="centerY" secondItem="xQH-OD-NRf" secondAttribute="centerY" id="6zt-57-tej"/>
                                                 <constraint firstItem="YF1-RP-dzb" firstAttribute="centerX" secondItem="xQH-OD-NRf" secondAttribute="centerX" id="GY9-rI-6Yr"/>
                                                 <constraint firstAttribute="height" constant="18" id="KcV-ip-ZxC"/>
+                                                <constraint firstAttribute="width" constant="129" id="VzC-Vr-EGX"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -1527,6 +1528,7 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="KcV-ip-ZxC"/>
+                                                    <exclude reference="VzC-Vr-EGX"/>
                                                     <exclude reference="6zt-57-tej"/>
                                                     <exclude reference="GY9-rI-6Yr"/>
                                                 </mask>
@@ -1537,6 +1539,7 @@
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="KcV-ip-ZxC"/>
+                                                    <include reference="VzC-Vr-EGX"/>
                                                     <include reference="6zt-57-tej"/>
                                                     <include reference="GY9-rI-6Yr"/>
                                                 </mask>
@@ -1598,7 +1601,6 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="J3U-HQ-1GH" secondAttribute="trailing" id="8oE-vM-wqp"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="NUh-l9-YwB" secondAttribute="trailing" id="EkS-yA-vuV"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="8Y4-lZ-tFG" secondAttribute="trailing" id="HBD-hd-1hO"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="xQH-OD-NRf" secondAttribute="trailing" constant="147" id="LBD-Cq-faW"/>
                                         <constraint firstItem="XoV-Rt-T6R" firstAttribute="centerY" secondItem="X1r-xt-yau" secondAttribute="centerY" id="MJa-ww-ou0"/>
                                         <constraint firstItem="NUh-l9-YwB" firstAttribute="leading" secondItem="DIK-g8-jaU" secondAttribute="trailing" constant="8" id="Oh1-qU-Bwt"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="XoV-Rt-T6R" secondAttribute="trailing" id="Omp-DI-2B4">
@@ -1645,7 +1647,6 @@
                                             <exclude reference="7HH-9Y-GtI"/>
                                             <exclude reference="ZTG-HM-RBQ"/>
                                             <exclude reference="5wx-RK-BYk"/>
-                                            <exclude reference="LBD-Cq-faW"/>
                                             <exclude reference="gpc-Uc-V60"/>
                                         </mask>
                                     </variation>
@@ -1678,7 +1679,6 @@
                                             <include reference="7HH-9Y-GtI"/>
                                             <include reference="ZTG-HM-RBQ"/>
                                             <include reference="5wx-RK-BYk"/>
-                                            <include reference="LBD-Cq-faW"/>
                                             <include reference="gpc-Uc-V60"/>
                                         </mask>
                                     </variation>
@@ -2087,6 +2087,7 @@
                                             <outlet property="models" destination="De6-P7-mgz" id="jf1-ZR-kXZ"/>
                                             <outlet property="productImage" destination="Re1-NI-ggo" id="KoS-27-k9M"/>
                                             <outlet property="productName" destination="4fw-X3-azI" id="rj8-Hw-rL2"/>
+                                            <outlet property="quantityLabel" destination="0HT-CD-TfX" id="ahq-XF-C5a"/>
                                             <outlet property="quantitySelectView" destination="ae8-D7-CGg" id="4nH-Mx-1uh"/>
                                             <outlet property="serialNumber" destination="tQC-HJ-CUS" id="Dq3-w7-m2q"/>
                                             <outlet property="year" destination="DzZ-Bl-6x8" id="DA9-he-O8b"/>
@@ -2170,9 +2171,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="21"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="133" y="80" width="136" height="24.5"/>
-                                                </variation>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PN0-Pr-tbI">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2982,6 +2980,6 @@
         <image name="placeholder" width="900" height="370"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DTg-qe-26O"/>
+        <segue reference="wbm-kG-Z8l"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,7 @@ import Haneke
 
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
-    var searchParameters: [String:Int]!
+    var searchParameters = [String: Int]()
     let cache = Shared.imageCache
     private var catalogData: [Product]!
     
@@ -22,9 +22,25 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         if (self.catalogData == nil) {
             self.catalogData = []
         }
-        self.searchParameters = ["brand": 0, "model": 0, "attr": 3, "year": 0, "pinpai": 0]
+        if let year = self.searchIDs["YEAR"] {
+            self.searchParameters["year"] = year
+        }
+        if let brand = self.searchIDs["MAKE"] {
+            self.searchParameters["brand"] = brand
+        }
+        if let model = self.searchIDs["MODEL"] {
+            self.searchParameters["model"] = model
+        }
+        if let attr = self.searchIDs["PRODUCT TYPE"] {
+            self.searchParameters["attr"] = attr
+        }
+        if let pinpai = self.searchIDs["BRAND"] {
+            self.searchParameters["pinpai"] = pinpai
+        }
+        
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "back"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         
         loadData()
@@ -97,6 +113,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
-        send_request("addToCart", query_paramters: ["id": id, "cnt": quantity])
+        send_request("addToCart", query_paramters: ["goods_id": id, "cnt": quantity])
     }
 }

@@ -23,6 +23,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
+        self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
         super.viewDidLoad()
         self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
     }
