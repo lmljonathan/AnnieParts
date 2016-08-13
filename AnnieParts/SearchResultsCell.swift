@@ -24,10 +24,6 @@ class SearchResultsCell: UITableViewCell {
         // Initialization code
     }
     
-    func setImageWith(url: NSURL){
-        productImage.hnk_setImageFromURL(url)
-    }
-
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -35,6 +31,7 @@ class SearchResultsCell: UITableViewCell {
     }
     func loadImage(url: NSURL) {
         self.productImage.hnk_setImageFromURL(url)
+        self.layoutSubviews()
     }
 
 }
