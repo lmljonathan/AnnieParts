@@ -57,7 +57,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         self.selectTab(0)
         self.activeIndex = 0
-        self.performSegueWithIdentifier("showResults", sender: self)
         self.navigationController?.addSideMenuButton()
         
         let options = [oneView: "searchByBrand:", twoView: "searchByCar:", threeView: "searchByProduct:"]
