@@ -75,13 +75,16 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     self.vehicleData.yearIDs.append(dict["id"] as! Int)
                     self.vehicleData.year.append(String(dict["name"] as! Int))
                 }
+                
                 for dict in (json!["manufactures"] as! NSArray){
                     self.vehicleData.makeIDs.append(dict["id"] as! Int)
                     self.vehicleData.make.append(dict["name"] as! String)
                 }
+                
                 for dict in (json!["models"] as! NSArray){
-                    self.vehicleData.modelIDs.append(dict["id"] as! Int)
-                    self.vehicleData.model.append(dict["name"] as! String)
+                    self.vehicleData.allModelIDs.append(dict["id"] as! Int)
+                    self.vehicleData.allModel.append(dict["name"] as! String)
+                    self.vehicleData.allModelPIDs.append(dict["pid"] as! Int)
                 }
                 self.tableView.reloadData()
             }
@@ -105,6 +108,14 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCellWithIdentifier("selectCell", forIndexPath: indexPath) as! SelectorTableViewCell
         cell.delegate = self
         cell.configureCell(data[activeIndex][indexPath.section])
+        
+        // Disables the Model Option 
+        if indexPath == NSIndexPath(forRow: 0, inSection: 2) && vehicleData.model.count == 0{
+            cell.disable()
+            cell.selectLabel.text = "SELECT A MAKE"
+        }else if indexPath == NSIndexPath(forRow: 0, inSection: 2) && vehicleData.model.count > 0{
+            cell.selectLabel.text = "SELECT ONE"
+        }
         return cell
     }
     
@@ -210,7 +221,16 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         case "YEAR":
             (self.selectedOptions[1])[0] = option
         case "MAKE":
-            (self.selectedOptions[1])[1] = option
+            if (self.selectedOptions[1])[1] != option{
+                (self.selectedOptions[1])[1] = option
+                let modelCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SelectorTableViewCell
+                self.configureModels(option)
+                modelCell.selectLabel.text = "SELECT ONE"
+                modelCell.enable()
+                
+                // Clears model
+                (self.selectedOptions[1])[2] = ""
+            }
         case "MODEL":
             (self.selectedOptions[1])[2] = option
         case "PRODUCT TYPE":
@@ -225,7 +245,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.performSegueWithIdentifier("showResults", sender: self)
     }
     
-    func checkSelectedOptions(){
+    private func checkSelectedOptions(){
         switch activeIndex {
         case 0:
             if self.selectedOptions[0] != [""]{
@@ -250,22 +270,49 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    private func configureModels(selectedMake: String){
+        func getID() -> Int{
+            let optionIndex = vehicleData.make.indexOf(selectedMake)
+            return vehicleData.makeIDs[optionIndex!]
+        }
+        
+        func getIDOfModel(model: String) -> Int{
+            let index = vehicleData.allModel.indexOf(model)
+            return vehicleData.allModelIDs[index!]
+        }
+        
+        // Get ID of selected make
+        let pid = getID()
+        
+        // Clears vehicleData of current models
+        vehicleData.model.removeAll()
+        vehicleData.modelIDs.removeAll()
+        vehicleData.modelPIDs.removeAll()
+        
+        // Add new data
+        var resultIndexes: [Int]! = []
+        for (index, id) in vehicleData.allModelPIDs.enumerate(){
+            if id == pid{
+                resultIndexes.append(index)
+                vehicleData.modelPIDs.append(id)
+            }
+        }
+        
+        for index in resultIndexes{
+            vehicleData.model.append(self.vehicleData.allModel[index])
+        }
+        
+        for model in vehicleData.model{
+            vehicleData.modelIDs.append(getIDOfModel(model))
+        }
+        
+        self.tableView.reloadData()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showResults"{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             destVC.searchIDs = self.searchIDs
         }
-    }
-}
-
-extension UIView{
-    func disable(){
-        self.backgroundColor = .grayColor()
-        self.userInteractionEnabled = false
-    }
-    
-    func enable(color: UIColor){
-        self.backgroundColor = color
-        self.userInteractionEnabled = true
     }
 }

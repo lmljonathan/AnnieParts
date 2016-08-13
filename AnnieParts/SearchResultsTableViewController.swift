@@ -97,6 +97,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
 
         return cell
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("showDetail", sender: self)
     }

@@ -19,8 +19,15 @@ struct vehicle{
     var make: [String]! = []
     var makeIDs: [Int]! = []
     
+    // Stores all models retrieved by server
+    var allModel: [String]! = []
+    var allModelIDs: [Int]! = []
+    var allModelPIDs: [Int]! = []
+    
+    // Stores only models who match PID of make selected
     var model: [String]! = []
     var modelIDs: [Int]! = []
+    var modelPIDs: [Int]! = []
 }
 
 struct product{

@@ -10,10 +10,15 @@ import Foundation
 import UIKit
 import CoreGraphics
 
-extension UIImage{
+extension UIView{
+    func disable(){
+        self.backgroundColor = .grayColor()
+        self.userInteractionEnabled = false
+    }
     
-    func addBadge(){
-        
+    func enable(color: UIColor){
+        self.backgroundColor = color
+        self.userInteractionEnabled = true
     }
 }
 
@@ -66,4 +71,14 @@ extension UIBarButtonItem{
         self.image = addText("1", toImage: self.image!, atPoint: CGPoint(x: 0,y: 0))
     }
     
+}
+
+extension UITableViewCell{
+    func enable(){
+        self.userInteractionEnabled = true
+    }
+    
+    override func disable() {
+        self.userInteractionEnabled = false
+    }
 }
