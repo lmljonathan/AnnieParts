@@ -17,7 +17,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         self.navigationController?.addSideMenuButton()
         if (self.viewFromNavButton) {
-            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
             viewFromNavButton = false
         } else {
             

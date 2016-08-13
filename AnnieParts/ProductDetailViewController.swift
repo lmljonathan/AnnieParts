@@ -32,7 +32,7 @@ class ProductDetailViewController: UIViewController {
     override func viewDidLoad() {
 
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         activeTab = aboutSelect
         
         addNib("aboutSelect", toView: self.contentView)

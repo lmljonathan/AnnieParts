@@ -15,8 +15,8 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var userRank: UILabel!
     @IBOutlet weak var name: UILabel!
     
-    private let segues = ["showCenterSearch", "showCenterShoppingCart", "showCenterLogin"]
-    private let vcNames = ["Search", "Shopping Cart", "Logout"]
+    private let segues = ["showCenterSearch", "showCenterShoppingCart"]
+    private let vcNames = ["Search", "Shopping Cart"]
     private var previousIndex: NSIndexPath?
     override func viewDidLoad() {
         self.userRank.text = User.getUserStatus()
@@ -38,10 +38,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         if let index = previousIndex {
             tableView.deselectRowAtIndexPath(index, animated: true)
         }
-        if indexPath.row == 2 {
-            logout()
-            self.sideMenuController?.performSegueWithIdentifier(self.segues[indexPath.row], sender: nil)
-        }
         else {
             sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)
         }
@@ -61,5 +57,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBAction func buttonLogout(sender: UIButton) {
         logout()
+        sideMenuController?.performSegueWithIdentifier("showCenterLogin", sender: nil)
     }
 }
