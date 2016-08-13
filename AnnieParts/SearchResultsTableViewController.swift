@@ -22,7 +22,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
         self.searchParameters = ["brand": 0, "model": 0, "attr": 3, "year": 0, "pinpai": 0]
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(title: "Back", style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "cart"), style: .Plain, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         
         loadData()
@@ -74,17 +74,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         cell.year.text = product.startYear + " - " + product.endYear
     
         let url = NSURL(string: "http://www.annieparts.com/" + product.imagePath)!
-        print(url)
-        // image won't load
-        cell.setImageWith(url)
-//        cell.productImage.image = UIImage(named: "placeholder")
-//        cell.productImage.hnk_setImageFromURL(url)
-        
+        cell.loadImage(url)
         cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
 
         return cell
     }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("showDetail", sender: self)
     }

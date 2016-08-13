@@ -37,6 +37,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadData() {
+        print("loading data")
         get_json_data("shoppingCart", query_paramters: [:]) { (json) in
             if let products = json!["shopping_cart"] as? NSArray {
                 for product in products {
@@ -46,6 +47,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     //let startYear = String(product["start_time"] as! Int)
                     //let endYear = String(product["end_time"] as! Int)
                     let quantity = Int(product["goods_number"] as! String)
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", quantity: quantity!))
                     self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", quantity: quantity!))
                 }
                 self.tableView.reloadData()
@@ -66,27 +68,32 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.configureCell()
         let product = self.shoppingCart[indexPath.row]
         cell.productName.text = product.productName
-        cell.changeQuantityButton.tag = indexPath.row
-        cell.deleteButton.tag = indexPath.row
+        let url = NSURL(string: "http://www.annieparts.com/" + product.imagePath)!
+        cell.loadImage(url)
         cell.changeQuantityButton.addTarget(self, action: #selector(ShoppingCartViewController.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(ShoppingCartViewController.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
         return cell
     }
     @IBAction func editItemQuantity(sender: UIButton) {
-        
+        let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
         
-        vc.id = self.shoppingCart[sender.tag].productID
+        vc.id = self.shoppingCart[index!.row].productID
         vc.buttonString = "Update"
         
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
         self.tableView.reloadData()
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
-        send_request("deleteFromCart", query_paramters: ["goods_id": self.shoppingCart[sender.tag].productID])
-        self.shoppingCart.removeAtIndex(sender.tag)
-        self.tableView.reloadData()
+        let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
+        send_request("deleteFromCart", query_paramters: ["goods_id": self.shoppingCart[index!.row].productID])
+        self.shoppingCart.removeAtIndex(index!.row)
+        
+        self.tableView.beginUpdates()
+        self.tableView.deleteRowsAtIndexPaths([index!], withRowAnimation: .Fade)
+        self.tableView.endUpdates()
+        
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request("addToCart", query_paramters: ["id": id, "cnt": quantity, "act": "set"])
