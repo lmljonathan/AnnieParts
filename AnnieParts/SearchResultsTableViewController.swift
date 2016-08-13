@@ -22,9 +22,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         if (self.catalogData == nil) {
             self.catalogData = []
         }
-        self.searchParameters = ["brand": 0, "model": 0, "attr": 3, "year": 0, "pinpai": 0]
+
         self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "back"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         
         loadData()

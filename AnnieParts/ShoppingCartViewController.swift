@@ -17,7 +17,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         self.navigationController?.addSideMenuButton()
         if (self.viewFromNavButton) {
-            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "back"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
             viewFromNavButton = false
         } else {
             
@@ -37,9 +37,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadData() {
-        print("loading data")
         get_json_data("shoppingCart", query_paramters: [:]) { (json) in
-            if let products = json!["shopping_cart"] as? NSArray {
+            print(json)
+            if let products = json!["rlist"] as? NSArray {
                 for product in products {
                     let id = product["goods_id"] as! String
                     let name = product["goods_name"] as! String
@@ -47,7 +47,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     //let startYear = String(product["start_time"] as! Int)
                     //let endYear = String(product["end_time"] as! Int)
                     let quantity = Int(product["goods_number"] as! String)
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", quantity: quantity!))
                     self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", quantity: quantity!))
                 }
                 self.tableView.reloadData()
@@ -61,6 +60,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(self.shoppingCart.count)
         return self.shoppingCart.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

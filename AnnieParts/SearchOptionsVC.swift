@@ -285,6 +285,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if segue.identifier == "showResults"{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             destVC.searchIDs = self.searchIDs
+            print(self.searchIDs)
         }
     }
 }
