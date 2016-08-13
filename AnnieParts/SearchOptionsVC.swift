@@ -104,11 +104,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! SelectorTableViewCell
         var dataSource = []
-        switch indexPath.section {
+        switch activeIndex {
         case 0:
             dataSource = brandData.options
         case 1:
-            switch indexPath.row {
+            switch indexPath.section {
             case 0:
                 dataSource = vehicleData.year
             case 1:
@@ -171,6 +171,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 (tabViews[x]).backgroundColor = UIColor.lightGrayColor()
             }
         }
+        
+        print("selected tab index", index)
     }
     
     private func addTapGR(view: UIView, action: Selector){
