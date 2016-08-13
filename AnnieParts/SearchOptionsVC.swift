@@ -25,20 +25,21 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet var cartNavButton: UIBarButtonItem!
     
     @IBAction func performSearch(sender: AnyObject) {
-        func getIDs() -> [Int]{
+        func getIDs() -> [String: Int]{
             let dataDict = [[brandData.options], [vehicleData.year, vehicleData.make, vehicleData.model], [productData.products]]
             let idDict = [[brandData.optionsIDs], [vehicleData.yearIDs, vehicleData.makeIDs, vehicleData.modelIDs], [productData.productsIDs]]
             
-            var resultIDs: [Int]! = []
+            var result: [String: Int]! = [:]
             for (index, option) in self.selectedOptions[activeIndex].enumerate(){
                 let optionIndex = ((dataDict[activeIndex])[index]).indexOfObject(option)
-                resultIDs.append(((idDict[activeIndex])[index])[optionIndex])
+                result[(data[activeIndex])[index]] = ((idDict[activeIndex])[index])[optionIndex]
             }
             
-            return resultIDs
+            return result
         }
         
         self.searchIDs = getIDs()
+        print(getIDs())
         self.performSegueWithIdentifier("showResults", sender: self)
     }
     
@@ -49,7 +50,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var vehicleData = vehicle()
     private var productData = product()
     private var activeIndex = 0
-    private var searchIDs: [Int]!
+    private var searchIDs: [String: Int]!
     
     private var selectedOptions = [[""], ["", "", ""], [""]]
     
