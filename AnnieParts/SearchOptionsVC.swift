@@ -22,6 +22,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var twoView: UIView!
     @IBOutlet weak var threeView: UIView!
     @IBOutlet weak var searchButton: UIView!
+    @IBOutlet var cartNavButton: UIBarButtonItem!
     
     @IBAction func performSearch(sender: AnyObject) {
         func getIDs() -> [Int]{
@@ -55,6 +56,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // cartNavButton.addBadge() // CHANGE - Need to fix badge in UIExtensions
+        
         self.selectTab(0)
         self.activeIndex = 0
         self.navigationController?.addSideMenuButton()

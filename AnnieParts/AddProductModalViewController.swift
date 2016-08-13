@@ -16,13 +16,20 @@ class AddProductModalViewController: UIViewController {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
+    
     var name: String!
     var id: String!
     var delegate: AddProductModalView?
     var buttonString: String!
     var quantity = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        confirmButton.layer.cornerRadius = 5
+        cancelButton.layer.cornerRadius = 5
+        
         if (self.name != nil) {
             self.productName.text = self.name
         }

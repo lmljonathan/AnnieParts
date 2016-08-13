@@ -19,6 +19,7 @@
 		3CDA179E1D5ED6EE00A4F57C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */; };
 		3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */; };
 		900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */; };
+		901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */; };
 		906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DB1D4A8DD8007C6D86 /* videoSelect.xib */; };
 		906287DE1D4A8DF5007C6D86 /* aboutSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */; };
 		907256231D397EF200C46A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256221D397EF200C46A8B /* AppDelegate.swift */; };
@@ -78,6 +79,7 @@
 		3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		8633511A252739FC04D09AD0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		906287DB1D4A8DD8007C6D86 /* videoSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = videoSelect.xib; path = XIB/videoSelect.xib; sourceTree = "<group>"; };
 		906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = aboutSelect.xib; path = XIB/aboutSelect.xib; sourceTree = "<group>"; };
 		9072561F1D397EF200C46A8B /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				907256241D397EF200C46A8B /* LoginVC.swift */,
+				901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */,
 				90EA32211D3F20850066B281 /* SearchOptionsVC.swift */,
 				3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */,
 				900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */,
@@ -363,7 +366,7 @@
 				TargetAttributes = {
 					9072561E1D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = G6YM58LRJE;
+						DevelopmentTeam = CQD8Z7UVJ4;
 					};
 					907256321D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -501,6 +504,7 @@
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */,
 				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
+				901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
