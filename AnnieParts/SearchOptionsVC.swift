@@ -152,7 +152,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func searchByBrand(gr: UITapGestureRecognizer){
         self.selectTab(0)
         
-        var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
+        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
         if (selectedOptions[0])[0] != ""{
             cell.selectLabel.text = (selectedOptions[0])[0]
         }else{
@@ -169,7 +169,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.reloadData()
         
         for section in [0, 1, 2]{
-            var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! SelectorTableViewCell
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! SelectorTableViewCell
             if (selectedOptions[1])[section] != ""{
                 cell.selectLabel.text = (selectedOptions[1])[section]
             }else{
@@ -185,7 +185,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         self.tableView.reloadData()
         
-        var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
+        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
         if (selectedOptions[2])[0] != ""{
             cell.selectLabel.text = (selectedOptions[2])[0]
         }else{
