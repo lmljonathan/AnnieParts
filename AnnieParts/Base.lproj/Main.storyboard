@@ -416,25 +416,6 @@
                                             <action selector="cancel:" destination="bhf-jV-N1h" eventType="touchUpInside" id="dw7-ng-giO"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXz-3m-gK3">
-                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="204" id="psa-G4-izO"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="psa-G4-izO"/>
-                                            </mask>
-                                        </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
-                                            <mask key="constraints">
-                                                <include reference="psa-G4-izO"/>
-                                            </mask>
-                                        </variation>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0BR-V1-V36">
                                         <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                         <constraints>
@@ -456,6 +437,25 @@
                                             <action selector="numberInputChanged:" destination="bhf-jV-N1h" eventType="editingChanged" id="oje-EO-e6R"/>
                                         </connections>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXz-3m-gK3">
+                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="204" id="psa-G4-izO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="psa-G4-izO"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="psa-G4-izO"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -473,8 +473,8 @@
                                     <mask key="subviews">
                                         <exclude reference="Hn3-Pe-pF8"/>
                                         <exclude reference="bvU-nf-5Re"/>
-                                        <exclude reference="cXz-3m-gK3"/>
                                         <exclude reference="0BR-V1-V36"/>
+                                        <exclude reference="cXz-3m-gK3"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="be7-Bk-buy"/>
@@ -492,8 +492,8 @@
                                     <mask key="subviews">
                                         <include reference="Hn3-Pe-pF8"/>
                                         <include reference="bvU-nf-5Re"/>
-                                        <include reference="cXz-3m-gK3"/>
                                         <include reference="0BR-V1-V36"/>
+                                        <include reference="cXz-3m-gK3"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="be7-Bk-buy"/>
@@ -538,6 +538,7 @@
                     </view>
                     <connections>
                         <outlet property="confirmButton" destination="Hn3-Pe-pF8" id="a0T-Mr-EUI"/>
+                        <outlet property="productName" destination="cXz-3m-gK3" id="67h-4N-G0x"/>
                         <outlet property="quantityTextField" destination="0BR-V1-V36" id="iIv-P6-KmY"/>
                     </connections>
                 </viewController>

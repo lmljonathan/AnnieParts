@@ -35,6 +35,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - View Loading Functions
     override func viewDidLoad() {
+        self.selectTab(0)
+        self.activeIndex = 0
         self.performSegueWithIdentifier("showResults", sender: self)
         self.navigationController?.addSideMenuButton()
         
