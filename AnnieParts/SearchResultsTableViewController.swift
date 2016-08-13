@@ -13,6 +13,7 @@ import Haneke
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
     var searchParameters: [String:Int]!
+    let cache = Shared.imageCache
     private var catalogData: [Product]!
     
     override func viewDidLoad() {
@@ -74,9 +75,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         let url = NSURL(string: "www.annieparts.com/" + product.imagePath)!
         print(url)
-        
         // image won't load
-        cell.productImage.hnk_setImageFromURL(url)
+        //cell.productImage.hnk_setImageFromURL(url)
+        cell.loadImage(url)
         cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
 
         return cell

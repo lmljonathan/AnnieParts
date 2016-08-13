@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 class SearchResultsCell: UITableViewCell {
 
@@ -27,6 +28,9 @@ class SearchResultsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    func loadImage(url: NSURL) {
+        self.productImage.hnk_setImageFromURL(url)
     }
 
 }
