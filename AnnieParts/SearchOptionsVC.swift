@@ -37,7 +37,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return resultIDs
         }
         
-        print(getIDs())
+        self.searchIDs = getIDs()
+        self.performSegueWithIdentifier("showResults", sender: self)
     }
     
     // MARK: - Variables
@@ -47,6 +48,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var vehicleData = vehicle()
     private var productData = product()
     private var activeIndex = 0
+    private var searchIDs: [Int]!
     
     private var selectedOptions = [[""], ["", "", ""], [""]]
     
@@ -277,6 +279,13 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         default:
             break
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showResults"{
+            let destVC = segue.destinationViewController as! SearchResultsTableViewController
+            destVC.searchIDs = self.searchIDs
         }
     }
 }
