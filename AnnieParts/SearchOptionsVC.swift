@@ -41,6 +41,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.selectTab(0)
+        self.activeIndex = 0
         self.performSegueWithIdentifier("showResults", sender: self)
         self.navigationController?.addSideMenuButton()
         
@@ -139,7 +141,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.activeIndex = 0
         
         var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
-        cell.clear()
+        if (selectedOptions[0])[0] != ""{
+            cell.selectLabel.text = (selectedOptions[0])[0]
+        }else{
+            cell.selectLabel.text = "SELECT ONE"
+        }
         
         self.tableView.reloadData()
     }
@@ -147,6 +153,16 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func searchByCar(gr: UITapGestureRecognizer){
         self.selectTab(1)
         self.activeIndex = 1
+        
+        for row in [0, 1, 2]{
+            var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
+            if (selectedOptions[0])[0] != ""{
+                cell.selectLabel.text = (selectedOptions[0])[0]
+            }else{
+                cell.selectLabel.text = "SELECT ONE"
+            }
+        }
+        
         self.tableView.reloadData()
     }
     
