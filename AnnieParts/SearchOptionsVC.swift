@@ -24,9 +24,22 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var searchButton: UIView!
     
     @IBAction func performSearch(sender: AnyObject) {
+        func getIDs() -> [Int]{
+            let dataDict = [[brandData.options], [vehicleData.year, vehicleData.make, vehicleData.model], [productData.products]]
+            let idDict = [[brandData.optionsIDs], [vehicleData.yearIDs, vehicleData.makeIDs, vehicleData.modelIDs], [productData.productsIDs]]
+            
+            var resultIDs: [Int]! = []
+            for (index, option) in self.selectedOptions[activeIndex].enumerate(){
+                let optionIndex = ((dataDict[activeIndex])[index]).indexOfObject(option)
+                resultIDs.append(((idDict[activeIndex])[index])[optionIndex])
+            }
+            
+            return resultIDs
+        }
         
+        self.searchIDs = getIDs()
+        self.performSegueWithIdentifier("showResults", sender: self)
     }
-    
     
     // MARK: - Variables
     private var dropDown = DropDown()
@@ -35,13 +48,15 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var vehicleData = vehicle()
     private var productData = product()
     private var activeIndex = 0
+    private var searchIDs: [Int]!
     
     private var selectedOptions = [[""], ["", "", ""], [""]]
     
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.performSegueWithIdentifier("showResults", sender: self)
+        self.selectTab(0)
+        self.activeIndex = 0
         self.navigationController?.addSideMenuButton()
         
         let options = [oneView: "searchByBrand:", twoView: "searchByCar:", threeView: "searchByProduct:"]
@@ -136,23 +151,47 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - Main Functions
     func searchByBrand(gr: UITapGestureRecognizer){
         self.selectTab(0)
-        self.activeIndex = 0
         
         let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
-        cell.clear()
+        if (selectedOptions[0])[0] != ""{
+            cell.selectLabel.text = (selectedOptions[0])[0]
+        }else{
+            cell.selectLabel.text = "SELECT ONE"
+        }
         
         self.tableView.reloadData()
+        
     }
     
     func searchByCar(gr: UITapGestureRecognizer){
         self.selectTab(1)
-        self.activeIndex = 1
+        
+        self.tableView.reloadData()
+        
+        for section in [0, 1, 2]{
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! SelectorTableViewCell
+            if (selectedOptions[1])[section] != ""{
+                cell.selectLabel.text = (selectedOptions[1])[section]
+            }else{
+                cell.selectLabel.text = "SELECT ONE"
+            }
+        }
+        
         self.tableView.reloadData()
     }
     
     func searchByProduct(gr: UITapGestureRecognizer){
         self.selectTab(2)
-        self.activeIndex = 2
+        
+        self.tableView.reloadData()
+        
+        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
+        if (selectedOptions[2])[0] != ""{
+            cell.selectLabel.text = (selectedOptions[2])[0]
+        }else{
+            cell.selectLabel.text = "SELECT ONE"
+        }
+        
         self.tableView.reloadData()
     }
     
@@ -180,6 +219,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
         }
         
+        self.activeIndex = index
+        self.checkSelectedOptions()
+        
         print("selected tab index", index)
     }
     
@@ -206,29 +248,44 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             break
         }
         
+        checkSelectedOptions()
+        
+    }
+    
+    @IBAction func queryProducts(sender: UIButton) {
+        self.performSegueWithIdentifier("showResults", sender: self)
+    }
+    
+    func checkSelectedOptions(){
         switch activeIndex {
         case 0:
             if self.selectedOptions[0] != [""]{
-                self.searchButton.enable(.redColor())
+                self.searchButton.enable(UIColor.redColor())
             }else{
                 self.searchButton.disable()
             }
         case 1:
-            if self.selectedOptions[1] != ["", "", ""]{
-                self.searchButton.enable(.redColor())
+            if (self.selectedOptions[1])[0] != "" && (self.selectedOptions[1])[1] != "" && (self.selectedOptions[1])[2] != ""{
+                self.searchButton.enable(UIColor.redColor())
+            }else{
+                self.searchButton.disable()
             }
         case 2:
             if self.selectedOptions[2] != [""]{
+                self.searchButton.enable(UIColor.redColor())
+            }else{
                 self.searchButton.disable()
             }
         default:
             break
         }
-        print(self.selectedOptions)
     }
     
-    @IBAction func queryProducts(sender: UIButton) {
-        self.performSegueWithIdentifier("showResults", sender: self)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showResults"{
+            let destVC = segue.destinationViewController as! SearchResultsTableViewController
+            destVC.searchIDs = self.searchIDs
+        }
     }
 }
 

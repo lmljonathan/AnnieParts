@@ -35,13 +35,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let index = previousIndex {
-            tableView.deselectRowAtIndexPath(index, animated: true)
-        }
-        else {
-            sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)
-        }
-        previousIndex = indexPath
+        sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)
     }
     
 

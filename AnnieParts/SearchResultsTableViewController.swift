@@ -16,6 +16,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     let cache = Shared.imageCache
     private var catalogData: [Product]!
     
+    var searchIDs: [Int]!
+    
     override func viewDidLoad() {
         if (self.catalogData == nil) {
             self.catalogData = []
