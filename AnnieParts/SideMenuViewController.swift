@@ -19,19 +19,23 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     private let vcNames = ["Search", "Shopping Cart"]
     private var previousIndex: NSIndexPath?
     override func viewDidLoad() {
-        self.userRank.text = User.getUserStatus()
+        self.userRank.text = User.getUserStatus().uppercaseString
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
         super.viewDidLoad()
+        self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return segues.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("menuCell")!
-        cell.textLabel?.text = self.vcNames[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("menuCell")! as! MenuCellTableViewCell
+        
+        cell.menuLabel.text = self.vcNames[indexPath.row]
+        
+        //cell.textLabel?.text = self.vcNames[indexPath.row]
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

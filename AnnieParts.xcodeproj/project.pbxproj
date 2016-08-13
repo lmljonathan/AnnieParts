@@ -20,6 +20,7 @@
 		3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */; };
 		900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */; };
 		901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */; };
+		901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */; };
 		906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DB1D4A8DD8007C6D86 /* videoSelect.xib */; };
 		906287DE1D4A8DF5007C6D86 /* aboutSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */; };
 		907256231D397EF200C46A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256221D397EF200C46A8B /* AppDelegate.swift */; };
@@ -80,6 +81,7 @@
 		8633511A252739FC04D09AD0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCellTableViewCell.swift; sourceTree = "<group>"; };
 		906287DB1D4A8DD8007C6D86 /* videoSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = videoSelect.xib; path = XIB/videoSelect.xib; sourceTree = "<group>"; };
 		906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = aboutSelect.xib; path = XIB/aboutSelect.xib; sourceTree = "<group>"; };
 		9072561F1D397EF200C46A8B /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +214,7 @@
 				9087E66A1D4C284900FCF09B /* DetailedViews */,
 				90A7957E1D4A8A6000CCD179 /* XIB */,
 				907256261D397EF200C46A8B /* Main.storyboard */,
+				901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */,
 				9072562B1D397EF200C46A8B /* LaunchScreen.storyboard */,
 				907256291D397EF200C46A8B /* Assets.xcassets */,
 				907256221D397EF200C46A8B /* AppDelegate.swift */,
@@ -489,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */,
 				90EA32241D3F253A0066B281 /* SearchByData.swift in Sources */,
 				3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */,
 				3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */,
