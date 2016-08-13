@@ -41,6 +41,10 @@ class SelectorTableViewCell: UITableViewCell {
         dropDown.show()
     }
     
+    func clear(){
+        self.selectLabel.text = "SELECT ONE"
+    }
+    
     private func setupDropDown(view: UIView, data: [String]){
         // The view to which the drop down will appear on
         dropDown.anchorView = view // UIView or UIBarButtonItem
@@ -56,6 +60,7 @@ class SelectorTableViewCell: UITableViewCell {
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = data
     }
+
     
 
 }

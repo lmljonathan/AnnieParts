@@ -23,6 +23,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet weak var threeView: UIView!
     @IBOutlet weak var searchButton: UIView!
     
+    @IBAction func performSearch(sender: AnyObject) {
+        
+    }
+    
+    
     // MARK: - Variables
     private var dropDown = DropDown()
     private var data = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT TYPE"]]
@@ -35,6 +40,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - View Loading Functions
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.performSegueWithIdentifier("showResults", sender: self)
         self.navigationController?.addSideMenuButton()
         
@@ -80,8 +86,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         self.searchButton.backgroundColor = UIColor.grayColor()
         self.searchButton.userInteractionEnabled = false
-        
-        super.viewDidLoad()
     }
     
     // MARK: - Table View Delegate Functions
@@ -133,6 +137,10 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func searchByBrand(gr: UITapGestureRecognizer){
         self.selectTab(0)
         self.activeIndex = 0
+        
+        var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
+        cell.clear()
+        
         self.tableView.reloadData()
     }
     
@@ -155,7 +163,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         dropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
         dropDown.cellHeight = 44
         dropDown.backgroundColor = UIColor.lightGrayColor()
-        
         
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = ["Car", "Motorcycle", "Truck"]
@@ -202,21 +209,17 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch activeIndex {
         case 0:
             if self.selectedOptions[0] != [""]{
-                self.searchButton.backgroundColor = UIColor.redColor()
-                self.searchButton.userInteractionEnabled = true
+                self.searchButton.enable(.redColor())
             }else{
-                self.searchButton.backgroundColor = UIColor.redColor()
-                self.searchButton.userInteractionEnabled = true
+                self.searchButton.disable()
             }
         case 1:
             if self.selectedOptions[1] != ["", "", ""]{
-                self.searchButton.backgroundColor = UIColor.redColor()
-                self.searchButton.userInteractionEnabled = true
+                self.searchButton.enable(.redColor())
             }
         case 2:
             if self.selectedOptions[2] != [""]{
-                self.searchButton.backgroundColor = UIColor.redColor()
-                self.searchButton.userInteractionEnabled = true
+                self.searchButton.disable()
             }
         default:
             break
@@ -224,15 +227,19 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         print(self.selectedOptions)
     }
     
-    func performSearch(){
-        
-    }
-    
-    
-    
-
     @IBAction func queryProducts(sender: UIButton) {
         self.performSegueWithIdentifier("showResults", sender: self)
     }
 }
 
+extension UIView{
+    func disable(){
+        self.backgroundColor = .grayColor()
+        self.userInteractionEnabled = false
+    }
+    
+    func enable(color: UIColor){
+        self.backgroundColor = color
+        self.userInteractionEnabled = true
+    }
+}

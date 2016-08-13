@@ -71,12 +71,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         cell.addButton.tag = indexPath.row
         cell.productName.text = product.productName
         cell.year.text = product.startYear + " - " + product.endYear
-        
-        let url = NSURL(string: "www.annieparts.com/" + product.imagePath)!
+    
+        let url = NSURL(string: "http://www.annieparts.com/" + product.imagePath)!
         print(url)
         
         // image won't load
-        cell.productImage.hnk_setImageFromURL(url)
+        cell.setImageWith(url)
+//        cell.productImage.image = UIImage(named: "placeholder")
+//        cell.productImage.hnk_setImageFromURL(url)
+        
         cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
 
         return cell

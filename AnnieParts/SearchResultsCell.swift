@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Haneke
 
 class SearchResultsCell: UITableViewCell {
 
@@ -21,6 +22,10 @@ class SearchResultsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setImageWith(url: NSURL){
+        productImage.hnk_setImageFromURL(url)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
