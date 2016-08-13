@@ -16,13 +16,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     let cache = Shared.imageCache
     private var catalogData: [Product]!
     
-    var searchIDs: [Int]!
+    var searchIDs: [String: Int]!
     
     override func viewDidLoad() {
         if (self.catalogData == nil) {
             self.catalogData = []
         }
-
+        self.searchParameters = [:]
         self.navigationController?.addSideMenuButton()
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "back"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)

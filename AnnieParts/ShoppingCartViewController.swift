@@ -12,6 +12,8 @@ import Presentr
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddProductModalView {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var checkoutButton: UIButton!
+    
     private var shoppingCart: [Product]!
     var viewFromNavButton = true;
     override func viewDidLoad() {
@@ -32,8 +34,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.dataSource = self
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         loadData()
+        
+        checkoutButton.layer.cornerRadius = 5.0
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     func loadData() {
@@ -96,6 +99,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     func returnIDandQuantity(id: String, quantity: Int) {
-        send_request("addToCart", query_paramters: ["id": id, "cnt": quantity, "act": "set"])
+        send_request("addToCart", query_paramters: ["goods_id": id, "cnt": quantity, "act": "set"])
     }
 }

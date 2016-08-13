@@ -30,6 +30,7 @@ class SearchResultsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func loadImage(url: NSURL) {
+        self.productImage.image = UIImage() // CHANGE - Add placeholder Image
         self.productImage.hnk_setImageFromURL(url)
         self.layoutSubviews()
     }
