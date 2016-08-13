@@ -33,5 +33,8 @@ class SearchResultsCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    func loadImage(url: NSURL) {
+        self.productImage.hnk_setImageFromURL(url)
+    }
 
 }

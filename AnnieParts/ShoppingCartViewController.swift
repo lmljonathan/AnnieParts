@@ -31,7 +31,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
-        //loadData()
+        loadData()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
@@ -40,10 +40,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         get_json_data("shoppingCart", query_paramters: [:]) { (json) in
             if let products = json!["shopping_cart"] as? NSArray {
                 for product in products {
-                    let id = String(product["goods_id"] as! Int)
+                    let id = product["goods_id"] as! String
                     let name = product["goods_name"] as! String
-                    let img = product["goods_img"] as! String
-                    //self.shoppingCart.append(Product(productID: id, productName: name, image: img))
+                    //let img = product["goods_img"] as! String
+                    //let startYear = String(product["start_time"] as! Int)
+                    //let endYear = String(product["end_time"] as! Int)
+                    let quantity = Int(product["goods_number"] as! String)
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", quantity: quantity!))
                 }
                 self.tableView.reloadData()
             }
@@ -61,6 +64,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("shoppingCartCell") as! ShoppingCartCell
         cell.configureCell()
+        let product = self.shoppingCart[indexPath.row]
+        cell.productName.text = product.productName
         cell.changeQuantityButton.tag = indexPath.row
         cell.deleteButton.tag = indexPath.row
         cell.changeQuantityButton.addTarget(self, action: #selector(ShoppingCartViewController.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
@@ -76,10 +81,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         vc.buttonString = "Update"
         
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
+        self.tableView.reloadData()
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
         send_request("deleteFromCart", query_paramters: ["goods_id": self.shoppingCart[sender.tag].productID])
         self.shoppingCart.removeAtIndex(sender.tag)
+        self.tableView.reloadData()
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request("addToCart", query_paramters: ["id": id, "cnt": quantity, "act": "set"])

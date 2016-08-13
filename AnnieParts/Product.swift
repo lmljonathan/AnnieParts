@@ -42,3 +42,13 @@ class Product {
         self._endYear = endYear
     }
 }
+class ShoppingCart: Product {
+    private var _quantity: Int!
+    var quantity: Int {
+        return self._quantity
+    }
+    init (productID: String, productName: String, image: String, startYear: String, endYear: String, quantity: Int) {
+        super.init(productID: productID, productName: productName, image: image, startYear: startYear, endYear: endYear)
+        self._quantity = quantity
+    }
+}

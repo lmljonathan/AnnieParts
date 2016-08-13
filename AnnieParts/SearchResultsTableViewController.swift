@@ -13,6 +13,7 @@ import Haneke
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
     var searchParameters: [String:Int]!
+    let cache = Shared.imageCache
     private var catalogData: [Product]!
     
     override func viewDidLoad() {
@@ -74,7 +75,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
         let url = NSURL(string: "http://www.annieparts.com/" + product.imagePath)!
         print(url)
-        
         // image won't load
         cell.setImageWith(url)
 //        cell.productImage.image = UIImage(named: "placeholder")
