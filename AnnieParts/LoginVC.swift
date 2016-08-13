@@ -42,6 +42,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // MARK: - Main Functions
     
     func performLogin(){
+        self.loginButton.enabled = false
         if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
             login(self.username.text!, password: self.password.text!, completion: { (json) in
                 if let status = json!["status"] as? Int {
@@ -61,6 +62,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         else {
             print("username or password field empty")
         }
+        self.loginButton.enabled = true
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

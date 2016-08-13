@@ -8,6 +8,7 @@
 
 import UIKit
 import Presentr
+import Haneke
 
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
@@ -35,12 +36,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     func loadData() {
         get_json_data("catalog", query_paramters: self.searchParameters) { (json) in
             if let productList = json!["rlist"] as? NSArray {
-                print(productList)
                 for product in productList {
                     let id = String(product["id"] as! Int)
                     let name = product["name"] as! String
                     let img = product["img"] as! String
-                    self.catalogData.append(Product(productID: id, productName: name, image: img))
+                    let startYear = String(product["start_time"] as! Int)
+                    let endYear = String(product["end_time"] as! Int)
+                    self.catalogData.append(Product(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear))
                 }
                 self.tableView.reloadData()
             }
@@ -65,8 +67,16 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchResultsCell", forIndexPath: indexPath) as! SearchResultsCell
+        let product = self.catalogData[indexPath.row]
         cell.addButton.tag = indexPath.row
-        cell.productName.text = self.catalogData[indexPath.row].productName
+        cell.productName.text = product.productName
+        cell.year.text = product.startYear + " - " + product.endYear
+        
+        let url = NSURL(string: "www.annieparts.com/" + product.imagePath)!
+        print(url)
+        
+        // image won't load
+        cell.productImage.hnk_setImageFromURL(url)
         cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
 
         return cell
@@ -81,7 +91,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         vc.delegate = self
         
         //TODO: - SEND ID OF PRODUCT TO VIEW CONTROLLER
-        vc.id = String(self.catalogData[button.tag].productID)
+        let product = self.catalogData[button.tag]
+        vc.name = product.productName
+        vc.id = String(product.productID)
         vc.buttonString = "Add to Cart"
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }

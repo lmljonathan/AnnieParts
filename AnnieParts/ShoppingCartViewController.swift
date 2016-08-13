@@ -13,7 +13,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var tableView: UITableView!
     private var shoppingCart: [Product]!
-    private var updatedItem = -1
     var viewFromNavButton = true;
     override func viewDidLoad() {
         self.navigationController?.addSideMenuButton()
@@ -44,7 +43,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let id = String(product["goods_id"] as! Int)
                     let name = product["goods_name"] as! String
                     let img = product["goods_img"] as! String
-                    self.shoppingCart.append(Product(productID: id, productName: name, image: img))
+                    //self.shoppingCart.append(Product(productID: id, productName: name, image: img))
                 }
                 self.tableView.reloadData()
             }
@@ -69,7 +68,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     @IBAction func editItemQuantity(sender: UIButton) {
-        self.updatedItem = sender.tag
         
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("popup") as! AddProductModalViewController
         vc.delegate = self
@@ -80,15 +78,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
-        // may have to change productID to recordID????
-        send_request("deleteFromCart", query_paramters: ["rec_id": self.shoppingCart[sender.tag].productID])
+        send_request("deleteFromCart", query_paramters: ["goods_id": self.shoppingCart[sender.tag].productID])
         self.shoppingCart.removeAtIndex(sender.tag)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request("addToCart", query_paramters: ["id": id, "cnt": quantity, "act": "set"])
-        if (self.updatedItem != -1) {
-            // update the table view data
-        }
-        self.tableView.reloadData()
     }
 }

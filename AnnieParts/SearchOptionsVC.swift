@@ -35,6 +35,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - View Loading Functions
     override func viewDidLoad() {
+        self.performSegueWithIdentifier("showResults", sender: self)
         self.navigationController?.addSideMenuButton()
         
         let options = [oneView: "searchByBrand:", twoView: "searchByCar:", threeView: "searchByProduct:"]

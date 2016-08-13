@@ -11,6 +11,14 @@ import UIKit
 class ShoppingCartCell: UITableViewCell {
 
     @IBOutlet var quantitySelectView: UIView!
+    
+    
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var serialNumber: UILabel!
+    @IBOutlet weak var manufacturer: UILabel!
+    @IBOutlet weak var year: UILabel!
+    @IBOutlet weak var models: UILabel!
+    @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var changeQuantityButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
