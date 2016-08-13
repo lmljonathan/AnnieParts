@@ -23,6 +23,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
+        self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
         super.viewDidLoad()
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,6 +33,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("menuCell")!
         cell.textLabel?.text = self.vcNames[indexPath.row]
+        cell.separatorInset = UIEdgeInsetsZero
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

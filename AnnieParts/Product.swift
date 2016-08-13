@@ -51,4 +51,7 @@ class ShoppingCart: Product {
         super.init(productID: productID, productName: productName, image: image, startYear: startYear, endYear: endYear)
         self._quantity = quantity
     }
+    func editQuantity(num: Int) {
+        self._quantity = num
+    }
 }

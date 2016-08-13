@@ -37,7 +37,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return result
         }
         self.searchIDs = getIDs()
-        print(getIDs())
         self.performSegueWithIdentifier("showResults", sender: self)
     }
     
@@ -255,7 +254,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if segue.identifier == "showResults"{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             destVC.searchIDs = self.searchIDs
-            print(self.searchIDs)
         }
     }
 }
