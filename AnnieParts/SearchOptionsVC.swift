@@ -138,7 +138,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.selectTab(0)
         self.activeIndex = 0
         
-        var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
+        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
         cell.clear()
         
         self.tableView.reloadData()

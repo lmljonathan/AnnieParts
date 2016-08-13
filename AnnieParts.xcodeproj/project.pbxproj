@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */; };
 		3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */; };
-		3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */; };
 		3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */; };
 		3C6A48AD1D5BD2A4006FB3E4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */; };
 		3C9D321A1D5E53520099BC50 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D32191D5E53520099BC50 /* Singleton.swift */; };
@@ -17,6 +16,7 @@
 		3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */; };
 		3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */; };
 		3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */; };
+		3CDA179E1D5ED6EE00A4F57C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */; };
 		3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */; };
 		900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */; };
 		906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DB1D4A8DD8007C6D86 /* videoSelect.xib */; };
@@ -67,7 +67,6 @@
 		38E5935BB870C91E5307CD8C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSideMenuViewController.swift; sourceTree = "<group>"; };
-		3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductModalViewController.swift; sourceTree = "<group>"; };
 		3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		3C9D32191D5E53520099BC50 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 		3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizePopup.swift; sourceTree = "<group>"; };
+		3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		8633511A252739FC04D09AD0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */,
-				3C15F93A1D456D6E00BCC053 /* SideMenuTableViewController.swift */,
+				3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */,
 			);
 			name = SideMenu;
 			sourceTree = "<group>";
@@ -490,6 +490,7 @@
 				3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */,
 				3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */,
 				90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */,
+				3CDA179E1D5ED6EE00A4F57C /* SideMenuViewController.swift in Sources */,
 				9075AA191D5325EA004272F4 /* SearchOptionsCell.swift in Sources */,
 				3C6A48AD1D5BD2A4006FB3E4 /* Product.swift in Sources */,
 				9075AA151D531F7E004272F4 /* DataHandler.swift in Sources */,
@@ -498,7 +499,6 @@
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
-				3C15F93B1D456D6E00BCC053 /* SideMenuTableViewController.swift in Sources */,
 				3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */,
 				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
