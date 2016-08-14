@@ -54,6 +54,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         // cartNavButton.addBadge() // CHANGE - Need to fix badge in UIExtensions
+        
+        self.tableView.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 0, right: 0)
+        self.tableView.sectionHeaderHeight = 10.0
+        self.tableView.sectionFooterHeight = 10.0
+        
         self.selectTab(0)
         self.activeIndex = 0
         self.navigationController?.addSideMenuButton()

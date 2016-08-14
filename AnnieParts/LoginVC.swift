@@ -12,6 +12,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - IB Outlets
     
+    @IBOutlet var anniepartsText: UILabel!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginLayer: UIView!
@@ -22,6 +23,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         self.loginLayer.layer.borderWidth = 1.0
         self.loginLayer.layer.borderColor = UIColor.whiteColor().CGColor
         self.navigationController?.navigationBarHidden = true
