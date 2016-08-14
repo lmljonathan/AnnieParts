@@ -25,6 +25,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
+        anniepartsText.adjustsFontSizeToFitWidth = true
+        
         self.loginLayer.layer.borderWidth = 1.0
         self.loginLayer.layer.borderColor = UIColor.whiteColor().CGColor
         self.navigationController?.navigationBarHidden = true
@@ -47,20 +49,29 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func performLogin(){
         self.loginButton.enabled = false
         if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
-            login(self.username.text!, password: self.password.text!, completion: { (json) in
-                if let status = json!["status"] as? Int {
-                    if status == 1 {
-                        if let rank = json!["user_rank"] as? Int {
-                            User.setUserRank(rank)
+            
+            self.showLoadingView("Logging In", completion: { (loadingVC) in
+                login(self.username.text!, password: self.password.text!, completion: { (json) in
+                    if let status = json!["status"] as? Int {
+                        if status == 1 {
+                            if let rank = json!["user_rank"] as? Int {
+                                User.setUserRank(rank)
+                            }
+                            print("login success")
+                            self.performSegueWithIdentifier("pushToSearch", sender: self)
                         }
-                        print("login success")
-                        self.performSegueWithIdentifier("pushToSearch", sender: self)
+                        else {
+                            print("login failed")
+                        }
                     }
-                    else {
-                        print("login failed")
-                    }
-                }
+                    
+                    loadingVC.dismissViewControllerAnimated(true, completion: {
+                        
+                    })
+                })
+
             })
+            
         }
         else {
             print("username or password field empty")
@@ -88,6 +99,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             performLogin()
         }
         return true
+    }
+    
+    func showLoadingView(message: String, completion: (loadingVC: UIViewController) -> Void){
+        self.definesPresentationContext = true
+        let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier("loadingVC") as! LoadingViewController
+        loadingVC.message = message
+        customPresentViewController(blurredPresentr(), viewController: loadingVC, animated: true) {
+            completion(loadingVC: loadingVC)
+        }
     }
     
 }

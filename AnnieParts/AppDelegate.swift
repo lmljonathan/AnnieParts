@@ -21,17 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         DropDown.startListeningToKeyboard()
         
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        UINavigationBar.appearance().translucent = false
         // Set navigation bar tint / background colour
-        UINavigationBar.appearance().barTintColor = UIColor.darkGrayColor()
+        UINavigationBar.appearance().barTintColor = UIColor.APdarkGray()
         
         // Set Navigation bar Title colour
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         // Set navigation bar ItemButton tint colour
         UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
-        
-        //Set navigation bar Back button tint colour
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
         SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
         SideMenuController.preferences.drawing.sidePanelPosition = .UnderCenterPanelLeft

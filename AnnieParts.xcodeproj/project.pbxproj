@@ -21,6 +21,8 @@
 		900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */; };
 		901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */; };
 		901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */; };
+		901AD9B91D6038E10000FCE5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */; };
+		901AD9BB1D603CC40000FCE5 /* AnimationKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9BA1D603CC40000FCE5 /* AnimationKit.swift */; };
 		906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DB1D4A8DD8007C6D86 /* videoSelect.xib */; };
 		906287DE1D4A8DF5007C6D86 /* aboutSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */; };
 		907256231D397EF200C46A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256221D397EF200C46A8B /* AppDelegate.swift */; };
@@ -82,6 +84,8 @@
 		900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCellTableViewCell.swift; sourceTree = "<group>"; };
+		901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		901AD9BA1D603CC40000FCE5 /* AnimationKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationKit.swift; sourceTree = "<group>"; };
 		906287DB1D4A8DD8007C6D86 /* videoSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = videoSelect.xib; path = XIB/videoSelect.xib; sourceTree = "<group>"; };
 		906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = aboutSelect.xib; path = XIB/aboutSelect.xib; sourceTree = "<group>"; };
 		9072561F1D397EF200C46A8B /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +148,7 @@
 		3C7B8CBF1D3DE39D00DAE60B /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */,
 				3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */,
 				3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */,
 			);
@@ -201,23 +206,25 @@
 		907256211D397EF200C46A8B /* AnnieParts */ = {
 			isa = PBXGroup;
 			children = (
+				907256221D397EF200C46A8B /* AppDelegate.swift */,
+				901AD9BA1D603CC40000FCE5 /* AnimationKit.swift */,
 				3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */,
 				3C9D321B1D5E58430099BC50 /* User.swift */,
 				3C9D32191D5E53520099BC50 /* Singleton.swift */,
 				9075AA141D531F7E004272F4 /* DataHandler.swift */,
+				901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */,
 				90EA32231D3F253A0066B281 /* SearchByData.swift */,
 				907256541D3C45C700C46A8B /* VCs */,
+				90EA32201D3E98A90066B281 /* Cells */,
 				90898C861D47DD1F00719F20 /* Fonts */,
 				3CB72D581D5D22430012FAA4 /* SideMenu */,
 				3C7B8CBF1D3DE39D00DAE60B /* Popup */,
-				90EA32201D3E98A90066B281 /* Cells */,
 				9087E66A1D4C284900FCF09B /* DetailedViews */,
 				90A7957E1D4A8A6000CCD179 /* XIB */,
 				907256261D397EF200C46A8B /* Main.storyboard */,
 				901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */,
 				9072562B1D397EF200C46A8B /* LaunchScreen.storyboard */,
 				907256291D397EF200C46A8B /* Assets.xcassets */,
-				907256221D397EF200C46A8B /* AppDelegate.swift */,
 				9072562E1D397EF200C46A8B /* Info.plist */,
 			);
 			path = AnnieParts;
@@ -245,7 +252,6 @@
 			isa = PBXGroup;
 			children = (
 				907256241D397EF200C46A8B /* LoginVC.swift */,
-				901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */,
 				90EA32211D3F20850066B281 /* SearchOptionsVC.swift */,
 				3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */,
 				900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */,
@@ -369,7 +375,7 @@
 				TargetAttributes = {
 					9072561E1D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = G6YM58LRJE;
+						DevelopmentTeam = CQD8Z7UVJ4;
 					};
 					907256321D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -505,12 +511,14 @@
 				3C9D321C1D5E58430099BC50 /* User.swift in Sources */,
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
+				901AD9B91D6038E10000FCE5 /* LoadingViewController.swift in Sources */,
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */,
 				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
 				901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
+				901AD9BB1D603CC40000FCE5 /* AnimationKit.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
 				3C9D321A1D5E53520099BC50 /* Singleton.swift in Sources */,
 				3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */,

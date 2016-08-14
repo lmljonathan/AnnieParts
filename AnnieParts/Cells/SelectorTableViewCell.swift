@@ -32,7 +32,6 @@ class SelectorTableViewCell: UITableViewCell {
     
     // MARK: - Configure Function
     func configureCell(title: String){
-        self.selectView.layer.cornerRadius = 5
         self.titleLabel.text = title
     }
     
@@ -42,7 +41,7 @@ class SelectorTableViewCell: UITableViewCell {
     }
     
     func clear(){
-        self.selectLabel.text = "SELECT ONE"
+        self.selectLabel.text = "Select One"
     }
     
     private func setupDropDown(view: UIView, data: [String]){

@@ -116,9 +116,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Disables the Model Option 
         if indexPath == NSIndexPath(forRow: 0, inSection: 2) && vehicleData.model.count == 0{
             cell.disable()
-            cell.selectLabel.text = "SELECT A MAKE"
+            cell.selectLabel.text = "Select a Make"
         }else if indexPath == NSIndexPath(forRow: 0, inSection: 2) && vehicleData.model.count > 0{
-            cell.selectLabel.text = "SELECT ONE"
+            cell.selectLabel.text = "Select One"
         }
         return cell
     }
@@ -155,7 +155,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (selectedOptions[0])[0] != ""{
             cell.selectLabel.text = (selectedOptions[0])[0]
         }else{
-            cell.selectLabel.text = "SELECT ONE"
+            cell.selectLabel.text = "Select One"
         }
         self.tableView.reloadData()
     }
@@ -168,7 +168,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             if (selectedOptions[1])[section] != ""{
                 cell.selectLabel.text = (selectedOptions[1])[section]
             }else{
-                cell.selectLabel.text = "SELECT ONE"
+                cell.selectLabel.text = "Select One"
             }
         }
         self.tableView.reloadData()
@@ -181,7 +181,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (selectedOptions[2])[0] != ""{
             cell.selectLabel.text = (selectedOptions[2])[0]
         }else{
-            cell.selectLabel.text = "SELECT ONE"
+            cell.selectLabel.text = "Select One"
         }
         self.tableView.reloadData()
     }
@@ -192,7 +192,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         dropDown.direction = .Bottom
         dropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
         dropDown.cellHeight = 44
-        dropDown.backgroundColor = UIColor.lightGrayColor()
+        dropDown.backgroundColor = UIColor.APlightGray()
         
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = ["Car", "Motorcycle", "Truck"]
@@ -202,9 +202,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let tabViews = [oneView, twoView, threeView]
         for x in 0..<3{
             if x != index{
-                (tabViews[x]).backgroundColor = UIColor.darkGrayColor()
+                (tabViews[x]).backgroundColor = UIColor.APmediumGray()
             }else{
-                (tabViews[x]).backgroundColor = UIColor.lightGrayColor()
+                (tabViews[x]).backgroundColor = UIColor.APred()
             }
         }
         self.activeIndex = index
@@ -229,7 +229,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 (self.selectedOptions[1])[1] = option
                 let modelCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SelectorTableViewCell
                 self.configureModels(option)
-                modelCell.selectLabel.text = "SELECT ONE"
+                modelCell.selectLabel.text = "Select One"
                 modelCell.enable()
                 
                 // Clears model
@@ -253,19 +253,19 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         switch activeIndex {
         case 0:
             if self.selectedOptions[0] != [""]{
-                self.searchButton.enable(UIColor.redColor())
+                self.searchButton.enable(UIColor.APred())
             }else{
                 self.searchButton.disable()
             }
         case 1:
             if (self.selectedOptions[1])[0] != "" && (self.selectedOptions[1])[1] != "" && (self.selectedOptions[1])[2] != ""{
-                self.searchButton.enable(UIColor.redColor())
+                self.searchButton.enable(UIColor.APred())
             }else{
                 self.searchButton.disable()
             }
         case 2:
             if self.selectedOptions[2] != [""]{
-                self.searchButton.enable(UIColor.redColor())
+                self.searchButton.enable(UIColor.APred())
             }else{
                 self.searchButton.disable()
             }

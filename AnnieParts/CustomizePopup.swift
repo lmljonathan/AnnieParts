@@ -18,3 +18,14 @@ func initializePresentr() -> Presentr {
     
     return presenter
 }
+
+func blurredPresentr() -> Presentr {
+    let width = ModalSize.Default
+    let height = ModalSize.Default
+    let center = ModalCenterPosition.Center
+    let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
+    presenter.backgroundColor = UIColor.clearColor()
+    presenter.blurBackground = true
+    
+    return presenter
+}
