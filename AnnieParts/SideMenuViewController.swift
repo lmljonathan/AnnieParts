@@ -17,15 +17,17 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private let segues = ["showCenterSearch", "showCenterShoppingCart"]
     private let vcNames = ["Search", "Shopping Cart"]
-    private var previousIndex: NSIndexPath?
     override func viewDidLoad() {
+        let index = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.cellForRowAtIndexPath(index)?.selected = true
         self.userRank.text = User.getUserStatus().uppercaseString
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
         self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
-        super.viewDidLoad()
         self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+        super.viewDidLoad()
+        self.tableView.reloadData()
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
