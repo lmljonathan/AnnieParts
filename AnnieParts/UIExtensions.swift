@@ -114,3 +114,8 @@ extension UITableViewCell{
     }
 }
 
+extension UIFont{
+    public class func Montserrat(size: CGFloat = 12) -> UIFont{
+        return UIFont(name: "Montserrat-Regular", size: size)!
+    }
+}

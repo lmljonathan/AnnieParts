@@ -11,5 +11,6 @@ import DropDown
 
 class SearchOptionsCell: DropDownCell {
 
+    @IBOutlet var selectLabel: UILabel!
     
 }

@@ -40,7 +40,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
         loadData()
         
-        checkoutButton.layer.cornerRadius = 5.0
+        if self.tableView.numberOfRowsInSection(0) == 0{
+            self.checkoutButton.disable()
+        }
+        
         super.viewDidLoad()
     }
     

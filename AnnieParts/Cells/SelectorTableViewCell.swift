@@ -45,12 +45,16 @@ class SelectorTableViewCell: UITableViewCell {
     }
     
     private func setupDropDown(view: UIView, data: [String]){
+     
         // The view to which the drop down will appear on
         dropDown.anchorView = view // UIView or UIBarButtonItem
         dropDown.direction = .Bottom
         dropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
         dropDown.cellHeight = 44
-        dropDown.backgroundColor = UIColor.lightGrayColor()
+        dropDown.textColor = UIColor.whiteColor()
+        dropDown.textFont = UIFont.Montserrat(15)
+        dropDown.backgroundColor = UIColor.APlightGray()
+        
         dropDown.selectionAction = { [unowned self] (index, item) in
             self.selectLabel.text = item
             self.delegate?.selectOption(self, option: item)

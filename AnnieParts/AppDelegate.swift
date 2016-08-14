@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
         SideMenuController.preferences.drawing.sidePanelPosition = .UnderCenterPanelLeft
-        SideMenuController.preferences.drawing.sidePanelWidth = 240
+        SideMenuController.preferences.drawing.sidePanelWidth = 260
         SideMenuController.preferences.drawing.centerPanelShadow = true
         SideMenuController.preferences.animating.statusBarBehaviour = .HorizontalPan
         SideMenuController.preferences.animating.transitionAnimator = FadeAnimator.self

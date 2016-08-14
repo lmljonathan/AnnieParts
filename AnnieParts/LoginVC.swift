@@ -105,6 +105,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.definesPresentationContext = true
         let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier("loadingVC") as! LoadingViewController
         loadingVC.message = message
+        loadingVC.bgColor = .whiteColor()
         customPresentViewController(blurredPresentr(), viewController: loadingVC, animated: true) {
             completion(loadingVC: loadingVC)
         }
