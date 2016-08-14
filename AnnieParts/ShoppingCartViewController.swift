@@ -57,8 +57,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     //let img = product["goods_img"] as! String
                     //let startYear = String(product["start_time"] as! Int)
                     //let endYear = String(product["end_time"] as! Int)
+                    //let make = String(product["brand_id"] as! Int)
                     let quantity = Int(product["goods_number"] as! String)
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", quantity: quantity!))
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", brandID: "", quantity: quantity!))
                 }
                 self.tableView.reloadData()
             }

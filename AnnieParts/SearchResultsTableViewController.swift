@@ -59,9 +59,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     let id = String(product["id"] as! Int)
                     let name = product["name"] as! String
                     let img = product["img"] as! String
+                    let make = String(product["brand_id"] as! Int)
                     let startYear = String(product["start_time"] as! Int)
                     let endYear = String(product["end_time"] as! Int)
-                    self.catalogData.append(Product(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear))
+                    self.catalogData.append(Product(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear, brandID: make))
                 }
                 self.tableView.reloadData()
             }
