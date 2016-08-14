@@ -27,13 +27,33 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginVC.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+
+        
         self.loginLayer.layer.borderWidth = 1.0
         self.loginLayer.layer.borderColor = UIColor.whiteColor().CGColor
         self.navigationController?.navigationBarHidden = true
         self.username.delegate = self
         self.password.delegate = self
     }
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+            else {}
+        }
+    }
     
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
+            else {}
+        }
+    }
     // MARK: - IB Outlet Actions
     
     @IBAction func loginPressed(sender: UIButton) {
@@ -64,14 +84,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             print("login failed")
                         }
                     }
-                    
                     loadingVC.dismissViewControllerAnimated(true, completion: {
-                        
                     })
                 })
-
             })
-            
         }
         else {
             print("username or password field empty")

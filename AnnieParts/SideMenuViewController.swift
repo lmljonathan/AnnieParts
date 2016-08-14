@@ -16,7 +16,8 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var name: UILabel!
     
     private let segues = ["showCenterSearch", "showCenterShoppingCart"]
-    private let vcNames = ["Search", "Shopping Cart"]
+    private let pageOptionIcons = ["search", "cart"]
+    private let pageOptions = ["Search", "Shopping Cart"]
     override func viewDidLoad() {
         let index = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.cellForRowAtIndexPath(index)?.selected = true
@@ -25,7 +26,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false
         self.tableView.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
-        self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         super.viewDidLoad()
         self.tableView.reloadData()
     }
@@ -36,8 +36,8 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("menuCell")! as! MenuCellTableViewCell
         
-        cell.menuLabel.text = self.vcNames[indexPath.row]
-        
+        cell.menuLabel.text = self.pageOptions[indexPath.row]
+        cell.menuIcon.image = UIImage(named: pageOptionIcons[indexPath.row])
         //cell.textLabel?.text = self.vcNames[indexPath.row]
         return cell
     }

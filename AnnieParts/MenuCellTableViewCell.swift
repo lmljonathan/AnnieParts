@@ -11,7 +11,7 @@ import UIKit
 class MenuCellTableViewCell: UITableViewCell {
 
     @IBOutlet var menuLabel: UILabel!
-    
+    @IBOutlet weak var menuIcon: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +22,4 @@ class MenuCellTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
