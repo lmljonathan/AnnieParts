@@ -27,7 +27,7 @@ func login(username: String, password: String, completion: (NSDictionary?) -> Vo
     Alamofire.request(
         .GET,
         query_url,
-        parameters: ["act": "login", "u":username, "p":password]
+        parameters: ["act": "login", "u": username, "p": password]
     ).validate().responseJSON { (response) in
         print(response.request!.URL!.URLString)
         print(String(data: response.data!, encoding: NSUTF8StringEncoding))
@@ -66,4 +66,3 @@ func get_json_data(query_type: String, query_paramters: [String: AnyObject], com
         }
     }
 }
-// Given name of the selected item in each search category, find the corresponding ID to use in the GET request.
