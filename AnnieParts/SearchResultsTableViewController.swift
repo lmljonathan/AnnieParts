@@ -120,6 +120,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         vc.buttonString = CONSTANTS.ADD_TO_CART_LABEL
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
+    
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
     }

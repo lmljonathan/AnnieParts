@@ -57,8 +57,14 @@ class AddProductModalViewController: UIViewController {
     }
     @IBAction func addToCart(sender: UIButton) {
         self.delegate?.returnIDandQuantity(self.id, quantity: self.quantity)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let mainVC = self.presentingViewController
+        self.dismissViewControllerAnimated(true) {
+            mainVC?.showNotificationView("Product Added!", image: UIImage(named: "cart")!, completion: { (vc) in
+                vc.delayDismiss(0.5)
+            })
+        }
     }
+    
     @IBAction func cancel(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

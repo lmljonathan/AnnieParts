@@ -119,3 +119,32 @@ extension UIFont{
         return UIFont(name: "Montserrat-Regular", size: size)!
     }
 }
+
+extension UIViewController{
+    
+    func showNotificationView(message: String, image: UIImage, completion: (vc: UIViewController) -> Void){
+        self.definesPresentationContext = true
+        let vc = self.storyboard!.instantiateViewControllerWithIdentifier("notificationVC") as! NotificationDialogViewController
+        vc.setImage = image
+        vc.message = message
+        customPresentViewController(blurredPresentr(), viewController: vc, animated: true) {
+            completion(vc: vc)
+        }
+    }
+    
+    func delayDismiss(seconds: Double){
+        func delay(delay:Double, closure:()->()) {
+            dispatch_after(
+                dispatch_time(
+                    DISPATCH_TIME_NOW,
+                    Int64(delay * Double(NSEC_PER_SEC))
+                ),
+                dispatch_get_main_queue(), closure)
+        }
+        
+        delay(seconds) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+}
+
