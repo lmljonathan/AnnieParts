@@ -132,6 +132,16 @@ extension UIViewController{
         }
     }
     
+    func showLoadingView(message: String, bgColor: UIColor = UIColor.APdarkGray() , completion: (loadingVC: UIViewController) -> Void){
+        self.definesPresentationContext = true
+        let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
+        loadingVC.message = message
+        loadingVC.bgColor = bgColor
+        customPresentViewController(blurredPresentr(), viewController: loadingVC, animated: true) {
+            completion(loadingVC: loadingVC)
+        }
+    }
+    
     func delayDismiss(seconds: Double){
         func delay(delay:Double, closure:()->()) {
             dispatch_after(

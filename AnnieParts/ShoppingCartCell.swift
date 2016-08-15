@@ -29,8 +29,8 @@ class ShoppingCartCell: UITableViewCell {
     }
     
     func configureCell(){
-        quantitySelectView.layer.cornerRadius = 5.0
-        deleteButton.layer.cornerRadius = 5.0
+//        quantitySelectView.layer.cornerRadius = 5.0
+//        deleteButton.layer.cornerRadius = 5.0
     }
     func loadImage(url: NSURL) {
         self.productImage.hnk_setImageFromURL(url)

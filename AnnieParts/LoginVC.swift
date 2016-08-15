@@ -69,8 +69,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func performLogin(){
         self.loginButton.enabled = false
         if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
-            
-            self.showLoadingView("Logging In", completion: { (loadingVC) in
+
+            self.showLoadingView("Logging In", bgColor: .whiteColor(), completion: { (loadingVC) in
                 login(self.username.text!, password: self.password.text!, completion: { (json) in
                     if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
                         if status == 1 {
@@ -117,15 +117,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func showLoadingView(message: String, completion: (loadingVC: UIViewController) -> Void){
-        self.definesPresentationContext = true
-        let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
-        loadingVC.message = message
-        loadingVC.bgColor = .whiteColor()
-        customPresentViewController(blurredPresentr(), viewController: loadingVC, animated: true) {
-            completion(loadingVC: loadingVC)
-        }
-    }
     
 }
 

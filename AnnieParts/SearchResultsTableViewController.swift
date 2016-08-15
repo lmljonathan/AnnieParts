@@ -20,6 +20,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     var vehicleData: vehicle!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationController?.addSideMenuButton()
+        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        
         if (self.catalogData == nil) {
             self.catalogData = []
         }
@@ -39,21 +44,18 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             self.searchParameters[CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] = pinpai
         }
         
-        self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
-
-        MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
+        self.showLoadingView("Getting Products") { (loadingVC) in
+            
+            MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
+            
+            self.loadData({
+                loadingVC.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
         
-        loadData()
-        
-        super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    func loadData() {
+    
+    func loadData(completion:() -> Void) {
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {
@@ -66,6 +68,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     self.catalogData.append(Product(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear, brandID: make))
                 }
                 self.tableView.reloadData()
+                completion()
             }
         }
     }
