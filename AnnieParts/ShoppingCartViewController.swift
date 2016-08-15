@@ -38,6 +38,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refreshControl)
         loadData()
         
         if self.tableView.numberOfRowsInSection(0) == 0{
@@ -48,6 +52,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadData() {
+        self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             print(json)
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
@@ -117,5 +122,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
+    }
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        loadData()
+        refreshControl.beginRefreshing()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }

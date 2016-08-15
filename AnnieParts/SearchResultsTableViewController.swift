@@ -127,4 +127,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
     }
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        loadData()
+        refreshControl.beginRefreshing()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
 }
