@@ -101,6 +101,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
+        textField.backgroundColor = UIColor.APlightGray()
         textField.selectedTextRange = textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
     }
     
@@ -108,10 +109,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if textField == username{
             if textField.text != ""{
                 password.becomeFirstResponder()
+                password.backgroundColor = UIColor.APlightGray()
             }
+            textField.backgroundColor = UIColor.APmediumGray()
             textField.resignFirstResponder()
         }else{
             textField.resignFirstResponder()
+            textField.backgroundColor = UIColor.APmediumGray()
             performLogin()
         }
         return true
