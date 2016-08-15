@@ -43,8 +43,12 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
 
         MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
-        
         loadData()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refreshControl)
         
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -123,5 +127,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
+    }
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        loadData()
+        refreshControl.beginRefreshing()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
