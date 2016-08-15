@@ -58,6 +58,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func loadData() {
+        self.catalogData.removeAll()
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {

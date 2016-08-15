@@ -52,6 +52,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadData() {
+        self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             print(json)
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
