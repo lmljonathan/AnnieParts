@@ -70,7 +70,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
     }
     
-    func getMake(id: String) -> String{
+    private func getMake(id: String) -> String{
         let id: Int! = Int(id)!
         let index = vehicleData.makeIDs.indexOf(id)
         

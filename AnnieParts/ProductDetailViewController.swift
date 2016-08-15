@@ -30,15 +30,10 @@ class ProductDetailViewController: UIViewController {
     private var activeTab: UIView!
         
     override func viewDidLoad() {
-
+        super.viewDidLoad()
         self.navigationController?.addSideMenuButton()
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: "back"), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         activeTab = aboutSelect
-        
-        addNib("aboutSelect", toView: self.contentView)
-        for tab in [aboutSelect, videoSelect, installSelect, docsSelect]{
-            self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
-        }
         
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
         mainScrollView.showsVerticalScrollIndicator = true
@@ -52,7 +47,11 @@ class ProductDetailViewController: UIViewController {
         imageCaroselScrollView.auk.settings.pageControl.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.3)
         imageCaroselScrollView.auk.show(url: "https://bit.ly/auk_image")
         imageCaroselScrollView.auk.show(url: "https://bit.ly/moa_image")
-        super.viewDidLoad()
+        
+        addNib("aboutSelect", toView: self.contentView)
+        for tab in [aboutSelect, videoSelect, installSelect, docsSelect]{
+            self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
+        }
     }
 
     func addNib(named: String, toView: UIView){
