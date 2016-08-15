@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -21,7 +21,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.ttf">
+        <mutableArray key="Montserrat-Regular.otf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
@@ -64,9 +64,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="40" y="284.5" width="240" height="24"/>
-                                </variation>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sli-EV-td1" userLabel="Username Seperator">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -79,8 +76,7 @@
                                         <exclude reference="0a0-1B-vat"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="39" y="316.5" width="240" height="1"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="0a0-1B-vat"/>
                                     </mask>
@@ -88,21 +84,15 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zg-Q7-9k9">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="10"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="132.5" y="326.5" width="55.5" height="12"/>
-                                </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYS-Mp-0IV">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="40" y="354.5" width="240" height="24"/>
-                                </variation>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjU-Lc-OYg" userLabel="Password Seperator">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -115,8 +105,7 @@
                                         <exclude reference="5DD-Ob-gRb"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="40" y="386.5" width="240" height="1"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="5DD-Ob-gRb"/>
                                     </mask>
@@ -124,12 +113,9 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PASSWORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u45-bC-amG">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="10"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="132" y="396.5" width="56" height="12"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t30-5v-KuT">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -167,7 +153,7 @@
                                         <variation key="heightClass=regular-widthClass=compact" constant="294"/>
                                     </constraint>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
@@ -175,8 +161,7 @@
                                         <exclude reference="7Ym-yx-sTr"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="14.5" y="146" width="294" height="23.5"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="7Ym-yx-sTr"/>
                                     </mask>
@@ -363,7 +348,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wiE-bu-A5f"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="anniepartsText" destination="sMn-Cj-Y2M" id="Nr9-NC-JUr"/>
                         <outlet property="forgetPassButton" destination="t30-5v-KuT" id="sOs-HI-Xw8"/>
@@ -615,9 +600,6 @@
                                         <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="23"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="17" y="33" width="229" height="27"/>
-                                        </variation>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2q-jw-e1T">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -627,9 +609,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                                 <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="18" y="3.5" width="65" height="15.5"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -654,8 +633,7 @@
                                                 <exclude reference="x9z-87-77L"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="17" y="63.5" width="101" height="22"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="RqH-oZ-EkN"/>
                                             </mask>
@@ -722,7 +700,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuCell" rowHeight="60" id="6d4-Sk-1pD" customClass="MenuCellTableViewCell" customModule="AnnieParts" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6d4-Sk-1pD" id="tTx-aG-Af7">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gxw-eo-KPy">
@@ -737,8 +715,7 @@
                                                             <exclude reference="s6A-Oz-UDf"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="18" y="15" width="25" height="25"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="gqy-di-JGU"/>
                                                             <include reference="s6A-Oz-UDf"/>
@@ -750,9 +727,6 @@
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="51" y="20.5" width="78.5" height="14"/>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -813,8 +787,7 @@
                                                 <exclude reference="sUG-hz-wCh"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="15" y="12.5" width="72" height="32"/>
+                                        <variation key="heightClass=regular-widthClass=compact">
                                             <mask key="constraints">
                                                 <include reference="sUG-hz-wCh"/>
                                             </mask>
@@ -956,9 +929,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="35.5" y="13.5" width="57.5" height="16.5"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
@@ -996,9 +966,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="39.5" y="13.5" width="48.5" height="16.5"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
@@ -1036,9 +1003,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="30" y="13.5" width="67.5" height="16.5"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
@@ -1241,9 +1205,6 @@
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="33.5" y="2" width="31" height="14"/>
-                                                    </variation>
                                                 </label>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEy-bS-Mc9">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -1253,9 +1214,6 @@
                                                             <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
-                                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="128.5" y="12.5" width="79" height="19"/>
-                                                            </variation>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
@@ -1768,7 +1726,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="122" y="94" width="110" height="16"/>
+                                                        <rect key="frame" x="122" y="95" width="110" height="16"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fw-X3-azI" userLabel="Name">
@@ -1777,7 +1735,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="122" y="19" width="110" height="21"/>
+                                                        <rect key="frame" x="122" y="19" width="110" height="22"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manufacturer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cjW-T8-VIM">
@@ -1786,7 +1744,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="122" y="61" width="110" height="16"/>
+                                                        <rect key="frame" x="122" y="62" width="110" height="16"/>
                                                     </variation>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tu5-bk-iaL" userLabel="Code">
@@ -1817,8 +1775,7 @@
                                                             <exclude reference="vvH-W2-faV"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="122" y="42" width="146" height="18"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="subviews">
                                                             <include reference="tQC-HJ-CUS"/>
                                                         </mask>
@@ -1899,8 +1856,7 @@
                                                         <constraint firstItem="1Em-TV-Dtd" firstAttribute="leading" secondItem="ae8-D7-CGg" secondAttribute="leading" id="wGk-lP-hTF"/>
                                                         <constraint firstAttribute="bottom" secondItem="XGu-NU-ca7" secondAttribute="bottom" constant="4" id="xSi-TG-Wfj"/>
                                                     </constraints>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="123" y="114.5" width="42" height="24"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="subviews">
                                                             <include reference="0HT-CD-TfX"/>
                                                             <include reference="XGu-NU-ca7"/>
@@ -1941,8 +1897,7 @@
                                                             <exclude reference="qI6-tc-cZz"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="173" y="114" width="82" height="24"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="e6x-sR-VS9"/>
                                                             <include reference="qI6-tc-cZz"/>
@@ -1955,7 +1910,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="122" y="77" width="110" height="16"/>
+                                                        <rect key="frame" x="122" y="78" width="110" height="16"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -2199,9 +2154,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="21"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="133" y="80" width="136" height="25"/>
-                                                </variation>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PN0-Pr-tbI">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2211,9 +2163,6 @@
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="11" y="2" width="95" height="17"/>
-                                                        </variation>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2232,8 +2181,7 @@
                                                         <exclude reference="DsN-Fg-yk6"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="142.5" y="109" width="117" height="21"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="subviews">
                                                         <include reference="0lK-0d-RKE"/>
                                                     </mask>
@@ -2474,9 +2422,6 @@
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="21" y="6" width="58" height="20"/>
-                                                                </variation>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2511,9 +2456,6 @@
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="24" y="6" width="51" height="20"/>
-                                                                </variation>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2548,9 +2490,6 @@
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="17" y="6" width="66" height="20"/>
-                                                                </variation>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2585,9 +2524,6 @@
                                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="26" y="6.5" width="48.5" height="20"/>
-                                                                </variation>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -3010,9 +2946,6 @@
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="44" y="112" width="112" height="20"/>
-                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="0.72380999472573837" colorSpace="calibratedRGB"/>
