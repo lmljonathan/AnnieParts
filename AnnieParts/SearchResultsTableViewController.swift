@@ -114,14 +114,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         if self.catalogData.count == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("noItemsCell", forIndexPath: indexPath)
-            self.tableView.rowHeight = 171.5
-            self.tableView.separatorStyle = .None
             return cell
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
-            
-            self.tableView.rowHeight = 158
-            self.tableView.separatorStyle = .SingleLine
             
             let product = self.catalogData[indexPath.row]
             cell.addButton.tag = indexPath.row

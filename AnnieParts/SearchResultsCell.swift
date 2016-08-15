@@ -18,6 +18,10 @@ class SearchResultsCell: UITableViewCell {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var addButton: UIButton!
     
+    @IBAction func didTouch(sender: AnyObject) {
+        self.addButton.tintColor = UIColor.APlightGray()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

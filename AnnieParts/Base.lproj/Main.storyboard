@@ -1603,6 +1603,9 @@
                                                     <include reference="ykq-QQ-gKQ"/>
                                                 </mask>
                                             </variation>
+                                            <connections>
+                                                <action selector="didTouch:" destination="qcv-jE-sk6" eventType="touchDown" id="ebb-qH-aaH"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-44" translatesAutoresizingMaskIntoConstraints="NO" id="lXV-Id-tij">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
