@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -421,7 +421,8 @@
                                                 <exclude reference="JUf-rQ-8G8"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="98" y="103" width="204" height="30"/>
                                             <mask key="constraints">
                                                 <include reference="JUf-rQ-8G8"/>
                                             </mask>
@@ -445,7 +446,8 @@
                                                 <exclude reference="YBp-1n-j2h"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="98" y="141" width="204" height="30"/>
                                             <mask key="constraints">
                                                 <include reference="YBp-1n-j2h"/>
                                             </mask>
@@ -466,7 +468,8 @@
                                                 <exclude reference="LWA-ka-m7L"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="97" y="67" width="206" height="30"/>
                                             <mask key="constraints">
                                                 <include reference="LWA-ka-m7L"/>
                                             </mask>
@@ -488,7 +491,8 @@
                                                 <exclude reference="psa-G4-izO"/>
                                             </mask>
                                         </variation>
-                                        <variation key="heightClass=regular-widthClass=compact">
+                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="98" y="39" width="204" height="20"/>
                                             <mask key="constraints">
                                                 <include reference="psa-G4-izO"/>
                                             </mask>
@@ -1275,7 +1279,7 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="62.5" y="12.5" width="79" height="19"/>
+                                                                <rect key="frame" x="62.5" y="12" width="79" height="19"/>
                                                             </variation>
                                                         </label>
                                                     </subviews>
@@ -1968,7 +1972,7 @@
                                                         </mask>
                                                     </variation>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="177" y="113.5" width="82" height="24"/>
+                                                        <rect key="frame" x="177" y="113" width="82" height="24"/>
                                                         <mask key="constraints">
                                                             <include reference="e6x-sR-VS9"/>
                                                             <include reference="qI6-tc-cZz"/>
@@ -2002,7 +2006,7 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="13.5" y="2.5" width="74.5" height="13"/>
+                                                                <rect key="frame" x="13" y="2" width="74.5" height="13"/>
                                                             </variation>
                                                         </label>
                                                     </subviews>
@@ -2045,7 +2049,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="126" y="76.5" width="98" height="15.5"/>
+                                                        <rect key="frame" x="126" y="76" width="98" height="15.5"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -2305,7 +2309,7 @@
                                                     </mask>
                                                 </variation>
                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="142" y="55" width="117" height="21.5"/>
+                                                    <rect key="frame" x="142" y="55" width="117" height="22"/>
                                                     <mask key="subviews">
                                                         <include reference="0lK-0d-RKE"/>
                                                     </mask>
@@ -2658,7 +2662,7 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="26" y="6.5" width="48.5" height="20"/>
+                                                                    <rect key="frame" x="26" y="6" width="48.5" height="20"/>
                                                                 </variation>
                                                             </label>
                                                         </subviews>
@@ -3083,7 +3087,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="44" y="112" width="112" height="20"/>
+                                            <rect key="frame" x="11" y="112" width="178" height="20"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -3311,6 +3315,6 @@
         <image name="changeQuantity" width="15" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NBk-nF-F7k"/>
+        <segue reference="wbm-kG-Z8l"/>
     </inferredMetricsTieBreakers>
 </document>

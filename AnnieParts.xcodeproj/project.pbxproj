@@ -35,9 +35,9 @@
 		907256381D397EF200C46A8B /* AnniePartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256371D397EF200C46A8B /* AnniePartsTests.swift */; };
 		907256431D397EF200C46A8B /* AnniePartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256421D397EF200C46A8B /* AnniePartsUITests.swift */; };
 		9075AA151D531F7E004272F4 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9075AA141D531F7E004272F4 /* DataHandler.swift */; };
-		9075AA171D5324D1004272F4 /* SearchOptionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9075AA161D5324D1004272F4 /* SearchOptionsCell.xib */; };
 		9075AA191D5325EA004272F4 /* SearchOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */; };
 		9087E6691D4C284000FCF09B /* aboutSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9087E6681D4C284000FCF09B /* aboutSelectView.swift */; };
+		9088A6221D6281950052348F /* NoItemsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9088A6241D6281950052348F /* NoItemsCell.xib */; };
 		90898C7E1D47DD1900719F20 /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C761D47DD1900719F20 /* Montserrat-ExtraBold.otf */; };
 		90898C7F1D47DD1900719F20 /* Montserrat-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C771D47DD1900719F20 /* Montserrat-SemiBold.otf */; };
 		90898C801D47DD1900719F20 /* Montserrat-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C781D47DD1900719F20 /* Montserrat-UltraLight.otf */; };
@@ -106,9 +106,9 @@
 		907256421D397EF200C46A8B /* AnniePartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsUITests.swift; sourceTree = "<group>"; };
 		907256441D397EF200C46A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9075AA141D531F7E004272F4 /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
-		9075AA161D5324D1004272F4 /* SearchOptionsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchOptionsCell.xib; path = XIB/SearchOptionsCell.xib; sourceTree = "<group>"; };
 		9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchOptionsCell.swift; path = Cells/SearchOptionsCell.swift; sourceTree = "<group>"; };
 		9087E6681D4C284000FCF09B /* aboutSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aboutSelectView.swift; sourceTree = "<group>"; };
+		9088A6231D6281950052348F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NoItemsCell.xib; sourceTree = "<group>"; };
 		90898C761D47DD1900719F20 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
 		90898C771D47DD1900719F20 /* Montserrat-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.otf"; sourceTree = "<group>"; };
 		90898C781D47DD1900719F20 /* Montserrat-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-UltraLight.otf"; sourceTree = "<group>"; };
@@ -292,9 +292,9 @@
 		90A7957E1D4A8A6000CCD179 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				9088A6241D6281950052348F /* NoItemsCell.xib */,
 				906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */,
 				906287DB1D4A8DD8007C6D86 /* videoSelect.xib */,
-				9075AA161D5324D1004272F4 /* SearchOptionsCell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -420,7 +420,6 @@
 			files = (
 				90898C841D47DD1900719F20 /* Montserrat-Light.otf in Resources */,
 				90898C7E1D47DD1900719F20 /* Montserrat-ExtraBold.otf in Resources */,
-				9075AA171D5324D1004272F4 /* SearchOptionsCell.xib in Resources */,
 				9072562D1D397EF200C46A8B /* LaunchScreen.storyboard in Resources */,
 				90898C801D47DD1900719F20 /* Montserrat-UltraLight.otf in Resources */,
 				9072562A1D397EF200C46A8B /* Assets.xcassets in Resources */,
@@ -430,6 +429,7 @@
 				90898C831D47DD1900719F20 /* Montserrat-Black.otf in Resources */,
 				90898C811D47DD1900719F20 /* Montserrat-Bold.otf in Resources */,
 				906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */,
+				9088A6221D6281950052348F /* NoItemsCell.xib in Resources */,
 				906287DE1D4A8DF5007C6D86 /* aboutSelect.xib in Resources */,
 				90898C821D47DD1900719F20 /* Montserrat-Regular.otf in Resources */,
 			);
@@ -579,6 +579,14 @@
 				9072562C1D397EF200C46A8B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9088A6241D6281950052348F /* NoItemsCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9088A6231D6281950052348F /* Base */,
+			);
+			name = NoItemsCell.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

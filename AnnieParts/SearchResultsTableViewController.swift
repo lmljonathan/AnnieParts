@@ -22,6 +22,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "noItemsCell")
+        
         self.navigationController?.addSideMenuButton()
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         
@@ -102,21 +104,38 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.catalogData.count
+        if self.catalogData.count > 0 {
+            return self.catalogData.count
+        }else{
+            return 1
+        }
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
-        let product = self.catalogData[indexPath.row]
-        cell.addButton.tag = indexPath.row
-        cell.productName.text = product.productName
-        cell.year.text = product.startYear + " - " + product.endYear
-        cell.manufacturer.text = getMake(product.brandId)
-    
-        let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
-        cell.loadImage(url)
-        cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
+        
+        if self.catalogData.count == 0{
+            let cell = tableView.dequeueReusableCellWithIdentifier("noItemsCell", forIndexPath: indexPath)
+            self.tableView.rowHeight = 171.5
+            self.tableView.separatorStyle = .None
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
+            
+            self.tableView.rowHeight = 158
+            self.tableView.separatorStyle = .SingleLine
+            
+            let product = self.catalogData[indexPath.row]
+            cell.addButton.tag = indexPath.row
+            cell.productName.text = product.productName
+            cell.year.text = product.startYear + " - " + product.endYear
+            cell.manufacturer.text = getMake(product.brandId)
+            
+            let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
+            cell.loadImage(url)
+            cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
+            
+            return cell
+        }
 
-        return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
