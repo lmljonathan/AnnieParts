@@ -12,12 +12,12 @@ class CustomSideMenuViewController: SideMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegueWithIdentifier("showCenterSearch", sender: nil)
-        performSegueWithIdentifier("containSideMenu", sender: nil)
+        performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_CENTER, sender: nil)
+        performSegueWithIdentifier(CONSTANTS.SEGUES.SIDE_MENU, sender: nil)
         // Do any additional setup after loading the view.
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showCenterShoppingCart") {
+        if (segue.identifier == CONSTANTS.SEGUES.SHOPPING_CART) {
             let vc = segue.destinationViewController.childViewControllers[0] as! ShoppingCartViewController
             vc.viewFromNavButton = false
         }

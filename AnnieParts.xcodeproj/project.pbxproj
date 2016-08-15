@@ -16,6 +16,7 @@
 		3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */; };
 		3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */; };
 		3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */; };
+		3CBD9F9D1D61429300C2FEE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9F9C1D61429300C2FEE2 /* Constants.swift */; };
 		3CDA179E1D5ED6EE00A4F57C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */; };
 		3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */; };
 		900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */; };
@@ -78,6 +79,7 @@
 		3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizePopup.swift; sourceTree = "<group>"; };
+		3CBD9F9C1D61429300C2FEE2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		8633511A252739FC04D09AD0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +213,7 @@
 				901AD9BA1D603CC40000FCE5 /* AnimationKit.swift */,
 				3C6A48AC1D5BD2A4006FB3E4 /* Product.swift */,
 				3C9D321B1D5E58430099BC50 /* User.swift */,
+				3CBD9F9C1D61429300C2FEE2 /* Constants.swift */,
 				3C9D32191D5E53520099BC50 /* Singleton.swift */,
 				9075AA141D531F7E004272F4 /* DataHandler.swift */,
 				901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */,
@@ -498,6 +501,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CBD9F9D1D61429300C2FEE2 /* Constants.swift in Sources */,
 				901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */,
 				90EA32241D3F253A0066B281 /* SearchByData.swift in Sources */,
 				3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */,

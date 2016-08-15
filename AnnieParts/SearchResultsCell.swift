@@ -8,7 +8,6 @@
 
 import UIKit
 import Haneke
-
 class SearchResultsCell: UITableViewCell {
 
     @IBOutlet weak var productName: UILabel!

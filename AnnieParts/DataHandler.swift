@@ -11,19 +11,9 @@ import Alamofire
 
 import Foundation
 
-private let BASE_URL = "http://www.annieparts.com/"
-private let query_type_url = [
-    "config": "appGetCfg.php",
-    "catalog": "appSearch.php",
-    "keyword": "appSearchKeyword.php",
-    "product": "appGetGoodsInfor.php",
-    "shoppingCart": "appGetShoppingCart.php",
-    "addToCart": "appAddGoods2Cart.php",
-    "deleteFromCart": "appDeleteFromCart.php",
-]
 
 func login(username: String, password: String, completion: (NSDictionary?) -> Void) {
-    let query_url = BASE_URL + "appLogin.php" + "?"
+    let query_url = CONSTANTS.URL_INFO.BASE_URL + CONSTANTS.URL_INFO.LOGIN_URL + "?"
     Alamofire.request(
         .GET,
         query_url,
@@ -38,15 +28,15 @@ func login(username: String, password: String, completion: (NSDictionary?) -> Vo
 }
 
 func logout() {
-    let query_url = BASE_URL + "appLogin.php" + "?"
+    let query_url = CONSTANTS.URL_INFO.BASE_URL + CONSTANTS.URL_INFO.LOGOUT_URL + "?"
     Alamofire.request(
         .GET,
         query_url,
-        parameters: ["act": "logout"]
+        parameters: CONSTANTS.URL_INFO.LOGOUT_ACTION
     ).validate()
 }
 func send_request(query_type: String, query_paramters: [String: AnyObject]) {
-    let query_url = BASE_URL + query_type_url[query_type]! + "?"
+    let query_url = CONSTANTS.URL_INFO.BASE_URL + query_type + "?"
     Alamofire.request(
         .GET,
         query_url,
@@ -54,7 +44,7 @@ func send_request(query_type: String, query_paramters: [String: AnyObject]) {
     ).validate()
 }
 func get_json_data(query_type: String, query_paramters: [String: AnyObject], completion: (NSDictionary?) -> Void) {
-    let query_url = BASE_URL + query_type_url[query_type]! + "?"
+    let query_url = CONSTANTS.URL_INFO.BASE_URL + query_type + "?"
     Alamofire.request(
         .GET,
         query_url,

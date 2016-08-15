@@ -72,20 +72,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             
             self.showLoadingView("Logging In", completion: { (loadingVC) in
                 login(self.username.text!, password: self.password.text!, completion: { (json) in
-                    if let status = json!["status"] as? Int {
+                    if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
                         if status == 1 {
-                            if let rank = json!["user_rank"] as? Int {
+                            if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
                                 User.setUserRank(rank)
                             }
-                            print("login success")
-                            self.performSegueWithIdentifier("pushToSearch", sender: self)
+                            self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                         }
-                        else {
-                            print("login failed")
-                        }
+                        else {}
                     }
-                    loadingVC.dismissViewControllerAnimated(true, completion: {
-                    })
+                    loadingVC.dismissViewControllerAnimated(true, completion: nil)
                 })
             })
         }
@@ -123,7 +119,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func showLoadingView(message: String, completion: (loadingVC: UIViewController) -> Void){
         self.definesPresentationContext = true
-        let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier("loadingVC") as! LoadingViewController
+        let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
         loadingVC.message = message
         loadingVC.bgColor = .whiteColor()
         customPresentViewController(blurredPresentr(), viewController: loadingVC, animated: true) {

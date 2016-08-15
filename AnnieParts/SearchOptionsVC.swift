@@ -37,12 +37,12 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return result
         }
         self.searchIDs = getIDs()
-        self.performSegueWithIdentifier("showResults", sender: self)
+        self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
     }
     
     // MARK: - Variables
     private var dropDown = DropDown()
-    private var data = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT TYPE"]]
+    private var data = CONSTANTS.SEARCH_OPTIONS
     private var brandData = brand()
     private var vehicleData = vehicle()
     private var productData = product()
@@ -62,34 +62,34 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.selectTab(0)
         self.activeIndex = 0
         self.navigationController?.addSideMenuButton()
-        let options = [oneView: "searchByBrand:", twoView: "searchByCar:", threeView: "searchByProduct:"]
+        let options = [oneView: CONSTANTS.SEARCH_OPTION_VIEWS[0], twoView: CONSTANTS.SEARCH_OPTION_VIEWS[1], threeView: CONSTANTS.SEARCH_OPTION_VIEWS[2]]
         for view in options.keys{
             self.addTapGR(view, action: Selector(options[view]!))
         }
-        get_json_data("config", query_paramters: [:]) { (json) in
+        get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
-                for dict in (json!["pinpai"] as! NSArray){
-                    self.brandData.optionsIDs.append(dict["id"] as! Int)
-                    self.brandData.options.append(dict["name"] as! String)
+                for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] as! NSArray){
+                    self.brandData.optionsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    self.brandData.options.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                 }
-                for dict in (json!["attributes"] as! NSArray){
-                    self.productData.productsIDs.append(dict["id"] as! Int)
-                    self.productData.products.append(dict["name"] as! String)
+                for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_TYPES] as! NSArray){
+                    self.productData.productsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    self.productData.products.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                 }
-                for dict in (json!["years"] as! NSArray){
-                    self.vehicleData.yearIDs.append(dict["id"] as! Int)
-                    self.vehicleData.year.append(String(dict["name"] as! Int))
-                }
-                
-                for dict in (json!["manufactures"] as! NSArray){
-                    self.vehicleData.makeIDs.append(dict["id"] as! Int)
-                    self.vehicleData.make.append(dict["name"] as! String)
+                for dict in (json![CONSTANTS.JSON_KEYS.YEAR_LIST] as! NSArray){
+                    self.vehicleData.yearIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    self.vehicleData.year.append(String(dict[CONSTANTS.JSON_KEYS.NAME] as! Int))
                 }
                 
-                for dict in (json!["models"] as! NSArray){
-                    self.vehicleData.allModelIDs.append(dict["id"] as! Int)
-                    self.vehicleData.allModel.append(dict["name"] as! String)
-                    self.vehicleData.allModelPIDs.append(dict["pid"] as! Int)
+                for dict in (json![CONSTANTS.JSON_KEYS.MANUFACTURERS_LIST] as! NSArray){
+                    self.vehicleData.makeIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    self.vehicleData.make.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
+                }
+                
+                for dict in (json![CONSTANTS.JSON_KEYS.MODEL_LIST] as! NSArray){
+                    self.vehicleData.allModelIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    self.vehicleData.allModel.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
+                    self.vehicleData.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
                 }
                 self.tableView.reloadData()
             }
@@ -109,7 +109,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("selectCell", forIndexPath: indexPath) as! SelectorTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_OPTIONS_CELLS, forIndexPath: indexPath) as! SelectorTableViewCell
         cell.delegate = self
         cell.configureCell(data[activeIndex][indexPath.section])
         
@@ -244,11 +244,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         checkSelectedOptions()
     }
-    
-    @IBAction func queryProducts(sender: UIButton) {
-        self.performSegueWithIdentifier("showResults", sender: self)
-    }
-    
     private func checkSelectedOptions(){
         switch activeIndex {
         case 0:
@@ -314,7 +309,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showResults"{
+        if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             destVC.searchIDs = self.searchIDs
         }
