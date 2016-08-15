@@ -17,6 +17,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     private var catalogData: [Product]!
     
     var searchIDs: [String: Int]!
+    var vehicleData: vehicle!
     
     override func viewDidLoad() {
         if (self.catalogData == nil) {
@@ -68,6 +69,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             }
         }
     }
+    
+    private func getMake(id: String) -> String{
+        let id: Int! = Int(id)!
+        let index = vehicleData.makeIDs.indexOf(id)
+        
+        return vehicleData.make[index!]
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,6 +96,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         cell.addButton.tag = indexPath.row
         cell.productName.text = product.productName
         cell.year.text = product.startYear + " - " + product.endYear
+        cell.manufacturer.text = getMake(product.brandId)
     
         let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
         cell.loadImage(url)

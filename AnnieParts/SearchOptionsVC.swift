@@ -312,6 +312,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             destVC.searchIDs = self.searchIDs
+            destVC.vehicleData = self.vehicleData
         }
     }
 }
