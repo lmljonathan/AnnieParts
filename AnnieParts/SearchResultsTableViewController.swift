@@ -53,9 +53,20 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             })
         }
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refreshControl)
+        
+        super.viewDidLoad()
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
     func loadData(completion:() -> Void) {
+        self.catalogData.removeAll()
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {
@@ -128,7 +139,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
-        loadData()
+        self.showLoadingView("Getting Products") { (loadingVC) in
+            self.loadData({
+                loadingVC.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
         refreshControl.beginRefreshing()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
