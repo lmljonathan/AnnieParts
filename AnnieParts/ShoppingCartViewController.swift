@@ -88,10 +88,33 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
         cell.loadImage(url)
         cell.quantityLabel.text = String(product.quantity)
-        cell.changeQuantityButton.addTarget(self, action: #selector(ShoppingCartViewController.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
-        cell.deleteButton.addTarget(self, action: #selector(ShoppingCartViewController.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
+        
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchCancel)
+        
+        cell.changeQuantityButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
+        
+        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
+        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchCancel)
         return cell
     }
+    
+    func highlightView(view: UIView){
+        UIView.animateWithDuration(0.5) {
+            view.alpha = 0.6
+        }
+    }
+    
+    func normalizeView(view: UIView){
+        UIView.animateWithDuration(0.5) {
+            view.alpha = 1
+        }
+    }
+    
+    
+    
     @IBAction func editItemQuantity(sender: UIButton) {
         let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
         self.updatedItem = index!.row

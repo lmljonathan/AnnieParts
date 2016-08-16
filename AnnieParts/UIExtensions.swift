@@ -51,6 +51,24 @@ extension UIView{
         self.backgroundColor = color
         self.userInteractionEnabled = true
     }
+    
+    func highlight(){
+        UIView.animateWithDuration(0.5) {
+            self.alpha = 0.6
+        }
+    }
+    
+    func normalize(){
+        UIView.animateWithDuration(0.5) {
+            self.alpha = 1
+        }
+    }
+    
+    func addTapGestureRecgonizer(action: Selector, completion: (gr: UITapGestureRecognizer) -> Void){
+        let gr = UITapGestureRecognizer(target: self, action: action)
+        self.addGestureRecognizer(gr)
+        completion(gr: gr)
+    }
 }
 
 extension UIBarButtonItem{
@@ -104,6 +122,20 @@ extension UIBarButtonItem{
     
 }
 
+extension UITableView{
+    func hide(){
+        for cell in self.visibleCells{
+            cell.hide()
+        }
+    }
+    
+    func show(){
+        for cell in self.visibleCells{
+            cell.show()
+        }
+    }
+}
+
 extension UITableViewCell{
     func enable(){
         self.userInteractionEnabled = true
@@ -111,6 +143,18 @@ extension UITableViewCell{
     
     override func disable() {
         self.userInteractionEnabled = false
+    }
+    
+    func hide(){
+        for view in (self.subviews){
+            view.hidden = true
+        }
+    }
+    
+    func show(){
+        for view in (self.subviews){
+            view.hidden = false
+        }
     }
 }
 

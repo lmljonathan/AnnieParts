@@ -22,6 +22,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.hide()
+        
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "noItemsCell")
         
         self.navigationController?.addSideMenuButton()
@@ -52,6 +54,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             
             self.loadData({
                 loadingVC.dismissViewControllerAnimated(true, completion: nil)
+                self.tableView.show()
             })
         }
         
@@ -127,6 +130,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
+            cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
             
             return cell
         }
@@ -134,7 +138,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_PRODUCT_DETAIL, sender: self)
+        if self.catalogData.count > 0{
+            self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_PRODUCT_DETAIL, sender: self)
+        }
     }
     
     func addProductToCart(button: UIButton) {

@@ -12,6 +12,7 @@ class ShoppingCartCell: UITableViewCell {
 
     @IBOutlet var quantitySelectView: UIView!
     
+    @IBOutlet var quantitySelectButton: UIButton!
     
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var serialNumber: UILabel!
