@@ -15,17 +15,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     var searchParameters = [String: Int]()
     let cache = Shared.imageCache
     private var catalogData: [Product]!
+    private var noResultsFound = false
     
     var searchIDs: [String: Int]!
     var vehicleData: vehicle!
+    private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.tableView.hide()
-        
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "noItemsCell")
-        
+        self.tableView.separatorStyle = .None
         self.navigationController?.addSideMenuButton()
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         
@@ -47,30 +45,24 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         if let pinpai = self.searchIDs["BRAND"] {
             self.searchParameters[CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] = pinpai
         }
-        
-        self.showLoadingView("Getting Products") { (loadingVC) in
-            
-            MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
-            
-            self.loadData({
-                loadingVC.dismissViewControllerAnimated(true, completion: nil)
-                self.tableView.show()
-            })
-        }
-        
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.center = CGPoint(x: self.tableView.bounds.width/2, y: self.tableView.bounds.height/3)
+        self.tableView.bounds.width
+        loadingIndicator.hidesWhenStopped = true
+        self.view.addSubview(loadingIndicator)
+        loadData ()
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
         
+        
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    func loadData(completion:() -> Void) {
+    func loadData() {
+        self.tableView.separatorStyle = .None
+        self.loadingIndicator.bringSubviewToFront(self.view)
+        self.loadingIndicator.startAnimating()
         self.catalogData.removeAll()
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
@@ -83,8 +75,24 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
                     self.catalogData.append(Product(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear, brandID: make))
                 }
-                self.tableView.reloadData()
-                completion()
+                if (self.catalogData.count == 0) {
+                    self.noResultsFound = true
+                } else {
+                    self.noResultsFound = false
+                }
+                
+                let seconds = 3.0
+                let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+                let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                
+                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                    
+                    self.loadingIndicator.stopAnimating()
+                    self.tableView.separatorStyle = .SingleLine
+                    self.tableView.reloadData()
+                    
+                })
+                
             }
         }
     }
@@ -107,17 +115,16 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.catalogData.count > 0 {
-            return self.catalogData.count
-        }else{
+        if (self.noResultsFound) {
             return 1
         }
+        return self.catalogData.count
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if self.catalogData.count == 0{
-            let cell = tableView.dequeueReusableCellWithIdentifier("noItemsCell", forIndexPath: indexPath)
-            return cell
+        if self.noResultsFound{
+            return self.tableView.dequeueReusableCellWithIdentifier("noItemsCell", forIndexPath: indexPath)
+
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
             
@@ -147,7 +154,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         
-        //TODO: - SEND ID OF PRODUCT TO VIEW CONTROLLER
         let product = self.catalogData[button.tag]
         vc.name = product.productName
         vc.id = String(product.productID)
@@ -156,15 +162,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     func returnIDandQuantity(id: String, quantity: Int) {
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
-        self.showLoadingView("Getting Products") { (loadingVC) in
-            self.loadData({
-                loadingVC.dismissViewControllerAnimated(true, completion: nil)
-            })
-        }
         refreshControl.beginRefreshing()
+        loadData()
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }

@@ -62,9 +62,7 @@ struct CONSTANTS {
         static let END_YEAR = "end_time"
         static let QUANTITY = "cnt"
         
-        static let PRODUCT_ID = "goods_id"
         static let MAKE_ID = "brand_id"
-        static let PRODUCT_NAME = "goods_name"
         static let PRODUCT_QUANTITY = "goods_number"
         
         static let ACTION = "act"

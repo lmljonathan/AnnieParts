@@ -57,14 +57,14 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             print(json)
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in products {
-                    let id = product[CONSTANTS.JSON_KEYS.PRODUCT_ID] as! String
-                    let name = product[CONSTANTS.JSON_KEYS.PRODUCT_NAME] as! String
-                    //let img = product["goods_img"] as! String
-                    //let startYear = String(product["start_time"] as! Int)
-                    //let endYear = String(product["end_time"] as! Int)
-                    //let make = String(product["brand_id"] as! Int)
+                    let id = product[CONSTANTS.JSON_KEYS.ID] as! String
+                    let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
+                    let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
+                    let make = String(product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int)
+                    let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
+                    let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
                     let quantity = Int(product[CONSTANTS.JSON_KEYS.PRODUCT_QUANTITY] as! String)
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: "", startYear: "", endYear: "", brandID: "", quantity: quantity!))
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear, brandID: make, quantity: quantity!))
                 }
                 self.tableView.reloadData()
             }
@@ -129,7 +129,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
         let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
-        send_request(CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: self.shoppingCart[index!.row].productID])
+        send_request(CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: ["goods_id": self.shoppingCart[index!.row].productID])
         self.shoppingCart.removeAtIndex(index!.row)
         
         self.tableView.beginUpdates()
@@ -144,7 +144,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self.updatedItem = -1
         }
         
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.PRODUCT_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         loadData()
