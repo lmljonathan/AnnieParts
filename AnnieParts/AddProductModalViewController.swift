@@ -27,9 +27,6 @@ class AddProductModalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        confirmButton.layer.cornerRadius = 5
-//        cancelButton.layer.cornerRadius = 5
-        
         if (self.name != nil) {
             self.productName.text = self.name
         }
