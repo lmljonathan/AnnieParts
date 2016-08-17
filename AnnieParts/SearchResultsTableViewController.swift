@@ -22,11 +22,30 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
     override func viewDidLoad() {
-        self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "noItemsCell")
+        self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None
         self.navigationController?.addSideMenuButton()
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
         
+        createSearchParameters()
+        initializeActivityIndicator()
+        loadData()
+        initializeRefreshControl()
+        super.viewDidLoad()
+    }
+    func initializeActivityIndicator() {
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.center = CGPoint(x: self.tableView.bounds.width/2, y: self.tableView.bounds.height/3)
+        loadingIndicator.hidesWhenStopped = true
+        self.view.addSubview(loadingIndicator)
+    }
+    func initializeRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        self.tableView.addSubview(refreshControl)
+    }
+    func createSearchParameters() {
         if (self.catalogData == nil) {
             self.catalogData = []
         }
@@ -45,19 +64,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         if let pinpai = self.searchIDs["BRAND"] {
             self.searchParameters[CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] = pinpai
         }
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-        loadingIndicator.center = CGPoint(x: self.tableView.bounds.width/2, y: self.tableView.bounds.height/3)
-        self.tableView.bounds.width
-        loadingIndicator.hidesWhenStopped = true
-        self.view.addSubview(loadingIndicator)
-        loadData ()
-        let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
-        self.tableView.addSubview(refreshControl)
-        
-        
-        super.viewDidLoad()
     }
     func loadData() {
         self.tableView.separatorStyle = .None
@@ -70,10 +76,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     let id = String(product[CONSTANTS.JSON_KEYS.ID] as! Int)
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
                     let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
+                    let sn = product[CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
                     let make = String(product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int)
                     let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
-                    self.catalogData.append(Product(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear, brandID: make))
+                    self.catalogData.append(Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make))
                 }
                 if (self.catalogData.count == 0) {
                     self.noResultsFound = true
@@ -123,7 +130,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if self.noResultsFound{
-            return self.tableView.dequeueReusableCellWithIdentifier("noItemsCell", forIndexPath: indexPath)
+            return self.tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL, forIndexPath: indexPath)
 
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
@@ -133,7 +140,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.productName.text = product.productName
             cell.year.text = product.startYear + " - " + product.endYear
             cell.manufacturer.text = getMake(product.brandId)
-            
+            cell.serialNumber.text = product.serialNumber
             let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
@@ -162,7 +169,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     func returnIDandQuantity(id: String, quantity: Int) {
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         refreshControl.beginRefreshing()

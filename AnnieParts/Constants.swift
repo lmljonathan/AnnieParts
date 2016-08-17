@@ -20,7 +20,7 @@ struct CONSTANTS {
         static let CONFIG = "appGetCfg.php"
         static let OPTION_SEARCH = "appSearch.php"
         static let KEYWORD_SEARCH = "appSearchKeyword.php"
-        static let PRODUCT_DETAIL = "appGetGoodsInfor.php"
+        static let PRODUCT_DETAIL = "appGetGoodsInfo.php"
         static let SHOPPING_CART = "appGetShoppingCart.php"
         static let ADD_TO_CART = "appAddGoods2Cart.php"
         static let DELETE_FROM_CART = "appDeleteFromCart.php"
@@ -61,6 +61,7 @@ struct CONSTANTS {
         static let START_YEAR = "start_time"
         static let END_YEAR = "end_time"
         static let QUANTITY = "cnt"
+        static let SERIAL_NUMBER = "sn"
         
         static let MAKE_ID = "brand_id"
         static let PRODUCT_QUANTITY = "goods_number"
@@ -72,6 +73,7 @@ struct CONSTANTS {
         static let SEARCH_RESULTS_CELLS = "searchResultsCell"
         static let SHOPPING_CART_CELLS = "shoppingCartCell"
         static let SIDE_MENU_CELLS = "menuCell"
+        static let NO_RESULTS_FOUND_CELL = "noItemsCell"
     }
     struct IMAGES {
         static let BACK_BUTTON = "back"

@@ -22,7 +22,7 @@ class AddProductModalViewController: UIViewController {
     var id: String!
     var delegate: AddProductModalView?
     var buttonString: String!
-    var quantity = 1
+    var quantity = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +56,9 @@ class AddProductModalViewController: UIViewController {
         print(self.quantity)
     }
     @IBAction func addToCart(sender: UIButton) {
-        self.delegate?.returnIDandQuantity(self.id, quantity: self.quantity)
+        if (self.quantity > 0) {
+            self.delegate?.returnIDandQuantity(self.id, quantity: self.quantity)
+        }
         let mainVC = self.presentingViewController
         self.dismissViewControllerAnimated(true) {
             mainVC?.showNotificationView("Product Added!", image: UIImage(named: "cart")!, completion: { (vc) in

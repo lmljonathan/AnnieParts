@@ -38,13 +38,14 @@ class Product {
     var brandId: String {
         return self._brandID
     }
-    init(productID: String, productName: String, image: String, startYear: String, endYear: String, brandID: String) {
+    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String) {
         self._productID = productID
         self._productName = productName
         self._imagePath = image
         self._startYear = startYear
         self._endYear = endYear
         self._brandID = brandID
+        self._serialNumber = serialNumber
     }
 }
 class ShoppingCart: Product {
@@ -52,8 +53,8 @@ class ShoppingCart: Product {
     var quantity: Int {
         return self._quantity
     }
-    init (productID: String, productName: String, image: String, startYear: String, endYear: String, brandID: String, quantity: Int) {
-        super.init(productID: productID, productName: productName, image: image, startYear: startYear, endYear: endYear, brandID: brandID)
+    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, quantity: Int) {
+        super.init(productID: productID, productName: productName, image: image, serialNumber: serialNumber, startYear: startYear, endYear: endYear, brandID: brandID)
         self._quantity = quantity
     }
     func editQuantity(num: Int) {

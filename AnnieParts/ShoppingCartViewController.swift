@@ -61,10 +61,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
                     let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
                     let make = String(product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int)
+                    let sn = product[CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
                     let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
                     let quantity = Int(product[CONSTANTS.JSON_KEYS.PRODUCT_QUANTITY] as! String)
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, startYear: startYear, endYear: endYear, brandID: make, quantity: quantity!))
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, quantity: quantity!))
                 }
                 self.tableView.reloadData()
             }
@@ -88,7 +89,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
         cell.loadImage(url)
         cell.quantityLabel.text = String(product.quantity)
-        
+        cell.serialNumber.text = product.serialNumber
         cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchCancel)
