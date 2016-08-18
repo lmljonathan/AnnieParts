@@ -110,6 +110,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         return vehicleData.make[index!]
     }
+    
+    private func getModel(id: String) -> String{
+        let id: Int! = Int(id)!
+        let index = vehicleData.modelIDs.indexOf(id)
+        
+        return vehicleData.model[index!]
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -140,6 +147,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.productName.text = product.productName
             cell.year.text = product.startYear + " - " + product.endYear
             cell.manufacturer.text = getMake(product.brandId)
+            //cell.models.text = getModel()
             cell.serialNumber.text = product.serialNumber
             let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
             cell.loadImage(url)

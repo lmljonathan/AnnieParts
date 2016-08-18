@@ -16,7 +16,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var subtotal: UILabel!
     private var shoppingCart: [ShoppingCart]!
     private var updatedItem: Int!
-    var viewFromNavButton = true;
+    var viewFromNavButton = true
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         self.updatedItem = -1
@@ -102,8 +103,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchCancel)
-        
-        cell.changeQuantityButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
         
         cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
