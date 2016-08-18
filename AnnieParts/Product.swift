@@ -16,6 +16,7 @@ class Product {
     private var _startYear: String!
     private var _endYear: String!
     private var _brandID: String!
+    private var _price: Double!
     
     var productID: String {
         return self._productID
@@ -38,7 +39,10 @@ class Product {
     var brandId: String {
         return self._brandID
     }
-    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String) {
+    var price: Double {
+        return self._price
+    }
+    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double) {
         self._productID = productID
         self._productName = productName
         self._imagePath = image
@@ -46,6 +50,7 @@ class Product {
         self._endYear = endYear
         self._brandID = brandID
         self._serialNumber = serialNumber
+        self._price = price
     }
 }
 class ShoppingCart: Product {
@@ -53,8 +58,8 @@ class ShoppingCart: Product {
     var quantity: Int {
         return self._quantity
     }
-    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, quantity: Int) {
-        super.init(productID: productID, productName: productName, image: image, serialNumber: serialNumber, startYear: startYear, endYear: endYear, brandID: brandID)
+    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double, quantity: Int) {
+        super.init(productID: productID, productName: productName, image: image, serialNumber: serialNumber, startYear: startYear, endYear: endYear, brandID: brandID, price: price)
         self._quantity = quantity
     }
     func editQuantity(num: Int) {

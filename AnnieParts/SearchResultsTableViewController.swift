@@ -80,7 +80,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     let make = String(product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int)
                     let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
-                    self.catalogData.append(Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make))
+                    self.catalogData.append(Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: 0))
                 }
                 if (self.catalogData.count == 0) {
                     self.noResultsFound = true

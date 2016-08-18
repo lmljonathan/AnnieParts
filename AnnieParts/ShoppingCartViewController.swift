@@ -13,7 +13,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var checkoutButton: UIButton!
-    
+    @IBOutlet weak var subtotal: UILabel!
     private var shoppingCart: [ShoppingCart]!
     private var updatedItem: Int!
     var viewFromNavButton = true;
@@ -43,14 +43,22 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
         loadData()
-        
+        calculateSubtotal()
         if self.tableView.numberOfRowsInSection(0) == 0{
             self.checkoutButton.disable()
         }
         
         super.viewDidLoad()
     }
-    
+    func calculateSubtotal() {
+        var subtotal = 0.0
+        for product in self.shoppingCart {
+            subtotal += product.price
+        }
+        let priceFormatter = NSNumberFormatter()
+        priceFormatter.numberStyle = .CurrencyStyle
+        self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
+    }
     func loadData() {
         self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
@@ -65,7 +73,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
                     let quantity = Int(product[CONSTANTS.JSON_KEYS.PRODUCT_QUANTITY] as! String)
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, quantity: quantity!))
+                    let price = Double(product[CONSTANTS.JSON_KEYS.PRICE] as! String)
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!))
                 }
                 self.tableView.reloadData()
             }
@@ -149,6 +158,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         loadData()
+        calculateSubtotal()
         refreshControl.beginRefreshing()
         self.tableView.reloadData()
         refreshControl.endRefreshing()

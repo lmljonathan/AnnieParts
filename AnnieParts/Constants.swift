@@ -61,6 +61,7 @@ struct CONSTANTS {
         static let START_YEAR = "start_time"
         static let END_YEAR = "end_time"
         static let QUANTITY = "cnt"
+        static let PRICE = "goods_price"
         static let SERIAL_NUMBER = "sn"
         
         static let MAKE_ID = "brand_id"
