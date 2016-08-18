@@ -14,18 +14,23 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var imageCaroselScrollView: UIScrollView!
     
-    @IBOutlet weak var addToCartView: UIView!
-    @IBOutlet weak var changeQuantityView: UIView!
-    @IBOutlet weak var quantityLabel: UILabel!
-    
     @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var tabView: UIView!
     
     @IBOutlet weak var aboutSelect: UIView!
     @IBOutlet weak var videoSelect: UIView!
     @IBOutlet weak var installSelect: UIView!
     @IBOutlet weak var docsSelect: UIView!
+    
+    @IBOutlet var productName: UILabel!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var serialLabel: UILabel!
+    @IBOutlet var makeLabel: UILabel!
+    @IBOutlet var modelLabel: UILabel!
+    @IBOutlet var yearLabel: UILabel!
+    
+    @IBOutlet var shortDescription: UILabel!
+    @IBOutlet var addToCartButton: UIButton!
     
     private var activeTab: UIView!
         
@@ -38,9 +43,6 @@ class ProductDetailViewController: UIViewController {
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
         mainScrollView.showsVerticalScrollIndicator = true
         mainScrollView.scrollEnabled = true
-        
-        self.addToCartView.layer.cornerRadius = 5.0
-        self.changeQuantityView.layer.cornerRadius = 5.0
         imageCaroselScrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
         
         // Show remote images
