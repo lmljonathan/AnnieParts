@@ -69,6 +69,17 @@ extension UIView{
         self.addGestureRecognizer(gr)
         completion(gr: gr)
     }
+    
+    func becomeFirstResponderWithOptions(completion: () -> Void){
+        self.becomeFirstResponder()
+        completion()
+    }
+    
+    func changeWidth(constraint: NSLayoutConstraint, width: CGFloat){
+        self.layoutIfNeeded()
+        constraint.constant = width
+        self.layoutIfNeeded()
+    }
 }
 
 extension UIBarButtonItem{

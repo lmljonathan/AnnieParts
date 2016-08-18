@@ -10,7 +10,7 @@ import UIKit
 import Auk
 import DropDown
 
-class ProductDetailViewController: UIViewController {
+class ProductDetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var imageCaroselScrollView: UIScrollView!
@@ -33,9 +33,10 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet var shortDescription: UILabel!
     @IBOutlet var changeQuantityView: UIView!
     
+    @IBOutlet var bottomBar: UIView!
     @IBOutlet var innerQuantityView: UIView!
     @IBOutlet var qty: UILabel!
-    @IBOutlet var quantityLabel: UILabel!
+    @IBOutlet var quantityTextField: UITextField!
     @IBOutlet var quantityImage: UIImageView!
     @IBOutlet var widthOfInner: NSLayoutConstraint!
     
@@ -45,11 +46,18 @@ class ProductDetailViewController: UIViewController {
     private var activeTab: UIView!
     private var quantityDropDown = DropDown()
     private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
+    
+    private var keyboardFrame: CGRect?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.quantityTextField.delegate = self
+        
         self.setupDropDown(changeQuantityView, data: self.quantityData)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: "keyboardShown:", name: UIKeyboardDidShowNotification, object: nil)
         
         self.addToCartButton.backgroundColor = UIColor.APred()
         self.navigationController?.addSideMenuButton()
@@ -71,7 +79,7 @@ class ProductDetailViewController: UIViewController {
             self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
         }
         
-        //self.fixWidthOfInnerQTY()
+        self.fixWidthOfInnerQTY()
     }
     
     override func viewDidLayoutSubviews() {
@@ -140,18 +148,36 @@ class ProductDetailViewController: UIViewController {
         
         quantityDropDown.selectionAction = { [unowned self] (index, item) in
             if item != "Custom"{
-                self.quantityLabel.text = item
+                self.quantityTextField.text = item
                 self.fixWidthOfInnerQTY()
             }else{
                 
+                self.quantityTextField.text = "00000"
+                self.fixWidthOfInnerQTY()
+                self.quantityTextField.userInteractionEnabled = true
+                self.quantityTextField.becomeFirstResponder()
+                self.qty.hidden = true
+                self.quantityTextField.text = ""
+                
+                self.bottomBar.transform = CGAffineTransformMakeTranslation(0, -271)
             }
         }
         
         // The list of items to display. Can be changed dynamically
         quantityDropDown.dataSource = data.reverse()
     }
-
     
+    @IBAction func textFieldDidChange(sender: AnyObject) {
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        return newLength <= 5 // Bool
+    }
+
+
     private func addTapGR(view: UIView, action: Selector){
         let gr = UITapGestureRecognizer(target: self, action: action)
         view.addGestureRecognizer(gr)
@@ -160,8 +186,7 @@ class ProductDetailViewController: UIViewController {
     private func fixWidthOfInnerQTY(){
         self.innerQuantityView.layoutIfNeeded()
         
-        let totalWidth = qty.frame.width + quantityLabel.frame.width + quantityImage.frame.width - 250
-        let qtyWidth = quantityLabel.bounds.width
+        let qtyWidth = quantityTextField.bounds.width
         if qtyWidth <= 10 {
             self.widthOfInner.constant = 70
         }else if qtyWidth <= 20{
@@ -171,14 +196,26 @@ class ProductDetailViewController: UIViewController {
         }
         
         self.innerQuantityView.layoutIfNeeded()
-        
-        print("qty", qtyWidth)
-        print("constant", self.widthOfInner.constant)
-        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.resignFirstResponder()
+        self.quantityTextField.resignFirstResponder()
     }
     
     func unwind() {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func keyboardShown(notification: NSNotification) {
+        let info  = notification.userInfo!
+        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
+        
+        let rawFrame = value.CGRectValue
+        let keyboardFrame = view.convertRect(rawFrame, fromView: nil)
+        
+        print("keyboardFrame: \(keyboardFrame)")
+        self.keyboardFrame = keyboardFrame
     }
     
     
