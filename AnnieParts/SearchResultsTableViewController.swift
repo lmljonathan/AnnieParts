@@ -163,19 +163,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
-            self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_PRODUCT_DETAIL, sender: self)
+            let destVC = storyboard?.instantiateViewControllerWithIdentifier("productDetail") as! ProductDetailViewController
+            destVC.productID = Int(self.catalogData[indexPath.row].productID)
+            self.navigationController?.pushViewController(destVC, animated: true)
         }
     }
     
     var selectedProductIndex: Int!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == CONSTANTS.SEGUES.SHOW_PRODUCT_DETAIL{
-            let destVC = segue.destinationViewController as! ProductDetailViewController
-            
-            print("selectedProductIndex", selectedProductIndex)
-            destVC.productID = Int(catalogData[selectedProductIndex].productID)
-        }
     }
     
     func addProductToCart(button: UIButton) {

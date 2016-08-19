@@ -55,7 +55,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(productID)
+        print("productID", productID)
         
         if (self.productID != nil) {
             self.loadData()
