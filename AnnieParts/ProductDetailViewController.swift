@@ -72,7 +72,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.setupDropDown(changeQuantityView, data: self.quantityData)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: "keyboardShown:", name: UIKeyboardDidShowNotification, object: nil)
+                                                         selector: #selector(self.keyboardShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.addToCartButton.backgroundColor = UIColor.APred()
         self.navigationController?.addSideMenuButton()
@@ -172,11 +173,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
                 self.quantityTextField.becomeFirstResponder()
                 self.qty.hidden = true
                 self.quantityTextField.text = ""
-                
-                dispatch_async(GlobalUserInitiatedQueue) {
-                     self.bottomBar.transform = CGAffineTransformMakeTranslation(0, -self.keyboardFrame!.height)
-                }
-                
+                self.addToCartButton.titleLabel!.text = "Update"
+                self.addToCartButton.titleLabel?.textAlignment = .Center
                 
             }
         }
@@ -222,8 +220,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
         self.resignFirstResponder()
-        self.view.resignFirstResponder()
     }
     
     func unwind() {
@@ -231,19 +229,21 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     func keyboardShown(notification: NSNotification) {
-        
-        dispatch_async(GlobalUserInteractiveQueue) {
-            let info  = notification.userInfo!
-            let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
-            
-            let rawFrame = value.CGRectValue
-            let keyboardFrame = self.view.convertRect(rawFrame, fromView: nil)
-            
-            print("keyboardFrame: \(keyboardFrame)")
-            
-            self.keyboardFrame = keyboardFrame
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 5, initialSpringVelocity: 3, options: .CurveEaseOut, animations: {
+                self.bottomBar.frame.origin.y -= keyboardSize.height
+                }, completion: { (x) in
+            })
+            self.mainScrollView.userInteractionEnabled = false
         }
-        //self.keyboardFrame = keyboardFrame
+    }
+    
+    func keyboardHidden(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.bottomBar.frame.origin.y += keyboardSize.height
+            self.mainScrollView.userInteractionEnabled = true
+            self.addToCartButton.titleLabel!.text = "Add to Cart"
+        }
     }
     
     
