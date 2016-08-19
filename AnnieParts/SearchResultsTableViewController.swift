@@ -185,4 +185,5 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
+    
 }

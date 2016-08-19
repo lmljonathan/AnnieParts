@@ -48,10 +48,24 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate {
     private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
     
     private var keyboardFrame: CGRect?
-        
+    
+    var productID: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if (self.productID != nil) {
+            get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
+                let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
+                let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
+                let price = json!["shop_price"] as! String
+                let startYear = json![CONSTANTS.JSON_KEYS.START_YEAR] as! String
+                let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
+                let brief_description = json!["brief"] as! String
+                let description = json!["desc"] as! String
+                let image_paths = json!["thumb_url"] as! NSArray
+                
+            })
+        }
         self.quantityTextField.delegate = self
         
         self.setupDropDown(changeQuantityView, data: self.quantityData)
