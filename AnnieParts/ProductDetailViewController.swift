@@ -46,6 +46,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     private var activeTab: UIView!
     private var quantityDropDown = DropDown()
     private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
+    private var selectedQuantity: Int! = 1
     
     private var keyboardFrame: CGRect?
     
@@ -98,12 +99,27 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.fixWidthOfInnerQTY()
     }
     
+    @IBAction func addToCartButtonPressed(sender: AnyObject) {
+        if self.quantityTextField.editing == true{
+            if self.quantityTextField.text != "" && Int(self.quantityTextField.text!) != 0{
+                self.selectedQuantity = Int(self.quantityTextField.text!)
+                self.view.endEditing(true)
+            }
+        }else{
+            self.addToCart()
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         self.fixWidthOfInnerQTY()
     }
     
     @IBAction func changeQuantity(sender: AnyObject) {
         self.quantityDropDown.show()
+    }
+    
+    func addToCart(){
+        print(quantityTextField.text)
     }
     
     func addNib(named: String, toView: UIView){
@@ -163,17 +179,19 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         
         quantityDropDown.selectionAction = { [unowned self] (index, item) in
             if item != "Custom"{
+                self.selectedQuantity = Int(item)
                 self.quantityTextField.text = item
                 self.fixWidthOfInnerQTY()
             }else{
                 
-                self.quantityTextField.text = "00000"
+                self.quantityTextField.text = "000"
                 self.fixWidthOfInnerQTY()
                 self.quantityTextField.userInteractionEnabled = true
                 self.quantityTextField.becomeFirstResponder()
                 self.qty.hidden = true
                 self.quantityTextField.text = ""
-                self.addToCartButton.titleLabel!.text = "Update"
+                
+                self.addToCartButton.setTitle("Update Quantity", forState: .Normal)
                 self.addToCartButton.titleLabel?.textAlignment = .Center
                 
             }
@@ -183,10 +201,13 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         quantityDropDown.dataSource = data.reverse()
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        self.resignFirstResponder()
+    private func enterQtyEditMode(){
+        self.quantityDropDown.dataSource = []
     }
     
+    private func exitQtyEditMode(){
+        self.quantityDropDown.dataSource = self.quantityData.reverse()
+    }
     
     @IBAction func textFieldDidChange(sender: AnyObject) {
     }
@@ -195,7 +216,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         guard let text = textField.text else { return true }
         
         let newLength = text.utf16.count + string.utf16.count - range.length
-        return newLength <= 5 // Bool
+        return newLength <= 3 // MAX # OF DIGITS OF QUANTITY
     }
 
 
@@ -209,17 +230,20 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         
         let qtyWidth = quantityTextField.bounds.width
         if qtyWidth <= 10 {
-            self.widthOfInner.constant = 70
+            self.widthOfInner.constant = 65
         }else if qtyWidth <= 20{
             self.widthOfInner.constant = 80
         }else{
-            self.widthOfInner.constant = 85
+            self.widthOfInner.constant = 90
         }
         
         self.innerQuantityView.layoutIfNeeded()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if self.quantityTextField.editing == true{
+            self.quantityTextField.text = String(self.selectedQuantity)
+        }
         self.view.endEditing(true)
         self.resignFirstResponder()
     }
@@ -235,6 +259,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
                 }, completion: { (x) in
             })
             self.mainScrollView.userInteractionEnabled = false
+            self.enterQtyEditMode()
         }
     }
     
@@ -242,7 +267,10 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             self.bottomBar.frame.origin.y += keyboardSize.height
             self.mainScrollView.userInteractionEnabled = true
-            self.addToCartButton.titleLabel!.text = "Add to Cart"
+            self.addToCartButton.setTitle("Add to Cart", forState: .Normal)
+            self.qty.hidden = false
+            self.fixWidthOfInnerQTY()
+            self.exitQtyEditMode()
         }
     }
     

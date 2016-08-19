@@ -195,7 +195,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         dropDown.backgroundColor = UIColor.APlightGray()
         
         // The list of items to display. Can be changed dynamically
-        dropDown.dataSource = ["Car", "Motorcycle", "Truck"]
+        dropDown.dataSource = []
     }
     
     private func selectTab(index: Int){
