@@ -76,6 +76,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let quantity = Int(product[CONSTANTS.JSON_KEYS.PRODUCT_QUANTITY] as! String)
                     let price = Double(product[CONSTANTS.JSON_KEYS.PRICE] as! String)
                     self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!))
+                    
+                    
                 }
                 self.tableView.reloadData()
             }

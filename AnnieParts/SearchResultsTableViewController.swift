@@ -134,6 +134,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
         return self.catalogData.count
     }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if self.noResultsFound{
@@ -161,7 +162,19 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.catalogData.count > 0{
+            self.selectedProductIndex = indexPath.row
             self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_PRODUCT_DETAIL, sender: self)
+        }
+    }
+    
+    var selectedProductIndex: Int!
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == CONSTANTS.SEGUES.SHOW_PRODUCT_DETAIL{
+            let destVC = segue.destinationViewController as! ProductDetailViewController
+            
+            print("selectedProductIndex", selectedProductIndex)
+            destVC.productID = Int(catalogData[selectedProductIndex].productID)
         }
     }
     

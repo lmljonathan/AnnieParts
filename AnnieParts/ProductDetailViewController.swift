@@ -54,18 +54,11 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(productID)
+        
         if (self.productID != nil) {
-            get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
-                let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
-                let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
-                let price = json!["shop_price"] as! String
-                let startYear = json![CONSTANTS.JSON_KEYS.START_YEAR] as! String
-                let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
-                let brief_description = json!["brief"] as! String
-                let description = json!["desc"] as! String
-                let image_paths = json!["thumb_url"] as! NSArray
-                
-            })
+            self.loadData()
         }
         self.quantityTextField.delegate = self
         self.mainScrollView.delegate = self
@@ -84,12 +77,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
         mainScrollView.showsVerticalScrollIndicator = true
         mainScrollView.scrollEnabled = true
-        imageCaroselScrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
-        
-        // Show remote images
-        imageCaroselScrollView.auk.settings.pageControl.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.3)
-        imageCaroselScrollView.auk.show(url: "https://bit.ly/auk_image")
-        imageCaroselScrollView.auk.show(url: "https://bit.ly/moa_image")
         
         addNib("aboutSelect", toView: self.contentView)
         for tab in [aboutSelect, videoSelect, installSelect, docsSelect]{
@@ -97,6 +84,50 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
         
         self.fixWidthOfInnerQTY()
+    }
+    
+    func loadData(){
+        get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
+            let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
+            let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
+            let price = json!["shop_price"] as! String
+            let startYear = json![CONSTANTS.JSON_KEYS.START_YEAR] as! String
+            let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
+            let brief_description = json!["brief"] as! String
+            let description = json!["desc"] as! String
+            let image_paths = json!["thumb_url"] as! [[String: String]]
+            
+            self.productName.text = name
+            self.navigationItem.title = name
+            self.serialLabel.text = sn
+            self.priceLabel.text = "$" + price
+            self.yearLabel.text = startYear + "-" + endYear
+            self.shortDescription.text = brief_description
+            
+            self.loadImages(image_paths, scrollView: self.imageCaroselScrollView)
+            print(description)
+        })
+    }
+    
+    private func loadImages(urlDictArray: [[String:String]], scrollView: UIScrollView){
+        func getURLArray(completion: (urlArray: [String]) -> Void){
+            var urlArray: [String] = []
+            for dict in urlDictArray{
+                urlArray.append(dict["thumb_url"]!)
+            }
+            completion(urlArray: urlArray)
+        }
+        
+        getURLArray { (urlArray) in
+            scrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
+            scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
+            scrollView.auk.settings.contentMode = .ScaleAspectFill
+            for url in urlArray{
+                scrollView.auk.show(url: "http://annieparts.com/" + url)
+            }
+            scrollView.auk.startAutoScroll(delaySeconds: 3.0)
+        }
+        
     }
     
     @IBAction func addToCartButtonPressed(sender: AnyObject) {
