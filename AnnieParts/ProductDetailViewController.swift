@@ -10,7 +10,7 @@ import UIKit
 import Auk
 import DropDown
 
-class ProductDetailViewController: UIViewController, UITextFieldDelegate {
+class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var imageCaroselScrollView: UIScrollView!
@@ -53,6 +53,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.quantityTextField.delegate = self
+        self.mainScrollView.delegate = self
         
         self.setupDropDown(changeQuantityView, data: self.quantityData)
         
@@ -139,7 +140,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate {
         // The view to which the drop down will appear on
         quantityDropDown.anchorView = view // UIView or UIBarButtonItem
         quantityDropDown.direction = .Top
-        //quantityDropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
         quantityDropDown.cellHeight = 35
         quantityDropDown.topOffset = CGPoint(x: self.changeQuantityView.bounds.width/3, y: -53)
         quantityDropDown.textColor = UIColor.whiteColor()
@@ -159,13 +159,22 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate {
                 self.qty.hidden = true
                 self.quantityTextField.text = ""
                 
-                self.bottomBar.transform = CGAffineTransformMakeTranslation(0, -271)
+                dispatch_async(GlobalUserInitiatedQueue) {
+                     self.bottomBar.transform = CGAffineTransformMakeTranslation(0, -self.keyboardFrame!.height)
+                }
+                
+                
             }
         }
         
         // The list of items to display. Can be changed dynamically
         quantityDropDown.dataSource = data.reverse()
     }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.resignFirstResponder()
+    }
+    
     
     @IBAction func textFieldDidChange(sender: AnyObject) {
     }
@@ -200,7 +209,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.resignFirstResponder()
-        self.quantityTextField.resignFirstResponder()
+        self.view.resignFirstResponder()
     }
     
     func unwind() {
@@ -208,14 +217,19 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardShown(notification: NSNotification) {
-        let info  = notification.userInfo!
-        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
         
-        let rawFrame = value.CGRectValue
-        let keyboardFrame = view.convertRect(rawFrame, fromView: nil)
-        
-        print("keyboardFrame: \(keyboardFrame)")
-        self.keyboardFrame = keyboardFrame
+        dispatch_async(GlobalUserInteractiveQueue) {
+            let info  = notification.userInfo!
+            let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
+            
+            let rawFrame = value.CGRectValue
+            let keyboardFrame = self.view.convertRect(rawFrame, fromView: nil)
+            
+            print("keyboardFrame: \(keyboardFrame)")
+            
+            self.keyboardFrame = keyboardFrame
+        }
+        //self.keyboardFrame = keyboardFrame
     }
     
     
