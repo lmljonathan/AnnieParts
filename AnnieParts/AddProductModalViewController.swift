@@ -58,7 +58,7 @@ class AddProductModalViewController: UIViewController {
         }
         let mainVC = self.presentingViewController
         self.dismissViewControllerAnimated(true) {
-            mainVC?.showNotificationView("Product Added!", image: UIImage(named: "cart")!, completion: { (vc) in
+            mainVC?.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!, completion: { (vc) in
                 vc.delayDismiss(0.3)
             })
         }
