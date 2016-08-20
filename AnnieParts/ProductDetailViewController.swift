@@ -48,14 +48,20 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
     private var selectedQuantity: Int! = 1
     
+    var vehicleData: vehicle!
+    
     private var keyboardFrame: CGRect?
     
     var productID: Int!
+    var product: Product!
+    
+    var aboutString: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if (self.productID != nil) {
+            self.setUpWithProduct(product)
             self.loadData()
         }
         self.quantityTextField.delegate = self
@@ -86,34 +92,55 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
-            print(json)
-            
-            let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
-            let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
-            let price = json!["shop_price"] as! String
-            let startYear = json![CONSTANTS.JSON_KEYS.START_YEAR] as! String
-            let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
+//            let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
+//            let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
+//            let price = json!["shop_price"] as! String
+//            let startYear = json![CONSTANTS.JSON_KEYS.START_YEAR] as! String
+//            let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
             let brief_description = json!["brief"] as! String
             let description = json!["desc"] as! String
             let image_paths = json!["thumb_url"] as! [[String: String]]
             
-            self.productName.text = name
-            self.navigationItem.title = name
-            self.serialLabel.text = sn
-            self.priceLabel.text = "$" + price
+//            self.productName.text = name
+//            self.navigationItem.title = name
+//            self.serialLabel.text = sn
+//            self.priceLabel.text = "$" + price
             self.shortDescription.text = brief_description
             
-            self.modelLabel.text = "-"
-            self.makeLabel.text = "-"
-            if startYear != "0" && endYear != "0"{
-                self.yearLabel.text = startYear + "-" + endYear
-            }else{
-                self.yearLabel.text = "-"
-            }
+//            self.makeLabel.text = self.getMake(self.product.brandId)
+//            self.modelLabel.text = self.convertModelsToPresent(self.getModels(self.product.modelIDlist))
+            
+//            if startYear != "0" && endYear != "0"{
+//                self.yearLabel.text = startYear + "-" + endYear
+//            }else{
+//                self.yearLabel.text = "-"
+//            }
+            
+            self.aboutString = description
             
             self.loadImages(image_paths, scrollView: self.imageCaroselScrollView)
-            print(description)
         })
+    }
+    
+    private func setUpWithProduct(product: Product){
+        self.productName.text = product.productName
+        self.navigationItem.title = product.productName
+        self.serialLabel.text = product.serialNumber
+        
+        if product.price != 0{
+            self.priceLabel.text = "$" + String(product.price)
+        }else{
+            self.priceLabel.text = ""
+        }
+        
+        self.makeLabel.text = self.getMake(product.brandId)
+        self.modelLabel.text = self.convertModelsToPresent(self.getModels(product.modelIDlist))
+        
+        if product.startYear != "0" && product.endYear != "0"{
+            self.yearLabel.text = product.startYear + "-" + product.endYear
+        }else{
+            self.yearLabel.text = "-"
+        }
     }
     
     private func loadImages(urlDictArray: [[String:String]], scrollView: UIScrollView){
@@ -179,8 +206,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             }
         }
         let viewLabel = activeTab.subviews[0] as! UILabel
-        activeTab.backgroundColor = UIColor.whiteColor()
-        viewLabel.textColor = UIColor.darkGrayColor()
+        activeTab.backgroundColor = UIColor.APred()
+        viewLabel.textColor = UIColor.whiteColor()
         
         if contentView.subviews.count != 0{
             self.contentView.subviews[0].removeFromSuperview()
@@ -189,7 +216,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             case aboutSelect:
                 self.addNib("aboutSelect", toView: self.contentView)
                 let view = self.contentView.subviews[0] as! aboutSelectView
-                view.configure("There is no information at the moment.")
+                view.configure(self.aboutString)
             case videoSelect:
                 self.addNib("videoSelect", toView: self.contentView)
             case installSelect:
@@ -312,27 +339,27 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
     }
     
-//    private func getMake(id: String) -> String{
-//        let id: Int! = Int(id)!
-//        let index = vehicleData.makeIDs.indexOf(id)
-//        
-//        return vehicleData.make[index!]
-//    }
-//    
-//    private func getModel(id: String) -> String{
-//        let id: Int! = Int(id)!
-//        let index = vehicleData.modelIDs.indexOf(id)
-//        
-//        return vehicleData.model[index!]
-//    }
-//    
-//    private func getModels(idArray: [Int]) -> [String]{
-//        var result: [String] = []
-//        for id in idArray{
-//            result.append(self.getModel(String(id)))
-//        }
-//        return result
-//    }
+    private func getMake(id: String) -> String{
+        let id: Int! = Int(id)!
+        let index = vehicleData.makeIDs.indexOf(id)
+        
+        return vehicleData.make[index!]
+    }
+    
+    private func getModel(id: String) -> String{
+        let id: Int! = Int(id)!
+        let index = vehicleData.modelIDs.indexOf(id)
+        
+        return vehicleData.model[index!]
+    }
+    
+    private func getModels(idArray: [Int]) -> [String]{
+        var result: [String] = []
+        for id in idArray{
+            result.append(self.getModel(String(id)))
+        }
+        return result
+    }
     
     private func convertModelsToPresent(models: [String]) -> String{
         var result = ""
@@ -343,8 +370,5 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
         return result
     }
-
-    
-    
 
 }

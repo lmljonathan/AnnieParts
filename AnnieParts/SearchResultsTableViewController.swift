@@ -185,6 +185,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             }else{
                 cell.year.text = "No Years Specified"
             }
+            
             cell.manufacturer.text = getMake(product.brandId)
             cell.models.text = self.convertModelsToPresent(self.getModels(product.modelIDlist))
             
@@ -203,7 +204,12 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
             let destVC = storyboard?.instantiateViewControllerWithIdentifier("productDetail") as! ProductDetailViewController
-            print("productID", Int(self.catalogData[indexPath.row].productID))
+            
+            destVC.vehicleData = self.vehicleData
+            destVC.product = catalogData[indexPath.row]
+            
+            print(Int(self.catalogData[indexPath.row].productID)!)
+            
             destVC.productID = Int(self.catalogData[indexPath.row].productID)!
             self.navigationController?.pushViewController(destVC, animated: true)
         }
