@@ -50,6 +50,8 @@ struct CONSTANTS {
         static let MANUFACTURERS_LIST = "manufactures"
         static let MODEL_LIST = "models"
         static let ID = "id"
+        static let MODEL_ID = "model_id"
+        static let MODEL_ID_LIST = "model_list"
         static let NAME = "name"
         static let PARENT_ID = "pid"
         static let YEAR = "year"

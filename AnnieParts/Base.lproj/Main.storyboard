@@ -1779,9 +1779,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="t50-4V-ZHN" kind="show" identifier="showDetail" id="EbE-xK-QVB"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Qm-8D-gVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2382,7 +2379,7 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="26.5" y="8.5" width="47.5" height="16.5"/>
+                                                                    <rect key="frame" x="26.5" y="8" width="47.5" height="16.5"/>
                                                                 </variation>
                                                             </label>
                                                         </subviews>
@@ -2419,7 +2416,7 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="29" y="8.5" width="42" height="16.5"/>
+                                                                    <rect key="frame" x="29" y="8" width="42" height="16.5"/>
                                                                 </variation>
                                                             </label>
                                                         </subviews>
@@ -2456,7 +2453,7 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="23" y="8.5" width="54.5" height="16.5"/>
+                                                                    <rect key="frame" x="23" y="8" width="54.5" height="16.5"/>
                                                                 </variation>
                                                             </label>
                                                         </subviews>

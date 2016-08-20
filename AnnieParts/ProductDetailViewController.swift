@@ -55,8 +55,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("productID", productID)
-        
         if (self.productID != nil) {
             self.loadData()
         }
@@ -88,6 +86,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
+            print(json)
+            
             let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
             let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
             let price = json!["shop_price"] as! String
@@ -101,8 +101,15 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.navigationItem.title = name
             self.serialLabel.text = sn
             self.priceLabel.text = "$" + price
-            self.yearLabel.text = startYear + "-" + endYear
             self.shortDescription.text = brief_description
+            
+            self.modelLabel.text = "-"
+            self.makeLabel.text = "-"
+            if startYear != "0" && endYear != "0"{
+                self.yearLabel.text = startYear + "-" + endYear
+            }else{
+                self.yearLabel.text = "-"
+            }
             
             self.loadImages(image_paths, scrollView: self.imageCaroselScrollView)
             print(description)
@@ -304,6 +311,39 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.exitQtyEditMode()
         }
     }
+    
+//    private func getMake(id: String) -> String{
+//        let id: Int! = Int(id)!
+//        let index = vehicleData.makeIDs.indexOf(id)
+//        
+//        return vehicleData.make[index!]
+//    }
+//    
+//    private func getModel(id: String) -> String{
+//        let id: Int! = Int(id)!
+//        let index = vehicleData.modelIDs.indexOf(id)
+//        
+//        return vehicleData.model[index!]
+//    }
+//    
+//    private func getModels(idArray: [Int]) -> [String]{
+//        var result: [String] = []
+//        for id in idArray{
+//            result.append(self.getModel(String(id)))
+//        }
+//        return result
+//    }
+    
+    private func convertModelsToPresent(models: [String]) -> String{
+        var result = ""
+        for (index, model) in models.enumerate(){
+            if index != (models.count - 1){
+                result += ", " + model
+            }
+        }
+        return result
+    }
+
     
     
 

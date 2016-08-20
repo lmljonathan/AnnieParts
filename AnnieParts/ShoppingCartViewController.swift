@@ -75,7 +75,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
                     let quantity = Int(product[CONSTANTS.JSON_KEYS.PRODUCT_QUANTITY] as! String)
                     let price = Double(product[CONSTANTS.JSON_KEYS.PRICE] as! String)
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!))
+                    
+                    let modelID = product[CONSTANTS.JSON_KEYS.MODEL_ID] as! Int
+                    let modelIDlist = product[CONSTANTS.JSON_KEYS.MODEL_LIST] as! [Int]
+                    
+                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist))
                     
                     
                 }

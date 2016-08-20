@@ -17,6 +17,8 @@ class Product {
     private var _endYear: String!
     private var _brandID: String!
     private var _price: Double!
+    private var _modelID: Int!
+    private var _modelIDlist: [Int]!
     
     var productID: String {
         return self._productID
@@ -42,7 +44,16 @@ class Product {
     var price: Double {
         return self._price
     }
-    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double) {
+    
+    var modelID: Int{
+        return self._modelID
+    }
+    
+    var modelIDlist: [Int]{
+        return self._modelIDlist
+    }
+    
+    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double, modelID: Int, modelIDlist: [Int]) {
         self._productID = productID
         self._productName = productName
         self._imagePath = image
@@ -51,6 +62,8 @@ class Product {
         self._brandID = brandID
         self._serialNumber = serialNumber
         self._price = price
+        self._modelID = modelID
+        self._modelIDlist = modelIDlist
     }
 }
 class ShoppingCart: Product {
@@ -58,8 +71,8 @@ class ShoppingCart: Product {
     var quantity: Int {
         return self._quantity
     }
-    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double, quantity: Int) {
-        super.init(productID: productID, productName: productName, image: image, serialNumber: serialNumber, startYear: startYear, endYear: endYear, brandID: brandID, price: price)
+    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double, quantity: Int, modelID: Int, modelIDlist: [Int]!) {
+        super.init(productID: productID, productName: productName, image: image, serialNumber: serialNumber, startYear: startYear, endYear: endYear, brandID: brandID, price: price, modelID: modelID, modelIDlist: modelIDlist)
         self._quantity = quantity
     }
     func editQuantity(num: Int) {
