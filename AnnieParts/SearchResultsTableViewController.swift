@@ -128,9 +128,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     private func getModel(id: String) -> String{
         let id: Int! = Int(id)!
-        let index = vehicleData.modelIDs.indexOf(id)
+        let index = vehicleData.allModelIDs.indexOf(id)
         
-        return vehicleData.model[index!]
+        return vehicleData.allModel[index!]
     }
     
     private func getModels(idArray: [Int]) -> [String]{
@@ -145,7 +145,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         var result = ""
         for (index, model) in models.enumerate(){
             if index != (models.count - 1){
-                result += ", " + model
+                result += model + ", "
             }
         }
         return result
