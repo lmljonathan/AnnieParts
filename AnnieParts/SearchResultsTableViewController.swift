@@ -87,11 +87,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     
                     // CHANGE THESE
                     var modelID = -1
-                    if let x = json![CONSTANTS.JSON_KEYS.MODEL_ID] as? Int{
+                    if let x = product[CONSTANTS.JSON_KEYS.MODEL_ID] as? Int{
                         modelID = x
                     }
                     var modelIDlist: [Int] = []
-                    if let x = json![CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as? [Int]{
+                    if let x = product[CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as? [Int]{
                         modelIDlist = x
                     }
                     

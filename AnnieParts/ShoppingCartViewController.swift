@@ -63,7 +63,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func loadData() {
         self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
-            print(json)
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in products {
                     let id = product[CONSTANTS.JSON_KEYS.ID] as! String
@@ -77,7 +76,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let price = Double(product[CONSTANTS.JSON_KEYS.PRICE] as! String)
                     
                     let modelID = product[CONSTANTS.JSON_KEYS.MODEL_ID] as! Int
-                    let modelIDlist = product[CONSTANTS.JSON_KEYS.MODEL_LIST] as! [Int]
+                    let modelIDlist = product[CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as! [Int]
                     
                     self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist))
                     
@@ -94,7 +93,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.shoppingCart.count)
         return self.shoppingCart.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
