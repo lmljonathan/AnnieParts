@@ -58,7 +58,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     var aboutString: String!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+
         
         if (self.productID != nil) {
             self.setUpWithProduct(product)
@@ -76,6 +76,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.addToCartButton.backgroundColor = UIColor.APred()
         self.navigationController?.addSideMenuButton()
         self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self, action: #selector(self.showShoppingCart))
         activeTab = aboutSelect
         
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
@@ -88,6 +89,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
         
         self.fixWidthOfInnerQTY()
+        super.viewDidLoad()
     }
     
     func loadData(){
@@ -370,6 +372,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             }
         }
         return result
+    }
+    func showShoppingCart() {
+        self.performSegueWithIdentifier("showCart", sender: self)
     }
 
 }
