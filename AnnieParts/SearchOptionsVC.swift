@@ -41,7 +41,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     // MARK: - Variables
-    private var dropDown = DropDown()
     private var data = CONSTANTS.SEARCH_OPTIONS
     private var brandData = brand()
     private var vehicleData = vehicle()
@@ -50,10 +49,24 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var searchIDs: [String: Int]!
     private var selectedOptions = [[""], ["", "", ""], [""]]
     
+    private var expandedRows: Int = 1
+    private var cells = [
+        [
+            ["expanded": false, "value": "select", "options": []]
+        ],
+        [
+            ["expanded": false, "value": "select", "options": []],
+            ["expanded": false, "value": "select", "options": []],
+            ["expanded": false, "value": "select", "options": []],
+        ],
+        [
+            ["expanded": false, "value": "select", "options": []]
+        ],
+    ]
+    
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        // cartNavButton.addBadge() // CHANGE - Need to fix badge in UIExtensions
         
         self.tableView.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 0, right: 0)
         self.tableView.sectionHeaderHeight = 10.0
@@ -91,6 +104,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     self.vehicleData.allModel.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                     self.vehicleData.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
                 }
+                self.cells[0][0]["options"] = self.brandData.options
+                self.cells[1][0]["options"] = self.vehicleData.year
+                self.cells[1][1]["options"] = self.vehicleData.make
+                self.cells[1][2]["options"] = self.vehicleData.model
+                self.cells[2][0]["options"] = self.productData.products
                 self.tableView.reloadData()
             }
         }
@@ -101,102 +119,53 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - Table View Delegate Functions
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return data[activeIndex].count
+        return self.cells[activeIndex].count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if (self.cells[activeIndex][section]["expanded"] == false || (self.cells[activeIndex][section]["options"] as! NSArray).count == 0) {
+            return 1
+        }
+        return (self.cells[activeIndex][section]["options"] as! NSArray).count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_OPTIONS_CELLS, forIndexPath: indexPath) as! SelectorTableViewCell
-        cell.delegate = self
-        cell.configureCell(data[activeIndex][indexPath.section])
-        
-        // Disables the Model Option 
-        if indexPath == NSIndexPath(forRow: 0, inSection: 2) && vehicleData.model.count == 0{
-            cell.disable()
-            cell.selectLabel.text = "Select a Make"
-        }else if indexPath == NSIndexPath(forRow: 0, inSection: 2) && vehicleData.model.count > 0{
-            cell.selectLabel.text = "Select One"
+        if (indexPath.row == 0) {
+            let cell = UITableViewCell()
+            cell.textLabel!.text = "Select One"
+            return cell
+        } else {
+            let cell = UITableViewCell()
+            cell.textLabel!.text = (self.cells[activeIndex][indexPath.section]["options"] as! NSArray)[indexPath.row] as? String
+            return cell
         }
-        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SelectorTableViewCell
-        var dataSource = []
-        switch activeIndex {
-        case 0:
-            dataSource = brandData.options
-        case 1:
-            switch indexPath.section {
-            case 0:
-                dataSource = vehicleData.year
-            case 1:
-                dataSource = vehicleData.make
-            case 2:
-                dataSource = vehicleData.model
-            default:
-                break
-            }
-        case 2:
-            dataSource = productData.products
-        default:
-            break
+        print(indexPath.section)
+        
+        if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
+            self.cells[activeIndex][indexPath.section]["expanded"] = !expanded
         }
-        cell.showDropDown(dataSource as! [String])
+        self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
     }
     
     // MARK: - Main Functions
     func searchByBrand(gr: UITapGestureRecognizer){
         self.selectTab(0)
-        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
-        if (selectedOptions[0])[0] != ""{
-            cell.selectLabel.text = (selectedOptions[0])[0]
-        }else{
-            cell.selectLabel.text = "Select One"
-        }
         self.tableView.reloadData()
     }
     
     func searchByCar(gr: UITapGestureRecognizer){
         self.selectTab(1)
         self.tableView.reloadData()
-        for section in [0, 1, 2]{
-            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! SelectorTableViewCell
-            if (selectedOptions[1])[section] != ""{
-                cell.selectLabel.text = (selectedOptions[1])[section]
-            }else{
-                cell.selectLabel.text = "Select One"
-            }
-        }
-        self.tableView.reloadData()
     }
     
     func searchByProduct(gr: UITapGestureRecognizer){
         self.selectTab(2)
         self.tableView.reloadData()
-        let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! SelectorTableViewCell
-        if (selectedOptions[2])[0] != ""{
-            cell.selectLabel.text = (selectedOptions[2])[0]
-        }else{
-            cell.selectLabel.text = "Select One"
-        }
-        self.tableView.reloadData()
     }
     
-    func setupDropDown(view: UIView){
-        // The view to which the drop down will appear on
-        dropDown.anchorView = view // UIView or UIBarButtonItem
-        dropDown.direction = .Bottom
-        dropDown.bottomOffset = CGPoint(x: 0, y:view.bounds.height)
-        dropDown.cellHeight = 44
-        dropDown.backgroundColor = UIColor.APlightGray()
-        
-        // The list of items to display. Can be changed dynamically
-        dropDown.dataSource = []
-    }
     
     private func selectTab(index: Int){
         let tabViews = [oneView, twoView, threeView]
@@ -296,15 +265,13 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 vehicleData.modelPIDs.append(id)
             }
         }
-        
         for index in resultIndexes{
             vehicleData.model.append(self.vehicleData.allModel[index])
         }
-        
         for model in vehicleData.model{
             vehicleData.modelIDs.append(getIDOfModel(model))
         }
-        
+        self.cells[activeIndex][3]["options"] = self.vehicleData.model
         self.tableView.reloadData()
     }
     
