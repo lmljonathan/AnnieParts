@@ -109,7 +109,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         cell.quantityLabel.text = String(product.quantity)
         cell.serialNumber.text = product.serialNumber
-        cell.priceLabel.text = "$" + String(product.price)
+        cell.priceLabel.text = "$" + String(format: "%.2f", product.price)
         
         
         cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
