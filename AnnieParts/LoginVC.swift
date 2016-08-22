@@ -94,6 +94,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
         self.resignFirstResponder()
+        if view.frame.origin.y != 0{
+            self.view.frame.origin.y = 0
+        }
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {

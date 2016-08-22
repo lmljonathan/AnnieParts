@@ -22,6 +22,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidAppear(true)
         self.updatedItem = -1
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+    }
+    
     override func viewDidLoad() {
         self.navigationController?.addSideMenuButton()
         if (self.viewFromNavButton) {
@@ -90,11 +94,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.shoppingCart.count
     }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SHOPPING_CART_CELLS) as! ShoppingCartCell
         cell.configureCell()
@@ -102,15 +106,20 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.productName.text = product.productName
         let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
         cell.loadImage(url)
+        
         cell.quantityLabel.text = String(product.quantity)
         cell.serialNumber.text = product.serialNumber
+        cell.priceLabel.text = "$" + String(product.price)
+        
+        
         cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchCancel)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchDragExit)
+        
         
         cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
-        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchCancel)
+        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchDragExit)
         return cell
     }
     
@@ -129,6 +138,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     
     @IBAction func editItemQuantity(sender: UIButton) {
+        self.normalizeView(sender)
         let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
         self.updatedItem = index!.row
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
