@@ -129,10 +129,10 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.navigationItem.title = product.productName
         self.serialLabel.text = product.serialNumber
         
-        if product.price != 0{
+        if product.price != 0 && User.userRank > 1{
             self.priceLabel.text = "$" + String(product.price)
         }else{
-            self.priceLabel.text = ""
+            self.priceLabel.text = "Not Listed"
         }
         
         self.makeLabel.text = self.getMake(product.brandId)
