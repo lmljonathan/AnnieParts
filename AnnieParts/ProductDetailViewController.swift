@@ -185,6 +185,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     func addToCart(){
         print(quantityTextField.text)
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": self.productID, CONSTANTS.JSON_KEYS.QUANTITY: self.selectedQuantity])
     }
     
     func addNib(named: String, toView: UIView){
