@@ -9,6 +9,7 @@
 import UIKit
 import Auk
 import DropDown
+import WebKit
 
 class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     
@@ -55,7 +56,13 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     var productID: Int!
     var product: Product!
     
+    var activeInfoView: Int! = 0
+    
+    // Data for the info views
     var aboutString: String!
+    var videoPaths: [String]!
+    var installString: String!
+    var docsPaths: [String]!
     
     override func viewDidLoad() {
 
@@ -94,12 +101,18 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in            let brief_description = json!["brief"] as! String
+            
+            print(json)
             let description = json!["desc"] as! String
             
             var image_paths: [String]?
             if let x = json!["thumb_url"] as? [String]{
                 image_paths = x
             }
+            
+            self.videoPaths = json!["video"] as! [String]
+            self.docsPaths = json!["ins"] as! [String]
+            
             self.shortDescription.text = brief_description
             self.aboutString = description
             
@@ -196,12 +209,25 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
                 self.addNib("aboutSelect", toView: self.contentView)
                 let view = self.contentView.subviews[0] as! aboutSelectView
                 view.configure(self.aboutString)
+                self.activeInfoView = 0
             case videoSelect:
-                self.addNib("videoSelect", toView: self.contentView)
+                let tableView = UITableView(frame: self.contentView.frame, style: .Plain)
+                tableView.registerNib(UINib(nibName: "videoSelect", bundle: nil), forCellReuseIdentifier: "infoCell")
+                self.contentView.addSubview(tableView)
+                tableView.delegate = self
+                tableView.dataSource = self
+                self.activeInfoView = 1
+//                self.addNib("videoSelect", toView: self.contentView)
             case installSelect:
                 self.addNib("aboutSelect", toView: self.contentView)
+                self.activeInfoView = 2
             case docsSelect:
-                self.addNib("aboutSelect", toView: self.contentView)
+                let tableView = UITableView(frame: self.contentView.frame, style: .Plain)
+                tableView.registerNib(UINib(nibName: "videoSelect", bundle: nil), forCellReuseIdentifier: "infoCell")
+                self.contentView.addSubview(tableView)
+                tableView.delegate = self
+                tableView.dataSource = self
+                self.activeInfoView = 3
             default:
                 break
             }
@@ -353,4 +379,48 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.performSegueWithIdentifier("showCart", sender: self)
     }
 
+}
+
+extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch self.activeInfoView {
+        case 1:
+            return self.videoPaths.count
+        case 3:
+            return self.docsPaths.count
+        default:
+            return 1
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let webVC = storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
+        
+        if self.activeInfoView == 1{
+            webVC.urlString = self.videoPaths[indexPath.row]
+            self.navigationController?.pushViewController(webVC, animated: true)
+        }else if self.activeInfoView == 3{
+            webVC.urlString = "http://annieparts.com" + self.docsPaths[indexPath.row]
+            self.navigationController?.pushViewController(webVC, animated: true)
+        }
+        
+        
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as! InfoTableViewCell
+        if self.activeInfoView == 1{
+            cell.label.text = self.videoPaths[indexPath.row]
+        }else if self.activeInfoView == 3{
+            cell.label.text = self.docsPaths[indexPath.row]
+        }
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 58.0
+    }
 }

@@ -1,67 +1,86 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="pDl-rE-Bv4" userLabel="videoSelect">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UvP-P6-o7e">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="332" id="0wz-xG-Yk3"/>
-                        <constraint firstAttribute="height" constant="695" id="dBd-5t-bBk">
-                            <variation key="heightClass=regular-widthClass=compact" constant="518"/>
-                        </constraint>
-                    </constraints>
-                    <string key="text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="0wz-xG-Yk3"/>
-                            <exclude reference="dBd-5t-bBk"/>
-                        </mask>
-                    </variation>
-                    <variation key="heightClass=regular-widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="0wz-xG-Yk3"/>
-                            <include reference="dBd-5t-bBk"/>
-                        </mask>
-                    </variation>
-                </textView>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="UvP-P6-o7e" firstAttribute="centerY" secondItem="pDl-rE-Bv4" secondAttribute="centerY" id="GUL-LW-3eb">
-                    <variation key="heightClass=regular-widthClass=compact" constant="40"/>
-                </constraint>
-                <constraint firstItem="UvP-P6-o7e" firstAttribute="centerX" secondItem="pDl-rE-Bv4" secondAttribute="centerX" id="Vt2-7L-4OK"/>
-            </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="UvP-P6-o7e"/>
-                </mask>
-                <mask key="constraints">
-                    <exclude reference="GUL-LW-3eb"/>
-                    <exclude reference="Vt2-7L-4OK"/>
-                </mask>
-            </variation>
-            <variation key="heightClass=regular-widthClass=compact">
-                <mask key="subviews">
-                    <include reference="UvP-P6-o7e"/>
-                </mask>
-                <mask key="constraints">
-                    <include reference="GUL-LW-3eb"/>
-                    <include reference="Vt2-7L-4OK"/>
-                </mask>
-            </variation>
-        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="58" id="pN0-if-nIK" customClass="InfoTableViewCell" customModule="AnnieParts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pN0-if-nIK" id="6hw-lU-nck">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W2r-dG-qn2">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="UQI-Rj-09l"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UQI-Rj-09l"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="UQI-Rj-09l"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awq-bg-rs6">
+                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="awq-bg-rs6" firstAttribute="centerY" secondItem="6hw-lU-nck" secondAttribute="centerY" id="Bqv-x4-FbL"/>
+                    <constraint firstItem="W2r-dG-qn2" firstAttribute="leading" secondItem="6hw-lU-nck" secondAttribute="leadingMargin" id="Uap-bh-d0P"/>
+                    <constraint firstItem="W2r-dG-qn2" firstAttribute="top" secondItem="6hw-lU-nck" secondAttribute="topMargin" constant="-4" id="bCS-Lj-QG7"/>
+                    <constraint firstItem="awq-bg-rs6" firstAttribute="leading" secondItem="W2r-dG-qn2" secondAttribute="trailing" constant="8" id="fDe-lz-STa"/>
+                    <constraint firstItem="W2r-dG-qn2" firstAttribute="centerY" secondItem="6hw-lU-nck" secondAttribute="centerY" id="i6V-DN-qHb"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="subviews">
+                        <exclude reference="W2r-dG-qn2"/>
+                        <exclude reference="awq-bg-rs6"/>
+                    </mask>
+                    <mask key="constraints">
+                        <exclude reference="Uap-bh-d0P"/>
+                        <exclude reference="bCS-Lj-QG7"/>
+                        <exclude reference="i6V-DN-qHb"/>
+                        <exclude reference="Bqv-x4-FbL"/>
+                        <exclude reference="fDe-lz-STa"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular-widthClass=compact">
+                    <mask key="subviews">
+                        <include reference="W2r-dG-qn2"/>
+                        <include reference="awq-bg-rs6"/>
+                    </mask>
+                    <mask key="constraints">
+                        <include reference="Uap-bh-d0P"/>
+                        <include reference="bCS-Lj-QG7"/>
+                        <include reference="i6V-DN-qHb"/>
+                        <include reference="Bqv-x4-FbL"/>
+                        <include reference="fDe-lz-STa"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="awq-bg-rs6" id="9pU-g8-4ZJ"/>
+                <outlet property="previewImage" destination="W2r-dG-qn2" id="krK-hm-rST"/>
+            </connections>
+            <point key="canvasLocation" x="672" y="371"/>
+        </tableViewCell>
     </objects>
 </document>
