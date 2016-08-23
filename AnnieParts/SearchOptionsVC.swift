@@ -151,6 +151,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 if let options = self.cells[activeIndex][indexPath.section]["options"] as? NSArray {
                     if options.count > 0 {
                          self.cells[activeIndex][indexPath.section]["value"] = options[indexPath.row-1] as! String
+                        self.selectedOptions[activeIndex][indexPath.section] = options[indexPath.row-1] as! String
+                        checkSelectedOptions()
+                        
                     }
                 }
             }
@@ -222,6 +225,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         checkSelectedOptions()
     }
+    
     private func checkSelectedOptions(){
         switch activeIndex {
         case 0:

@@ -101,7 +101,11 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
 //            let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
             let brief_description = json!["brief"] as! String
             let description = json!["desc"] as! String
-            let image_paths = json!["thumb_url"] as! [[String: String]]
+            
+            var image_paths: [String]?
+            if let x = json!["thumb_url"] as? [String]{
+                image_paths = x
+            }
             
 //            self.productName.text = name
 //            self.navigationItem.title = name
@@ -120,7 +124,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             
             self.aboutString = description
             
-            self.loadImages(image_paths, scrollView: self.imageCaroselScrollView)
+            if (image_paths != nil){
+                self.loadImages(image_paths!, scrollView: self.imageCaroselScrollView)
+            }
         })
     }
     
@@ -145,25 +151,16 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
     }
     
-    private func loadImages(urlDictArray: [[String:String]], scrollView: UIScrollView){
-        func getURLArray(completion: (urlArray: [String]) -> Void){
-            var urlArray: [String] = []
-            for dict in urlDictArray{
-                urlArray.append(dict["thumb_url"]!)
-            }
-            completion(urlArray: urlArray)
-        }
+    private func loadImages(urlArray: [String], scrollView: UIScrollView){
         
-        getURLArray { (urlArray) in
-            scrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
-            scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
-            scrollView.auk.settings.contentMode = .ScaleAspectFill
-            for url in urlArray{
-                scrollView.auk.show(url: "http://annieparts.com/" + url)
-            }
-            scrollView.auk.startAutoScroll(delaySeconds: 3.0)
+        scrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
+        scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
+        scrollView.auk.settings.contentMode = .ScaleAspectFill
+        for url in urlArray{
+            scrollView.auk.show(url: "http://annieparts.com/" + url)
         }
-        
+        scrollView.auk.startAutoScroll(delaySeconds: 3.0)
+    
     }
     
     @IBAction func addToCartButtonPressed(sender: AnyObject) {
