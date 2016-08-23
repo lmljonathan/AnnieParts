@@ -42,7 +42,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             if view.frame.origin.y == 0{
                 self.view.frame.origin.y -= keyboardSize.height
             }
-            else {}
         }
     }
     
@@ -51,7 +50,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             if view.frame.origin.y != 0 {
                 self.view.frame.origin.y += keyboardSize.height
             }
-            else {}
         }
     }
     // MARK: - IB Outlet Actions
@@ -76,6 +74,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         if status == 1 {
                             if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
                                 User.setUserRank(rank)
+                            }
+                            if let username = json![CONSTANTS.JSON_KEYS.USERNAME] as? String {
+                                User.username = username
+                            }
+                            if let companyname = json![CONSTANTS.JSON_KEYS.COMPANY_NAME] as? String {
+                                User.companyName = companyname
                             }
                             self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                         }

@@ -71,6 +71,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         self.tableView.sectionHeaderHeight = 0
         self.tableView.sectionFooterHeight = 0
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
@@ -120,7 +121,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.cells[activeIndex].count
     }
-    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.sectionTitles[activeIndex][section]
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let expand_array = self.cells[activeIndex][section]["options"] as? NSArray {
             if let expanded = self.cells[activeIndex][section]["expanded"] as? Bool {
@@ -135,8 +138,14 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("searchHeader") as! SearchOptionsHeaderCell
+            if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
+                if expanded {
+                    cell.expandedSymbol.text = "-"
+                } else {
+                    cell.expandedSymbol.text = "+"
+                }
+            }
             cell.selectedOption.text = self.cells[activeIndex][indexPath.section]["value"] as? String
-            cell.sectionLabel.text = self.sectionTitles[activeIndex][indexPath.section]
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
@@ -147,14 +156,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
-            let cellExpanded = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: indexPath.section)) as! SearchOptionsHeaderCell
-
-            if expanded == true{
-                cellExpanded.expandImageView.image = UIImage(named: "up_arrow")
-            }else{
-                cellExpanded.expandImageView.image = UIImage(named: "down_arrow")
-            }
-            
             if expanded && indexPath.row > 0 {
                 if let options = self.cells[activeIndex][indexPath.section]["options"] as? NSArray {
                     if options.count > 0 {
@@ -167,14 +168,15 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.cells[activeIndex][indexPath.section]["expanded"] = !expanded
         }
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         if (indexPath.row == 0){
-            return 91.0
+            return 50.0
         }else{
-            return 33.0
+            return 40.0
         }
     }
     

@@ -368,10 +368,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     private func convertModelsToPresent(models: [String]) -> String{
         var result = ""
-        for (index, model) in models.enumerate(){
-            if index != (models.count - 1){
-                result += model + ", "
-            }
+        for model in models{
+            result += model + ", "
         }
         return result
     }
