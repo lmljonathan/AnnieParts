@@ -10,6 +10,9 @@ import UIKit
 
 class SearchOptionsHeaderCell: UITableViewCell {
 
+    @IBOutlet var sectionLabel: UILabel!
+    @IBOutlet var expandImageView: UIImageView!
+    
     @IBOutlet weak var selectedOption: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

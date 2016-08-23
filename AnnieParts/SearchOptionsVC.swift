@@ -48,19 +48,20 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var activeIndex = 0
     private var searchIDs: [String: Int]!
     private var selectedOptions = [[""], ["", "", ""], [""]]
+    private var sectionTitles: [[String]]! = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT"]]
     
     private var expandedRows: Int = 1
     private var cells = [
         [
-            ["expanded": false, "value": "Brand", "options": []]
+            ["expanded": false, "value": "SELECT ONE", "options": []]
         ],
         [
-            ["expanded": false, "value": "Year", "options": []],
-            ["expanded": false, "value": "Make", "options": []],
-            ["expanded": false, "value": "Model", "options": []],
+            ["expanded": false, "value": "SELECT ONE", "options": []],
+            ["expanded": false, "value": "SELECT ONE", "options": []],
+            ["expanded": false, "value": "SELECT ONE", "options": []],
         ],
         [
-            ["expanded": false, "value": "Product", "options": []]
+            ["expanded": false, "value": "SELECT ONE", "options": []]
         ],
     ]
     
@@ -68,9 +69,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 0, right: 0)
-        self.tableView.sectionHeaderHeight = 10.0
-        self.tableView.sectionFooterHeight = 10.0
+        self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
+        self.tableView.sectionHeaderHeight = 0
+        self.tableView.sectionFooterHeight = 0
         
         self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
@@ -136,6 +137,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if (indexPath.row == 0) {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("searchHeader") as! SearchOptionsHeaderCell
             cell.selectedOption.text = self.cells[activeIndex][indexPath.section]["value"] as? String
+            cell.sectionLabel.text = self.sectionTitles[activeIndex][indexPath.section]
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
@@ -145,21 +147,43 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        if indexPath.row == 0{
+//            let cellExpanded = self.tableView.cellForRowAtIndexPath(indexPath) as! SearchOptionsHeaderCell
+//            cellExpanded.expandImageView.image = UIImage(named: "up_arrow")
+//        }else{
+//            let cellExpanded = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: indexPath.section)) as! SearchOptionsHeaderCell
+//            cellExpanded.expandImageView.image = UIImage(named: "down_arrow")
+//        }
         if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
-            print(expanded)
+            let cellExpanded = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: indexPath.section)) as! SearchOptionsHeaderCell
+
+            if expanded == true{
+                cellExpanded.expandImageView.image = UIImage(named: "up_arrow")
+            }else{
+                cellExpanded.expandImageView.image = UIImage(named: "down_arrow")
+            }
+            
             if expanded && indexPath.row > 0 {
                 if let options = self.cells[activeIndex][indexPath.section]["options"] as? NSArray {
                     if options.count > 0 {
-                         self.cells[activeIndex][indexPath.section]["value"] = options[indexPath.row-1] as! String
+                        self.cells[activeIndex][indexPath.section]["value"] = options[indexPath.row-1] as! String
                         self.selectedOptions[activeIndex][indexPath.section] = options[indexPath.row-1] as! String
                         checkSelectedOptions()
-                        
                     }
                 }
             }
             self.cells[activeIndex][indexPath.section]["expanded"] = !expanded
         }
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        if (indexPath.row == 0){
+            return 91.0
+        }else{
+            return 33.0
+        }
     }
     
     // MARK: - Main Functions
@@ -235,11 +259,17 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.searchButton.disable()
             }
         case 1:
+            
+            if (self.selectedOptions[1])[1] != ""{
+                self.configureModels((self.selectedOptions[1])[1])
+            }
             if (self.selectedOptions[1])[0] != "" && (self.selectedOptions[1])[1] != "" && (self.selectedOptions[1])[2] != ""{
                 self.searchButton.enable(UIColor.APred())
             }else{
                 self.searchButton.disable()
             }
+            
+            
         case 2:
             if self.selectedOptions[2] != [""]{
                 self.searchButton.enable(UIColor.APred())
@@ -284,7 +314,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         for model in vehicleData.model{
             vehicleData.modelIDs.append(getIDOfModel(model))
         }
-        self.cells[activeIndex][3]["options"] = self.vehicleData.model
+        self.cells[activeIndex][2]["options"] = self.vehicleData.model
         self.tableView.reloadData()
     }
     

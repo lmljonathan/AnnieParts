@@ -93,35 +93,14 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     func loadData(){
-        get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
-//            let name = json![CONSTANTS.JSON_KEYS.NAME] as! String
-//            let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
-//            let price = json!["shop_price"] as! String
-//            let startYear = json![CONSTANTS.JSON_KEYS.START_YEAR] as! String
-//            let endYear = json![CONSTANTS.JSON_KEYS.END_YEAR] as! String
-            let brief_description = json!["brief"] as! String
+        get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in            let brief_description = json!["brief"] as! String
             let description = json!["desc"] as! String
             
             var image_paths: [String]?
             if let x = json!["thumb_url"] as? [String]{
                 image_paths = x
             }
-            
-//            self.productName.text = name
-//            self.navigationItem.title = name
-//            self.serialLabel.text = sn
-//            self.priceLabel.text = "$" + price
             self.shortDescription.text = brief_description
-            
-//            self.makeLabel.text = self.getMake(self.product.brandId)
-//            self.modelLabel.text = self.convertModelsToPresent(self.getModels(self.product.modelIDlist))
-            
-//            if startYear != "0" && endYear != "0"{
-//                self.yearLabel.text = startYear + "-" + endYear
-//            }else{
-//                self.yearLabel.text = "-"
-//            }
-            
             self.aboutString = description
             
             if (image_paths != nil){
