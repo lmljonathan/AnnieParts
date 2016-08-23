@@ -105,19 +105,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                 self.loadingIndicator.stopAnimating()
                 self.tableView.separatorStyle = .SingleLine
                 self.tableView.reloadData()
-                
-//                let seconds = 3.0
-//                let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-//                let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//                
-//                dispatch_after(dispatchTime, dispatch_get_main_queue(), {
-//                    
-//                    self.loadingIndicator.stopAnimating()
-//                    self.tableView.separatorStyle = .SingleLine
-//                    self.tableView.reloadData()
-//                    
-//                })
-                
+
             }
         }
     }
