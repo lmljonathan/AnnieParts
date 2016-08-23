@@ -27,6 +27,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewDidLoad() {
+        
+        self.checkoutButton.backgroundColor = UIColor.APred()
         self.navigationController?.addSideMenuButton()
         if (self.viewFromNavButton) {
             self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)

@@ -40,10 +40,7 @@ class AddProductModalViewController: UIViewController {
         super.viewWillDisappear(true)
         self.view.endEditing(true)
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     @IBAction func numberInputChanged(sender: UITextField) {
         if (Int(sender.text!) != nil){
             self.quantity = Int(sender.text!)!
@@ -52,15 +49,23 @@ class AddProductModalViewController: UIViewController {
         }
         print(self.quantity)
     }
+    
     @IBAction func addToCart(sender: UIButton) {
         if (self.quantity > 0) {
             self.delegate?.returnIDandQuantity(self.id, quantity: self.quantity)
         }
         let mainVC = self.presentingViewController
+        
         self.dismissViewControllerAnimated(true) {
-            mainVC?.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!, completion: { (vc) in
-                vc.delayDismiss(0.3)
-            })
+            if self.buttonString == "Update"{
+                mainVC?.showNotificationView("QTY Changed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                    vc.delayDismiss(0.3)
+                })
+            }else{
+                mainVC?.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                    vc.delayDismiss(0.3)
+                })
+            }
         }
     }
     

@@ -22,7 +22,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     @IBOutlet weak var aboutSelect: UIView!
     @IBOutlet weak var videoSelect: UIView!
     @IBOutlet weak var installSelect: UIView!
-    @IBOutlet weak var docsSelect: UIView!
     
     @IBOutlet var productName: UILabel!
     @IBOutlet var priceLabel: UILabel!
@@ -61,8 +60,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     // Data for the info views
     var aboutString: String!
     var videoPaths: [String]!
-    var installString: String!
-    var docsPaths: [String]!
+    var installPaths: [String]!
     
     override func viewDidLoad() {
 
@@ -91,7 +89,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         mainScrollView.scrollEnabled = true
         
         addNib("aboutSelect", toView: self.contentView)
-        for tab in [aboutSelect, videoSelect, installSelect, docsSelect]{
+        for tab in [aboutSelect, videoSelect, installSelect]{
             self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
         }
         
@@ -111,7 +109,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             }
             
             self.videoPaths = json!["video"] as! [String]
-            self.docsPaths = json!["ins"] as! [String]
+            self.installPaths = json!["ins"] as! [String]
             
             self.shortDescription.text = brief_description
             self.aboutString = description
@@ -175,8 +173,10 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     func addToCart(){
-        print(quantityTextField.text)
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": self.productID, CONSTANTS.JSON_KEYS.QUANTITY: self.selectedQuantity])
+        self.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!) { (vc) in
+            vc.delayDismiss(0.2)
+        }
     }
     
     func addNib(named: String, toView: UIView){
@@ -208,7 +208,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             case aboutSelect:
                 self.addNib("aboutSelect", toView: self.contentView)
                 let view = self.contentView.subviews[0] as! aboutSelectView
-                view.configure(self.aboutString)
+                if self.aboutString != nil{
+                    view.configure(self.aboutString)
+                }
                 self.activeInfoView = 0
             case videoSelect:
                 let tableView = UITableView(frame: self.contentView.frame, style: .Plain)
@@ -216,18 +218,16 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
                 self.contentView.addSubview(tableView)
                 tableView.delegate = self
                 tableView.dataSource = self
+                tableView.scrollEnabled = false
                 self.activeInfoView = 1
-//                self.addNib("videoSelect", toView: self.contentView)
             case installSelect:
-                self.addNib("aboutSelect", toView: self.contentView)
-                self.activeInfoView = 2
-            case docsSelect:
                 let tableView = UITableView(frame: self.contentView.frame, style: .Plain)
                 tableView.registerNib(UINib(nibName: "videoSelect", bundle: nil), forCellReuseIdentifier: "infoCell")
                 self.contentView.addSubview(tableView)
                 tableView.delegate = self
                 tableView.dataSource = self
-                self.activeInfoView = 3
+                tableView.scrollEnabled = false
+                self.activeInfoView = 2
             default:
                 break
             }
@@ -387,8 +387,8 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         switch self.activeInfoView {
         case 1:
             return self.videoPaths.count
-        case 3:
-            return self.docsPaths.count
+        case 2:
+            return self.installPaths.count
         default:
             return 1
         }
@@ -399,10 +399,12 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         let webVC = storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
         
         if self.activeInfoView == 1{
-            webVC.urlString = self.videoPaths[indexPath.row]
+            let url = NSURL(string: (self.videoPaths[indexPath.row]).encodeURL())
+            webVC.url = url
             self.navigationController?.pushViewController(webVC, animated: true)
-        }else if self.activeInfoView == 3{
-            webVC.urlString = "http://annieparts.com" + self.docsPaths[indexPath.row]
+        }else if self.activeInfoView == 2{
+            let url = NSURL(string: ("http://annieparts.com" + self.videoPaths[indexPath.row]).encodeURL())
+            webVC.url = url
             self.navigationController?.pushViewController(webVC, animated: true)
         }
         
@@ -412,9 +414,11 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as! InfoTableViewCell
         if self.activeInfoView == 1{
-            cell.label.text = self.videoPaths[indexPath.row]
-        }else if self.activeInfoView == 3{
-            cell.label.text = self.docsPaths[indexPath.row]
+            let url = NSURL(string: (self.videoPaths[indexPath.row]).encodeURL())
+            cell.label.text = url?.lastPathComponent
+        }else if self.activeInfoView == 2{
+            let url = NSURL(string: (self.installPaths[indexPath.row]).encodeURL())
+            cell.label.text = url?.lastPathComponent
         }
         
         return cell
