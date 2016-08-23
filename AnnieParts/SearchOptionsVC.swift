@@ -72,8 +72,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.sectionHeaderHeight = 10.0
         self.tableView.sectionFooterHeight = 10.0
         
-        self.selectTab(0)
-        self.activeIndex = 0
+        self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
         let options = [oneView: CONSTANTS.SEARCH_OPTION_VIEWS[0], twoView: CONSTANTS.SEARCH_OPTION_VIEWS[1], threeView: CONSTANTS.SEARCH_OPTION_VIEWS[2]]
         for view in options.keys{
