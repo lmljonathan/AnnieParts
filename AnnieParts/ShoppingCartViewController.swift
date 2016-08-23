@@ -54,7 +54,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func calculateSubtotal() {
         var subtotal = 0.0
         for product in self.shoppingCart {
-            subtotal += product.price * product.quantity
+            subtotal += product.price * Double(product.quantity)
         }
         let priceFormatter = NSNumberFormatter()
         priceFormatter.numberStyle = .CurrencyStyle
