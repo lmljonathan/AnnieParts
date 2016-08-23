@@ -45,6 +45,8 @@ struct CONSTANTS {
     struct JSON_KEYS {
         static let API_STATUS = "status"
         static let USER_RANK = "user_rank"
+        static let USERNAME = "uname"
+        static let COMPANY_NAME = "cname"
         static let PRODUCT_MANUFACTURER = "pinpai"
         static let PRODUCT_TYPES = "attributes"
         static let YEAR_LIST = "years"

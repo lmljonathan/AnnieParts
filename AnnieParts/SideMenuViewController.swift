@@ -22,6 +22,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         let index = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.cellForRowAtIndexPath(index)?.selected = true
         self.userRank.text = User.getUserStatus().uppercaseString
+        self.name.text = User.username + " | " + User.companyName
         tableView.delegate = self
         tableView.dataSource = self
         tableView.alwaysBounceVertical = false

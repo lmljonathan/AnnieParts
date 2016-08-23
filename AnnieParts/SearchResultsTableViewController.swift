@@ -32,7 +32,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
-        
+
         
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None

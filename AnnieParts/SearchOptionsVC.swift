@@ -146,13 +146,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        if indexPath.row == 0{
-//            let cellExpanded = self.tableView.cellForRowAtIndexPath(indexPath) as! SearchOptionsHeaderCell
-//            cellExpanded.expandImageView.image = UIImage(named: "up_arrow")
-//        }else{
-//            let cellExpanded = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: indexPath.section)) as! SearchOptionsHeaderCell
-//            cellExpanded.expandImageView.image = UIImage(named: "down_arrow")
-//        }
         if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
             let cellExpanded = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: indexPath.section)) as! SearchOptionsHeaderCell
 
@@ -174,6 +167,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             self.cells[activeIndex][indexPath.section]["expanded"] = !expanded
         }
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
