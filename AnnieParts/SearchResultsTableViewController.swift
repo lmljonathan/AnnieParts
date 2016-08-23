@@ -22,6 +22,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
     override func viewDidLoad() {
+//        self.tableView.rowHeight = UITableViewAutomaticDimension
+//        self.tableView.estimatedRowHeight = 120
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None
         self.navigationController?.addSideMenuButton()
@@ -71,8 +73,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         self.loadingIndicator.startAnimating()
         self.catalogData.removeAll()
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
-            
-            print(json)
             
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {
@@ -134,10 +134,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     private func convertModelsToPresent(models: [String]) -> String{
         var result = ""
-        for (index, model) in models.enumerate(){
-            if index != (models.count - 1){
-                result += model + ", "
-            }
+        for model in models {
+            result += model + ", "
         }
         return result
     }
@@ -178,6 +176,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             }
             
             cell.manufacturer.text = getMake(product.brandId)
+            print(self.getModels(product.modelIDlist))
             cell.models.text = self.convertModelsToPresent(self.getModels(product.modelIDlist))
             
             cell.serialNumber.text = product.serialNumber
