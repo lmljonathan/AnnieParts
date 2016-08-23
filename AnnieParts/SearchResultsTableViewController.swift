@@ -14,14 +14,26 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
 
     var searchParameters = [String: Int]()
     let cache = Shared.imageCache
-    private var catalogData: [Product]!
+    private var catalogData: [Product]! = []
     private var noResultsFound = false
     
     var searchIDs: [String: Int]!
     var vehicleData: vehicle!
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.reloadData()
+    }
     override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+        
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
+        
+        
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None
         self.navigationController?.addSideMenuButton()
@@ -31,7 +43,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         initializeActivityIndicator()
         loadData()
         initializeRefreshControl()
-        super.viewDidLoad()
+        
     }
     func initializeActivityIndicator() {
         loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
@@ -71,8 +83,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         self.loadingIndicator.startAnimating()
         self.catalogData.removeAll()
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
-            
-            print(json)
             
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {
@@ -134,10 +144,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     private func convertModelsToPresent(models: [String]) -> String{
         var result = ""
-        for (index, model) in models.enumerate(){
-            if index != (models.count - 1){
-                result += model + ", "
-            }
+        for model in models {
+            result += model + ", "
         }
         return result
     }
@@ -185,7 +193,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
             cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
-            
             return cell
         }
 

@@ -39,7 +39,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.searchIDs = getIDs()
         self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
     }
-    
     // MARK: - Variables
     private var data = CONSTANTS.SEARCH_OPTIONS
     private var brandData = brand()
