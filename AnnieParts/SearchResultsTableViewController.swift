@@ -32,7 +32,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
-
         
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None
@@ -212,7 +211,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             self.navigationController?.pushViewController(destVC, animated: true)
         }
     }
-    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (self.noResultsFound) {
+            return 120
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
     var selectedProductIndex: Int!
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
