@@ -147,7 +147,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         if product.startYear != "0" && product.endYear != "0"{
             self.yearLabel.text = product.startYear + "-" + product.endYear
         }else{
-            self.yearLabel.text = "-"
+            self.yearLabel.text = ""
         }
     }
     

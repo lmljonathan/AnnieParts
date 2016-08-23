@@ -21,12 +21,18 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     var vehicleData: vehicle!
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        self.tableView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.setNeedsLayout()
-        self.tableView.layoutIfNeeded()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
+        
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
+        
         
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None
