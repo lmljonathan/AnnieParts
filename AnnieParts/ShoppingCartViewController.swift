@@ -49,10 +49,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.addSubview(refreshControl)
         loadData()
         calculateSubtotal()
-        if self.tableView.numberOfRowsInSection(0) == 0{
-            self.checkoutButton.disable()
-        }
-        
         super.viewDidLoad()
     }
     func calculateSubtotal() {
@@ -159,6 +155,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.deleteRowsAtIndexPaths([index!], withRowAnimation: .Fade)
         self.tableView.endUpdates()
         
+    }
+    @IBAction func checkout(sender: UIButton) {
+        sender.enabled = false
+        get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:]) { (json) in
+            // store the order id
+            sender.enabled = true
+        }
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         if (self.updatedItem != -1) {
