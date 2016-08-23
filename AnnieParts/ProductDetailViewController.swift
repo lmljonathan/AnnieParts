@@ -401,7 +401,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
             webVC.url = url
             self.navigationController?.pushViewController(webVC, animated: true)
         }else if self.activeInfoView == 2{
-            let url = NSURL(string: ("http://annieparts.com" + self.videoPaths[indexPath.row]).encodeURL())
+            let url = NSURL(string: ("http://annieparts.com" + self.installPaths[indexPath.row]).encodeURL())
             webVC.url = url
             self.navigationController?.pushViewController(webVC, animated: true)
         }
