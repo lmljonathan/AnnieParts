@@ -52,15 +52,15 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var expandedRows: Int = 1
     private var cells = [
         [
-            ["expanded": false, "value": "select", "options": []]
+            ["expanded": false, "value": "Brand", "options": []]
         ],
         [
-            ["expanded": false, "value": "select", "options": []],
-            ["expanded": false, "value": "select", "options": []],
-            ["expanded": false, "value": "select", "options": []],
+            ["expanded": false, "value": "Year", "options": []],
+            ["expanded": false, "value": "Make", "options": []],
+            ["expanded": false, "value": "Model", "options": []],
         ],
         [
-            ["expanded": false, "value": "select", "options": []]
+            ["expanded": false, "value": "Product", "options": []]
         ],
     ]
     
@@ -123,28 +123,38 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.cells[activeIndex][section]["expanded"] == false || (self.cells[activeIndex][section]["options"] as! NSArray).count == 0) {
-            return 1
+        if let expand_array = self.cells[activeIndex][section]["options"] as? NSArray {
+            if let expanded = self.cells[activeIndex][section]["expanded"] as? Bool {
+                if expand_array.count > 0 && expanded {
+                    return expand_array.count + 1
+                }
+            }
         }
-        return (self.cells[activeIndex][section]["options"] as! NSArray).count
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
-            let cell = UITableViewCell()
-            cell.textLabel!.text = "Select One"
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("searchHeader") as! SearchOptionsHeaderCell
+            cell.selectedOption.text = self.cells[activeIndex][indexPath.section]["value"] as? String
             return cell
         } else {
-            let cell = UITableViewCell()
-            cell.textLabel!.text = (self.cells[activeIndex][indexPath.section]["options"] as! NSArray)[indexPath.row] as? String
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
+            cell.optionLabel.text = (self.cells[activeIndex][indexPath.section]["options"] as! NSArray)[indexPath.row-1] as? String
             return cell
         }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.section)
-        
         if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
+            print(expanded)
+            if expanded && indexPath.row > 0 {
+                if let options = self.cells[activeIndex][indexPath.section]["options"] as? NSArray {
+                    if options.count > 0 {
+                         self.cells[activeIndex][indexPath.section]["value"] = options[indexPath.row-1] as! String
+                    }
+                }
+            }
             self.cells[activeIndex][indexPath.section]["expanded"] = !expanded
         }
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)

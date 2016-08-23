@@ -14,6 +14,7 @@
 		3C9D321A1D5E53520099BC50 /* Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D32191D5E53520099BC50 /* Singleton.swift */; };
 		3C9D321C1D5E58430099BC50 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9D321B1D5E58430099BC50 /* User.swift */; };
 		3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */; };
+		3CA7B8151D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7B8141D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift */; };
 		3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */; };
 		3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */; };
 		3CBD9F9D1D61429300C2FEE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9F9C1D61429300C2FEE2 /* Constants.swift */; };
@@ -79,6 +80,7 @@
 		3C9D32191D5E53520099BC50 /* Singleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Singleton.swift; sourceTree = "<group>"; };
 		3C9D321B1D5E58430099BC50 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		3CA7B8141D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchOptionsHeaderCell.swift; sourceTree = "<group>"; };
 		3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 		3CB72D551D5D22230012FAA4 /* CustomizePopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizePopup.swift; sourceTree = "<group>"; };
 		3CBD9F9C1D61429300C2FEE2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */,
+				3CA7B8141D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift */,
 				3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */,
 				3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */,
 				90EA321E1D3E989E0066B281 /* SelectorTableViewCell.swift */,
@@ -526,6 +529,7 @@
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */,
 				90B5A1E61D669F0300D75390 /* utils.swift in Sources */,
+				3CA7B8151D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift in Sources */,
 				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
 				901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
