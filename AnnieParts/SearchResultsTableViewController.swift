@@ -14,7 +14,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
 
     var searchParameters = [String: Int]()
     let cache = Shared.imageCache
-    private var catalogData: [Product]!
+    private var catalogData: [Product]! = []
     private var noResultsFound = false
     
     var searchIDs: [String: Int]!
@@ -22,8 +22,12 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
     override func viewDidLoad() {
-//        self.tableView.rowHeight = UITableViewAutomaticDimension
-//        self.tableView.estimatedRowHeight = 120
+        super.viewDidLoad()
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+        
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
         self.tableView.separatorStyle = .None
         self.navigationController?.addSideMenuButton()
@@ -33,7 +37,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         initializeActivityIndicator()
         loadData()
         initializeRefreshControl()
-        super.viewDidLoad()
+        
     }
     func initializeActivityIndicator() {
         loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
@@ -176,7 +180,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             }
             
             cell.manufacturer.text = getMake(product.brandId)
-            print(self.getModels(product.modelIDlist))
             cell.models.text = self.convertModelsToPresent(self.getModels(product.modelIDlist))
             
             cell.serialNumber.text = product.serialNumber
@@ -184,7 +187,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
             cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
-            
             return cell
         }
 
