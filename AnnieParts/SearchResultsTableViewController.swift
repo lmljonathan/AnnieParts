@@ -21,10 +21,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     var vehicleData: vehicle!
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        self.tableView.reloadData()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -32,12 +28,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
-        
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
-        self.tableView.separatorStyle = .None
-        self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
-        
+
+        configureTableView(self.tableView)
+        configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         createSearchParameters()
         initializeActivityIndicator()
         loadData()
@@ -77,7 +71,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
     }
     func loadData() {
-        self.tableView.separatorStyle = .None
         self.loadingIndicator.bringSubviewToFront(self.view)
         self.loadingIndicator.startAnimating()
         self.catalogData.removeAll()
@@ -89,7 +82,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
                     let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
                     let sn = product[CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
-                    let make = String(product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int)
+                    let make = product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int
                     let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
                     
@@ -112,53 +105,17 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     self.noResultsFound = false
                 }
                 self.loadingIndicator.stopAnimating()
-                self.tableView.separatorStyle = .SingleLine
+                self.title = String(self.catalogData.count) + " Results"
                 self.tableView.reloadData()
 
             }
         }
-    }
-    
-    private func getMake(id: String) -> String{
-        let id: Int! = Int(id)!
-        let index = vehicleData.makeIDs.indexOf(id)
-        
-        return vehicleData.make[index!]
-    }
-    
-    private func getModel(id: String) -> String{
-        let id: Int! = Int(id)!
-        let index = vehicleData.allModelIDs.indexOf(id)
-        
-        return vehicleData.allModel[index!]
-    }
-    
-    private func getModels(idArray: [Int]) -> [String]{
-        var result: [String] = []
-        for id in idArray{
-            result.append(self.getModel(String(id)))
-        }
-        return result
-    }
-    
-    private func convertModelsToPresent(models: [String]) -> String{
-        var result = ""
-        for model in models {
-            result += model + ", "
-        }
-        return result
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.noResultsFound) {
             return 1
@@ -183,10 +140,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             }else{
                 cell.year.text = "No Years Specified"
             }
-            
             cell.manufacturer.text = getMake(product.brandId)
-            cell.models.text = self.convertModelsToPresent(self.getModels(product.modelIDlist))
-            
+            cell.models.text = getListOfModels(product.modelIDlist)
             cell.serialNumber.text = product.serialNumber
             let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
             cell.loadImage(url)
@@ -219,10 +174,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
     }
     var selectedProductIndex: Int!
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    }
-    
     func addProductToCart(button: UIButton) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
@@ -233,7 +184,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         vc.buttonString = CONSTANTS.ADD_TO_CART_LABEL
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
-    
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
     }

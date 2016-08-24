@@ -79,8 +79,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.addToCartButton.backgroundColor = UIColor.APred()
-        self.navigationController?.addSideMenuButton()
-        self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+        configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self, action: #selector(self.showShoppingCart))
         activeTab = aboutSelect
         
@@ -131,8 +130,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.priceLabel.text = "Not Listed"
         }
         
-        self.makeLabel.text = self.getMake(product.brandId)
-        self.modelLabel.text = self.convertModelsToPresent(self.getModels(product.modelIDlist))
+        self.makeLabel.text = getMake(product.brandId)
+        self.modelLabel.text = getListOfModels(product.modelIDlist)
         
         if product.startYear != "0" && product.endYear != "0"{
             self.yearLabel.text = product.startYear + "-" + product.endYear
@@ -161,6 +160,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             }
         }else{
             self.addToCart()
+            self.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                vc.delayDismiss(0.3)
+            })
         }
     }
     
@@ -342,36 +344,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.fixWidthOfInnerQTY()
             self.exitQtyEditMode()
         }
-    }
-    
-    private func getMake(id: String) -> String{
-        let id: Int! = Int(id)!
-        let index = vehicleData.makeIDs.indexOf(id)
-        
-        return vehicleData.make[index!]
-    }
-    
-    private func getModel(id: String) -> String{
-        let id: Int! = Int(id)!
-        let index = vehicleData.allModelIDs.indexOf(id)
-        
-        return vehicleData.allModel[index!]
-    }
-    
-    private func getModels(idArray: [Int]) -> [String]{
-        var result: [String] = []
-        for id in idArray{
-            result.append(self.getModel(String(id)))
-        }
-        return result
-    }
-    
-    private func convertModelsToPresent(models: [String]) -> String{
-        var result = ""
-        for model in models{
-            result += model + ", "
-        }
-        return result
     }
     func showShoppingCart() {
         self.performSegueWithIdentifier("showCart", sender: self)

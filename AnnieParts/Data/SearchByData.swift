@@ -9,28 +9,56 @@
 import Foundation
 
 struct brand{
-    var options: [String]! = []
-    var optionsIDs: [Int]! = []
+    static var options: [String]! = []
+    static var optionsIDs: [Int]! = []
 }
 struct vehicle{
-    var year: [String!] = []
-    var yearIDs: [Int]! = []
+    static var year: [String!] = []
+    static var yearIDs: [Int]! = []
     
-    var make: [String]! = []
-    var makeIDs: [Int]! = []
+    static var make: [String]! = []
+    static var makeIDs: [Int]! = []
     
     // Stores all models retrieved by server
-    var allModel: [String]! = []
-    var allModelIDs: [Int]! = []
-    var allModelPIDs: [Int]! = []
+    static var allModel: [String]! = []
+    static var allModelIDs: [Int]! = []
+    static var allModelPIDs: [Int]! = []
     
     // Stores only models who match PID of make selected
-    var model: [String]! = []
-    var modelIDs: [Int]! = []
-    var modelPIDs: [Int]! = []
+    static var model: [String]! = []
+    static var modelIDs: [Int]! = []
 }
 
 struct product{
-    var products: [String]! = []
-    var productsIDs: [Int]! = []
+    static var products: [String]! = []
+    static var productsIDs: [Int]! = []
+}
+
+func getMake(id: Int) -> String {
+    let index = vehicle.makeIDs.indexOf(id)
+    return vehicle.make[index!] ?? ""
+}
+func getModel(id: Int) -> String {
+    let index = vehicle.allModelIDs.indexOf(id)
+    return vehicle.allModel[index!] ?? ""
+}
+func getListOfModels(model_ids: [Int]) -> String {
+    var model_string = ""
+    for id in model_ids {
+        model_string += getModel(id) + ", "
+    }
+    return model_string
+}
+func configureModelList(selectedMake: String) {
+    vehicle.model.removeAll()
+    vehicle.modelIDs.removeAll()
+    let indexOfMake = vehicle.make.indexOf(selectedMake)
+    let make_PID = vehicle.makeIDs[indexOfMake!]
+    for index in 0...vehicle.allModelPIDs.count-1 {
+        let pid = vehicle.allModelPIDs[index]
+        if pid == make_PID {
+            vehicle.model.append(vehicle.allModel[index])
+            vehicle.modelIDs.append(vehicle.allModelIDs[index])
+        }
+    }
 }

@@ -15,7 +15,7 @@ class Product {
     private var _imagePath: String!
     private var _startYear: String!
     private var _endYear: String!
-    private var _brandID: String!
+    private var _brandID: Int!
     private var _price: Double!
     private var _modelID: Int!
     private var _modelIDlist: [Int]!
@@ -38,7 +38,7 @@ class Product {
     var endYear: String {
         return self._endYear
     }
-    var brandId: String {
+    var brandId: Int {
         return self._brandID
     }
     var price: Double {
@@ -53,7 +53,7 @@ class Product {
         return self._modelIDlist
     }
     
-    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double, modelID: Int, modelIDlist: [Int]) {
+    init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: Int, price: Double, modelID: Int, modelIDlist: [Int]) {
         self._productID = productID
         self._productName = productName
         self._imagePath = image
@@ -71,7 +71,7 @@ class ShoppingCart: Product {
     var quantity: Int {
         return self._quantity
     }
-    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: String, price: Double, quantity: Int, modelID: Int, modelIDlist: [Int]!) {
+    init (productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: Int, price: Double, quantity: Int, modelID: Int, modelIDlist: [Int]!) {
         super.init(productID: productID, productName: productName, image: image, serialNumber: serialNumber, startYear: startYear, endYear: endYear, brandID: brandID, price: price, modelID: modelID, modelIDlist: modelIDlist)
         self._quantity = quantity
     }

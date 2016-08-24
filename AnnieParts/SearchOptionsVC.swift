@@ -9,11 +9,7 @@
 import UIKit
 import DropDown
 
-protocol PassBackOptionDelegate {
-    func selectOption(sender: SelectorTableViewCell, option: String)
-}
-
-class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, PassBackOptionDelegate {
+class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - IB Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -26,9 +22,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func performSearch(sender: AnyObject) {
         func getIDs() -> [String: Int]{
-            let dataDict = [[brandData.options], [vehicleData.year, vehicleData.make, vehicleData.model], [productData.products]]
-            let idDict = [[brandData.optionsIDs], [vehicleData.yearIDs, vehicleData.makeIDs, vehicleData.modelIDs], [productData.productsIDs]]
-
+            let dataDict = [[brand.options], [vehicle.year, vehicle.make, vehicle.model], [product.products]]
+            let idDict = [[brand.optionsIDs], [vehicle.yearIDs, vehicle.makeIDs, vehicle.modelIDs], [product.productsIDs]]
             var result: [String: Int]! = [:]
             for (index, option) in self.selectedOptions[activeIndex].enumerate(){
                 let optionIndex = ((dataDict[activeIndex])[index]).indexOfObject(option)
@@ -41,9 +36,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     // MARK: - Variables
     private var data = CONSTANTS.SEARCH_OPTIONS
-    private var brandData = brand()
-    private var vehicleData = vehicle()
-    private var productData = product()
     private var activeIndex = 0
     private var searchIDs: [String: Int]!
     private var selectedOptions = [[""], ["", "", ""], [""]]
@@ -63,7 +55,9 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             ["expanded": false, "value": "SELECT ONE", "options": []]
         ],
     ]
-    
+
+
+
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,43 +66,40 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.sectionHeaderHeight = 0
         self.tableView.sectionFooterHeight = 0
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        
         self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
-        let options = [oneView: CONSTANTS.SEARCH_OPTION_VIEWS[0], twoView: CONSTANTS.SEARCH_OPTION_VIEWS[1], threeView: CONSTANTS.SEARCH_OPTION_VIEWS[2]]
-        for view in options.keys{
-            self.addTapGR(view, action: Selector(options[view]!))
-        }
+        self.configureTabs()
+
         get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
                 for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] as! NSArray){
-                    self.brandData.optionsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
-                    self.brandData.options.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
+                    brand.optionsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    brand.options.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                 }
                 for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_TYPES] as! NSArray){
-                    self.productData.productsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
-                    self.productData.products.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
+                    product.productsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    product.products.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                 }
                 for dict in (json![CONSTANTS.JSON_KEYS.YEAR_LIST] as! NSArray){
-                    self.vehicleData.yearIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
-                    self.vehicleData.year.append(String(dict[CONSTANTS.JSON_KEYS.NAME] as! Int))
+                    vehicle.yearIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    vehicle.year.append(String(dict[CONSTANTS.JSON_KEYS.NAME] as! Int))
                 }
                 
                 for dict in (json![CONSTANTS.JSON_KEYS.MANUFACTURERS_LIST] as! NSArray){
-                    self.vehicleData.makeIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
-                    self.vehicleData.make.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
+                    vehicle.makeIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    vehicle.make.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                 }
                 
                 for dict in (json![CONSTANTS.JSON_KEYS.MODEL_LIST] as! NSArray){
-                    self.vehicleData.allModelIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
-                    self.vehicleData.allModel.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
-                    self.vehicleData.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
+                    vehicle.allModelIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
+                    vehicle.allModel.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
+                    vehicle.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
                 }
-                self.cells[0][0]["options"] = self.brandData.options
-                self.cells[1][0]["options"] = self.vehicleData.year
-                self.cells[1][1]["options"] = self.vehicleData.make
-                self.cells[1][2]["options"] = self.vehicleData.model
-                self.cells[2][0]["options"] = self.productData.products
+                self.cells[0][0]["options"] = brand.options
+                self.cells[1][0]["options"] = vehicle.year
+                self.cells[1][1]["options"] = vehicle.make
+                self.cells[1][2]["options"] = vehicle.allModel
+                self.cells[2][0]["options"] = product.products
                 self.tableView.reloadData()
             }
         }
@@ -171,16 +162,19 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
-    {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (indexPath.row == 0){
             return 50.0
-        }else{
-            return 40.0
         }
+        return 40.0
     }
     
     // MARK: - Main Functions
+    func configureTabs() {
+        self.oneView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(searchByBrand)))
+        self.twoView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(searchByCar)))
+        self.threeView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(searchByProduct)))
+    }
     func searchByBrand(gr: UITapGestureRecognizer){
         self.selectTab(0)
         self.tableView.reloadData()
@@ -200,72 +194,40 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private func selectTab(index: Int){
         let tabViews = [oneView, twoView, threeView]
         for x in 0..<3{
-            if x != index{
-                (tabViews[x]).backgroundColor = UIColor.APmediumGray()
-            }else{
-                (tabViews[x]).backgroundColor = UIColor.APred()
+            if x == index {
+                tabViews[x].backgroundColor = UIColor.APred()
+            } else {
+                tabViews[x].backgroundColor = UIColor.APmediumGray()
             }
         }
         self.activeIndex = index
         self.checkSelectedOptions()
-        print("selected tab index", index)
     }
-    
-    private func addTapGR(view: UIView, action: Selector){
-        let gr = UITapGestureRecognizer(target: self, action: action)
-        view.addGestureRecognizer(gr)
-    }
-    
-    // MARK: - Get data selected by selector
-    func selectOption(sender: SelectorTableViewCell, option: String) {
-        switch sender.titleLabel.text! {
-        case "BRAND":
-            (self.selectedOptions[0])[0] = option
-        case "YEAR":
-            (self.selectedOptions[1])[0] = option
-        case "MAKE":
-            if (self.selectedOptions[1])[1] != option{
-                (self.selectedOptions[1])[1] = option
-                let modelCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SelectorTableViewCell
-                self.configureModels(option)
-                modelCell.selectLabel.text = "Select One"
-                modelCell.enable()
-                
-                // Clears model
-                (self.selectedOptions[1])[2] = ""
-            }
-        case "MODEL":
-            (self.selectedOptions[1])[2] = option
-        case "PRODUCT TYPE":
-            (self.selectedOptions[2])[0] = option
-        default:
-            break
-        }
-        checkSelectedOptions()
-    }
-    
     private func checkSelectedOptions(){
         switch activeIndex {
         case 0:
-            if self.selectedOptions[0] != [""]{
+            if (!self.selectedOptions[0][0].isEmpty) {
                 self.searchButton.enable(UIColor.APred())
             }else{
                 self.searchButton.disable()
             }
         case 1:
-            
-            if (self.selectedOptions[1])[1] != ""{
-                self.configureModels((self.selectedOptions[1])[1])
+            self.searchButton.disable()
+            for option in self.selectedOptions[1] {
+                if (!option.isEmpty) {
+                    self.searchButton.enable(UIColor.APred())
+                    break
+                }
             }
-            if (self.selectedOptions[1])[0] != "" && (self.selectedOptions[1])[1] != "" && (self.selectedOptions[1])[2] != ""{
-                self.searchButton.enable(UIColor.APred())
-            }else{
-                self.searchButton.disable()
+            if (!self.selectedOptions[1][1].isEmpty) {
+                configureModelList((self.selectedOptions[1])[1])
+                self.cells[activeIndex][2]["options"] = vehicle.model
             }
-            
-            
+            if (!self.selectedOptions[1][0].isEmpty && !self.selectedOptions[1][1].isEmpty) {
+                self.cells[activeIndex][2]["options"] = vehicle.allModel
+            }
         case 2:
-            if self.selectedOptions[2] != [""]{
+            if (!self.selectedOptions[2][0].isEmpty) {
                 self.searchButton.enable(UIColor.APred())
             }else{
                 self.searchButton.disable()
@@ -274,49 +236,10 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             break
         }
     }
-    
-    private func configureModels(selectedMake: String){
-        func getID() -> Int{
-            let optionIndex = vehicleData.make.indexOf(selectedMake)
-            return vehicleData.makeIDs[optionIndex!]
-        }
-        
-        func getIDOfModel(model: String) -> Int{
-            let index = vehicleData.allModel.indexOf(model)
-            return vehicleData.allModelIDs[index!]
-        }
-        
-        // Get ID of selected make
-        let pid = getID()
-        
-        // Clears vehicleData of current models
-        vehicleData.model.removeAll()
-        vehicleData.modelIDs.removeAll()
-        vehicleData.modelPIDs.removeAll()
-        
-        // Add new data
-        var resultIndexes: [Int]! = []
-        for (index, id) in vehicleData.allModelPIDs.enumerate(){
-            if id == pid{
-                resultIndexes.append(index)
-                vehicleData.modelPIDs.append(id)
-            }
-        }
-        for index in resultIndexes{
-            vehicleData.model.append(self.vehicleData.allModel[index])
-        }
-        for model in vehicleData.model{
-            vehicleData.modelIDs.append(getIDOfModel(model))
-        }
-        self.cells[activeIndex][2]["options"] = self.vehicleData.model
-        self.tableView.reloadData()
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             destVC.searchIDs = self.searchIDs
-            destVC.vehicleData = self.vehicleData
         }
     }
 }

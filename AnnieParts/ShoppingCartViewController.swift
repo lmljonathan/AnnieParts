@@ -14,7 +14,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var checkoutButton: UIButton!
     @IBOutlet weak var subtotal: UILabel!
-    private var shoppingCart: [ShoppingCart]!
+    private var shoppingCart: [ShoppingCart]! = []
     private var updatedItem: Int!
     var viewFromNavButton = true
     
@@ -29,28 +29,21 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         
         self.checkoutButton.backgroundColor = UIColor.APred()
-        self.navigationController?.addSideMenuButton()
         if (self.viewFromNavButton) {
-            self.navigationItem.leftBarButtonItems?.insert(UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: self.navigationController, action: #selector(self.navigationController?.popViewControllerAnimated(_:))), atIndex:0)
+            configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
             viewFromNavButton = false
         } else {
-            
-            if self.navigationItem.leftBarButtonItems?.count == 3 {
-                self.navigationItem.leftBarButtonItems?.removeAtIndex(0)
-            }
-        }
-        if self.shoppingCart == nil {
-            self.shoppingCart = []
+            removeNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        MySingleton.sharedInstance.configureTableViewScroll(self.tableView)
+        configureTableView(self.tableView)
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
         loadData()
-        calculateSubtotal()
+
         super.viewDidLoad()
     }
     func calculateSubtotal() {
@@ -70,7 +63,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let id = product[CONSTANTS.JSON_KEYS.ID] as! String
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
                     let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
-                    let make = String(product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int)
+                    let make = product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int
                     let sn = product[CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
                     let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
                     let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
@@ -82,8 +75,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     
                     self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist))
                     
-                    
+
                 }
+                self.calculateSubtotal()
                 self.tableView.reloadData()
             }
         }
