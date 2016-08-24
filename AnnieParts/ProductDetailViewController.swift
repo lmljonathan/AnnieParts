@@ -100,21 +100,18 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
     }
     func loadData(){
-        get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in            let brief_description = json!["brief"] as! String
-            
-            print(json)
+        get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
+
+            let brief_description = json!["brief"] as! String
             let description = json!["desc"] as! String
-            
-            if let x = json!["thumb_url"] as? [String]{
-                self.imagePaths = x
+            if let imgpaths = json!["thumb_url"] as? [String]{
+                self.imagePaths = imgpaths
             }
-            
             self.videoPaths = json!["video"] as! [String]
             self.installPaths = json!["ins"] as! [String]
             
             self.shortDescription.text = brief_description
             self.aboutString = description
-            
             if (self.imagePaths != nil){
                 self.loadImages(self.imagePaths!, scrollView: self.imageCaroselScrollView)
             }

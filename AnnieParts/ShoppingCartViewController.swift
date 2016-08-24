@@ -23,12 +23,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.updatedItem = -1
     }
     
-    override func viewDidDisappear(animated: Bool) {
-    }
-    
     override func viewDidLoad() {
-        
-        self.checkoutButton.backgroundColor = UIColor.APred()
+        if (User.userRank == 1) {
+            self.subtotal.hidden = true
+        }
         if (self.viewFromNavButton) {
             configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
             viewFromNavButton = false
@@ -38,15 +36,17 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.dataSource = self
         configureTableView(self.tableView)
+
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
-        loadData()
 
+        loadData()
         super.viewDidLoad()
     }
     func calculateSubtotal() {
+        print("hello")
         var subtotal = 0.0
         for product in self.shoppingCart {
             subtotal += product.price * Double(product.quantity)
@@ -56,9 +56,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
     }
     func loadData() {
+        print("load Data")
         self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
+                print("array")
                 for product in products {
                     let id = product[CONSTANTS.JSON_KEYS.ID] as! String
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
@@ -77,9 +79,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     
 
                 }
-                self.calculateSubtotal()
+
                 self.tableView.reloadData()
             }
+            print("calculate")
+            self.calculateSubtotal()
         }
     }
     override func didReceiveMemoryWarning() {
@@ -101,6 +105,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         cell.quantityLabel.text = String(product.quantity)
         cell.serialNumber.text = product.serialNumber
+        if (User.userRank == 1) {
+            cell.priceLabel.hidden = true
+        }
         cell.priceLabel.text = "$" + String(format: "%.2f", product.price)
         
         
