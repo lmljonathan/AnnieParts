@@ -147,7 +147,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         for url in urlArray{
             scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
         }
-        scrollView.auk.startAutoScroll(delaySeconds: 0.5)
+        scrollView.auk.startAutoScroll(delaySeconds: 3)
     }
     @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
         performSegueWithIdentifier(CONSTANTS.SEGUES.IMAGE_ZOOM, sender: self)

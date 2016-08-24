@@ -49,12 +49,24 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         self.tableView.sectionHeaderHeight = 0
         self.tableView.sectionFooterHeight = 0
-        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.tableView.tableFooterView = UIView()
         self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
 
         get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
+                brand.options.removeAll()
+                vehicle.year.removeAll()
+                vehicle.make.removeAll()
+                vehicle.allModel.removeAll()
+                product.products.removeAll()
+
+                brand.optionsIDs.removeAll()
+                vehicle.yearIDs.removeAll()
+                vehicle.makeIDs.removeAll()
+                vehicle.modelIDs.removeAll()
+                product.productsIDs.removeAll()
+
                 for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] as! NSArray){
                     brand.optionsIDs.append(dict[CONSTANTS.JSON_KEYS.ID] as! Int)
                     brand.options.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
@@ -106,6 +118,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.cells[activeIndex][section].options.count > 0 && self.cells[activeIndex][section].expanded {
+            print(self.cells[activeIndex][section].options.count + 1)
             return self.cells[activeIndex][section].options.count + 1
         }
         return 1
@@ -129,10 +142,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
         let expanded = self.cells[activeIndex][indexPath.section].expanded
         let options = self.cells[activeIndex][indexPath.section].options
         let option_ids = self.cells[activeIndex][indexPath.section].option_ids
+
+        self.cells[activeIndex][indexPath.section].expanded = !expanded
         if expanded && indexPath.row > 0 {
             if options.count > 0 {
                 self.cells[activeIndex][indexPath.section].value = (options[indexPath.row-1] as? String)!
@@ -143,9 +157,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.selectedIDs[activeIndex][indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
             }
         }
-        self.cells[activeIndex][indexPath.section].expanded = !expanded
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
-        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -165,12 +177,10 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.selectTab(0)
         self.tableView.reloadData()
     }
-    
     func searchByCar(){
         self.selectTab(1)
         self.tableView.reloadData()
     }
-    
     func searchByProduct(){
         self.selectTab(2)
         self.tableView.reloadData()
