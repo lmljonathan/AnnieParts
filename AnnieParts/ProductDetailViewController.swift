@@ -143,10 +143,10 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     private func loadImages(urlArray: [String], scrollView: UIScrollView){
-        
+
         scrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
         scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
-        scrollView.auk.settings.contentMode = .ScaleAspectFill
+        scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
             scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
         }
