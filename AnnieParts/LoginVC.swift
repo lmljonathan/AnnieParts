@@ -67,27 +67,28 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func performLogin(){
         self.loginButton.enabled = false
         if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
-
-            self.showLoadingView("Logging In", bgColor: .whiteColor(), completion: { (loadingVC) in
-                login(self.username.text!, password: self.password.text!, completion: { (json) in
-                    if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
-                        if status == 1 {
-                            if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
-                                User.setUserRank(rank)
-                            }
-                            if let username = json![CONSTANTS.JSON_KEYS.USERNAME] as? String {
-                                User.username = username
-                            }
-                            if let companyname = json![CONSTANTS.JSON_KEYS.COMPANY_NAME] as? String {
-                                User.companyName = companyname
-                            }
-                            self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
+            login(self.username.text!, password: self.password.text!, completion: { (json) in
+                if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
+                    if status == 1 {
+                        if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
+                            User.setUserRank(rank)
                         }
-                        else {}
+                        if let username = json![CONSTANTS.JSON_KEYS.USERNAME] as? String {
+                            User.username = username
+                        }
+                        if let companyname = json![CONSTANTS.JSON_KEYS.COMPANY_NAME] as? String {
+                            User.companyName = companyname
+                        }
+                        self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                     }
-                    loadingVC.dismissViewControllerAnimated(true, completion: nil)
-                })
+                    else {
+                        self.username.layer.shake()
+                        self.password.layer.shake()
+                    }
+                }
+
             })
+
         }
         else {
             print("username or password field empty")
