@@ -12,7 +12,6 @@ import Haneke
 
 class SearchResultsTableViewController: UITableViewController, AddProductModalView {
 
-    var searchParameters = [String: Int]()
     let cache = Shared.imageCache
     private var catalogData: [Product]! = []
     private var noResultsFound = false
@@ -23,6 +22,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.searchIDs)
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         
@@ -32,7 +32,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
 
         configureTableView(self.tableView)
         configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
-        createSearchParameters()
         initializeActivityIndicator()
         loadData()
         initializeRefreshControl()
@@ -50,31 +49,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
     }
-    func createSearchParameters() {
-        if (self.catalogData == nil) {
-            self.catalogData = []
-        }
-        if let year = self.searchIDs["YEAR"] {
-            self.searchParameters[CONSTANTS.JSON_KEYS.YEAR] = year
-        }
-        if let brand = self.searchIDs["MAKE"] {
-            self.searchParameters[CONSTANTS.JSON_KEYS.MAKE] = brand
-        }
-        if let model = self.searchIDs["MODEL"] {
-            self.searchParameters[CONSTANTS.JSON_KEYS.MODEL] = model
-        }
-        if let attr = self.searchIDs["PRODUCT TYPE"] {
-            self.searchParameters[CONSTANTS.JSON_KEYS.PRODUCT_TYPE] = attr
-        }
-        if let pinpai = self.searchIDs["BRAND"] {
-            self.searchParameters[CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] = pinpai
-        }
-    }
     func loadData() {
         self.loadingIndicator.bringSubviewToFront(self.view)
         self.loadingIndicator.startAnimating()
         self.catalogData.removeAll()
-        get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchParameters) { (json) in
+        get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchIDs) { (json) in
             
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {

@@ -10,7 +10,7 @@ import Foundation
 
 struct CONSTANTS {
     static let USER_RANKS = [1: "browser", 2:"dealer(bronze)", 3: "dealer(silver)", 4: "dealer(gold)"]
-    static let SEARCH_OPTIONS = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT TYPE"]]
+    static let SEARCH_OPTIONS = [["pinpai"], ["year", "brand", "model"], ["attr"]]
     static let SEARCH_OPTION_VIEWS = ["searchByBrand:", "searchByCar:", "searchByProduct:"]
     static let ADD_TO_CART_LABEL = "Add to Cart"
     static let UPDATE_CART_LABEL = "Update"

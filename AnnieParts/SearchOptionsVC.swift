@@ -8,7 +8,18 @@
 
 import UIKit
 import DropDown
-
+struct Cell {
+    var expanded: Bool
+    var value: String
+    var options: NSArray
+    var option_ids: NSArray
+    init() {
+        expanded = false
+        value = "SELECT ONE"
+        options = []
+        option_ids = []
+    }
+}
 class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - IB Outlets
@@ -21,42 +32,15 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBOutlet var cartNavButton: UIBarButtonItem!
     
     @IBAction func performSearch(sender: AnyObject) {
-        func getIDs() -> [String: Int]{
-            let dataDict = [[brand.options], [vehicle.year, vehicle.make, vehicle.model], [product.products]]
-            let idDict = [[brand.optionsIDs], [vehicle.yearIDs, vehicle.makeIDs, vehicle.modelIDs], [product.productsIDs]]
-            var result: [String: Int]! = [:]
-            for (index, option) in self.selectedOptions[activeIndex].enumerate(){
-                let optionIndex = ((dataDict[activeIndex])[index]).indexOfObject(option)
-                result[(data[activeIndex])[index]] = ((idDict[activeIndex])[index])[optionIndex]
-            }
-            return result
-        }
-        self.searchIDs = getIDs()
+
         self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
     }
     // MARK: - Variables
-    private var data = CONSTANTS.SEARCH_OPTIONS
     private var activeIndex = 0
-    private var searchIDs: [String: Int]!
     private var selectedOptions = [[""], ["", "", ""], [""]]
+    private var selectedIDs = [[0], [0, 0, 0], [0]]
     private var sectionTitles: [[String]]! = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT"]]
-    
-    private var expandedRows: Int = 1
-    private var cells = [
-        [
-            ["expanded": false, "value": "SELECT ONE", "options": []]
-        ],
-        [
-            ["expanded": false, "value": "SELECT ONE", "options": []],
-            ["expanded": false, "value": "SELECT ONE", "options": []],
-            ["expanded": false, "value": "SELECT ONE", "options": []],
-        ],
-        [
-            ["expanded": false, "value": "SELECT ONE", "options": []]
-        ],
-    ]
-
-
+    private var cells = [[Cell()], [Cell(), Cell(), Cell()], [Cell()]]
 
     // MARK: - View Loading Functions
     override func viewDidLoad() {
@@ -69,7 +53,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
 
-        
         get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
                 for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] as! NSArray){
@@ -95,11 +78,17 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     vehicle.allModel.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                     vehicle.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
                 }
-                self.cells[0][0]["options"] = brand.options
-                self.cells[1][0]["options"] = vehicle.year
-                self.cells[1][1]["options"] = vehicle.make
-                self.cells[1][2]["options"] = vehicle.allModel
-                self.cells[2][0]["options"] = product.products
+                self.cells[0][0].options = brand.options
+                self.cells[1][0].options = vehicle.year
+                self.cells[1][1].options = vehicle.make
+                self.cells[1][2].options = vehicle.allModel
+                self.cells[2][0].options = product.products
+
+                self.cells[0][0].option_ids = brand.optionsIDs
+                self.cells[1][0].option_ids = vehicle.yearIDs
+                self.cells[1][1].option_ids = vehicle.makeIDs
+                self.cells[1][2].option_ids = vehicle.modelIDs
+                self.cells[2][0].option_ids = product.productsIDs
                 self.tableView.reloadData()
             }
         }
@@ -116,12 +105,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return self.sectionTitles[activeIndex][section]
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let expand_array = self.cells[activeIndex][section]["options"] as? NSArray {
-            if let expanded = self.cells[activeIndex][section]["expanded"] as? Bool {
-                if expand_array.count > 0 && expanded {
-                    return expand_array.count + 1
-                }
-            }
+        if self.cells[activeIndex][section].options.count > 0 && self.cells[activeIndex][section].expanded {
+            return self.cells[activeIndex][section].options.count + 1
         }
         return 1
     }
@@ -129,35 +114,32 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("searchHeader") as! SearchOptionsHeaderCell
-            if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
-                if expanded {
-                    cell.expandedSymbol.text = "-"
-                } else {
-                    cell.expandedSymbol.text = "+"
-                }
+            if self.cells[activeIndex][indexPath.section].expanded {
+                cell.expandedSymbol.text = "-"
+            } else {
+                cell.expandedSymbol.text = "+"
             }
-            cell.selectedOption.text = self.cells[activeIndex][indexPath.section]["value"] as? String
+            cell.selectedOption.text = self.cells[activeIndex][indexPath.section].value
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
-            cell.optionLabel.text = (self.cells[activeIndex][indexPath.section]["options"] as! NSArray)[indexPath.row-1] as? String
+            cell.optionLabel.text = self.cells[activeIndex][indexPath.section].options[indexPath.row-1] as? String
             return cell
         }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let expanded = self.cells[activeIndex][indexPath.section]["expanded"] as? Bool {
-            if expanded && indexPath.row > 0 {
-                if let options = self.cells[activeIndex][indexPath.section]["options"] as? NSArray {
-                    if options.count > 0 {
-                        self.cells[activeIndex][indexPath.section]["value"] = options[indexPath.row-1] as! String
-                        self.selectedOptions[activeIndex][indexPath.section] = options[indexPath.row-1] as! String
-                        checkSelectedOptions()
-                    }
-                }
+        if self.cells[activeIndex][indexPath.section].expanded && indexPath.row > 0 {
+            if self.cells[activeIndex][indexPath.section].options.count > 0 {
+                self.cells[activeIndex][indexPath.section].value = (self.cells[activeIndex][indexPath.section].options[indexPath.row-1] as? String)!
+                self.selectedOptions[activeIndex][indexPath.section] = (self.cells[activeIndex][indexPath.section].options[indexPath.row-1] as? String)!
+                checkSelectedOptions()
             }
-            self.cells[activeIndex][indexPath.section]["expanded"] = !expanded
+            if self.cells[activeIndex][indexPath.section].option_ids.count > 0 {
+                self.selectedIDs[activeIndex][indexPath.section] = (self.cells[activeIndex][indexPath.section].option_ids[indexPath.row-1] as? Int)!
+            }
         }
+        self.cells[activeIndex][indexPath.section].expanded = !self.cells[activeIndex][indexPath.section].expanded
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
         
     }
@@ -189,8 +171,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.selectTab(2)
         self.tableView.reloadData()
     }
-    
-    
     private func selectTab(index: Int){
         let tabViews = [oneView, twoView, threeView]
         for x in 0..<3{
@@ -221,10 +201,12 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             if (!self.selectedOptions[1][1].isEmpty) {
                 configureModelList((self.selectedOptions[1])[1])
-                self.cells[activeIndex][2]["options"] = vehicle.model
+                self.cells[activeIndex][2].options = vehicle.model
+                self.cells[activeIndex][2].option_ids = vehicle.modelIDs
             }
             if (!self.selectedOptions[1][0].isEmpty && !self.selectedOptions[1][1].isEmpty) {
-                self.cells[activeIndex][2]["options"] = vehicle.allModel
+                self.cells[activeIndex][2].options = vehicle.allModel
+                self.cells[activeIndex][2].option_ids = vehicle.allModelIDs
             }
         case 2:
             if (!self.selectedOptions[2][0].isEmpty) {
@@ -239,7 +221,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
-            destVC.searchIDs = self.searchIDs
+            var result: [String: Int]! = [:]
+            for (index, option) in self.selectedIDs[activeIndex].enumerate(){
+                result[CONSTANTS.SEARCH_OPTIONS[activeIndex][index]] = option
+            }
+            destVC.searchIDs = result
         }
     }
 }
