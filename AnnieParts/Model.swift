@@ -8,6 +8,27 @@
 
 import Foundation
 
+struct User {
+    static var userRank = -1
+    static var username = ""
+    static var companyName = ""
+    static func setUserRank(rank: Int) {
+        if (rank < 1 || rank > 4) {
+            print("this rank does not exist")
+        }
+        else {
+            userRank = rank
+        }
+    }
+
+    static func getUserStatus() -> String {
+        if (userRank != -1) {
+            return CONSTANTS.USER_RANKS[userRank]!
+        }
+        return ""
+    }
+}
+
 class Product {
     private var _productID: String!
     private var _productName: String!

@@ -87,8 +87,8 @@ extension UIBarButtonItem{
     func addText(drawText: NSString, toImage: UIImage, atPoint:CGPoint) -> UIImage{
         
         // Setup the font specific variables
-        var textColor: UIColor = UIColor.redColor()
-        var textFont: UIFont = UIFont(name: "Helvetica Bold", size: 12)!
+        let textColor: UIColor = UIColor.redColor()
+        let textFont: UIFont = UIFont(name: "Helvetica Bold", size: 12)!
         
         //Setup the image context using the passed image.
         let scale = UIScreen.mainScreen().scale
@@ -112,13 +112,13 @@ extension UIBarButtonItem{
         toImage.drawInRect(CGRectMake(0, 0, toImage.size.width, toImage.size.height))
         
         // Creating a point within the space that is as bit as the image.
-        var rect: CGRect = CGRectMake(atPoint.x, atPoint.y, toImage.size.width, toImage.size.height)
+        let rect: CGRect = CGRectMake(atPoint.x, atPoint.y, toImage.size.width, toImage.size.height)
         
         //Now Draw the text into an image.
         drawText.drawInRect(rect, withAttributes: textFontAttributes)
         
         // Create a new image out of the images we have created
-        var newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         
         // End the context now that we have the image we need
         UIGraphicsEndImageContext()

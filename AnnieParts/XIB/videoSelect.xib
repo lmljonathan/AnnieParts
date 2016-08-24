@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -17,6 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pN0-if-nIK" id="6hw-lU-nck">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W2r-dG-qn2">
@@ -55,11 +57,11 @@
                         <exclude reference="awq-bg-rs6"/>
                     </mask>
                     <mask key="constraints">
+                        <exclude reference="Bqv-x4-FbL"/>
+                        <exclude reference="fDe-lz-STa"/>
                         <exclude reference="Uap-bh-d0P"/>
                         <exclude reference="bCS-Lj-QG7"/>
                         <exclude reference="i6V-DN-qHb"/>
-                        <exclude reference="Bqv-x4-FbL"/>
-                        <exclude reference="fDe-lz-STa"/>
                     </mask>
                 </variation>
                 <variation key="heightClass=regular-widthClass=compact">
@@ -68,11 +70,11 @@
                         <include reference="awq-bg-rs6"/>
                     </mask>
                     <mask key="constraints">
+                        <include reference="Bqv-x4-FbL"/>
+                        <include reference="fDe-lz-STa"/>
                         <include reference="Uap-bh-d0P"/>
                         <include reference="bCS-Lj-QG7"/>
                         <include reference="i6V-DN-qHb"/>
-                        <include reference="Bqv-x4-FbL"/>
-                        <include reference="fDe-lz-STa"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
