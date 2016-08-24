@@ -17,7 +17,7 @@ class SearchResultsCell: UITableViewCell {
     @IBOutlet weak var models: UILabel!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet var addButtonOver: UIButton!
+    @IBOutlet weak var addButtonOver: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

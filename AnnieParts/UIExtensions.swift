@@ -182,7 +182,7 @@ extension UIViewController{
         let vc = self.storyboard!.instantiateViewControllerWithIdentifier("notificationVC") as! NotificationDialogViewController
         vc.setImage = image
         vc.message = message
-        customPresentViewController(blurredPresentr(), viewController: vc, animated: true) {
+        customPresentViewController(notificationPresentr(), viewController: vc, animated: true) {
             completion(vc: vc)
         }
     }
@@ -192,7 +192,7 @@ extension UIViewController{
         let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
         loadingVC.message = message
         loadingVC.bgColor = bgColor
-        customPresentViewController(blurredPresentr(), viewController: loadingVC, animated: true) {
+        customPresentViewController(notificationPresentr(), viewController: loadingVC, animated: true) {
             completion(loadingVC: loadingVC)
         }
     }

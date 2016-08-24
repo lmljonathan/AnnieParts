@@ -111,7 +111,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
             
             let product = self.catalogData[indexPath.row]
-            cell.addButton.tag = indexPath.row
             cell.productName.text = product.productName
             
             if product.startYear != "0" && product.endYear != "0"{
@@ -154,12 +153,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     var selectedProductIndex: Int!
     func addProductToCart(button: UIButton) {
+        let buttonPosition = button.convertPoint(CGPointZero, toView: self.tableView)
+        let index = self.tableView.indexPathForRowAtPoint(buttonPosition)
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         
-        let product = self.catalogData[button.tag]
+        let product = self.catalogData[(index?.row)!]
         vc.name = product.productName
         vc.id = String(product.productID)
+        vc.sn = product.serialNumber
         vc.buttonString = CONSTANTS.ADD_TO_CART_LABEL
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }

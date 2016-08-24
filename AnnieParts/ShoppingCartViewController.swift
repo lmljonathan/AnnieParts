@@ -139,6 +139,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let item = self.shoppingCart[index!.row]
         vc.id = item.productID
         vc.name = item.productName
+        vc.sn = item.serialNumber
+        vc.quantity = item.quantity
         vc.buttonString = CONSTANTS.UPDATE_CART_LABEL
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }

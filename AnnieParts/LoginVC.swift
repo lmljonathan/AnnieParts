@@ -31,16 +31,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         
-        self.loginLayer.layer.borderWidth = 1.0
-        self.loginLayer.layer.borderColor = UIColor.whiteColor().CGColor
         self.navigationController?.navigationBarHidden = true
         self.username.delegate = self
         self.password.delegate = self
     }
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height * 3/4
+            if view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
             }
         }
     }
@@ -48,7 +46,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             if view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height * 3/4
+                self.view.frame.origin.y += keyboardSize.height
             }
         }
     }
@@ -80,19 +78,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             User.companyName = companyname
                         }
                         self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
-                    }
-                    else {
+                    } else {
                         self.username.layer.shake()
                         self.password.layer.shake()
                     }
                 }
-
             })
-
         }
         else {
             print("username or password field empty")
+            self.username.layer.shake()
+            self.password.layer.shake()
         }
+
         self.loginButton.enabled = true
     }
     
@@ -102,10 +100,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if view.frame.origin.y != 0{
             self.view.frame.origin.y = 0
         }
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        textField.selectedTextRange = textField.textRangeFromPosition(textField.beginningOfDocument, toPosition: textField.endOfDocument)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

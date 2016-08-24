@@ -15,17 +15,20 @@ func initializePresentr() -> Presentr {
     let center = ModalCenterPosition.TopCenter
     let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
     presenter.blurBackground = true
+    presenter.transitionType = .CrossDissolve
+    presenter.dismissTransitionType = .CrossDissolve
+    presenter.roundCorners = false
     
     return presenter
 }
 
-func blurredPresentr() -> Presentr {
+func notificationPresentr() -> Presentr {
     let width = ModalSize.Default
     let height = ModalSize.Default
     let center = ModalCenterPosition.Center
     let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
-    presenter.backgroundColor = UIColor.clearColor()
-    presenter.blurBackground = true
-    
+    presenter.backgroundOpacity = 0.1
+    presenter.transitionType = .CrossDissolve
+    presenter.dismissTransitionType = .CrossDissolve
     return presenter
 }
