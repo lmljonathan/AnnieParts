@@ -208,7 +208,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.cells[activeIndex][2].options = vehicle.model
                 self.cells[activeIndex][2].option_ids = vehicle.modelIDs
             }
-            if (!self.selectedOptions[activeIndex][0].isEmpty && !self.selectedOptions[1][1].isEmpty) {
+            else if (self.selectedOptions[activeIndex][0].isEmpty && self.selectedOptions[1][1].isEmpty) {
                 self.cells[activeIndex][2].options = vehicle.allModel
                 self.cells[activeIndex][2].option_ids = vehicle.allModelIDs
             }

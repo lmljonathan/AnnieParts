@@ -58,9 +58,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     var activeInfoView: Int! = 0
     
     // Data for the info views
-    var aboutString: String!
-    var videoPaths: [String]!
-    var installPaths: [String]!
+    var aboutString: String! = ""
+    var videoPaths: [String]! = []
+    var installPaths: [String]! = []
     
     override func viewDidLoad() {
         if (self.productID != nil) {
@@ -150,6 +150,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         for url in urlArray{
             scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
         }
+        scrollView.auk.startAutoScroll(delaySeconds: 0.5)
     }
     @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
         performSegueWithIdentifier(CONSTANTS.SEGUES.IMAGE_ZOOM, sender: self)
