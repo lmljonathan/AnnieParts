@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C01A3111D6D475A0036E3F2 /* ImageZooomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C01A3101D6D475A0036E3F2 /* ImageZooomViewController.swift */; };
 		3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */; };
 		3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */; };
 		3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */; };
@@ -49,7 +50,6 @@
 		90898C841D47DD1900719F20 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7C1D47DD1900719F20 /* Montserrat-Light.otf */; };
 		90898C851D47DD1900719F20 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7D1D47DD1900719F20 /* Montserrat-Hairline.otf */; };
 		90B5A1E61D669F0300D75390 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5A1E51D669F0300D75390 /* Utils.swift */; };
-		90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA321E1D3E989E0066B281 /* SelectorTableViewCell.swift */; };
 		90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA32211D3F20850066B281 /* SearchOptionsVC.swift */; };
 		90EA32241D3F253A0066B281 /* SearchOptionsDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA32231D3F253A0066B281 /* SearchOptionsDataHandler.swift */; };
 		B6826AF5B63E17B7B69AE794 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8633511A252739FC04D09AD0 /* Pods.framework */; };
@@ -74,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		38E5935BB870C91E5307CD8C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3C01A3101D6D475A0036E3F2 /* ImageZooomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageZooomViewController.swift; sourceTree = "<group>"; };
 		3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		3C15F9381D456D4000BCC053 /* CustomSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSideMenuViewController.swift; sourceTree = "<group>"; };
 		3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductModalViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		90898C7C1D47DD1900719F20 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
 		90898C7D1D47DD1900719F20 /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
 		90B5A1E51D669F0300D75390 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		90EA321E1D3E989E0066B281 /* SelectorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectorTableViewCell.swift; path = Cells/SelectorTableViewCell.swift; sourceTree = "<group>"; };
 		90EA32211D3F20850066B281 /* SearchOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchOptionsVC.swift; sourceTree = "<group>"; };
 		90EA32231D3F253A0066B281 /* SearchOptionsDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchOptionsDataHandler.swift; path = Data/SearchOptionsDataHandler.swift; sourceTree = "<group>"; };
 		A1A932F42A1CDAF8DA2EEFE4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -276,6 +276,7 @@
 				900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */,
 				902E9B491D6C345300876669 /* WebViewViewController.swift */,
 				3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */,
+				3C01A3101D6D475A0036E3F2 /* ImageZooomViewController.swift */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -322,7 +323,6 @@
 				3CA7B8141D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift */,
 				3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */,
 				3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */,
-				90EA321E1D3E989E0066B281 /* SelectorTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 				TargetAttributes = {
 					9072561E1D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = CQD8Z7UVJ4;
+						DevelopmentTeam = G6YM58LRJE;
 					};
 					907256321D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -540,9 +540,9 @@
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */,
 				90B5A1E61D669F0300D75390 /* Utils.swift in Sources */,
+				3C01A3111D6D475A0036E3F2 /* ImageZooomViewController.swift in Sources */,
 				3CA7B8151D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift in Sources */,
 				902E9B481D6C2D1100876669 /* InfoTableViewCell.swift in Sources */,
-				90EA321F1D3E989E0066B281 /* SelectorTableViewCell.swift in Sources */,
 				901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
@@ -704,7 +704,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AnnieParts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Boyang.AnnieParts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Boyang.AnnieParts.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -719,7 +719,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AnnieParts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Boyang.AnnieParts;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Boyang.AnnieParts.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

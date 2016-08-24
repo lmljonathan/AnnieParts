@@ -61,15 +61,15 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.configureTabs()
         self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         self.tableView.sectionHeaderHeight = 0
         self.tableView.sectionFooterHeight = 0
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
-        self.configureTabs()
 
+        
         get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
                 for dict in (json![CONSTANTS.JSON_KEYS.PRODUCT_MANUFACTURER] as! NSArray){
@@ -171,21 +171,21 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - Main Functions
     func configureTabs() {
-        self.oneView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(searchByBrand)))
-        self.twoView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(searchByCar)))
-        self.threeView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(searchByProduct)))
+        self.oneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchByBrand)))
+        self.twoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchByCar)))
+        self.threeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchByProduct)))
     }
-    func searchByBrand(gr: UITapGestureRecognizer){
+    func searchByBrand(){
         self.selectTab(0)
         self.tableView.reloadData()
     }
     
-    func searchByCar(gr: UITapGestureRecognizer){
+    func searchByCar(){
         self.selectTab(1)
         self.tableView.reloadData()
     }
     
-    func searchByProduct(gr: UITapGestureRecognizer){
+    func searchByProduct(){
         self.selectTab(2)
         self.tableView.reloadData()
     }

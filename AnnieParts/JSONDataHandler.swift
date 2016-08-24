@@ -10,7 +10,7 @@ import SwiftyJSON
 import Alamofire
 
 import Foundation
-
+import UIKit
 
 func login(username: String, password: String, completion: (NSDictionary?) -> Void) {
     let query_url = CONSTANTS.URL_INFO.BASE_URL + CONSTANTS.URL_INFO.LOGIN_URL + "?"
@@ -22,6 +22,7 @@ func login(username: String, password: String, completion: (NSDictionary?) -> Vo
         print(response.request!.URL!.URLString)
         print(String(data: response.data!, encoding: NSUTF8StringEncoding))
         if let json = response.result.value {
+            checkStatus(json as! NSDictionary)
             completion(json as? NSDictionary)
         }
     }
@@ -53,6 +54,13 @@ func get_json_data(query_type: String, query_paramters: [String: AnyObject], com
         print(response.request!.URL!.URLString)
         if let json = response.result.value {
             completion(json as? NSDictionary)
+        }
+    }
+}
+func checkStatus(json: NSDictionary) {
+    if let status = json["status"] as? Int {
+        if status == 0  {
+            logout()
         }
     }
 }

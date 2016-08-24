@@ -16,7 +16,7 @@ class WebViewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         self.webView = WKWebView()
         self.view = self.webView
         

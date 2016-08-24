@@ -47,7 +47,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     private var quantityDropDown = DropDown()
     private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
     private var selectedQuantity: Int! = 1
-    
+    private var imagePaths: [String]?
     var vehicleData: vehicle!
     
     private var keyboardFrame: CGRect?
@@ -63,8 +63,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     var installPaths: [String]!
     
     override func viewDidLoad() {
-
-        
         if (self.productID != nil) {
             self.setUpWithProduct(product)
             self.loadData()
@@ -95,16 +93,20 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.fixWidthOfInnerQTY()
         super.viewDidLoad()
     }
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == CONSTANTS.SEGUES.IMAGE_ZOOM) {
+            let vc = segue.destinationViewController as? ImageZooomViewController
+            vc?.imagePath = CONSTANTS.URL_INFO.BASE_URL + self.imagePaths![self.imageCaroselScrollView.auk.currentPageIndex!] ?? ""
+        }
+    }
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in            let brief_description = json!["brief"] as! String
             
             print(json)
             let description = json!["desc"] as! String
             
-            var image_paths: [String]?
             if let x = json!["thumb_url"] as? [String]{
-                image_paths = x
+                self.imagePaths = x
             }
             
             self.videoPaths = json!["video"] as! [String]
@@ -113,8 +115,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.shortDescription.text = brief_description
             self.aboutString = description
             
-            if (image_paths != nil){
-                self.loadImages(image_paths!, scrollView: self.imageCaroselScrollView)
+            if (self.imagePaths != nil){
+                self.loadImages(self.imagePaths!, scrollView: self.imageCaroselScrollView)
             }
         })
     }
@@ -146,12 +148,12 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
         scrollView.auk.settings.contentMode = .ScaleAspectFill
         for url in urlArray{
-            scrollView.auk.show(url: "http://annieparts.com/" + url)
+            scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
         }
-        scrollView.auk.startAutoScroll(delaySeconds: 3.0)
-    
     }
-    
+    @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
+        performSegueWithIdentifier(CONSTANTS.SEGUES.IMAGE_ZOOM, sender: self)
+    }
     @IBAction func addToCartButtonPressed(sender: AnyObject) {
         if self.quantityTextField.editing == true{
             if self.quantityTextField.text != "" && Int(self.quantityTextField.text!) != 0{

@@ -41,6 +41,7 @@ struct CONSTANTS {
         static let SIDE_MENU = "containSideMenu"
         static let SHOPPING_CART = "showCenterShoppingCart"
         static let LOGIN = "showCenterLogin"
+        static let IMAGE_ZOOM = "zoomImage"
     }
     struct JSON_KEYS {
         static let API_STATUS = "status"
