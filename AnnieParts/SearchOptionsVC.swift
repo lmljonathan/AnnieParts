@@ -154,15 +154,26 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         self.cells[activeIndex][indexPath.section].expanded = !expanded
         if expanded && indexPath.row > 0 {
+            
+            // Clears Model
+            if indexPath.section == 1{
+                if (options[indexPath.row-1] as? String)! != self.selectedOptions[1][1]{
+                    let modelCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SearchOptionsHeaderCell
+                    modelCell.selectedOption.text = "SELECT ONE"
+                    self.selectedOptions[1][2] = ""
+                }
+            }
             if options.count > 0 {
                 self.cells[activeIndex][indexPath.section].value = (options[indexPath.row-1] as? String)!
                 self.selectedOptions[activeIndex][indexPath.section] = (options[indexPath.row-1] as? String)!
+
                 checkSelectedOptions()
             }
             if option_ids.count > 0 {
                 self.selectedIDs[activeIndex][indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
             }
         }
+        self.tableView.reloadData()
         self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
     }
     
@@ -219,12 +230,12 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     break
                 }
             }
-            if (!self.selectedOptions[activeIndex][1].isEmpty) {
+            if (!self.selectedOptions[1][1].isEmpty) {
                 configureModelList((self.selectedOptions[1])[1])
                 self.cells[activeIndex][2].options = vehicle.model
                 self.cells[activeIndex][2].option_ids = vehicle.modelIDs
             }
-            else if (self.selectedOptions[activeIndex][0].isEmpty && self.selectedOptions[1][1].isEmpty) {
+            else if (self.selectedOptions[1][0].isEmpty && self.selectedOptions[1][1].isEmpty) {
                 self.cells[activeIndex][2].options = vehicle.allModel
                 self.cells[activeIndex][2].option_ids = vehicle.allModelIDs
             }

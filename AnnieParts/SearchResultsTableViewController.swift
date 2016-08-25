@@ -123,7 +123,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.manufacturer.text = product.makeText
             cell.models.text = product.modelListText
             cell.serialNumber.text = product.serialNumber
-            let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
+            let url = NSURL(string: product.imagePath)!
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
             cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
