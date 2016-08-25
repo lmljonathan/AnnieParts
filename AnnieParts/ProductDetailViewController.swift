@@ -12,17 +12,12 @@ import DropDown
 import WebKit
 
 class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+    @IBOutlet weak var scrollContentView: UIView!
     
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var imageCaroselScrollView: UIScrollView!
-    
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var tabView: UIView!
-    
-    @IBOutlet weak var aboutSelect: UIView!
-    @IBOutlet weak var videoSelect: UIView!
-    @IBOutlet weak var installSelect: UIView!
-    
+    @IBOutlet weak var tableView: UITableView!
+
     @IBOutlet var productName: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var serialLabel: UILabel!
@@ -38,8 +33,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     @IBOutlet var qty: UILabel!
     @IBOutlet var quantityTextField: UITextField!
     @IBOutlet var quantityImage: UIImageView!
-    @IBOutlet var widthOfInner: NSLayoutConstraint!
-    
+
+
     @IBOutlet var changeQuantityButton: UIButton!
     @IBOutlet var addToCartButton: UIButton!
     
@@ -54,9 +49,11 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     
     var productID: Int!
     var product: Product!
-    
-    var activeInfoView: Int! = 0
-    
+
+
+
+    private var cells = [Cell(value: "About"), Cell(value: "Install"), Cell(value: "Video")]
+
     // Data for the info views
     var aboutString: String! = ""
     var videoPaths: [String]! = []
@@ -69,7 +66,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         }
         self.quantityTextField.delegate = self
         self.mainScrollView.delegate = self
-        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         self.setupDropDown(changeQuantityView, data: self.quantityData)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -79,18 +77,11 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         self.addToCartButton.backgroundColor = UIColor.APred()
         configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self, action: #selector(self.showShoppingCart))
-        activeTab = aboutSelect
         
         // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
         mainScrollView.showsVerticalScrollIndicator = true
         mainScrollView.scrollEnabled = true
-        
-        addNib("aboutSelect", toView: self.contentView)
-        for tab in [aboutSelect, videoSelect, installSelect]{
-            self.addTapGR(tab, action: #selector(ProductDetailViewController.switchTab(_:)))
-        }
-        
-        self.fixWidthOfInnerQTY()
+
         super.viewDidLoad()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -115,6 +106,11 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             if (self.imagePaths != nil){
                 self.loadImages(self.imagePaths!, scrollView: self.imageCaroselScrollView)
             }
+
+            self.cells[0].options = []
+            self.cells[1].options = self.videoPaths
+            self.cells[2].options = self.installPaths
+            self.tableView.reloadData()
         })
     }
     
@@ -165,11 +161,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             })
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        self.fixWidthOfInnerQTY()
-    }
-    
+
     @IBAction func changeQuantity(sender: AnyObject) {
         self.quantityDropDown.show()
     }
@@ -186,58 +178,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         nibView.frame = toView.frame
         toView.addSubview(nibView)
     }
-    
-    func switchTab(gr: UITapGestureRecognizer){
-        self.activeTab = gr.view!
-        
-        func hideOtherTabs(){
-            for view in tabView.subviews{
-                if view != self.activeTab{
-                    let viewLabel = view.subviews[0] as! UILabel
-                    view.backgroundColor = UIColor.darkGrayColor()
-                    viewLabel.textColor = UIColor.whiteColor()
-                }
-            }
-        }
-        let viewLabel = activeTab.subviews[0] as! UILabel
-        activeTab.backgroundColor = UIColor.APred()
-        viewLabel.textColor = UIColor.whiteColor()
-        
-        if contentView.subviews.count != 0{
-            self.contentView.subviews[0].removeFromSuperview()
-            
-            switch activeTab {
-            case aboutSelect:
-                self.addNib("aboutSelect", toView: self.contentView)
-                let view = self.contentView.subviews[0] as! aboutSelectView
-                if self.aboutString != nil{
-                    view.configure(self.aboutString)
-                }
-                self.activeInfoView = 0
-            case videoSelect:
-                let tableView = UITableView(frame: self.contentView.frame, style: .Plain)
-                tableView.registerNib(UINib(nibName: "videoSelect", bundle: nil), forCellReuseIdentifier: "infoCell")
-                self.contentView.addSubview(tableView)
-                tableView.delegate = self
-                tableView.dataSource = self
-                tableView.scrollEnabled = false
-                self.activeInfoView = 1
-            case installSelect:
-                let tableView = UITableView(frame: self.contentView.frame, style: .Plain)
-                tableView.registerNib(UINib(nibName: "videoSelect", bundle: nil), forCellReuseIdentifier: "infoCell")
-                self.contentView.addSubview(tableView)
-                tableView.delegate = self
-                tableView.dataSource = self
-                tableView.scrollEnabled = false
-                self.activeInfoView = 2
-            default:
-                break
-            }
-        }
-        
-        hideOtherTabs()
-    }
-    
+
     private func setupDropDown(view: UIView, data: [String]){
         
         // The view to which the drop down will appear on
@@ -253,11 +194,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             if item != "Custom"{
                 self.selectedQuantity = Int(item)
                 self.quantityTextField.text = item
-                self.fixWidthOfInnerQTY()
             }else{
                 
                 self.quantityTextField.text = "000"
-                self.fixWidthOfInnerQTY()
                 self.quantityTextField.userInteractionEnabled = true
                 self.quantityTextField.becomeFirstResponder()
                 self.qty.hidden = true
@@ -296,22 +235,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         let gr = UITapGestureRecognizer(target: self, action: action)
         view.addGestureRecognizer(gr)
     }
-    
-    private func fixWidthOfInnerQTY(){
-        self.innerQuantityView.layoutIfNeeded()
-        
-        let qtyWidth = quantityTextField.bounds.width
-        if qtyWidth <= 10 {
-            self.widthOfInner.constant = 65
-        }else if qtyWidth <= 20{
-            self.widthOfInner.constant = 80
-        }else{
-            self.widthOfInner.constant = 90
-        }
-        
-        self.innerQuantityView.layoutIfNeeded()
-    }
-    
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.quantityTextField.editing == true{
             self.quantityTextField.text = String(self.selectedQuantity)
@@ -341,7 +265,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.mainScrollView.userInteractionEnabled = true
             self.addToCartButton.setTitle("Add to Cart", forState: .Normal)
             self.qty.hidden = false
-            self.fixWidthOfInnerQTY()
             self.exitQtyEditMode()
         }
     }
@@ -352,49 +275,60 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
 }
 
 extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource{
-    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.cells.count
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch self.activeInfoView {
-        case 1:
-            return self.videoPaths.count
-        case 2:
-            return self.installPaths.count
-        default:
-            return 1
+        if (self.cells[section].expanded) {
+            return self.cells[section].options.count + 1
         }
+        return 1
     }
-    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.001
+    }
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: CGRectZero)
+    }
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: CGRectZero)
+    }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let webVC = storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
-        
-        if self.activeInfoView == 1{
-            let url = NSURL(string: (self.videoPaths[indexPath.row]).encodeURL())
+        let expanded = self.cells[indexPath.section].expanded
+        print(self.cells[indexPath.section].expanded)
+        if (expanded && indexPath.row > 0) {
+            let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
+            print("cell clicked")
+            let url_string = self.cells[indexPath.section].options[indexPath.row - 1] as? String ?? ""
+            let url = NSURL(string: url_string)
             webVC.url = url
             self.navigationController?.pushViewController(webVC, animated: true)
-        }else if self.activeInfoView == 2{
-            let url = NSURL(string: ("http://annieparts.com" + self.installPaths[indexPath.row]).encodeURL())
-            webVC.url = url
-            self.navigationController?.pushViewController(webVC, animated: true)
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else {
+            self.cells[indexPath.section].expanded = !expanded
+            self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
         }
-        
-        
+        self.view.setNeedsDisplay()
     }
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as! InfoTableViewCell
-        if self.activeInfoView == 1{
-            let url = NSURL(string: (self.videoPaths[indexPath.row]).encodeURL())
-            cell.label.text = url?.lastPathComponent
-        }else if self.activeInfoView == 2{
-            let url = NSURL(string: (self.installPaths[indexPath.row]).encodeURL())
-            cell.label.text = url?.lastPathComponent
+        if (indexPath.row == 0) {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("infoHeaderCell") as! SearchOptionsHeaderCell
+            cell.selectedOption.text = self.cells[indexPath.section].value
+            if self.cells[indexPath.section].expanded {
+                cell.expandedSymbol.text = "-"
+            } else {
+                cell.expandedSymbol.text = "+"
+            }
+            return cell
+        } else {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("infoCell") as! SearchOptionsCell
+            cell.optionLabel.text = self.cells[indexPath.section].options[indexPath.row-1] as? String ?? ""
+            return cell
         }
-        
-        return cell
+
     }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 58.0
-    }
+
 }

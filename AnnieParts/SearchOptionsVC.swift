@@ -19,6 +19,12 @@ struct Cell {
         options = []
         option_ids = []
     }
+    init(value: String) {
+        expanded = false
+        self.value = value
+        options = []
+        option_ids = []
+    }
 }
 class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
