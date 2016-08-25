@@ -15,6 +15,7 @@ class ImageZooomViewController: UIViewController, UIScrollViewDelegate {
     var imagePath: String!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scrollView.delegate = self
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 6.0
         configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
