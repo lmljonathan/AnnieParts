@@ -15,7 +15,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet var anniepartsText: UILabel!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var loginLayer: UIView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgetPassButton: UIButton!
     
@@ -63,7 +62,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // MARK: - Main Functions
     
     func performLogin(){
-        self.loginButton.enabled = false
+        self.loginButton.userInteractionEnabled = false
         if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
             login(self.username.text!, password: self.password.text!, completion: { (json) in
                 if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
@@ -80,6 +79,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                     } else {
                         self.incorrectPassword()
+                        self.loginButton.userInteractionEnabled = true
                     }
                 }
             })
@@ -87,9 +87,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         else {
             print("username or password field empty")
             incorrectPassword()
+            self.loginButton.userInteractionEnabled = true
+            self.loginButton.highlighted = false
         }
-
-        self.loginButton.enabled = true
     }
     func incorrectPassword() {
         self.username.layer.shake()
