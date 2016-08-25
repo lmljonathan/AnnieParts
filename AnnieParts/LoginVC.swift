@@ -79,21 +79,25 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         }
                         self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                     } else {
-                        self.username.layer.shake()
-                        self.password.layer.shake()
+                        self.incorrectPassword()
                     }
                 }
             })
         }
         else {
             print("username or password field empty")
-            self.username.layer.shake()
-            self.password.layer.shake()
+            incorrectPassword()
         }
 
         self.loginButton.enabled = true
     }
-    
+    func incorrectPassword() {
+        self.username.layer.shake()
+        self.password.layer.shake()
+        self.username.text = ""
+        self.password.text = ""
+        self.username.becomeFirstResponder()
+    }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
         self.resignFirstResponder()
