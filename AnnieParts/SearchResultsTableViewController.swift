@@ -75,8 +75,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     if let x = product[CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as? [Int]{
                         modelIDlist = x
                     }
-                    
-                    self.catalogData.append(Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: 0, modelID: modelID, modelIDlist: modelIDlist))
+                    let product = Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: 0, modelID: modelID, modelIDlist: modelIDlist)
+                    product.setMakeText(getMake(product.brandId))
+                    product.setModelListText(getListOfModels(product.modelIDlist))
+                    self.catalogData.append(product)
                 }
                 if (self.catalogData.count == 0) {
                     self.noResultsFound = true
@@ -118,8 +120,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             }else{
                 cell.year.text = "No Years Specified"
             }
-            cell.manufacturer.text = getMake(product.brandId)
-            cell.models.text = getListOfModels(product.modelIDlist)
+            cell.manufacturer.text = product.makeText
+            cell.models.text = product.modelListText
             cell.serialNumber.text = product.serialNumber
             let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
             cell.loadImage(url)
@@ -134,12 +136,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
             let destVC = storyboard?.instantiateViewControllerWithIdentifier("productDetail") as! ProductDetailViewController
-            
-            destVC.vehicleData = self.vehicleData
             destVC.product = catalogData[indexPath.row]
-            
+
             print(Int(self.catalogData[indexPath.row].productID)!)
-            
+            destVC 
             destVC.productID = Int(self.catalogData[indexPath.row].productID)!
             self.navigationController?.pushViewController(destVC, animated: true)
         }

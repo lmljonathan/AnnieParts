@@ -24,6 +24,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewDidLoad() {
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
         if (User.userRank == 1) {
             self.subtotal.hidden = true
         }
@@ -74,12 +79,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     
                     let modelID = product[CONSTANTS.JSON_KEYS.MODEL_ID] as! Int
                     let modelIDlist = product[CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as! [Int]
-                    
-                    self.shoppingCart.append(ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist))
-                    
 
+                    let shoppingItem = ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist)
+                    shoppingItem.setMakeText(getMake(shoppingItem.brandId))
+                    shoppingItem.setModelListText(getListOfModels(shoppingItem.modelIDlist))
+                    self.shoppingCart.append(shoppingItem)
                 }
-
                 self.tableView.reloadData()
             }
             print("calculate")
@@ -109,13 +114,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             cell.priceLabel.hidden = true
         }
         cell.priceLabel.text = "$" + String(format: "%.2f", product.price)
-        
+        cell.manufacturer.text = product.makeText
+        cell.modelListLabel.text = product.modelListText
         
         cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchDragExit)
-        
-        
         cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
         cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchDragExit)

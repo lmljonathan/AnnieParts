@@ -40,7 +40,8 @@ class Product {
     private var _price: Double!
     private var _modelID: Int!
     private var _modelIDlist: [Int]!
-    
+    private var _modelListText: String!
+    private var _makeText: String!
     var productID: String {
         return self._productID
     }
@@ -65,15 +66,24 @@ class Product {
     var price: Double {
         return self._price
     }
-    
     var modelID: Int{
         return self._modelID
     }
-    
     var modelIDlist: [Int]{
         return self._modelIDlist
     }
-    
+    var modelListText: String {
+        return self._modelListText
+    }
+    var makeText: String {
+        return self._makeText
+    }
+    func setModelListText(text: String) {
+        self._modelListText = text
+    }
+    func setMakeText(text: String) {
+        self._makeText = text
+    }
     init(productID: String, productName: String, image: String, serialNumber: String, startYear: String, endYear: String, brandID: Int, price: Double, modelID: Int, modelIDlist: [Int]) {
         self._productID = productID
         self._productName = productName
@@ -85,6 +95,8 @@ class Product {
         self._price = price
         self._modelID = modelID
         self._modelIDlist = modelIDlist
+        self._modelListText = ""
+        self._makeText = ""
     }
 }
 class ShoppingCart: Product {

@@ -22,6 +22,8 @@ class ShoppingCartCell: UITableViewCell {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     
+    @IBOutlet weak var manufacturer: UILabel!
+    @IBOutlet weak var modelListLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
