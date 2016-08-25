@@ -91,6 +91,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/MIBadgeButton_Swift.framework"
   install_framework "Pods/Presentr.framework"
   install_framework "Pods/SideMenuController.framework"
+  install_framework "Pods/SwiftPhotoGallery.framework"
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/moa.framework"
 fi
@@ -102,6 +103,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/MIBadgeButton_Swift.framework"
   install_framework "Pods/Presentr.framework"
   install_framework "Pods/SideMenuController.framework"
+  install_framework "Pods/SwiftPhotoGallery.framework"
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/moa.framework"
 fi

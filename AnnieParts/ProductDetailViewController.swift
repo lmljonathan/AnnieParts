@@ -10,6 +10,8 @@ import UIKit
 import Auk
 import DropDown
 import WebKit
+import SwiftPhotoGallery
+import Haneke
 
 class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
     @IBOutlet weak var scrollContentView: UIView!
@@ -43,7 +45,10 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
     private var selectedQuantity: Int! = 1
     private var imagePaths: [String]?
+    private var images: [UIImage] = []
+    
     var vehicleData: vehicle!
+    let detailedCache = Shared.imageCache
     
     private var keyboardFrame: CGRect?
     
@@ -141,13 +146,29 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
         scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
-            scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
+            //scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
+            detailedCache.fetch(URL: NSURL(string: CONSTANTS.URL_INFO.BASE_URL + url)!).onSuccess { image in
+                print("hi")
+                scrollView.auk.show(image: image)
+                self.images.append(image)
+            }
         }
         scrollView.auk.startAutoScroll(delaySeconds: 3)
     }
+    
     @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
-        performSegueWithIdentifier(CONSTANTS.SEGUES.IMAGE_ZOOM, sender: self)
+        //performSegueWithIdentifier(CONSTANTS.SEGUES.IMAGE_ZOOM, sender: self)
+        let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
+        
+        gallery.backgroundColor = UIColor.blackColor()
+        gallery.pageIndicatorTintColor = UIColor.grayColor().colorWithAlphaComponent(0.5)
+        gallery.currentPageIndicatorTintColor = UIColor.whiteColor()
+        
+        if self.images.count == self.imagePaths?.count{
+            presentViewController(gallery, animated: true, completion: nil)
+        }
     }
+    
     @IBAction func addToCartButtonPressed(sender: AnyObject) {
         if self.quantityTextField.editing == true{
             if self.quantityTextField.text != "" && Int(self.quantityTextField.text!) != 0{
@@ -331,4 +352,22 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
     }
 
+}
+
+extension ProductDetailViewController: SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate
+{
+    // MARK: SwiftPhotoGalleryDataSource Methods
+    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
+        return (imagePaths?.count)!
+    }
+    
+    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
+        return images[forIndex]
+    }
+    
+    // MARK: SwiftPhotoGalleryDelegate Methods
+    
+    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 }
