@@ -57,13 +57,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {
-                    let id = String(product[CONSTANTS.JSON_KEYS.ID] as! Int)
-                    let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
-                    let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
-                    let sn = product[CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as! String
-                    let make = product[CONSTANTS.JSON_KEYS.MAKE_ID] as! Int
-                    let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as! Int)
-                    let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as! Int)
+                    let id = String(product[CONSTANTS.JSON_KEYS.ID] as? Int ?? -1)
+                    let name = product[CONSTANTS.JSON_KEYS.NAME] as? String ?? ""
+                    let img = product[CONSTANTS.JSON_KEYS.IMAGE] as? String ?? ""
+                    let sn = product[CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String ?? ""
+                    let make = product[CONSTANTS.JSON_KEYS.MAKE_ID] as? Int ?? -1
+                    let startYear = String(product[CONSTANTS.JSON_KEYS.START_YEAR] as? Int ?? -1)
+                    let endYear = String(product[CONSTANTS.JSON_KEYS.END_YEAR] as? Int ?? -1)
                     
                     
                     // CHANGE THESE
@@ -76,8 +76,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                         modelIDlist = x
                     }
                     let product = Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: 0, modelID: modelID, modelIDlist: modelIDlist)
-                    product.setMakeText(getMake(product.brandId))
-                    product.setModelListText(getListOfModels(product.modelIDlist))
+                    //product.setMakeText(getMake(product.brandId))
+                    //product.setModelListText(getListOfModels(product.modelIDlist))
                     self.catalogData.append(product)
                 }
                 if (self.catalogData.count == 0) {

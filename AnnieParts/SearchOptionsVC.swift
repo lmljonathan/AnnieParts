@@ -96,6 +96,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     vehicle.allModel.append(dict[CONSTANTS.JSON_KEYS.NAME] as! String)
                     vehicle.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
                 }
+                print(vehicle.allModelIDs)
                 self.cells[0][0].options = brand.options
                 self.cells[1][0].options = vehicle.year
                 self.cells[1][1].options = vehicle.make
@@ -124,7 +125,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.cells[activeIndex][section].options.count > 0 && self.cells[activeIndex][section].expanded {
-            print(self.cells[activeIndex][section].options.count + 1)
             return self.cells[activeIndex][section].options.count + 1
         }
         return 1
@@ -156,13 +156,6 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         if expanded && indexPath.row > 0 {
             
             // Clears Model
-            if indexPath.section == 1{
-                if (options[indexPath.row-1] as? String)! != self.selectedOptions[1][1]{
-                    let modelCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2)) as! SearchOptionsHeaderCell
-                    modelCell.selectedOption.text = "SELECT ONE"
-                    self.selectedOptions[1][2] = ""
-                }
-            }
             if options.count > 0 {
                 self.cells[activeIndex][indexPath.section].value = (options[indexPath.row-1] as? String)!
                 self.selectedOptions[activeIndex][indexPath.section] = (options[indexPath.row-1] as? String)!
@@ -173,8 +166,18 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.selectedIDs[activeIndex][indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
             }
         }
-        self.tableView.reloadData()
-        self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+
+        if indexPath.section == 1 && activeIndex == 1 && indexPath.row > 0{
+            self.cells[activeIndex][2].expanded = false
+            self.cells[activeIndex][2].value = "SELECT ONE"
+            self.selectedOptions[1][2] = ""
+            self.selectedIDs[1][2] = 0
+            checkSelectedOptions()
+
+            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(1, 2)), withRowAnimation: .Fade)
+        } else {
+            self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
