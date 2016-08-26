@@ -39,11 +39,8 @@ func getMake(id: Int) -> String {
     return vehicle.make[index!] ?? ""
 }
 func getModel(id: Int) -> String {
-    let index = vehicle.allModelIDs.indexOf(id)
-    print(id)
-    print(vehicle.allModelIDs)
-    print(index)
-    return vehicle.allModel[index!] ?? ""
+    let index = vehicle.allModelIDs.indexOf(id) ?? -1
+    return vehicle.allModel[index] ?? ""
 }
 func getListOfModels(model_ids: [Int]) -> String {
     var model_string = ""
