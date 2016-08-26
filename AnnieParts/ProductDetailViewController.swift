@@ -90,10 +90,10 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         super.viewDidLoad()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == CONSTANTS.SEGUES.IMAGE_ZOOM) {
-            let vc = segue.destinationViewController as? ImageZooomViewController
-            vc?.imagePath = CONSTANTS.URL_INFO.BASE_URL + self.imagePaths![self.imageCaroselScrollView.auk.currentPageIndex!] ?? ""
-        }
+//        if (segue.identifier == CONSTANTS.SEGUES.IMAGE_ZOOM) {
+//            let vc = segue.destinationViewController as? ImageZooomViewController
+//            vc?.imagePath = CONSTANTS.URL_INFO.BASE_URL + self.imagePaths![self.imageCaroselScrollView.auk.currentPageIndex!] ?? ""
+//        }
     }
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
@@ -147,7 +147,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
             //scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
-            detailedCache.fetch(URL: NSURL(string: CONSTANTS.URL_INFO.BASE_URL + url)!).onSuccess { image in
+            detailedCache.fetch(URL: NSURL(string: url)!).onSuccess { image in
                 print("hi")
                 scrollView.auk.show(image: image)
                 self.images.append(image)
