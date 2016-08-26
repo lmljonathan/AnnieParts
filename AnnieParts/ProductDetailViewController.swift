@@ -147,11 +147,13 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
             //scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
-            detailedCache.fetch(URL: NSURL(string: url)!).onSuccess { image in
+            detailedCache.fetch(URL: NSURL(string: CONSTANTS.URL_INFO.BASE_URL + url)!).onSuccess { image in
                 print("hi")
                 scrollView.auk.show(image: image)
                 self.images.append(image)
-            }
+            }.onFailure({ (error) in
+                //print(error)
+            })
         }
         scrollView.auk.startAutoScroll(delaySeconds: 3)
     }
