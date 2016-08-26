@@ -22,6 +22,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
+            <string>Montserrat-Light</string>
         </mutableArray>
         <mutableArray key="Montserrat-Regular.otf">
             <string>Montserrat-Regular</string>
@@ -214,7 +215,6 @@
                                 <exclude reference="gmt-5o-hON"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="LZw-IO-hxH"/>
                                 <exclude reference="B9a-Hv-XSh"/>
                                 <exclude reference="SGs-IT-MUX"/>
                                 <exclude reference="qYo-LS-3sb"/>
@@ -228,6 +228,7 @@
                                 <exclude reference="yy4-x1-5RG"/>
                                 <exclude reference="zXZ-2o-Vgt"/>
                                 <exclude reference="BgI-ad-aAi"/>
+                                <exclude reference="LZw-IO-hxH"/>
                                 <exclude reference="Zvw-0e-WE3"/>
                                 <exclude reference="BjN-mG-ubz"/>
                                 <exclude reference="SyX-Jf-bIK"/>
@@ -246,7 +247,6 @@
                                 <include reference="gmt-5o-hON"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="LZw-IO-hxH"/>
                                 <include reference="B9a-Hv-XSh"/>
                                 <include reference="SGs-IT-MUX"/>
                                 <include reference="qYo-LS-3sb"/>
@@ -260,6 +260,7 @@
                                 <include reference="yy4-x1-5RG"/>
                                 <include reference="zXZ-2o-Vgt"/>
                                 <include reference="BgI-ad-aAi"/>
+                                <include reference="LZw-IO-hxH"/>
                                 <include reference="Zvw-0e-WE3"/>
                                 <include reference="BjN-mG-ubz"/>
                                 <include reference="SyX-Jf-bIK"/>
@@ -926,9 +927,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="31.5" y="13" width="70.5" height="17"/>
-                                                </variation>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
@@ -1411,9 +1409,6 @@
                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="120" y="68.5" width="246" height="16"/>
-                                            </variation>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQH-OD-NRf" userLabel="Code">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -1447,8 +1442,7 @@
                                                     <exclude reference="GY9-rI-6Yr"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="121" y="34.5" width="98" height="15"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="YF1-RP-dzb"/>
                                                 </mask>
@@ -1508,9 +1502,6 @@
                                             <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="120" y="85.5" width="246" height="19.5"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manufacturer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3U-HQ-1GH">
                                             <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -1527,8 +1518,7 @@
                                                     <exclude reference="6sh-xi-JJc"/>
                                                 </mask>
                                             </variation>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="120" y="52.5" width="246" height="16"/>
+                                            <variation key="heightClass=regular-widthClass=compact">
                                                 <mask key="constraints">
                                                     <include reference="6sh-xi-JJc"/>
                                                 </mask>
@@ -2291,8 +2281,7 @@
                                                         <exclude reference="bWR-D6-slW"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="12" y="326" width="72.5" height="13.5"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="bWR-D6-slW"/>
                                                     </mask>
@@ -2303,9 +2292,6 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="12" y="342.5" width="376" height="0.0"/>
-                                                </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MUSTANG MUSTANG MUSTANG" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SpX-P1-hro">
                                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -2320,8 +2306,7 @@
                                                         <exclude reference="CKD-3r-xpQ"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="12" y="311.5" width="376" height="13.5"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="CKD-3r-xpQ"/>
                                                     </mask>
@@ -2338,8 +2323,7 @@
                                                         <exclude reference="jZY-bL-quZ"/>
                                                     </mask>
                                                 </variation>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="342.5" width="400" height="2"/>
+                                                <variation key="heightClass=regular-widthClass=compact">
                                                     <mask key="constraints">
                                                         <include reference="jZY-bL-quZ"/>
                                                     </mask>
@@ -2477,9 +2461,6 @@
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <sections/>
-                                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="344.5" width="400" height="402.5"/>
-                                                </variation>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

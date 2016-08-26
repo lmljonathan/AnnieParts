@@ -98,13 +98,13 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
 
-            let brief_description = json!["brief"] as! String
-            let description = json!["desc"] as! String
+            let brief_description = json!["brief"] as? String ?? ""
+            let description = json!["desc"] as? String ?? ""
             if let imgpaths = json!["thumb_url"] as? [String]{
                 self.imagePaths = imgpaths
             }
-            self.videoPaths = json!["video"] as! [String]
-            self.installPaths = json!["ins"] as! [String]
+            self.videoPaths = json!["video"] as? [String] ?? []
+            self.installPaths = json!["ins"] as? [String] ?? []
             
             self.shortDescription.text = brief_description
             self.aboutString = description
@@ -130,8 +130,8 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.priceLabel.text = "Not Listed"
         }
         
-        self.makeLabel.text = getMake(product.brandId)
-        self.modelLabel.text = getListOfModels(product.modelIDlist)
+        self.makeLabel.text = product.makeText
+        self.modelLabel.text = product.modelListText
         
         if product.startYear != "0" && product.endYear != "0"{
             self.yearLabel.text = product.startYear + "-" + product.endYear
@@ -141,13 +141,12 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     private func loadImages(urlArray: [String], scrollView: UIScrollView){
-
+        print(urlArray)
         scrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
         scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
         scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
-            //scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
-            detailedCache.fetch(URL: NSURL(string: CONSTANTS.URL_INFO.BASE_URL + url)!).onSuccess { image in
+            detailedCache.fetch(URL: NSURL(string: url)!).onSuccess { image in
                 print("hi")
                 scrollView.auk.show(image: image)
                 self.images.append(image)
