@@ -83,17 +83,12 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self, action: #selector(self.showShoppingCart))
         
-        // mainScrollView.contentSize = CGSizeMake(self.view.frame.width, 1000)
         mainScrollView.showsVerticalScrollIndicator = true
         mainScrollView.scrollEnabled = true
 
         super.viewDidLoad()
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == CONSTANTS.SEGUES.IMAGE_ZOOM) {
-//            let vc = segue.destinationViewController as? ImageZooomViewController
-//            vc?.imagePath = CONSTANTS.URL_INFO.BASE_URL + self.imagePaths![self.imageCaroselScrollView.auk.currentPageIndex!] ?? ""
-//        }
     }
     func loadData(){
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
@@ -127,7 +122,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         if product.price != 0 && User.userRank > 1{
             self.priceLabel.text = "$" + String(product.price)
         }else{
-            self.priceLabel.text = "Not Listed"
+            self.priceLabel.text = ""
         }
         
         self.makeLabel.text = product.makeText
@@ -141,27 +136,22 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     private func loadImages(urlArray: [String], scrollView: UIScrollView){
-        print(urlArray)
         scrollView.auk.settings.placeholderImage = UIImage(named: "placeholder")
         scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
         scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
-            //scrollView.auk.show(url: CONSTANTS.URL_INFO.BASE_URL + url)
-            detailedCache.fetch(URL: NSURL(string: CONSTANTS.URL_INFO.BASE_URL + url)!).onSuccess { image in
-                print("hi")
+            detailedCache.fetch(URL: NSURL(string: url)!).onSuccess { image in
                 scrollView.auk.show(image: image)
                 self.images.append(image)
             }.onFailure({ (error) in
-                //print(error)
+                print("error with image url")
             })
         }
         scrollView.auk.startAutoScroll(delaySeconds: 3)
     }
     
     @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
-        //performSegueWithIdentifier(CONSTANTS.SEGUES.IMAGE_ZOOM, sender: self)
         let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
-        
         gallery.backgroundColor = UIColor.blackColor()
         gallery.pageIndicatorTintColor = UIColor.grayColor().colorWithAlphaComponent(0.5)
         gallery.currentPageIndicatorTintColor = UIColor.whiteColor()
@@ -203,7 +193,6 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
 
     private func setupDropDown(view: UIView, data: [String]){
-        
         // The view to which the drop down will appear on
         quantityDropDown.anchorView = view // UIView or UIBarButtonItem
         quantityDropDown.direction = .Top

@@ -35,6 +35,9 @@ class ShoppingCartCell: UITableViewCell {
     }
     func loadImage(url: NSURL) {
         self.productImage.hnk_setImageFromURL(url)
+        self.productImage.hnk_setImageFromURL(url, failure: { (error) in
+            print("cannot fetch image error")
+        })
         self.layoutSubviews()
     }
     override func setSelected(selected: Bool, animated: Bool) {

@@ -105,7 +105,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.configureCell()
         let product = self.shoppingCart[indexPath.row]
         cell.productName.text = product.productName
-        let url = NSURL(string: CONSTANTS.URL_INFO.BASE_URL + product.imagePath)!
+        let url = NSURL(string: product.imagePath + "FSDFLJSLKDF")!
         cell.loadImage(url)
         
         cell.quantityLabel.text = String(product.quantity)

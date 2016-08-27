@@ -76,8 +76,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                         modelIDlist = x
                     }
                     let product = Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: 0, modelID: modelID, modelIDlist: modelIDlist)
-                    //product.setMakeText(getMake(product.brandId))
-                    //product.setModelListText(getListOfModels(product.modelIDlist))
+                    product.setMakeText(getMake(product.brandId))
+                    product.setModelListText(getListOfModels(product.modelIDlist))
                     self.catalogData.append(product)
                 }
                 if (self.catalogData.count == 0) {

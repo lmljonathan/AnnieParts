@@ -40,6 +40,9 @@ func getMake(id: Int) -> String {
 }
 func getModel(id: Int) -> String {
     let index = vehicle.allModelIDs.indexOf(id) ?? -1
+    if (index < 0 || index > vehicle.allModel.count) {
+        return "" 
+    }
     return vehicle.allModel[index] ?? ""
 }
 func getListOfModels(model_ids: [Int]) -> String {
