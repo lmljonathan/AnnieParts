@@ -8,7 +8,9 @@
 
 import Foundation
 import SwiftyUserDefaults
-//
-//extension DefaultsKeys {
-//    let username = DefaultsKey<String>("username")
-//}
+
+extension DefaultsKeys {
+    static let username = DefaultsKey<String>("username")
+    static let password = DefaultsKey<String>("password")
+    static let automaticLogin = DefaultsKey<Bool>("autoLogin")
+}
