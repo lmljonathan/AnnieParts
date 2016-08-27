@@ -30,33 +30,25 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - IB Outlets
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tabView: UIView!
-    @IBOutlet weak var oneView: UIView!
-    @IBOutlet weak var twoView: UIView!
-    @IBOutlet weak var threeView: UIView!
     @IBOutlet weak var searchButton: UIView!
     @IBOutlet var cartNavButton: UIBarButtonItem!
     
     @IBAction func performSearch(sender: AnyObject) {
-
         self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
     }
     // MARK: - Variables
-    private var activeIndex = 0
-    private var selectedOptions = [[""], ["", "", ""], [""]]
-    private var selectedIDs = [[0], [0, 0, 0], [0]]
-    private var sectionTitles: [[String]]! = [["BRAND"], ["YEAR", "MAKE", "MODEL"], ["PRODUCT"]]
-    private var cells = [[Cell()], [Cell(), Cell(), Cell()], [Cell()]]
+    private var selectedOptions = ["", "", "", "", ""]
+    private var selectedIDs = [0, 0, 0, 0, 0]
+    private var sectionTitles: [String]! = ["BRAND", "YEAR", "MAKE", "MODEL", "PRODUCT"]
+    private var cells = [Cell(), Cell(), Cell(), Cell(), Cell()]
 
     // MARK: - View Loading Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureTabs()
         self.tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
         self.tableView.sectionHeaderHeight = 0
         self.tableView.sectionFooterHeight = 0
         self.tableView.tableFooterView = UIView()
-        self.selectTab(activeIndex)
         self.navigationController?.addSideMenuButton()
 
         get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
@@ -97,17 +89,17 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     vehicle.allModelPIDs.append(dict[CONSTANTS.JSON_KEYS.PARENT_ID] as! Int)
                 }
                 print(vehicle.allModelIDs)
-                self.cells[0][0].options = brand.options
-                self.cells[1][0].options = vehicle.year
-                self.cells[1][1].options = vehicle.make
-                self.cells[1][2].options = vehicle.allModel
-                self.cells[2][0].options = product.products
+                self.cells[0].options = brand.options
+                self.cells[1].options = vehicle.year
+                self.cells[2].options = vehicle.make
+                self.cells[3].options = vehicle.allModel
+                self.cells[4].options = product.products
 
-                self.cells[0][0].option_ids = brand.optionsIDs
-                self.cells[1][0].option_ids = vehicle.yearIDs
-                self.cells[1][1].option_ids = vehicle.makeIDs
-                self.cells[1][2].option_ids = vehicle.modelIDs
-                self.cells[2][0].option_ids = product.productsIDs
+                self.cells[0].option_ids = brand.optionsIDs
+                self.cells[1].option_ids = vehicle.yearIDs
+                self.cells[2].option_ids = vehicle.makeIDs
+                self.cells[3].option_ids = vehicle.modelIDs
+                self.cells[4].option_ids = product.productsIDs
                 self.tableView.reloadData()
             }
         }
@@ -118,14 +110,14 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // MARK: - Table View Delegate Functions
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.cells[activeIndex].count
+        return self.cells.count
     }
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.sectionTitles[activeIndex][section]
+        return self.sectionTitles[section]
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.cells[activeIndex][section].options.count > 0 && self.cells[activeIndex][section].expanded {
-            return self.cells[activeIndex][section].options.count + 1
+        if self.cells[section].options.count > 0 && self.cells[section].expanded {
+            return self.cells[section].options.count + 1
         }
         return 1
     }
@@ -133,48 +125,48 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("searchHeader") as! SearchOptionsHeaderCell
-            if self.cells[activeIndex][indexPath.section].expanded {
+            if self.cells[indexPath.section].expanded {
                 cell.expandedSymbol.text = "-"
             } else {
                 cell.expandedSymbol.text = "+"
             }
-            cell.selectedOption.text = self.cells[activeIndex][indexPath.section].value
+            cell.selectedOption.text = self.cells[indexPath.section].value
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
-            cell.optionLabel.text = self.cells[activeIndex][indexPath.section].options[indexPath.row-1] as? String
+            cell.optionLabel.text = self.cells[indexPath.section].options[indexPath.row-1] as? String
             return cell
         }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let expanded = self.cells[activeIndex][indexPath.section].expanded
-        let options = self.cells[activeIndex][indexPath.section].options
-        let option_ids = self.cells[activeIndex][indexPath.section].option_ids
+        let expanded = self.cells[indexPath.section].expanded
+        let options = self.cells[indexPath.section].options
+        let option_ids = self.cells[indexPath.section].option_ids
 
-        self.cells[activeIndex][indexPath.section].expanded = !expanded
+        self.cells[indexPath.section].expanded = !expanded
         if expanded && indexPath.row > 0 {
             
             // Clears Model
             if options.count > 0 {
-                self.cells[activeIndex][indexPath.section].value = (options[indexPath.row-1] as? String)!
-                self.selectedOptions[activeIndex][indexPath.section] = (options[indexPath.row-1] as? String)!
+                self.cells[indexPath.section].value = (options[indexPath.row-1] as? String)!
+                self.selectedOptions[indexPath.section] = (options[indexPath.row-1] as? String)!
 
                 checkSelectedOptions()
             }
             if option_ids.count > 0 {
-                self.selectedIDs[activeIndex][indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
+                self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
             }
         }
 
-        if indexPath.section == 1 && activeIndex == 1 && indexPath.row > 0{
-            self.cells[activeIndex][2].expanded = false
-            self.cells[activeIndex][2].value = "SELECT ONE"
-            self.selectedOptions[1][2] = ""
-            self.selectedIDs[1][2] = 0
+        if indexPath.section == 2 && indexPath.row > 0{
+            self.cells[3].expanded = false
+            self.cells[3].value = "SELECT ONE"
+            self.selectedOptions[3] = ""
+            self.selectedIDs[3] = 0
             checkSelectedOptions()
 
-            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(1, 2)), withRowAnimation: .Fade)
+            self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(2, 3)), withRowAnimation: .Fade)
         } else {
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
         }
@@ -188,76 +180,31 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     // MARK: - Main Functions
-    func configureTabs() {
-        self.oneView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchByBrand)))
-        self.twoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchByCar)))
-        self.threeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(searchByProduct)))
-    }
-    func searchByBrand(){
-        self.selectTab(0)
-        self.tableView.reloadData()
-    }
-    func searchByCar(){
-        self.selectTab(1)
-        self.tableView.reloadData()
-    }
-    func searchByProduct(){
-        self.selectTab(2)
-        self.tableView.reloadData()
-    }
-    private func selectTab(index: Int){
-        let tabViews = [oneView, twoView, threeView]
-        for x in 0..<3{
-            if x == index {
-                tabViews[x].backgroundColor = UIColor.APred()
-            } else {
-                tabViews[x].backgroundColor = UIColor.APmediumGray()
+    private func checkSelectedOptions(){
+        self.searchButton.disable()
+        for option in self.selectedOptions {
+            if (!option.isEmpty) {
+                self.searchButton.enable(UIColor.APred())
+                break
             }
         }
-        self.activeIndex = index
-        self.checkSelectedOptions()
-    }
-    private func checkSelectedOptions(){
-        switch activeIndex {
-        case 0:
-            if (!self.selectedOptions[activeIndex][0].isEmpty) {
-                self.searchButton.enable(UIColor.APred())
-            }else{
-                self.searchButton.disable()
-            }
-        case 1:
-            self.searchButton.disable()
-            for option in self.selectedOptions[1] {
-                if (!option.isEmpty) {
-                    self.searchButton.enable(UIColor.APred())
-                    break
-                }
-            }
-            if (!self.selectedOptions[1][1].isEmpty) {
-                configureModelList((self.selectedOptions[1])[1])
-                self.cells[activeIndex][2].options = vehicle.model
-                self.cells[activeIndex][2].option_ids = vehicle.modelIDs
-            }
-            else if (self.selectedOptions[1][0].isEmpty && self.selectedOptions[1][1].isEmpty) {
-                self.cells[activeIndex][2].options = vehicle.allModel
-                self.cells[activeIndex][2].option_ids = vehicle.allModelIDs
-            }
-        case 2:
-            if (!self.selectedOptions[activeIndex][0].isEmpty) {
-                self.searchButton.enable(UIColor.APred())
-            }else{
-                self.searchButton.disable()
-            }
-        default:
-            break
+        if (!self.selectedOptions[2].isEmpty) {
+            configureModelList(self.selectedOptions[2])
+            self.cells[3].options = vehicle.model
+            self.cells[3].option_ids = vehicle.modelIDs
+        }
+        else if (self.selectedOptions[1].isEmpty && self.selectedOptions[2].isEmpty) {
+            self.cells[3].options = vehicle.allModel
+            self.cells[3].option_ids = vehicle.allModelIDs
         }
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
             let destVC = segue.destinationViewController as! SearchResultsTableViewController
             var result: [String: Int]! = [:]
-            for (index, option) in self.selectedIDs[activeIndex].enumerate(){
-                result[CONSTANTS.SEARCH_OPTIONS[activeIndex][index]] = option
+            for (index, option) in self.selectedIDs.enumerate(){
+                let key = CONSTANTS.SEARCH_OPTIONS[index]
+                result[key] = option
             }
             destVC.searchIDs = result
         }

@@ -111,6 +111,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.cells[1].options = self.videoPaths
             self.cells[2].options = self.installPaths
             self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
+            print(self.cellsToDisplay)
             self.tableView.reloadData()
         })
     }
@@ -314,11 +315,12 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         let expanded = self.cellsToDisplay[indexPath.section].expanded
         if (expanded && indexPath.row > 0) {
             let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
+            print(self.cellsToDisplay[indexPath.section].options)
             let url_string = self.cellsToDisplay[indexPath.section].options[indexPath.row - 1] as? String ?? ""
             webVC.url = url_string
             self.navigationController?.pushViewController(webVC, animated: true)
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         } else {
+            print(self.cellsToDisplay[indexPath.section].options)
             self.cellsToDisplay[indexPath.section].expanded = !expanded
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
         }
@@ -327,7 +329,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("infoHeaderCell") as! SearchOptionsHeaderCell
-            cell.selectedOption.text = self.cells[indexPath.section].value
+            cell.selectedOption.text = self.cellsToDisplay[indexPath.section].value
             if self.cellsToDisplay[indexPath.section].expanded {
                 cell.expandedSymbol.text = "-"
             } else {
@@ -336,7 +338,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
             return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("infoCell") as! SearchOptionsCell
-            cell.optionLabel.text = self.cells[indexPath.section].options[indexPath.row-1] as? String ?? ""
+            cell.optionLabel.text = self.cellsToDisplay[indexPath.section].options[indexPath.row-1] as? String ?? ""
             return cell
         }
 
