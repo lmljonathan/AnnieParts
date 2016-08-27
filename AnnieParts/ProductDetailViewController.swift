@@ -10,10 +10,10 @@ import UIKit
 import Auk
 import DropDown
 import WebKit
-import SwiftPhotoGallery
 import Haneke
+import SKPhotoBrowser
 
-class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate, SKPhotoBrowserDelegate {
     @IBOutlet weak var scrollContentView: UIView!
     
     @IBOutlet weak var mainScrollView: UIScrollView!
@@ -152,14 +152,27 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         scrollView.auk.startAutoScroll(delaySeconds: 3)
     }
     
-    @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
-        let gallery = SwiftPhotoGallery(delegate: self, dataSource: self)
-        gallery.backgroundColor = UIColor.blackColor()
-        gallery.pageIndicatorTintColor = UIColor.grayColor().colorWithAlphaComponent(0.5)
-        gallery.currentPageIndicatorTintColor = UIColor.whiteColor()
+    private func prepareImagesForZoom(){
         
+    }
+    
+    @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
         if self.images.count == self.imagePaths?.count{
-            presentViewController(gallery, animated: true, completion: nil)
+            
+            var SKImages = [SKPhoto]()
+            for image in self.images{
+                let photo = SKPhoto.photoWithImage(image)
+                SKImages.append(photo)
+            }
+            
+            let browser = SKPhotoBrowser(photos: SKImages)
+            browser.displayCloseButton = false
+            browser.initializePageIndex(self.imageCaroselScrollView.auk.currentPageIndex!)
+            browser.delegate = self
+            browser.enableSingleTapDismiss = true
+            
+            presentViewController(browser, animated: true, completion: {})
+            //presentViewController(gallery, animated: true, completion: nil)
         }
     }
     
@@ -342,22 +355,4 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
     }
 
-}
-
-extension ProductDetailViewController: SwiftPhotoGalleryDataSource, SwiftPhotoGalleryDelegate
-{
-    // MARK: SwiftPhotoGalleryDataSource Methods
-    func numberOfImagesInGallery(gallery: SwiftPhotoGallery) -> Int {
-        return (imagePaths?.count)!
-    }
-    
-    func imageInGallery(gallery: SwiftPhotoGallery, forIndex: Int) -> UIImage? {
-        return images[forIndex]
-    }
-    
-    // MARK: SwiftPhotoGalleryDelegate Methods
-    
-    func galleryDidTapToClose(gallery: SwiftPhotoGallery) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
 }
