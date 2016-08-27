@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dIb-tI-phW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -2835,14 +2835,14 @@
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouX-Mb-Hfm">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-i7-pvT">
-                                        <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                                    </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logging In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0s-ae-4KU">
                                         <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="11" y="112" width="178" height="20"/>
+                                        </variation>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="0.72380999472573837" colorSpace="calibratedRGB"/>
@@ -2850,44 +2850,36 @@
                                     <constraint firstItem="B0s-ae-4KU" firstAttribute="leading" secondItem="ouX-Mb-Hfm" secondAttribute="leading" constant="44" id="Bem-7Y-bdd">
                                         <variation key="heightClass=regular-widthClass=compact" constant="11"/>
                                     </constraint>
-                                    <constraint firstItem="Wwm-i7-pvT" firstAttribute="centerX" secondItem="B0s-ae-4KU" secondAttribute="centerX" id="Csj-Ix-kzz"/>
                                     <constraint firstAttribute="height" constant="200" id="DKd-4E-XFZ"/>
                                     <constraint firstAttribute="width" constant="200" id="INF-dv-NPK"/>
-                                    <constraint firstItem="Wwm-i7-pvT" firstAttribute="top" secondItem="ouX-Mb-Hfm" secondAttribute="top" constant="67" id="SjL-XU-MZl"/>
-                                    <constraint firstItem="Wwm-i7-pvT" firstAttribute="centerX" secondItem="ouX-Mb-Hfm" secondAttribute="centerX" id="aP0-wc-XPd"/>
-                                    <constraint firstItem="B0s-ae-4KU" firstAttribute="top" secondItem="Wwm-i7-pvT" secondAttribute="bottom" constant="8" symbolic="YES" id="fVW-aD-fCu"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="Wwm-i7-pvT"/>
                                         <exclude reference="B0s-ae-4KU"/>
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="DKd-4E-XFZ"/>
                                         <exclude reference="INF-dv-NPK"/>
-                                        <exclude reference="Csj-Ix-kzz"/>
-                                        <exclude reference="SjL-XU-MZl"/>
-                                        <exclude reference="aP0-wc-XPd"/>
                                         <exclude reference="Bem-7Y-bdd"/>
-                                        <exclude reference="fVW-aD-fCu"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
-                                        <include reference="Wwm-i7-pvT"/>
                                         <include reference="B0s-ae-4KU"/>
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="DKd-4E-XFZ"/>
                                         <include reference="INF-dv-NPK"/>
-                                        <include reference="Csj-Ix-kzz"/>
-                                        <include reference="SjL-XU-MZl"/>
-                                        <include reference="aP0-wc-XPd"/>
                                         <include reference="Bem-7Y-bdd"/>
-                                        <include reference="fVW-aD-fCu"/>
                                     </mask>
                                 </variation>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-i7-pvT">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="182" y="367" width="37" height="37"/>
+                                </variation>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2897,6 +2889,7 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="ouX-Mb-Hfm"/>
+                                <exclude reference="Wwm-i7-pvT"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="oDj-Vp-WYQ"/>
@@ -2906,6 +2899,7 @@
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="ouX-Mb-Hfm"/>
+                                <include reference="Wwm-i7-pvT"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="oDj-Vp-WYQ"/>
