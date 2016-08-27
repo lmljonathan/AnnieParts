@@ -58,7 +58,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
 
 
     private var cells = [Cell(value: "About"), Cell(value: "Video"), Cell(value: "Install")]
-
+    private var cellsToDisplay: [Cell]! = []
     // Data for the info views
     var aboutString: String! = ""
     var videoPaths: [String]! = []
@@ -110,7 +110,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.cells[0].options = []
             self.cells[1].options = self.videoPaths
             self.cells[2].options = self.installPaths
-            self.cells = self.cells.filter({$0.options.count != 0})
+            self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
             self.tableView.reloadData()
         })
     }
@@ -290,11 +290,11 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
 
 extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.cells.count
+        return self.cellsToDisplay.count
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (self.cells[section].expanded) {
-            return self.cells[section].options.count + 1
+        if (self.cellsToDisplay[section].expanded) {
+            return self.cellsToDisplay[section].options.count + 1
         }
         return 1
     }
@@ -311,18 +311,15 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         return UIView(frame: CGRectZero)
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let expanded = self.cells[indexPath.section].expanded
-        print(self.cells[indexPath.section].expanded)
+        let expanded = self.cellsToDisplay[indexPath.section].expanded
         if (expanded && indexPath.row > 0) {
             let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
-            print("cell clicked")
-            let url_string = self.cells[indexPath.section].options[indexPath.row - 1] as? String ?? ""
-            let url = NSURL(string: url_string)
-            webVC.url = url
+            let url_string = self.cellsToDisplay[indexPath.section].options[indexPath.row - 1] as? String ?? ""
+            webVC.url = url_string
             self.navigationController?.pushViewController(webVC, animated: true)
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         } else {
-            self.cells[indexPath.section].expanded = !expanded
+            self.cellsToDisplay[indexPath.section].expanded = !expanded
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
         }
         self.view.setNeedsDisplay()
@@ -331,7 +328,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         if (indexPath.row == 0) {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("infoHeaderCell") as! SearchOptionsHeaderCell
             cell.selectedOption.text = self.cells[indexPath.section].value
-            if self.cells[indexPath.section].expanded {
+            if self.cellsToDisplay[indexPath.section].expanded {
                 cell.expandedSymbol.text = "-"
             } else {
                 cell.expandedSymbol.text = "+"

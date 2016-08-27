@@ -12,7 +12,7 @@ import WebKit
 class WebViewViewController: UIViewController {
     
     var webView: WKWebView?
-    var url: NSURL!
+    var url: String! = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +20,9 @@ class WebViewViewController: UIViewController {
         self.webView = WKWebView()
         self.view = self.webView
         
-        //let encodedURL = self.urlString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        //let url = NSURL(string: encodedURL)!
-        let req = NSURLRequest(URL:url)
+        url = self.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let encodedURL = NSURL(string: url)! ?? NSURL()
+        let req = NSURLRequest(URL: encodedURL)
         self.webView!.loadRequest(req)
     }
     

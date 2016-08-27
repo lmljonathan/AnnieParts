@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SwiftyUserDefaults
 class LoginVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - IB Outlets
@@ -22,7 +22,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
         
@@ -64,11 +64,35 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Main Functions
-    
+    func automaticLogin(username: String, password: String) {
+        self.username.text = username
+        self.password.text = password
+        login(username, password: password, completion: { (json) in
+            if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
+                if status == 1 {
+                    if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
+                        User.setUserRank(rank)
+                    }
+                    if let username = json![CONSTANTS.JSON_KEYS.USERNAME] as? String {
+                        User.username = username
+                    }
+                    if let companyname = json![CONSTANTS.JSON_KEYS.COMPANY_NAME] as? String {
+                        User.companyName = companyname
+                    }
+                    self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
+                } else {
+                    self.incorrectPassword()
+                    self.loginButton.userInteractionEnabled = true
+                }
+            }
+        })
+    }
     func performLogin(){
+        let username_text = self.username.text! ?? ""
+        let pass_text = self.password.text! ?? ""
         self.loginButton.userInteractionEnabled = false
-        if (!self.username.text!.isEmpty && !self.password.text!.isEmpty) {
-            login(self.username.text!, password: self.password.text!, completion: { (json) in
+        if (!username_text.isEmpty && !pass_text.isEmpty) {
+            login(username_text, password: pass_text, completion: { (json) in
                 if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
                     if status == 1 {
                         if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
