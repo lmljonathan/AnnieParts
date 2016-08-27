@@ -36,7 +36,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if (self.view.frame.height - self.loginButton.frame.origin.y < 10) {
+            if (self.view.frame.height - self.loginButton.frame.origin.y < keyboardSize.height + 10) {
                 if view.frame.origin.y == 0 {
                     self.view.frame.origin.y -= keyboardSize.height
                 }
@@ -46,7 +46,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if (self.view.frame.height - self.loginButton.frame.origin.y < 10) {
+            if (self.view.frame.height - self.loginButton.frame.origin.y < keyboardSize.height + 10) {
                 if view.frame.origin.y != 0 {
                     self.view.frame.origin.y += keyboardSize.height
                 }

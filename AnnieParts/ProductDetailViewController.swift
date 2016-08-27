@@ -57,7 +57,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
 
 
 
-    private var cells = [Cell(value: "About"), Cell(value: "Install"), Cell(value: "Video")]
+    private var cells = [Cell(value: "About"), Cell(value: "Video"), Cell(value: "Install")]
 
     // Data for the info views
     var aboutString: String! = ""
@@ -103,13 +103,14 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             
             self.shortDescription.text = brief_description
             self.aboutString = description
-            if (self.imagePaths != nil){
+            if (self.imagePaths!.count > 0){
                 self.loadImages(self.imagePaths!, scrollView: self.imageCaroselScrollView)
             }
 
             self.cells[0].options = []
             self.cells[1].options = self.videoPaths
             self.cells[2].options = self.installPaths
+            self.cells = self.cells.filter({$0.options.count != 0})
             self.tableView.reloadData()
         })
     }
@@ -140,6 +141,7 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
         scrollView.auk.settings.pageControl.backgroundColor = UIColor.APlightGray().colorWithAlphaComponent(0.2)
         scrollView.auk.settings.contentMode = .ScaleAspectFit
         for url in urlArray{
+            print(url)
             detailedCache.fetch(URL: NSURL(string: url)!).onSuccess { image in
                 scrollView.auk.show(image: image)
                 self.images.append(image)
