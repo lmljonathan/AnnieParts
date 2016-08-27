@@ -93,6 +93,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SideMenuController.framework"
   install_framework "Pods/SwiftPhotoGallery.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/SwiftyUserDefaults.framework"
   install_framework "Pods/moa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -105,5 +106,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SideMenuController.framework"
   install_framework "Pods/SwiftPhotoGallery.framework"
   install_framework "Pods/SwiftyJSON.framework"
+  install_framework "Pods/SwiftyUserDefaults.framework"
   install_framework "Pods/moa.framework"
 fi
