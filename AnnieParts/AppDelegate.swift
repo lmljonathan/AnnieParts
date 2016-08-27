@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SideMenuController.preferences.drawing.centerPanelShadow = true
         SideMenuController.preferences.animating.statusBarBehaviour = .HorizontalPan
         SideMenuController.preferences.animating.transitionAnimator = FadeAnimator.self
-        SideMenuController.preferences.interaction.swipingEnabled = true
+        SideMenuController.preferences.interaction.swipingEnabled = false
         return true
     }
 
