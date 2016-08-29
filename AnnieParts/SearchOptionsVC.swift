@@ -38,8 +38,8 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     // MARK: - Variables
     private var selectedOptions = ["", "", "", "", ""]
-    private var selectedIDs = [0, 0, 0, 0, 0]
-    private var sectionTitles: [String]! = ["BRAND", "YEAR", "MAKE", "MODEL", "PRODUCT"]
+    private var selectedIDs = [-1, -1, -1, -1, -1]
+    private var sectionTitles: [String]! = ["品牌", "年份", "车场", "车型", "产品"]
     private var cells = [Cell(), Cell(), Cell(), Cell(), Cell()]
 
     // MARK: - View Loading Functions
@@ -98,7 +98,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.cells[0].option_ids = brand.optionsIDs
                 self.cells[1].option_ids = vehicle.yearIDs
                 self.cells[2].option_ids = vehicle.makeIDs
-                self.cells[3].option_ids = vehicle.modelIDs
+                self.cells[3].option_ids = vehicle.allModelIDs
                 self.cells[4].option_ids = product.productsIDs
                 self.tableView.reloadData()
             }
@@ -117,7 +117,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.cells[section].options.count > 0 && self.cells[section].expanded {
-            return self.cells[section].options.count + 1
+            return self.cells[section].options.count + 2
         }
         return 1
     }
@@ -132,9 +132,13 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }
             cell.selectedOption.text = self.cells[indexPath.section].value
             return cell
+        } else if (indexPath.row == 1) {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
+            cell.optionLabel.text = "SELECT ALL"
+            return cell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
-            cell.optionLabel.text = self.cells[indexPath.section].options[indexPath.row-1] as? String
+            cell.optionLabel.text = self.cells[indexPath.section].options[indexPath.row-2] as? String
             return cell
         }
     }
@@ -143,29 +147,27 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let expanded = self.cells[indexPath.section].expanded
         let options = self.cells[indexPath.section].options
         let option_ids = self.cells[indexPath.section].option_ids
-
         self.cells[indexPath.section].expanded = !expanded
-        if expanded && indexPath.row > 0 {
-            
-            // Clears Model
-            if options.count > 0 {
-                self.cells[indexPath.section].value = (options[indexPath.row-1] as? String)!
-                self.selectedOptions[indexPath.section] = (options[indexPath.row-1] as? String)!
 
-                checkSelectedOptions()
+        if expanded && indexPath.row != 0 {
+            if (indexPath.row == 1) {
+                self.cells[indexPath.section].value = "SELECT ALL"
+                self.selectedIDs[indexPath.section] = 0
             }
-            if option_ids.count > 0 {
-                self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
+            else if (indexPath.row > 1) {
+                if option_ids.count > 0 {
+                    self.cells[indexPath.section].value = (options[indexPath.row-2] as? String)!
+                    self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-2] as? Int)!
+                }
             }
+            checkSelectedOptions()
         }
 
         if indexPath.section == 2 && indexPath.row > 0{
             self.cells[3].expanded = false
             self.cells[3].value = "SELECT ONE"
-            self.selectedOptions[3] = ""
             self.selectedIDs[3] = 0
             checkSelectedOptions()
-
             self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(2, 3)), withRowAnimation: .Fade)
         } else {
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
@@ -182,18 +184,19 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // MARK: - Main Functions
     private func checkSelectedOptions(){
         self.searchButton.disable()
-        for option in self.selectedOptions {
-            if (!option.isEmpty) {
+        for id in self.selectedIDs {
+            print(id)
+            if (id >= 0) {
                 self.searchButton.enable(UIColor.APred())
                 break
             }
         }
-        if (!self.selectedOptions[2].isEmpty) {
-            configureModelList(self.selectedOptions[2])
+        if (self.selectedIDs[2] > 0) {
+            configureModelList(self.selectedIDs[2])
             self.cells[3].options = vehicle.model
             self.cells[3].option_ids = vehicle.modelIDs
         }
-        else if (self.selectedOptions[1].isEmpty && self.selectedOptions[2].isEmpty) {
+        else if (self.selectedIDs[1] < 0 && self.selectedIDs[2] <= 0) {
             self.cells[3].options = vehicle.allModel
             self.cells[3].option_ids = vehicle.allModelIDs
         }
@@ -204,7 +207,11 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             var result: [String: Int]! = [:]
             for (index, option) in self.selectedIDs.enumerate(){
                 let key = CONSTANTS.SEARCH_OPTIONS[index]
-                result[key] = option
+                if option == -1 {
+                    result[key] = 0
+                } else {
+                    result[key] = option
+                }
             }
             destVC.searchIDs = result
         }

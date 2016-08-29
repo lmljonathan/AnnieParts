@@ -52,15 +52,13 @@ func getListOfModels(model_ids: [Int]) -> String {
     }
     return model_string
 }
-func configureModelList(selectedMake: String) {
+func configureModelList(selectedMake: Int) {
     vehicle.model.removeAll()
     vehicle.modelIDs.removeAll()
-    let indexOfMake = vehicle.make.indexOf(selectedMake)
-    let make_PID = vehicle.makeIDs[indexOfMake!]
-    print(make_PID)
+
     for index in 0...vehicle.allModelPIDs.count-1 {
         let pid = vehicle.allModelPIDs[index]
-        if pid == make_PID {
+        if pid == selectedMake {
             vehicle.model.append(vehicle.allModel[index])
             vehicle.modelIDs.append(vehicle.allModelIDs[index])
         }
