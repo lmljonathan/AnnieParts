@@ -35,6 +35,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.password.delegate = self
 
         if (Defaults[.automaticLogin]) {
+            self.username.enabled = false
+            self.password.enabled = false
             let seconds = 1.0
             let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
             let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
@@ -95,6 +97,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 } else {
                     self.incorrectPassword()
                     Defaults[.automaticLogin] = false
+                    self.username.enabled = true
+                    self.password.enabled = true
                 }
             }
         })

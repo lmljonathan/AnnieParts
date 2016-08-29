@@ -15,7 +15,7 @@ struct Cell {
     var option_ids: NSArray
     init() {
         expanded = false
-        value = "SELECT ONE"
+        value = "选择"
         options = []
         option_ids = []
     }

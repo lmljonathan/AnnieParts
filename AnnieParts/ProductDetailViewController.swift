@@ -90,7 +90,6 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
             self.cells[1].options = self.videoPaths
             self.cells[2].options = self.installPaths
             self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
-            print(self.cellsToDisplay)
             self.tableView.reloadData()
         })
     }

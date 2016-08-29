@@ -86,7 +86,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     self.noResultsFound = false
                 }
                 self.loadingIndicator.stopAnimating()
-                self.title = String(self.catalogData.count) + " Results"
+                self.title = String(self.catalogData.count) + "个产品"
                 self.tableView.reloadData()
 
             }
