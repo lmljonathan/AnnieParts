@@ -13,7 +13,7 @@ import WebKit
 import Haneke
 import SKPhotoBrowser
 
-class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScrollViewDelegate, SKPhotoBrowserDelegate {
+class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPhotoBrowserDelegate, AddProductModalView {
     @IBOutlet weak var scrollContentView: UIView!
     
     @IBOutlet weak var mainScrollView: UIScrollView!
@@ -28,30 +28,17 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     @IBOutlet var yearLabel: UILabel!
     
     @IBOutlet var shortDescription: UILabel!
-    @IBOutlet var changeQuantityView: UIView!
-    
-    @IBOutlet var bottomBar: UIView!
-    @IBOutlet var innerQuantityView: UIView!
-    @IBOutlet var qty: UILabel!
-    @IBOutlet var quantityTextField: UITextField!
-    @IBOutlet var quantityImage: UIImageView!
 
 
-    @IBOutlet var changeQuantityButton: UIButton!
+
+
     @IBOutlet var addToCartButton: UIButton!
-    
-    private var activeTab: UIView!
-    private var quantityDropDown = DropDown()
-    private var quantityData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "20", "30", "40", "50", "100", "Custom"]
-    private var selectedQuantity: Int! = 1
+
     private var imagePaths: [String]?
     private var images: [UIImage] = []
     
     var vehicleData: vehicle!
     let detailedCache = Shared.imageCache
-    
-    private var keyboardFrame: CGRect?
-    
     var productID: Int!
     var product: Product!
 
@@ -69,17 +56,9 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
             self.setUpWithProduct(product)
             self.loadData()
         }
-        self.quantityTextField.delegate = self
         self.mainScrollView.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.setupDropDown(changeQuantityView, data: self.quantityData)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(self.keyboardShown(_:)), name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardHidden(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        self.addToCartButton.backgroundColor = UIColor.APred()
         configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .Done, target: self, action: #selector(self.showShoppingCart))
         
@@ -178,123 +157,24 @@ class ProductDetailViewController: UIViewController, UITextFieldDelegate, UIScro
     }
     
     @IBAction func addToCartButtonPressed(sender: AnyObject) {
-        if self.quantityTextField.editing == true{
-            if self.quantityTextField.text != "" && Int(self.quantityTextField.text!) != 0{
-                self.selectedQuantity = Int(self.quantityTextField.text!)
-                self.view.endEditing(true)
-            }
-        }else{
-            self.addToCart()
-            self.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!, completion: { (vc) in
-                vc.delayDismiss(0.3)
-            })
-        }
-    }
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
+        vc.delegate = self
 
-    @IBAction func changeQuantity(sender: AnyObject) {
-        self.quantityDropDown.show()
+        vc.name = product.productName
+        vc.id = String(product.productID)
+        vc.sn = product.serialNumber
+        vc.buttonString = CONSTANTS.ADD_TO_CART_LABEL
+        customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
-    
-    func addToCart(){
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": self.productID, CONSTANTS.JSON_KEYS.QUANTITY: self.selectedQuantity])
+    func returnIDandQuantity(id: String, quantity: Int) {
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": self.productID, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
         self.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!) { (vc) in
             vc.delayDismiss(0.2)
         }
     }
-    
-    func addNib(named: String, toView: UIView){
-        let nibView = NSBundle.mainBundle().loadNibNamed(named, owner: self, options: nil)[0] as! UIView
-        nibView.frame = toView.frame
-        toView.addSubview(nibView)
-    }
 
-    private func setupDropDown(view: UIView, data: [String]){
-        // The view to which the drop down will appear on
-        quantityDropDown.anchorView = view // UIView or UIBarButtonItem
-        quantityDropDown.direction = .Top
-        quantityDropDown.cellHeight = 35
-        quantityDropDown.topOffset = CGPoint(x: self.changeQuantityView.bounds.width/3, y: -53)
-        quantityDropDown.textColor = UIColor.whiteColor()
-        quantityDropDown.textFont = UIFont.Montserrat(15)
-        quantityDropDown.backgroundColor = UIColor.APlightGray()
-        
-        quantityDropDown.selectionAction = { [unowned self] (index, item) in
-            if item != "Custom"{
-                self.selectedQuantity = Int(item)
-                self.quantityTextField.text = item
-            }else{
-                
-                self.quantityTextField.text = "000"
-                self.quantityTextField.userInteractionEnabled = true
-                self.quantityTextField.becomeFirstResponder()
-                self.qty.hidden = true
-                self.quantityTextField.text = ""
-                
-                self.addToCartButton.setTitle("Update Quantity", forState: .Normal)
-                self.addToCartButton.titleLabel?.textAlignment = .Center
-                
-            }
-        }
-        
-        // The list of items to display. Can be changed dynamically
-        quantityDropDown.dataSource = data.reverse()
-    }
-    
-    private func enterQtyEditMode(){
-        self.quantityDropDown.dataSource = []
-    }
-    
-    private func exitQtyEditMode(){
-        self.quantityDropDown.dataSource = self.quantityData.reverse()
-    }
-    
-    @IBAction func textFieldDidChange(sender: AnyObject) {
-    }
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        guard let text = textField.text else { return true }
-        
-        let newLength = text.utf16.count + string.utf16.count - range.length
-        return newLength <= 3 // MAX # OF DIGITS OF QUANTITY
-    }
-
-
-    private func addTapGR(view: UIView, action: Selector){
-        let gr = UITapGestureRecognizer(target: self, action: action)
-        view.addGestureRecognizer(gr)
-    }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if self.quantityTextField.editing == true{
-            self.quantityTextField.text = String(self.selectedQuantity)
-        }
-        self.view.endEditing(true)
-        self.resignFirstResponder()
-    }
-    
     func unwind() {
         self.navigationController?.popViewControllerAnimated(true)
-    }
-    
-    func keyboardShown(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 5, initialSpringVelocity: 3, options: .CurveEaseOut, animations: {
-                self.bottomBar.frame.origin.y -= keyboardSize.height
-                }, completion: { (x) in
-            })
-            self.mainScrollView.userInteractionEnabled = false
-            self.enterQtyEditMode()
-        }
-    }
-    
-    func keyboardHidden(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.bottomBar.frame.origin.y += keyboardSize.height
-            self.mainScrollView.userInteractionEnabled = true
-            self.addToCartButton.setTitle("Add to Cart", forState: .Normal)
-            self.qty.hidden = false
-            self.exitQtyEditMode()
-        }
     }
     func showShoppingCart() {
         self.performSegueWithIdentifier("showCart", sender: self)

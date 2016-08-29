@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyUserDefaults
+import SideMenuController
 class LoginVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - IB Outlets
@@ -22,7 +23,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
         

@@ -144,6 +144,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.normalizeView(sender)
         let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
         self.updatedItem = index!.row
+        print(self.updatedItem)
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         
@@ -178,8 +179,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.reloadData()
             self.updatedItem = -1
         }
-        
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
+        print("\(self.updatedItem) + \(id) + \(quantity)")
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         loadData()
