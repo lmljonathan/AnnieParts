@@ -33,6 +33,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBarHidden = true
         self.username.delegate = self
         self.password.delegate = self
+
+        if (Defaults[.automaticLogin]) {
+            let seconds = 1.0
+            let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.automaticLogin()
+            })
+        }
     }
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
@@ -64,7 +74,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Main Functions
-    func automaticLogin(username: String, password: String) {
+    func automaticLogin() {
+        let username = Defaults[.username]
+        let password = Defaults[.password]
         self.username.text = username
         self.password.text = password
         login(username, password: password, completion: { (json) in
@@ -82,7 +94,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                 } else {
                     self.incorrectPassword()
-                    self.loginButton.userInteractionEnabled = true
+                    Defaults[.automaticLogin] = false
                 }
             }
         })
@@ -105,6 +117,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             User.companyName = companyname
                         }
                         self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
+                        Defaults[.username] = username_text
+                        Defaults[.password] = pass_text
+                        Defaults[.automaticLogin] = true
                     } else {
                         self.incorrectPassword()
                         self.loginButton.userInteractionEnabled = true

@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 import Alamofire
-
+import SwiftyUserDefaults
 import Foundation
 import UIKit
 
@@ -35,6 +35,7 @@ func logout() {
         query_url,
         parameters: CONSTANTS.URL_INFO.LOGOUT_ACTION
     ).validate()
+    Defaults[.automaticLogin] = false
 }
 func send_request(query_type: String, query_paramters: [String: AnyObject]) {
     let query_url = CONSTANTS.URL_INFO.BASE_URL + query_type + "?"
