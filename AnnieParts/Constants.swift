@@ -13,6 +13,8 @@ struct CONSTANTS {
     static let SEARCH_OPTIONS = ["model", "pinpai", "attr"]
     static let ADD_TO_CART_LABEL = "加入购物车"
     static let UPDATE_CART_LABEL = "更改"
+    static let ADDED_TO_CART_LABEL = "加入成功"
+    static let UPDATED_QUANTITY_LABEL = "更改成功"
     static let SIDE_MENU_OPTIONS = ["搜索", "购物车"]
     struct URL_INFO {
         static let BASE_URL = "http://www.annieparts.com/"

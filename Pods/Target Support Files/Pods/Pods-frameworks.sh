@@ -86,7 +86,6 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/Auk.framework"
-  install_framework "Pods/DropDown.framework"
   install_framework "Pods/Haneke.framework"
   install_framework "Pods/MIBadgeButton_Swift.framework"
   install_framework "Pods/Presentr.framework"
@@ -99,7 +98,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/Auk.framework"
-  install_framework "Pods/DropDown.framework"
   install_framework "Pods/Haneke.framework"
   install_framework "Pods/MIBadgeButton_Swift.framework"
   install_framework "Pods/Presentr.framework"

@@ -43,7 +43,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         configureTableView(self.tableView)
 
         let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "刷新")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
 
@@ -85,7 +85,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     shoppingItem.setModelListText(getListOfModels(shoppingItem.modelIDlist))
                     self.shoppingCart.append(shoppingItem)
                 }
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             }
             print("calculate")
             self.calculateSubtotal()
@@ -171,6 +171,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:]) { (json) in
             // store the order id
             sender.enabled = true
+            self.loadData()
         }
     }
     func returnIDandQuantity(id: String, quantity: Int) {
@@ -186,7 +187,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         loadData()
         calculateSubtotal()
         refreshControl.beginRefreshing()
-        self.tableView.reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         refreshControl.endRefreshing()
     }
 }

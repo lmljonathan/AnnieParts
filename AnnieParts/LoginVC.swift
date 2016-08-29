@@ -35,6 +35,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.password.delegate = self
 
         if (Defaults[.automaticLogin]) {
+            self.loginButton.userInteractionEnabled = false
             self.username.enabled = false
             self.password.enabled = false
             let seconds = 1.0
@@ -99,6 +100,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     Defaults[.automaticLogin] = false
                     self.username.enabled = true
                     self.password.enabled = true
+                    self.loginButton.userInteractionEnabled = true
                 }
             }
         })

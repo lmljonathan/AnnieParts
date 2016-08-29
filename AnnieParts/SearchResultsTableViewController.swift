@@ -45,7 +45,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     func initializeRefreshControl() {
         let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "刷新")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
     }
@@ -87,7 +87,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                 }
                 self.loadingIndicator.stopAnimating()
                 self.title = String(self.catalogData.count) + "个产品"
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 
             }
         }
@@ -142,6 +142,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             destVC 
             destVC.productID = Int(self.catalogData[indexPath.row].productID)!
             self.navigationController?.pushViewController(destVC, animated: true)
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -171,7 +172,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     func handleRefresh(refreshControl: UIRefreshControl) {
         refreshControl.beginRefreshing()
         loadData()
-        self.tableView.reloadData()
         refreshControl.endRefreshing()
     }
     

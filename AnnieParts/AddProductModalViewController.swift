@@ -59,11 +59,11 @@ class AddProductModalViewController: UIViewController {
         
         self.dismissViewControllerAnimated(true) {
             if self.buttonString == "Update"{
-                mainVC?.showNotificationView("QTY Changed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                mainVC?.showNotificationView(CONSTANTS.UPDATED_QUANTITY_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
                     vc.delayDismiss(0.3)
                 })
             }else{
-                mainVC?.showNotificationView("Product Added!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                mainVC?.showNotificationView(CONSTANTS.ADDED_TO_CART_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
                     vc.delayDismiss(0.3)
                 })
             }
