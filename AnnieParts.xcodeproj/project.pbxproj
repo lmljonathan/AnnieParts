@@ -20,6 +20,8 @@
 		3CBD9F9D1D61429300C2FEE2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBD9F9C1D61429300C2FEE2 /* Constants.swift */; };
 		3CDA179E1D5ED6EE00A4F57C /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */; };
 		3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */; };
+		3CFE8EC61D7F41BE00E40C52 /* OrderSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE8EC51D7F41BE00E40C52 /* OrderSummaryViewController.swift */; };
+		3CFE8EC81D7F491800E40C52 /* OrderSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE8EC71D7F491800E40C52 /* OrderSummaryTableViewCell.swift */; };
 		900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */; };
 		901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */; };
 		901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */; };
@@ -87,6 +89,8 @@
 		3CBD9F9C1D61429300C2FEE2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3CDA179D1D5ED6EE00A4F57C /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		3CFE8EC51D7F41BE00E40C52 /* OrderSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryViewController.swift; sourceTree = "<group>"; };
+		3CFE8EC71D7F491800E40C52 /* OrderSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		8633511A252739FC04D09AD0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		901AD9B41D5EF06B0000FCE5 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				900EB69E1D46990D00122DB9 /* ProductDetailViewController.swift */,
 				902E9B491D6C345300876669 /* WebViewViewController.swift */,
 				3CA2812F1D403A6C00229F00 /* ShoppingCartViewController.swift */,
+				3CFE8EC51D7F41BE00E40C52 /* OrderSummaryViewController.swift */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 				3CA7B8141D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift */,
 				3CA7FF431D3D5CB400364671 /* SearchResultsCell.swift */,
 				3C15F9351D45523E00BCC053 /* ShoppingCartCell.swift */,
+				3CFE8EC71D7F491800E40C52 /* OrderSummaryTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -533,6 +539,7 @@
 				9075AA191D5325EA004272F4 /* SearchOptionsCell.swift in Sources */,
 				3C6A48AD1D5BD2A4006FB3E4 /* Model.swift in Sources */,
 				9075AA151D531F7E004272F4 /* JSONDataHandler.swift in Sources */,
+				3CFE8EC61D7F41BE00E40C52 /* OrderSummaryViewController.swift in Sources */,
 				9087E6691D4C284000FCF09B /* aboutSelectView.swift in Sources */,
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
@@ -549,6 +556,7 @@
 				902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
 				3C9D321A1D5E53520099BC50 /* UIHelperFunctions.swift in Sources */,
+				3CFE8EC81D7F491800E40C52 /* OrderSummaryTableViewCell.swift in Sources */,
 				3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -61,7 +61,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
     }
     func loadData() {
-        print("load Data")
         self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
@@ -87,7 +86,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             }
-            print("calculate")
             self.calculateSubtotal()
         }
     }
@@ -165,14 +163,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.deleteRowsAtIndexPaths([index!], withRowAnimation: .Fade)
         self.tableView.endUpdates()
         
-    }
-    @IBAction func checkout(sender: UIButton) {
-        sender.enabled = false
-        get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:]) { (json) in
-            // store the order id
-            sender.enabled = true
-            self.loadData()
-        }
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         if (self.updatedItem != -1) {
