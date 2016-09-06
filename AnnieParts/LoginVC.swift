@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyUserDefaults
+import SideMenuController
 class LoginVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - IB Outlets
@@ -22,7 +23,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
         
@@ -33,6 +33,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.navigationController?.navigationBarHidden = true
         self.username.delegate = self
         self.password.delegate = self
+
+        if (Defaults[.automaticLogin]) {
+            self.loginButton.userInteractionEnabled = false
+            self.username.enabled = false
+            self.password.enabled = false
+            let seconds = 1.0
+            let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
+            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+                self.automaticLogin()
+            })
+        }
     }
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
@@ -64,7 +77,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Main Functions
-    func automaticLogin(username: String, password: String) {
+    func automaticLogin() {
+        let username = Defaults[.username]
+        let password = Defaults[.password]
         self.username.text = username
         self.password.text = password
         login(username, password: password, completion: { (json) in
@@ -82,6 +97,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                 } else {
                     self.incorrectPassword()
+                    Defaults[.automaticLogin] = false
+                    self.username.enabled = true
+                    self.password.enabled = true
                     self.loginButton.userInteractionEnabled = true
                 }
             }
@@ -105,6 +123,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             User.companyName = companyname
                         }
                         self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
+                        Defaults[.username] = username_text
+                        Defaults[.password] = pass_text
+                        Defaults[.automaticLogin] = true
                     } else {
                         self.incorrectPassword()
                         self.loginButton.userInteractionEnabled = true

@@ -7,20 +7,14 @@
 //
 
 import UIKit
-import DropDown
 import SideMenuController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        DropDown.startListeningToKeyboard()
-        
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         UINavigationBar.appearance().translucent = false
@@ -39,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SideMenuController.preferences.drawing.centerPanelShadow = true
         SideMenuController.preferences.animating.statusBarBehaviour = .HorizontalPan
         SideMenuController.preferences.animating.transitionAnimator = FadeAnimator.self
-        SideMenuController.preferences.interaction.swipingEnabled = false
+        SideMenuController.preferences.interaction.swipingEnabled = true
         return true
     }
 

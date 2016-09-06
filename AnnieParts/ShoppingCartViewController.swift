@@ -43,7 +43,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         configureTableView(self.tableView)
 
         let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "刷新")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
         self.tableView.addSubview(refreshControl)
 
@@ -85,7 +85,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     shoppingItem.setModelListText(getListOfModels(shoppingItem.modelIDlist))
                     self.shoppingCart.append(shoppingItem)
                 }
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             }
             print("calculate")
             self.calculateSubtotal()
@@ -144,6 +144,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.normalizeView(sender)
         let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
         self.updatedItem = index!.row
+        print(self.updatedItem)
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         
@@ -170,6 +171,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:]) { (json) in
             // store the order id
             sender.enabled = true
+            self.loadData()
         }
     }
     func returnIDandQuantity(id: String, quantity: Int) {
@@ -178,14 +180,14 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self.tableView.reloadData()
             self.updatedItem = -1
         }
-        
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
+        print("\(self.updatedItem) + \(id) + \(quantity)")
+        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         loadData()
         calculateSubtotal()
         refreshControl.beginRefreshing()
-        self.tableView.reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         refreshControl.endRefreshing()
     }
 }

@@ -59,6 +59,8 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBAction func buttonLogout(sender: UIButton) {
         logout()
-        sideMenuController?.performSegueWithIdentifier(CONSTANTS.SEGUES.LOGIN, sender: nil)
+        let storyboard = self.storyboard
+        let loginVC = storyboard?.instantiateInitialViewController() as! LoginVC
+        self.presentViewController(loginVC, animated: true, completion: nil)
     }
 }

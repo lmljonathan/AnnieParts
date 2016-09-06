@@ -9,11 +9,13 @@
 import Foundation
 
 struct CONSTANTS {
-    static let USER_RANKS = [1: "browser", 2:"dealer(bronze)", 3: "dealer(silver)", 4: "dealer(gold)"]
-    static let SEARCH_OPTIONS = ["pinpai", "year", "brand", "model", "attr"]
-    static let ADD_TO_CART_LABEL = "Add to Cart"
-    static let UPDATE_CART_LABEL = "Update"
-    static let SIDE_MENU_OPTIONS = ["Search", "Shopping Cart"]
+    static let USER_RANKS = [1: "浏览者", 2:"经销商（铜）", 3: "经销商（银）", 4: "经销商（金）"]
+    static let SEARCH_OPTIONS = ["model", "pinpai", "attr"]
+    static let ADD_TO_CART_LABEL = "加入购物车"
+    static let UPDATE_CART_LABEL = "更改"
+    static let ADDED_TO_CART_LABEL = "加入成功"
+    static let UPDATED_QUANTITY_LABEL = "更改成功"
+    static let SIDE_MENU_OPTIONS = ["搜索", "购物车"]
     struct URL_INFO {
         static let BASE_URL = "http://www.annieparts.com/"
         static let CONFIG = "appGetCfg.php"
@@ -71,7 +73,7 @@ struct CONSTANTS {
         
         static let MAKE_ID = "brand_id"
         static let PRODUCT_QUANTITY = "goods_number"
-        
+        static let GOODS_ID = "goods_id"
         static let ACTION = "act"
     }
     struct CELL_IDENTIFIERS {
