@@ -44,13 +44,15 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
 
 
 
-    private var cells = [Cell(value: "About"), Cell(value: "Video"), Cell(value: "Install")]
+    private var cells = [Cell(value: "规格"), Cell(value: "视频"), Cell(value: "安装")]
     private var cellsToDisplay: [Cell]! = []
     // Data for the info views
-    var aboutString: String! = ""
-    var videoPaths: [String]! = []
-    var installPaths: [String]! = []
-    
+    private var aboutString: String! = ""
+    private var videoPaths: [String]! = []
+    private var videoTitles: [String]! = []
+    private var installPaths: [String]! = []
+    private var installTitles: [String]! = []
+
     override func viewDidLoad() {
         if (self.productID != nil) {
             self.setUpWithProduct(product)
@@ -67,9 +69,12 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
 
         super.viewDidLoad()
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    }
     func loadData(){
+        self.cellsToDisplay.removeAll()
+        self.videoPaths.removeAll()
+        self.videoTitles.removeAll()
+        self.installPaths.removeAll()
+        self.installTitles.removeAll()
         get_json_data(CONSTANTS.URL_INFO.PRODUCT_DETAIL, query_paramters: ["goods_id": self.productID], completion: { (json) in
 
             let brief_description = json!["brief"] as? String ?? ""
@@ -77,8 +82,18 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
             if let imgpaths = json!["thumb_url"] as? [String]{
                 self.imagePaths = imgpaths
             }
-            self.videoPaths = json!["video"] as? [String] ?? []
-            self.installPaths = json!["ins"] as? [String] ?? []
+            if let videos = json!["video"] as? [NSDictionary] {
+                for video in videos {
+                    self.videoTitles.append(video["title"] as? String ?? "")
+                    self.videoPaths.append(video["href"] as? String ?? "")
+                }
+            }
+            if let install_files = json!["ins"] as? [NSDictionary] {
+                for file in install_files {
+                    self.installTitles.append(file["title"] as? String ?? "")
+                    self.installPaths.append(file["href"] as? String ?? "")
+                }
+            }
             
             self.shortDescription.text = brief_description
             self.aboutString = description
@@ -87,8 +102,12 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
             }
 
             self.cells[0].options = []
-            self.cells[1].options = self.videoPaths
-            self.cells[2].options = self.installPaths
+
+            self.cells[1].options = self.videoTitles
+            self.cells[2].options = self.installTitles
+
+            self.cells[1].option_ids = self.videoPaths
+            self.cells[2].option_ids = self.installPaths
             self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
             self.tableView.reloadData()
         })
@@ -129,10 +148,6 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
             })
         }
         scrollView.auk.startAutoScroll(delaySeconds: 3)
-    }
-    
-    private func prepareImagesForZoom(){
-        
     }
     
     @IBAction func handleImageZoom(recognizer: UITapGestureRecognizer) {
@@ -198,7 +213,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         return UIView(frame: CGRectZero)
     }
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
+        return 0.001
     }
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: CGRectZero)
@@ -207,12 +222,11 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         let expanded = self.cellsToDisplay[indexPath.section].expanded
         if (expanded && indexPath.row > 0) {
             let webVC = self.storyboard?.instantiateViewControllerWithIdentifier("webVC") as! WebViewViewController
-            print(self.cellsToDisplay[indexPath.section].options)
-            let url_string = self.cellsToDisplay[indexPath.section].options[indexPath.row - 1] as? String ?? ""
+            let url_string = self.cellsToDisplay[indexPath.section].option_ids[indexPath.row - 1] as? String ?? ""
             webVC.url = url_string
             self.navigationController?.pushViewController(webVC, animated: true)
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
         } else {
-            print(self.cellsToDisplay[indexPath.section].options)
             self.cellsToDisplay[indexPath.section].expanded = !expanded
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
         }
