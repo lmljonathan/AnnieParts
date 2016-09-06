@@ -42,6 +42,46 @@ extension UIColor {
 }
 
 extension UIView{
+    var y: CGFloat! {
+        get {
+            return self.frame.origin.y
+        }
+        set(y) {
+            self.frame = CGRect(x: self.frame.origin.x, y: y, width: self.frame.width, height: self.frame.height)
+        }
+    }
+    
+    var centerY: CGFloat! {
+        get {
+            return self.frame.midY
+        }
+        set(newCenterY) {
+            self.frame = CGRect(x: self.frame.origin.x, y: newCenterY - self.frame.height / 2, width: self.frame.width, height: self.frame.height)
+        }
+    }
+    
+    var x: CGFloat! {
+        get {
+            return self.frame.origin.x
+        }
+        set(x) {
+            self.frame = CGRect(x: x, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
+        }
+    }
+    
+    var height: CGFloat! {
+        get {
+            return self.frame.height
+        }
+        set(height) {
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: height)
+        }
+    }
+    
+    func makeTranslation(x: CGFloat, y: CGFloat) {
+        self.transform = CGAffineTransformMakeTranslation(x - self.x, y - self.y)
+    }
+    
     func disable(){
         self.backgroundColor = .grayColor()
         self.userInteractionEnabled = false
