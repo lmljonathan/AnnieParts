@@ -13,6 +13,8 @@ class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var summaryTableView: UITableView!
     @IBOutlet weak var totalQuantity: UILabel!
     @IBOutlet weak var totalPrice: UILabel!
+
+    var cartItems: [ShoppingCart]! = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.summaryTableView.delegate = self
@@ -28,9 +30,10 @@ class OrderSummaryViewController: UIViewController {
 }
 extension OrderSummaryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = self.summaryTableView.dequeueReusableCellWithIdentifier("summaryItem") as! OrderSummaryTableViewCell
+        return cell
     }
 }

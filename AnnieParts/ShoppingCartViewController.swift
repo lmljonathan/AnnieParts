@@ -50,6 +50,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         loadData()
         super.viewDidLoad()
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "showSummary") {
+            let vc = segue.destinationViewController as? OrderSummaryViewController
+            vc?.cartItems = self.shoppingCart
+        }
+    }
     func calculateSubtotal() {
         print("hello")
         var subtotal = 0.0
