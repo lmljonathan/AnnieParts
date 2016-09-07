@@ -24,11 +24,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         super.viewDidLoad()
         print(self.searchIDs)
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 100
+        self.tableView.estimatedRowHeight = 122
+        self.tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
         
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
+        self.tableView.registerNib(UINib(nibName: "SearchResultsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS)
 
         configureTableView(self.tableView)
         configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
@@ -87,7 +89,9 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                 }
                 self.loadingIndicator.stopAnimating()
                 self.title = String(self.catalogData.count) + "个产品"
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                self.tableView.reloadDataWithAutoSizingCells()
+                //self.tableView.reloadSectionWithAutoSizingCells(0, animation: .Automatic)
+                //self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 
             }
         }
@@ -127,6 +131,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
             cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
+//            
+//            cell.mainViewHeightContraint.constant = 110 + 16 * CGFloat(cell.models.numberOfLines)
+//            cell.needsUpdateConstraints()
+//            
             return cell
         }
 
@@ -147,7 +155,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (self.noResultsFound) {
-            return 120
+            return 132
         } else {
             return UITableViewAutomaticDimension
         }
