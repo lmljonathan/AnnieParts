@@ -11,7 +11,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.otf">
+        <mutableArray key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
         </mutableArray>
@@ -34,24 +34,36 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="12" width="54" height="19"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0E-KW-6gB">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="34" width="70.5" height="16.5"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Num of Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kwd-PW-Yah">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="53.5" width="84.5" height="16.5"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11Q-y3-cG1">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="72" width="42" height="16.5"/>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZS-Q7-rDH">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -62,6 +74,9 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="284.5" y="71" width="50.5" height="19"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,7 +150,7 @@
                         </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.89543876259999999" green="0.89543876259999999" blue="0.89543876259999999" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="kXC-1F-h2E" secondAttribute="trailing" constant="5" id="2Qk-Td-TPQ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="kXC-1F-h2E" secondAttribute="bottom" constant="1.5" id="MO5-AB-nS5">
@@ -175,6 +190,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.89543876259999999" green="0.89543876259999999" blue="0.89543876259999999" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="confirmButton" destination="BZS-Q7-rDH" id="iEc-6E-UIA"/>
                 <outlet property="createdByLabel" destination="F0E-KW-6gB" id="fXx-Q9-UYb"/>

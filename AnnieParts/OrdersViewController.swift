@@ -28,10 +28,9 @@ class OrdersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setUserRank()
+        self.setUserRank()
         //self.loadData()
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
-        self.ordersTableView.reloadData()
     }
     
     private func setUserRank() {
@@ -74,8 +73,8 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         return 1
     }
     
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        return sectionTitles
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitles[section]
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
