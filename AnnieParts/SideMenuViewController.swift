@@ -15,9 +15,10 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var userRank: UILabel!
     @IBOutlet weak var name: UILabel!
     
-    private let segues = [CONSTANTS.SEGUES.SHOW_CENTER, CONSTANTS.SEGUES.SHOPPING_CART]
-    private let pageOptionIcons = [CONSTANTS.IMAGES.SEARCH_ICON, CONSTANTS.IMAGES.CART_ICON]
+    private let segues = [CONSTANTS.SEGUES.SHOW_CENTER, CONSTANTS.SEGUES.SHOPPING_CART, CONSTANTS.SEGUES.ORDERS]
+    private let pageOptionIcons = [CONSTANTS.IMAGES.SEARCH_ICON, CONSTANTS.IMAGES.CART_ICON, CONSTANTS.IMAGES.ORDERS_ICON]
     private let pageOptions = CONSTANTS.SIDE_MENU_OPTIONS
+    
     override func viewDidLoad() {
         let index = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.cellForRowAtIndexPath(index)?.selected = true
@@ -35,6 +36,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return segues.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print(indexPath.row)
         let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SIDE_MENU_CELLS)! as! MenuCellTableViewCell
         
         cell.menuLabel.text = self.pageOptions[indexPath.row]

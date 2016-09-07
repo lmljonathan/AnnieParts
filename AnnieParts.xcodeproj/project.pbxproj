@@ -26,6 +26,10 @@
 		901AD9B91D6038E10000FCE5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */; };
 		901AD9BD1D6174D00000FCE5 /* NotificationDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9BC1D6174D00000FCE5 /* NotificationDialogViewController.swift */; };
 		90240BAF1D7F8A8200B42996 /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */; };
+		90240BB11D7FDEC900B42996 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB01D7FDEC900B42996 /* OrdersViewController.swift */; };
+		90240BB31D7FDFC800B42996 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90240BB21D7FDFC800B42996 /* OrderCell.xib */; };
+		90240BB51D7FE14900B42996 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB41D7FE14900B42996 /* OrderTableViewCell.swift */; };
+		90240BB71D7FFD2000B42996 /* OrdersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB61D7FFD2000B42996 /* OrdersTableViewController.swift */; };
 		902E9B461D6C232800876669 /* videoSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B451D6C232800876669 /* videoSelectView.swift */; };
 		902E9B481D6C2D1100876669 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */; };
 		902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B491D6C345300876669 /* WebViewViewController.swift */; };
@@ -93,6 +97,10 @@
 		901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		901AD9BC1D6174D00000FCE5 /* NotificationDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDialogViewController.swift; sourceTree = "<group>"; };
 		90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchResultsCell.xib; path = XIB/SearchResultsCell.xib; sourceTree = "<group>"; };
+		90240BB01D7FDEC900B42996 /* OrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		90240BB21D7FDFC800B42996 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		90240BB41D7FE14900B42996 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		90240BB61D7FFD2000B42996 /* OrdersTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewController.swift; sourceTree = "<group>"; };
 		902E9B451D6C232800876669 /* videoSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = videoSelectView.swift; sourceTree = "<group>"; };
 		902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		902E9B491D6C345300876669 /* WebViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +277,8 @@
 		907256541D3C45C700C46A8B /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				90240BB01D7FDEC900B42996 /* OrdersViewController.swift */,
+				90240BB61D7FFD2000B42996 /* OrdersTableViewController.swift */,
 				907256241D397EF200C46A8B /* LoginVC.swift */,
 				90EA32211D3F20850066B281 /* SearchOptionsVC.swift */,
 				3CE599CC1D3D600200372AF7 /* SearchResultsTableViewController.swift */,
@@ -307,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				9088A6241D6281950052348F /* NoItemsCell.xib */,
+				90240BB21D7FDFC800B42996 /* OrderCell.xib */,
 				90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */,
 			);
 			name = XIB;
@@ -315,6 +326,7 @@
 		90EA32201D3E98A90066B281 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				90240BB41D7FE14900B42996 /* OrderTableViewCell.swift */,
 				902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */,
 				9075AA181D5325EA004272F4 /* SearchOptionsCell.swift */,
 				3CA7B8141D6BC93E0011CA3B /* SearchOptionsHeaderCell.swift */,
@@ -432,6 +444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90240BB31D7FDFC800B42996 /* OrderCell.xib in Resources */,
 				90898C841D47DD1900719F20 /* Montserrat-Light.otf in Resources */,
 				90898C7E1D47DD1900719F20 /* Montserrat-ExtraBold.otf in Resources */,
 				9072562D1D397EF200C46A8B /* LaunchScreen.storyboard in Resources */,
@@ -533,6 +546,7 @@
 				900EB69F1D46990D00122DB9 /* ProductDetailViewController.swift in Sources */,
 				3CE599CD1D3D600200372AF7 /* SearchResultsTableViewController.swift in Sources */,
 				901AD9B91D6038E10000FCE5 /* LoadingViewController.swift in Sources */,
+				90240BB71D7FFD2000B42996 /* OrdersTableViewController.swift in Sources */,
 				901AD9BD1D6174D00000FCE5 /* NotificationDialogViewController.swift in Sources */,
 				907256251D397EF200C46A8B /* LoginVC.swift in Sources */,
 				3CB72D561D5D22230012FAA4 /* CustomizePopup.swift in Sources */,
@@ -542,9 +556,11 @@
 				901AD9B51D5EF06B0000FCE5 /* UIExtensions.swift in Sources */,
 				3C68FDFB1D484A4900D0609F /* AddProductModalViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
+				90240BB11D7FDEC900B42996 /* OrdersViewController.swift in Sources */,
 				902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
 				3C9D321A1D5E53520099BC50 /* UIHelperFunctions.swift in Sources */,
+				90240BB51D7FE14900B42996 /* OrderTableViewCell.swift in Sources */,
 				3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -112,3 +112,46 @@ class ShoppingCart: Product {
         self._quantity = num
     }
 }
+
+class Order {
+    private var _addTime: String!
+    private var _userID: Int!
+    private var _totalPrice: Double!
+    private var _numItems: Int!
+    private var _sn: String!
+    private var _id: Int!
+    
+    var addTime: String! {
+        return self._addTime
+    }
+    
+    var userID: Int! {
+        return self._userID
+    }
+    
+    var totalPrice: Double! {
+        return self._totalPrice
+    }
+    
+    var numItems: Int! {
+        return self._numItems
+    }
+    
+    var sn: String! {
+        return self._sn
+    }
+    
+    var id: Int! {
+        return self._id
+    }
+    
+    init() {
+        
+    }
+}
+
+class ProcessedOrder: Order {
+    override init(){
+        
+    }
+}

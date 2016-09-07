@@ -15,7 +15,7 @@ struct CONSTANTS {
     static let UPDATE_CART_LABEL = "更改"
     static let ADDED_TO_CART_LABEL = "加入成功"
     static let UPDATED_QUANTITY_LABEL = "更改成功"
-    static let SIDE_MENU_OPTIONS = ["搜索", "购物车"]
+    static let SIDE_MENU_OPTIONS = ["搜索", "购物车", "Orders"] // Change
     struct URL_INFO {
         static let BASE_URL = "http://www.annieparts.com/"
         static let CONFIG = "appGetCfg.php"
@@ -29,6 +29,7 @@ struct CONSTANTS {
         static let LOGOUT_URL = "appLogout.php"
         static let LOGOUT_ACTION = ["act": "logout"]
         static let CHECKOUT = "appFinishShopping.php"
+        static let ORDER_LIST = "appGetOrderList.php"
     }
     struct VC_IDS {
         static let LOGIN_LOADING = "loadingVC"
@@ -41,6 +42,7 @@ struct CONSTANTS {
         static let SHOW_CENTER = "showCenterSearch"
         static let SIDE_MENU = "containSideMenu"
         static let SHOPPING_CART = "showCenterShoppingCart"
+        static let ORDERS = "showCenterOrders"
         static let LOGIN = "showCenterLogin"
         static let IMAGE_ZOOM = "zoomImage"
     }
@@ -75,6 +77,14 @@ struct CONSTANTS {
         static let PRODUCT_QUANTITY = "goods_number"
         static let GOODS_ID = "goods_id"
         static let ACTION = "act"
+        
+        // Order List
+        static let CUSTOMER_ORDER_LIST = "customerOrder"
+        static let ADD_TIME = "add_time"
+        static let USER_ID = "user_id"
+        static let ORDER_ID = "order_id"
+        static let ORDER_SN = "order_sn"
+        static let TOTAL_PRICE = "goods_ammount"
     }
     struct CELL_IDENTIFIERS {
         static let SEARCH_OPTIONS_CELLS = "selectCell"
@@ -82,10 +92,12 @@ struct CONSTANTS {
         static let SHOPPING_CART_CELLS = "shoppingCartCell"
         static let SIDE_MENU_CELLS = "menuCell"
         static let NO_RESULTS_FOUND_CELL = "noItemsCell"
+        static let ORDER_CELL = "orderCell"
     }
     struct IMAGES {
         static let BACK_BUTTON = "back"
         static let SEARCH_ICON = "search"
         static let CART_ICON = "cart"
+        static let ORDERS_ICON = "orders"
     }
 }

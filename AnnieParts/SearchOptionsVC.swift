@@ -111,6 +111,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sectionTitles[section]
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.cells[section].options.count > 0 && self.cells[section].expanded {
             return self.cells[section].options.count + 1

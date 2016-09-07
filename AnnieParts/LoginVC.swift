@@ -23,8 +23,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     private var originalFrames: [UIView: CGFloat]?
     
     // MARK: - View Loading Functions
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
