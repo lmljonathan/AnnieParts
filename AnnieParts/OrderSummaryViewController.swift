@@ -38,6 +38,7 @@ class OrderSummaryViewController: UIViewController {
 
     @IBAction func submitOrder(sender: UIButton) {
         //add in http request
+        send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     @IBAction func cancelCheckout(sender: UIButton) {
