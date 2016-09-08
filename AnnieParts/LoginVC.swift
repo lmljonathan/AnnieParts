@@ -13,16 +13,22 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - IB Outlets
     
+    @IBOutlet var anniepartsLogo: UIImageView!
     @IBOutlet var anniepartsText: UILabel!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgetPassButton: UIButton!
+
+    private var originalFrames: [UIView: CGFloat]?
     
     // MARK: - View Loading Functions
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
         
@@ -46,23 +52,45 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 self.automaticLogin()
             })
         }
+        
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.originalFrames = [self.username: self.username.y, self.password: self.password.y, self.loginButton: self.loginButton.y]
+        for y in self.originalFrames!.keys{
+            print(self.originalFrames![y]!)
+        }
+
+    }
+    
     func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if (self.view.frame.height - self.loginButton.frame.origin.y < keyboardSize.height + 10) {
-                if view.frame.origin.y == 0 {
-                    self.view.frame.origin.y -= keyboardSize.height
-                }
+        if self.username.y != 50{
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                
+                // Hide Logo
+                self.anniepartsLogo.hidden = true
+                self.anniepartsText.hidden = true
+                
+                UIView.animateWithDuration(0.3, animations: {
+                    self.username.makeTranslation(self.username.x, y: 50)
+                    self.password.makeTranslation(self.password.x, y: self.username.frame.maxY + 10)
+                    
+                    self.loginButton.makeTranslation(self.loginButton.x, y: self.view.height - (keyboardSize.height + 70))
+                })
+                
             }
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if (self.view.frame.height - self.loginButton.frame.origin.y < keyboardSize.height + 10) {
-                if view.frame.origin.y != 0 {
-                    self.view.frame.origin.y += keyboardSize.height
-                }
+        if originalFrames != nil{
+            self.anniepartsLogo.hidden = false
+            self.anniepartsText.hidden = false
+            
+            for view in originalFrames!.keys{
+                UIView.animateWithDuration(0.3, animations: {
+                    view.transform = CGAffineTransformMakeTranslation(0, 0)
+                })
             }
         }
     }
@@ -150,9 +178,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
         self.resignFirstResponder()
-        if view.frame.origin.y != 0{
-            self.view.frame.origin.y = 0
-        }
+//        if view.frame.origin.y != 0{
+//            self.view.frame.origin.y = 0
+//        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -160,7 +188,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             if textField.text != ""{
                 password.becomeFirstResponder()
             }
-            textField.resignFirstResponder()
         }else{
             textField.resignFirstResponder()
             performLogin()

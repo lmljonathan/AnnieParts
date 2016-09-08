@@ -42,6 +42,69 @@ extension UIColor {
 }
 
 extension UIView{
+    var y: CGFloat! {
+        get {
+            return self.frame.origin.y
+        }
+        set(y) {
+            self.frame = CGRect(x: self.frame.origin.x, y: y, width: self.frame.width, height: self.frame.height)
+        }
+    }
+    
+    var centerY: CGFloat! {
+        get {
+            return self.frame.midY
+        }
+        set(newCenterY) {
+            self.frame = CGRect(x: self.frame.origin.x, y: newCenterY - self.frame.height / 2, width: self.frame.width, height: self.frame.height)
+        }
+    }
+    
+    var x: CGFloat! {
+        get {
+            return self.frame.origin.x
+        }
+        set(x) {
+            self.frame = CGRect(x: x, y: self.frame.origin.y, width: self.frame.width, height: self.frame.height)
+        }
+    }
+    
+    var height: CGFloat! {
+        get {
+            return self.frame.height
+        }
+        set(height) {
+            self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: height)
+        }
+    }
+    
+    func addShadow(radius: CGFloat = 3, opacity: Float = 0.3, offset: CGSize = CGSizeZero, path: Bool = false){
+        if path{
+            self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+        }
+        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset = offset
+        self.layer.shadowRadius = radius
+        
+        if self.superview?.clipsToBounds == true{
+            print("WARNING: Clips to bounds must be false in order for shadow to be drawn")
+        }
+    }
+    
+    func hideShadow(){
+        self.layer.shadowOpacity = 0
+    }
+    
+    func showShadow(opacity: Float){
+        self.layer.shadowOpacity = opacity
+    }
+    
+    
+    func makeTranslation(x: CGFloat, y: CGFloat) {
+        self.transform = CGAffineTransformMakeTranslation(x - self.x, y - self.y)
+    }
+    
     func disable(){
         self.backgroundColor = .grayColor()
         self.userInteractionEnabled = false
@@ -134,6 +197,22 @@ extension UIBarButtonItem{
 }
 
 extension UITableView{
+    
+    func reloadDataWithAutoSizingCells(){
+        self.reloadData()
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+        self.reloadData()
+    }
+    
+    func reloadSectionWithAutoSizingCells(section: Int, animation: UITableViewRowAnimation) {
+        self.reloadData()
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+        self.reloadSections(NSIndexSet(index: section), withRowAnimation: animation)
+    }
+    
+    
     func hide(){
         for cell in self.visibleCells{
             cell.hide()

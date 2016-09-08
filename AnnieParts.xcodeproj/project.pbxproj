@@ -27,11 +27,10 @@
 		901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */; };
 		901AD9B91D6038E10000FCE5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */; };
 		901AD9BD1D6174D00000FCE5 /* NotificationDialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901AD9BC1D6174D00000FCE5 /* NotificationDialogViewController.swift */; };
+		90240BAF1D7F8A8200B42996 /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */; };
 		902E9B461D6C232800876669 /* videoSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B451D6C232800876669 /* videoSelectView.swift */; };
 		902E9B481D6C2D1100876669 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */; };
 		902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B491D6C345300876669 /* WebViewViewController.swift */; };
-		906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DB1D4A8DD8007C6D86 /* videoSelect.xib */; };
-		906287DE1D4A8DF5007C6D86 /* aboutSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = 906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */; };
 		907256231D397EF200C46A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256221D397EF200C46A8B /* AppDelegate.swift */; };
 		907256251D397EF200C46A8B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256241D397EF200C46A8B /* LoginVC.swift */; };
 		907256281D397EF200C46A8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 907256261D397EF200C46A8B /* Main.storyboard */; };
@@ -97,11 +96,10 @@
 		901AD9B61D5FBEE50000FCE5 /* MenuCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCellTableViewCell.swift; sourceTree = "<group>"; };
 		901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		901AD9BC1D6174D00000FCE5 /* NotificationDialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDialogViewController.swift; sourceTree = "<group>"; };
+		90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchResultsCell.xib; path = XIB/SearchResultsCell.xib; sourceTree = "<group>"; };
 		902E9B451D6C232800876669 /* videoSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = videoSelectView.swift; sourceTree = "<group>"; };
 		902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		902E9B491D6C345300876669 /* WebViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
-		906287DB1D4A8DD8007C6D86 /* videoSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = videoSelect.xib; path = XIB/videoSelect.xib; sourceTree = "<group>"; };
-		906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = aboutSelect.xib; path = XIB/aboutSelect.xib; sourceTree = "<group>"; };
 		9072561F1D397EF200C46A8B /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907256221D397EF200C46A8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907256241D397EF200C46A8B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -314,8 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				9088A6241D6281950052348F /* NoItemsCell.xib */,
-				906287DD1D4A8DF5007C6D86 /* aboutSelect.xib */,
-				906287DB1D4A8DD8007C6D86 /* videoSelect.xib */,
+				90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -404,7 +401,7 @@
 				TargetAttributes = {
 					9072561E1D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = QBURSC393N;
+						DevelopmentTeam = CQD8Z7UVJ4;
 					};
 					907256321D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -448,12 +445,11 @@
 				9072562A1D397EF200C46A8B /* Assets.xcassets in Resources */,
 				90898C7F1D47DD1900719F20 /* Montserrat-SemiBold.otf in Resources */,
 				90898C851D47DD1900719F20 /* Montserrat-Hairline.otf in Resources */,
+				90240BAF1D7F8A8200B42996 /* SearchResultsCell.xib in Resources */,
 				907256281D397EF200C46A8B /* Main.storyboard in Resources */,
 				90898C831D47DD1900719F20 /* Montserrat-Black.otf in Resources */,
 				90898C811D47DD1900719F20 /* Montserrat-Bold.otf in Resources */,
-				906287DC1D4A8DD8007C6D86 /* videoSelect.xib in Resources */,
 				9088A6221D6281950052348F /* NoItemsCell.xib in Resources */,
-				906287DE1D4A8DF5007C6D86 /* aboutSelect.xib in Resources */,
 				90898C821D47DD1900719F20 /* Montserrat-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
