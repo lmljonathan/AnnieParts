@@ -2759,7 +2759,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Nyc-OW-Ohj"/>
                                 </constraints>
-                                <state key="normal" title="Cancel">
+                                <state key="normal" title="Dismiss">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -2796,7 +2796,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-Pa-ee6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="QGd-Pa-ee6">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2818,7 +2818,7 @@
                             <constraint firstItem="eJi-xi-WTY" firstAttribute="width" secondItem="YOh-3W-Qpo" secondAttribute="width" multiplier="0.5" constant="10" id="37f-uE-f4X"/>
                             <constraint firstItem="2UM-gE-ssS" firstAttribute="top" secondItem="QGd-Pa-ee6" secondAttribute="bottom" id="IeA-pN-GIN"/>
                             <constraint firstItem="tuw-zf-Kdi" firstAttribute="top" secondItem="eJi-xi-WTY" secondAttribute="bottom" id="M1T-CL-zvy"/>
-                            <constraint firstItem="QGd-Pa-ee6" firstAttribute="top" secondItem="UXE-4H-Ubk" secondAttribute="bottom" constant="8" id="Rle-gO-69k"/>
+                            <constraint firstItem="QGd-Pa-ee6" firstAttribute="top" secondItem="UXE-4H-Ubk" secondAttribute="bottom" id="Rle-gO-69k"/>
                             <constraint firstItem="eJi-xi-WTY" firstAttribute="leading" secondItem="YOh-3W-Qpo" secondAttribute="leadingMargin" constant="-20" id="UIc-C6-9TF"/>
                             <constraint firstItem="QGd-Pa-ee6" firstAttribute="leading" secondItem="YOh-3W-Qpo" secondAttribute="leadingMargin" constant="-20" id="faj-hs-Cir"/>
                             <constraint firstItem="tuw-zf-Kdi" firstAttribute="top" secondItem="2UM-gE-ssS" secondAttribute="bottom" id="mb4-ou-eRs"/>
