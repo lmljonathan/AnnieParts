@@ -11,7 +11,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.ttf">
+        <mutableArray key="Montserrat-Regular.otf">
             <string>Montserrat-Regular</string>
         </mutableArray>
         <mutableArray key="Montserrat-SemiBold.otf">
@@ -77,7 +77,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="15" y="1.5" width="68" height="12"/>
+                                            <rect key="frame" x="15" y="1" width="68" height="12"/>
                                         </variation>
                                     </label>
                                 </subviews>
@@ -175,7 +175,7 @@
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="113" y="46" width="186" height="16"/>
+                                    <rect key="frame" x="113" y="46" width="186.5" height="16"/>
                                     <mask key="constraints">
                                         <include reference="OST-Ey-8CN"/>
                                     </mask>
@@ -286,11 +286,11 @@
                 </subviews>
                 <color key="backgroundColor" red="0.89543876259999999" green="0.89543876259999999" blue="0.89543876259999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="zR3-FV-XcD" firstAttribute="leading" secondItem="xPY-1p-UbR" secondAttribute="leadingMargin" constant="5" id="ERx-p1-eOn"/>
+                    <constraint firstItem="zR3-FV-XcD" firstAttribute="leading" secondItem="xPY-1p-UbR" secondAttribute="leadingMargin" constant="2" id="ERx-p1-eOn"/>
                     <constraint firstItem="zR3-FV-XcD" firstAttribute="top" secondItem="xPY-1p-UbR" secondAttribute="topMargin" constant="-8" id="NPR-my-1hF"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zR3-FV-XcD" secondAttribute="bottom" constant="3.5" id="QQZ-sz-RcY"/>
                     <constraint firstItem="zR3-FV-XcD" firstAttribute="centerX" secondItem="xPY-1p-UbR" secondAttribute="centerX" id="Vdj-1T-kaU"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="zR3-FV-XcD" secondAttribute="trailing" constant="5" id="qUH-ij-g0s"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zR3-FV-XcD" secondAttribute="trailing" constant="2" id="qUH-ij-g0s"/>
                 </constraints>
                 <variation key="default">
                     <mask key="subviews">
