@@ -32,3 +32,14 @@ func notificationPresentr() -> Presentr {
     presenter.dismissTransitionType = .CrossDissolve
     return presenter
 }
+
+func orderSummaryPresentr() -> Presentr {
+    let width = ModalSize.Full
+    let height = ModalSize.Full
+    let center = ModalCenterPosition.Center
+    let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
+    presenter.backgroundOpacity = 0.1
+    presenter.transitionType = .CrossDissolve
+    presenter.dismissTransitionType = .CrossDissolve
+    return presenter
+}
