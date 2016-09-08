@@ -41,5 +41,6 @@ func orderSummaryPresentr() -> Presentr {
     presenter.backgroundOpacity = 0.1
     presenter.transitionType = .CrossDissolve
     presenter.dismissTransitionType = .CrossDissolve
+    presenter.roundCorners = false
     return presenter
 }

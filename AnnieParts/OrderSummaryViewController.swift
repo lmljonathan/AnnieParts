@@ -10,6 +10,8 @@ import UIKit
 
 class OrderSummaryViewController: UIViewController {
 
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,9 @@ class OrderSummaryViewController: UIViewController {
     }
     
 
+    @IBAction func cancelCheckout(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 
