@@ -14,21 +14,32 @@ class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
+    private var totalQuantity: Int = 0
+    private var totalPrice: Double = 0.0
+
     var shoppingCart: [ShoppingCart]! = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+
+        self.totalQuantity = 0
+        self.totalPrice = 0.0
+
+
         // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
+    @IBAction func submitOrder(sender: UIButton) {
+        //add in http request
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func cancelCheckout(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -46,16 +57,29 @@ class OrderSummaryViewController: UIViewController {
 extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shoppingCart.count + 1
+        return shoppingCart.count + 2
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_SUMMARY_CELL) as! OrderSummaryTableViewCell
-        if (indexPath.row == shoppingCart.count) {
-            cell.textLabel?.text = "TOTAL"
+        if (indexPath.row == 0) {
+            cell.productName.text = "Product Name"
+            cell.quantity.text = "Qty"
+            cell.price.text = "Price"
+        }
+        else if (indexPath.row == shoppingCart.count + 1) {
+            cell.productName.text = "TOTAL"
+            cell.quantity.text = String(self.totalQuantity)
+            cell.price.text = String(self.totalPrice)
         }
         else {
-            cell.textLabel?.text = self.shoppingCart[indexPath.row].productName
+            let item = self.shoppingCart[indexPath.row-1]
+            cell.productName.text = item.productName
+            cell.quantity.text = String(item.quantity)
+            cell.price.text = "$" + String(item.price)
+
+            self.totalQuantity += item.quantity
+            self.totalPrice += item.price
         }
         return cell
     }

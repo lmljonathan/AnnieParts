@@ -10,6 +10,10 @@ import UIKit
 
 class OrderSummaryTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var quantity: UILabel!
+    @IBOutlet weak var price: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
