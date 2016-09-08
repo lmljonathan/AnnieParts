@@ -166,6 +166,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     @IBAction func checkout(sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+        customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         
     }
     func returnIDandQuantity(id: String, quantity: Int) {

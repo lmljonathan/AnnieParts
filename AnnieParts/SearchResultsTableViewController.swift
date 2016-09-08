@@ -139,7 +139,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             destVC.product = catalogData[indexPath.row]
 
             print(Int(self.catalogData[indexPath.row].productID)!)
-            destVC 
             destVC.productID = Int(self.catalogData[indexPath.row].productID)!
             self.navigationController?.pushViewController(destVC, animated: true)
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
