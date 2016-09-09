@@ -80,7 +80,7 @@ extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate
             cell.price.text = "$" + String(item.price)
 
             self.totalQuantity += item.quantity
-            self.totalPrice += item.price
+            self.totalPrice += item.price * Double(item.quantity)
         }
         return cell
     }

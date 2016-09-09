@@ -953,11 +953,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-<<<<<<< HEAD
-                                                        <rect key="frame" x="8" y="6.5" width="224" height="20"/>
-=======
                                                         <rect key="frame" x="8" y="6" width="224" height="20"/>
->>>>>>> Order-Summary
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -1643,12 +1639,9 @@
                                                     <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-<<<<<<< HEAD
-=======
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="112" y="65" width="280" height="16"/>
                                                     </variation>
->>>>>>> Order-Summary
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nF6-yW-o6b">
                                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1676,24 +1669,18 @@
                                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-<<<<<<< HEAD
-=======
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="357" y="35.5" width="29" height="21"/>
                                                     </variation>
->>>>>>> Order-Summary
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fw-X3-azI" userLabel="Name">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-<<<<<<< HEAD
-=======
                                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="112" y="9" width="280" height="18.5"/>
                                                     </variation>
->>>>>>> Order-Summary
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -2835,9 +2822,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="14" width="88" height="21"/>
-                                                    </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7uA-Vv-TI0">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -2852,8 +2836,7 @@
                                                             <exclude reference="UXz-vg-oBl"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="99" y="16" width="50" height="17"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="UXz-vg-oBl"/>
                                                         </mask>
@@ -2872,8 +2855,7 @@
                                                             <exclude reference="JfL-He-spi"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="152" y="16" width="80" height="17"/>
+                                                    <variation key="heightClass=regular-widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="JfL-He-spi"/>
                                                         </mask>
@@ -2993,7 +2975,6 @@
                     <connections>
                         <outlet property="cancelButton" destination="eJi-xi-WTY" id="8Q5-yS-3jv"/>
                         <outlet property="confirmButton" destination="2UM-gE-ssS" id="zqm-wM-YlM"/>
-                        <outlet property="confirmButtonWidth" destination="nwc-YC-P4h" id="8pn-pv-G28"/>
                         <outlet property="tableView" destination="QGd-Pa-ee6" id="Xlo-8i-Z2C"/>
                     </connections>
                 </viewController>
