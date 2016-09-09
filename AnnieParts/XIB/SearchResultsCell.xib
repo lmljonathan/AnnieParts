@@ -11,7 +11,11 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
+<<<<<<< HEAD
         <mutableArray key="Montserrat-Regular.ttf">
+=======
+        <mutableArray key="Montserrat-Regular.otf">
+>>>>>>> Order-Summary
             <string>Montserrat-Regular</string>
         </mutableArray>
         <mutableArray key="Montserrat-SemiBold.otf">
@@ -55,18 +59,24 @@
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+<<<<<<< HEAD
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="113" y="9" width="228" height="17.5"/>
                                 </variation>
+=======
+>>>>>>> Order-Summary
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPf-ZK-vJo">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+<<<<<<< HEAD
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="113" y="64" width="228" height="15"/>
                                 </variation>
+=======
+>>>>>>> Order-Summary
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQG-eu-bfy" userLabel="Code">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -76,9 +86,12 @@
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+<<<<<<< HEAD
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                             <rect key="frame" x="15" y="1.5" width="68" height="12"/>
                                         </variation>
+=======
+>>>>>>> Order-Summary
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -103,8 +116,12 @@
                                         <exclude reference="oa5-yP-LRi"/>
                                     </mask>
                                 </variation>
+<<<<<<< HEAD
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="113" y="29" width="98" height="15"/>
+=======
+                                <variation key="heightClass=regular-widthClass=compact">
+>>>>>>> Order-Summary
                                     <mask key="subviews">
                                         <include reference="hpi-yA-0jt"/>
                                     </mask>
@@ -116,6 +133,7 @@
                                     </mask>
                                 </variation>
                             </view>
+<<<<<<< HEAD
                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2t-AU-6wR">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
@@ -138,6 +156,8 @@
                                     </mask>
                                 </variation>
                             </button>
+=======
+>>>>>>> Order-Summary
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apj-Ah-9V1">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
@@ -174,8 +194,12 @@
                                         <exclude reference="OST-Ey-8CN"/>
                                     </mask>
                                 </variation>
+<<<<<<< HEAD
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="113" y="46" width="186" height="16"/>
+=======
+                                <variation key="heightClass=regular-widthClass=compact">
+>>>>>>> Order-Summary
                                     <mask key="constraints">
                                         <include reference="OST-Ey-8CN"/>
                                     </mask>
@@ -187,6 +211,29 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+<<<<<<< HEAD
+=======
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2t-AU-6wR">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Mdp-rO-dow"/>
+                                    <constraint firstAttribute="width" constant="55" id="tRh-Qu-1UA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Mdp-rO-dow"/>
+                                        <exclude reference="tRh-Qu-1UA"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Mdp-rO-dow"/>
+                                        <include reference="tRh-Qu-1UA"/>
+                                    </mask>
+                                </variation>
+                            </button>
+>>>>>>> Order-Summary
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -196,14 +243,23 @@
                             <constraint firstItem="LPf-ZK-vJo" firstAttribute="leading" secondItem="lcn-62-lNj" secondAttribute="trailing" constant="8" id="7uh-B7-Ttv"/>
                             <constraint firstAttribute="trailing" secondItem="bNE-Mw-ZKC" secondAttribute="trailing" constant="8" id="8LJ-eX-brI"/>
                             <constraint firstItem="nQG-eu-bfy" firstAttribute="leading" secondItem="lcn-62-lNj" secondAttribute="trailing" constant="8" id="93e-J0-IME"/>
+<<<<<<< HEAD
                             <constraint firstAttribute="trailing" secondItem="LPf-ZK-vJo" secondAttribute="trailing" constant="8" id="EVr-Ym-gpD"/>
                             <constraint firstItem="nQG-eu-bfy" firstAttribute="top" secondItem="bNE-Mw-ZKC" secondAttribute="bottom" constant="2.5" id="NQl-wN-dvP"/>
                             <constraint firstItem="apj-Ah-9V1" firstAttribute="centerY" secondItem="a2t-AU-6wR" secondAttribute="centerY" id="OTT-vT-Nid"/>
+=======
+                            <constraint firstItem="apj-Ah-9V1" firstAttribute="centerY" secondItem="Hrb-jI-Wyf" secondAttribute="centerY" id="BNG-Ry-C0K"/>
+                            <constraint firstAttribute="trailing" secondItem="LPf-ZK-vJo" secondAttribute="trailing" constant="8" id="EVr-Ym-gpD"/>
+                            <constraint firstItem="nQG-eu-bfy" firstAttribute="top" secondItem="bNE-Mw-ZKC" secondAttribute="bottom" constant="2.5" id="NQl-wN-dvP"/>
+>>>>>>> Order-Summary
                             <constraint firstItem="lcn-62-lNj" firstAttribute="centerY" secondItem="zR3-FV-XcD" secondAttribute="centerY" id="Q1W-bh-lzu"/>
                             <constraint firstItem="r8M-oL-IPi" firstAttribute="leading" secondItem="lcn-62-lNj" secondAttribute="trailing" constant="8" id="QNd-Sa-YGh"/>
                             <constraint firstAttribute="bottom" secondItem="r8M-oL-IPi" secondAttribute="bottom" constant="12" id="RVr-JF-Kti"/>
                             <constraint firstItem="apj-Ah-9V1" firstAttribute="leading" secondItem="Hrb-jI-Wyf" secondAttribute="trailing" constant="8" id="Tgk-EF-AGm"/>
+<<<<<<< HEAD
                             <constraint firstItem="a2t-AU-6wR" firstAttribute="centerY" secondItem="zR3-FV-XcD" secondAttribute="centerY" id="Zkt-h4-7GV"/>
+=======
+>>>>>>> Order-Summary
                             <constraint firstAttribute="trailing" secondItem="a2t-AU-6wR" secondAttribute="trailing" id="bAC-oE-h4P"/>
                             <constraint firstItem="Hrb-jI-Wyf" firstAttribute="leading" secondItem="lcn-62-lNj" secondAttribute="trailing" constant="8" id="cgo-FZ-kLY"/>
                             <constraint firstItem="LPf-ZK-vJo" firstAttribute="top" secondItem="Hrb-jI-Wyf" secondAttribute="bottom" constant="2" id="flH-iH-nnD"/>
@@ -211,6 +267,10 @@
                             <constraint firstAttribute="trailing" secondItem="r8M-oL-IPi" secondAttribute="trailing" constant="8" id="rAO-nT-yBj"/>
                             <constraint firstItem="apj-Ah-9V1" firstAttribute="centerX" secondItem="a2t-AU-6wR" secondAttribute="centerX" id="tb0-NU-axR"/>
                             <constraint firstItem="bNE-Mw-ZKC" firstAttribute="leading" secondItem="lcn-62-lNj" secondAttribute="trailing" constant="8" id="uRy-Sy-w7c"/>
+<<<<<<< HEAD
+=======
+                            <constraint firstItem="a2t-AU-6wR" firstAttribute="centerY" secondItem="Hrb-jI-Wyf" secondAttribute="centerY" id="uag-Ea-TgX"/>
+>>>>>>> Order-Summary
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -218,6 +278,7 @@
                                 <exclude reference="bNE-Mw-ZKC"/>
                                 <exclude reference="LPf-ZK-vJo"/>
                                 <exclude reference="nQG-eu-bfy"/>
+<<<<<<< HEAD
                                 <exclude reference="a2t-AU-6wR"/>
                                 <exclude reference="apj-Ah-9V1"/>
                                 <exclude reference="Hrb-jI-Wyf"/>
@@ -229,22 +290,48 @@
                                 <exclude reference="OTT-vT-Nid"/>
                                 <exclude reference="Tgk-EF-AGm"/>
                                 <exclude reference="tb0-NU-axR"/>
+=======
+                                <exclude reference="apj-Ah-9V1"/>
+                                <exclude reference="Hrb-jI-Wyf"/>
+                                <exclude reference="r8M-oL-IPi"/>
+                                <exclude reference="a2t-AU-6wR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="0nb-kb-b3b"/>
+                                <exclude reference="Q1W-bh-lzu"/>
+                                <exclude reference="8LJ-eX-brI"/>
+                                <exclude reference="md6-ND-KBc"/>
+                                <exclude reference="uRy-Sy-w7c"/>
+                                <exclude reference="93e-J0-IME"/>
+                                <exclude reference="NQl-wN-dvP"/>
+>>>>>>> Order-Summary
                                 <exclude reference="2SI-j3-FGT"/>
                                 <exclude reference="cgo-FZ-kLY"/>
                                 <exclude reference="7uh-B7-Ttv"/>
                                 <exclude reference="EVr-Ym-gpD"/>
                                 <exclude reference="flH-iH-nnD"/>
+<<<<<<< HEAD
                                 <exclude reference="8LJ-eX-brI"/>
                                 <exclude reference="md6-ND-KBc"/>
                                 <exclude reference="uRy-Sy-w7c"/>
+=======
+>>>>>>> Order-Summary
                                 <exclude reference="6Wd-7F-B4e"/>
                                 <exclude reference="QNd-Sa-YGh"/>
                                 <exclude reference="RVr-JF-Kti"/>
                                 <exclude reference="rAO-nT-yBj"/>
+<<<<<<< HEAD
                                 <exclude reference="0nb-kb-b3b"/>
                                 <exclude reference="Q1W-bh-lzu"/>
                                 <exclude reference="93e-J0-IME"/>
                                 <exclude reference="NQl-wN-dvP"/>
+=======
+                                <exclude reference="bAC-oE-h4P"/>
+                                <exclude reference="uag-Ea-TgX"/>
+                                <exclude reference="BNG-Ry-C0K"/>
+                                <exclude reference="Tgk-EF-AGm"/>
+                                <exclude reference="tb0-NU-axR"/>
+>>>>>>> Order-Summary
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -253,6 +340,7 @@
                                 <include reference="bNE-Mw-ZKC"/>
                                 <include reference="LPf-ZK-vJo"/>
                                 <include reference="nQG-eu-bfy"/>
+<<<<<<< HEAD
                                 <include reference="a2t-AU-6wR"/>
                                 <include reference="apj-Ah-9V1"/>
                                 <include reference="Hrb-jI-Wyf"/>
@@ -264,33 +352,67 @@
                                 <include reference="OTT-vT-Nid"/>
                                 <include reference="Tgk-EF-AGm"/>
                                 <include reference="tb0-NU-axR"/>
+=======
+                                <include reference="apj-Ah-9V1"/>
+                                <include reference="Hrb-jI-Wyf"/>
+                                <include reference="r8M-oL-IPi"/>
+                                <include reference="a2t-AU-6wR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0nb-kb-b3b"/>
+                                <include reference="Q1W-bh-lzu"/>
+                                <include reference="8LJ-eX-brI"/>
+                                <include reference="md6-ND-KBc"/>
+                                <include reference="uRy-Sy-w7c"/>
+                                <include reference="93e-J0-IME"/>
+                                <include reference="NQl-wN-dvP"/>
+>>>>>>> Order-Summary
                                 <include reference="2SI-j3-FGT"/>
                                 <include reference="cgo-FZ-kLY"/>
                                 <include reference="7uh-B7-Ttv"/>
                                 <include reference="EVr-Ym-gpD"/>
                                 <include reference="flH-iH-nnD"/>
+<<<<<<< HEAD
                                 <include reference="8LJ-eX-brI"/>
                                 <include reference="md6-ND-KBc"/>
                                 <include reference="uRy-Sy-w7c"/>
+=======
+>>>>>>> Order-Summary
                                 <include reference="6Wd-7F-B4e"/>
                                 <include reference="QNd-Sa-YGh"/>
                                 <include reference="RVr-JF-Kti"/>
                                 <include reference="rAO-nT-yBj"/>
+<<<<<<< HEAD
                                 <include reference="0nb-kb-b3b"/>
                                 <include reference="Q1W-bh-lzu"/>
                                 <include reference="93e-J0-IME"/>
                                 <include reference="NQl-wN-dvP"/>
+=======
+                                <include reference="bAC-oE-h4P"/>
+                                <include reference="uag-Ea-TgX"/>
+                                <include reference="BNG-Ry-C0K"/>
+                                <include reference="Tgk-EF-AGm"/>
+                                <include reference="tb0-NU-axR"/>
+>>>>>>> Order-Summary
                             </mask>
                         </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.89543876259999999" green="0.89543876259999999" blue="0.89543876259999999" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+<<<<<<< HEAD
                     <constraint firstItem="zR3-FV-XcD" firstAttribute="leading" secondItem="xPY-1p-UbR" secondAttribute="leadingMargin" constant="5" id="ERx-p1-eOn"/>
                     <constraint firstItem="zR3-FV-XcD" firstAttribute="top" secondItem="xPY-1p-UbR" secondAttribute="topMargin" constant="-8" id="NPR-my-1hF"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zR3-FV-XcD" secondAttribute="bottom" constant="3.5" id="QQZ-sz-RcY"/>
                     <constraint firstItem="zR3-FV-XcD" firstAttribute="centerX" secondItem="xPY-1p-UbR" secondAttribute="centerX" id="Vdj-1T-kaU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="zR3-FV-XcD" secondAttribute="trailing" constant="5" id="qUH-ij-g0s"/>
+=======
+                    <constraint firstItem="zR3-FV-XcD" firstAttribute="leading" secondItem="xPY-1p-UbR" secondAttribute="leadingMargin" constant="2" id="ERx-p1-eOn"/>
+                    <constraint firstItem="zR3-FV-XcD" firstAttribute="top" secondItem="xPY-1p-UbR" secondAttribute="topMargin" constant="-8" id="NPR-my-1hF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zR3-FV-XcD" secondAttribute="bottom" constant="3.5" id="QQZ-sz-RcY"/>
+                    <constraint firstItem="zR3-FV-XcD" firstAttribute="centerX" secondItem="xPY-1p-UbR" secondAttribute="centerX" id="Vdj-1T-kaU"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zR3-FV-XcD" secondAttribute="trailing" constant="2" id="qUH-ij-g0s"/>
+>>>>>>> Order-Summary
                 </constraints>
                 <variation key="default">
                     <mask key="subviews">

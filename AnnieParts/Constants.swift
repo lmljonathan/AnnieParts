@@ -33,6 +33,7 @@ struct CONSTANTS {
     struct VC_IDS {
         static let LOGIN_LOADING = "loadingVC"
         static let ADD_PRODUCT_POPUP = "popup"
+        static let ORDER_SUMMARY_MODAL = "orderSummary"
     }
     struct SEGUES {
         static let TO_SEARCH_OPTIONS = "pushToSearch"
@@ -82,6 +83,7 @@ struct CONSTANTS {
         static let SHOPPING_CART_CELLS = "shoppingCartCell"
         static let SIDE_MENU_CELLS = "menuCell"
         static let NO_RESULTS_FOUND_CELL = "noItemsCell"
+        static let ORDER_SUMMARY_CELL = "summaryCell"
     }
     struct IMAGES {
         static let BACK_BUTTON = "back"
