@@ -21,6 +21,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         self.updatedItem = -1
+        print("view is appearing")
     }
     
     override func viewDidLoad() {
@@ -57,9 +58,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         for product in self.shoppingCart {
             subtotal += product.price * Double(product.quantity)
         }
-        let priceFormatter = NSNumberFormatter()
-        priceFormatter.numberStyle = .CurrencyStyle
-        self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
+        if (subtotal > 0) {
+            let priceFormatter = NSNumberFormatter()
+            priceFormatter.numberStyle = .CurrencyStyle
+            self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
+        }
     }
     func loadData() {
         self.shoppingCart.removeAll()
