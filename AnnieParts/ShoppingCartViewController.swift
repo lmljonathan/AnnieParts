@@ -21,6 +21,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         self.updatedItem = -1
+        print("view is appearing")
     }
     
     override func viewDidLoad() {
@@ -50,18 +51,20 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         loadData()
         super.viewDidLoad()
     }
+
     func calculateSubtotal() {
         print("hello")
         var subtotal = 0.0
         for product in self.shoppingCart {
             subtotal += product.price * Double(product.quantity)
         }
-        let priceFormatter = NSNumberFormatter()
-        priceFormatter.numberStyle = .CurrencyStyle
-        self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
+        if (subtotal > 0) {
+            let priceFormatter = NSNumberFormatter()
+            priceFormatter.numberStyle = .CurrencyStyle
+            self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
+        }
     }
     func loadData() {
-        print("load Data")
         self.shoppingCart.removeAll()
         get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
@@ -87,7 +90,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             }
-            print("calculate")
             self.calculateSubtotal()
         }
     }
@@ -167,12 +169,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     @IBAction func checkout(sender: UIButton) {
-        sender.enabled = false
-        get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:]) { (json) in
-            // store the order id
-            sender.enabled = true
-            self.loadData()
-        }
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+        vc.shoppingCart = self.shoppingCart
+        customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
+        
     }
     func returnIDandQuantity(id: String, quantity: Int) {
         if (self.updatedItem != -1) {

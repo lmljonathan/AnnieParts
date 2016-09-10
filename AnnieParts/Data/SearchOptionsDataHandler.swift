@@ -36,6 +36,9 @@ struct product{
 
 func getMake(id: Int) -> String {
     let index = vehicle.makeIDs.indexOf(id)
+    if (index == nil) {
+        return ""
+    }
     return vehicle.make[index!] ?? ""
 }
 func getModel(id: Int) -> String {

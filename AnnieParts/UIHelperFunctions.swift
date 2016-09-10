@@ -22,7 +22,6 @@ func configureNavBarBackButton(sender: UINavigationController, navItem: UINaviga
     sender.addSideMenuButton()
     let backButton = UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: sender, action: #selector(sender.popViewControllerAnimated(_:)))
     backButton.imageInsets = UIEdgeInsetsMake(0, -5.0, 0, -25.0)
-//    navItem.leftBarButtonItems![0] = UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: sender, action: #selector(sender.popViewControllerAnimated(_:)))
     navItem.leftBarButtonItems?.insert(backButton, atIndex:0)
 }
 func removeNavBarBackButton(sender: UINavigationController, navItem: UINavigationItem) {
