@@ -163,7 +163,7 @@ class ProcessedOrder: Order {
         return self._status
     }
     
-    override init(addTime: String, userID: Int, totalPrice: Double, sn: String, id: Int, status: String){
+    init(addTime: String, userID: Int, totalPrice: Double, sn: String, id: Int, status: String){
         super.init(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: sn, id: id)
         self._status = status
     }

@@ -30,7 +30,6 @@
 		90240BAF1D7F8A8200B42996 /* SearchResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90240BAE1D7F8A8200B42996 /* SearchResultsCell.xib */; };
 		90240BB11D7FDEC900B42996 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB01D7FDEC900B42996 /* OrdersViewController.swift */; };
 		90240BB31D7FDFC800B42996 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90240BB21D7FDFC800B42996 /* OrderCell.xib */; };
-		90240BB51D7FE14900B42996 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB41D7FE14900B42996 /* OrderTableViewCell.swift */; };
 		902E9B461D6C232800876669 /* videoSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B451D6C232800876669 /* videoSelectView.swift */; };
 		902E9B481D6C2D1100876669 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */; };
 		902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B491D6C345300876669 /* WebViewViewController.swift */; };
@@ -53,6 +52,7 @@
 		90898C831D47DD1900719F20 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7B1D47DD1900719F20 /* Montserrat-Black.otf */; };
 		90898C841D47DD1900719F20 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7C1D47DD1900719F20 /* Montserrat-Light.otf */; };
 		90898C851D47DD1900719F20 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7D1D47DD1900719F20 /* Montserrat-Hairline.otf */; };
+		908A1AAC1D83EDDC00FF53F1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB41D7FE14900B42996 /* OrderTableViewCell.swift */; };
 		90B5A1E61D669F0300D75390 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5A1E51D669F0300D75390 /* Utils.swift */; };
 		90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA32211D3F20850066B281 /* SearchOptionsVC.swift */; };
 		90EA32241D3F253A0066B281 /* SearchOptionsDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA32231D3F253A0066B281 /* SearchOptionsDataHandler.swift */; };
@@ -560,10 +560,11 @@
 				3C5ED0EB1D80E4730067E0B3 /* OrderSummaryViewController.swift in Sources */,
 				907256231D397EF200C46A8B /* AppDelegate.swift in Sources */,
 				90240BB11D7FDEC900B42996 /* OrdersViewController.swift in Sources */,
+				908A1AAC1D83EDDC00FF53F1 /* OrderTableViewCell.swift in Sources */,
 				902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */,
 				3C15F9391D456D4000BCC053 /* CustomSideMenuViewController.swift in Sources */,
 				3C9D321A1D5E53520099BC50 /* UIHelperFunctions.swift in Sources */,
-				90240BB51D7FE14900B42996 /* OrderTableViewCell.swift in Sources */,
+				3CFE8EC81D7F491800E40C52 /* OrderSummaryTableViewCell.swift in Sources */,
 				3C15F9361D45523E00BCC053 /* ShoppingCartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

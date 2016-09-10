@@ -8,7 +8,6 @@
 
 import UIKit
 import Auk
-import DropDown
 import WebKit
 import Haneke
 import SKPhotoBrowser
@@ -69,6 +68,8 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
 
         super.viewDidLoad()
     }
+    
+    
     func loadData(){
         self.cellsToDisplay.removeAll()
         self.videoPaths.removeAll()
@@ -160,10 +161,10 @@ class ProductDetailViewController: UIViewController, UIScrollViewDelegate, SKPho
             }
             
             let browser = SKPhotoBrowser(photos: SKImages)
-            browser.displayCloseButton = false
+            //browser.displayCloseButton = false
             browser.initializePageIndex(self.imageCaroselScrollView.auk.currentPageIndex!)
             browser.delegate = self
-            browser.enableSingleTapDismiss = true
+            //browser.enableSingleTapDismiss = true
             
             presentViewController(browser, animated: true, completion: {})
             //presentViewController(gallery, animated: true, completion: nil)

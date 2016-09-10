@@ -57,10 +57,10 @@ class OrdersViewController: UIViewController {
             if let customerOrders = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
                 for order in customerOrders {
                     let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
-                    let userID = order[CONSTANTS.JSON_KEYS.USER_ID]!
-                    let orderID = order[CONSTANTS.JSON_KEYS.ORDER_ID]!
+                    let userID = Int(order[CONSTANTS.JSON_KEYS.USER_ID]!)!
+                    let orderID = Int(order[CONSTANTS.JSON_KEYS.ORDER_ID]!)!
                     let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
-                    let totalPrice = order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!
+                    let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
                     
                     self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
                 }
@@ -68,12 +68,12 @@ class OrdersViewController: UIViewController {
             
             // Unprocessed Orders
             if let unprocessedOrders = json![CONSTANTS.JSON_KEYS.UNPROCESSED_ORDER_LIST] as? [[String: String]]{
-                for order in unprocessedOrder{
+                for order in unprocessedOrders{
                     let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
-                    let userID = order[CONSTANTS.JSON_KEYS.USER_ID]!
-                    let orderID = order[CONSTANTS.JSON_KEYS.ORDER_ID]!
+                    let userID = Int(order[CONSTANTS.JSON_KEYS.USER_ID]!)!
+                    let orderID = Int(order[CONSTANTS.JSON_KEYS.ORDER_ID]!)!
                     let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
-                    let totalPrice = order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!
+                    let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
                     
                     self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
                 }
@@ -84,10 +84,10 @@ class OrdersViewController: UIViewController {
             if let processedOrders = json![CONSTANTS.JSON_KEYS.PROCESSED_ORDER_LIST] as? [[String: String]]{
                 for order in processedOrders{
                     let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
-                    let userID = order[CONSTANTS.JSON_KEYS.USER_ID]!
-                    let orderID = order[CONSTANTS.JSON_KEYS.ORDER_ID]!
+                    let userID = Int(order[CONSTANTS.JSON_KEYS.USER_ID]!)!
+                    let orderID = Int(order[CONSTANTS.JSON_KEYS.ORDER_ID]!)!
                     let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
-                    let totalPrice = order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!
+                    let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
                     let status = order[CONSTANTS.JSON_KEYS.STATUS]!
                     
                     self.customerOrders.append(ProcessedOrder(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID, status: status))

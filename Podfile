@@ -4,7 +4,7 @@ use_frameworks!
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SideMenuController'
-pod 'Auk'
+pod 'Auk', '~> 2.1'
 pod 'moa', '~> 3.0'
 pod 'Presentr'
 pod 'HanekeSwift'

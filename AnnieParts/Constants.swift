@@ -99,6 +99,7 @@ struct CONSTANTS {
         static let SHOPPING_CART_CELLS = "shoppingCartCell"
         static let SIDE_MENU_CELLS = "menuCell"
         static let NO_RESULTS_FOUND_CELL = "noItemsCell"
+        static let ORDER_SUMMARY_CELL = "summaryCell"
         static let ORDER_CELL = "orderCell"
     }
     struct IMAGES {
