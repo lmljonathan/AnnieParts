@@ -117,7 +117,7 @@ class Order {
     private var _addTime: String!
     private var _userID: Int!
     private var _totalPrice: Double!
-    private var _numItems: Int!
+    //private var _numItems: Int!
     private var _sn: String!
     private var _id: Int!
     
@@ -133,9 +133,9 @@ class Order {
         return self._totalPrice
     }
     
-    var numItems: Int! {
-        return self._numItems
-    }
+//    var numItems: Int! {
+//        return self._numItems
+//    }
     
     var sn: String! {
         return self._sn
@@ -145,13 +145,26 @@ class Order {
         return self._id
     }
     
-    init() {
-        
+    init(addTime: String, userID: Int, totalPrice: Double, sn: String, id: Int) {
+        self._addTime = addTime
+        self._userID = userID
+        self._totalPrice = totalPrice
+        //self._numItems = numItems
+        self._sn = sn
+        self._id = id
     }
 }
 
 class ProcessedOrder: Order {
-    override init(){
-        
+    
+    private var _status: String!
+    
+    var status: String!{
+        return self._status
+    }
+    
+    override init(addTime: String, userID: Int, totalPrice: Double, sn: String, id: Int, status: String){
+        super.init(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: sn, id: id)
+        self._status = status
     }
 }

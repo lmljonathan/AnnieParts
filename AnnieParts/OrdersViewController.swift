@@ -26,11 +26,20 @@ class OrdersViewController: UIViewController {
     var accountType: UserRank!
     var sectionTitles = ["Customer Orders", "Unprocessed Orders", "Processed Orders"]
     
+    var customerOrders: [Order] = []
+    var unprocessedOrders: [Order] = []
+    var processedOrders: [ProcessedOrder] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUserRank()
-        //self.loadData()
+        
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
+        
+        self.setUserRank()
+        self.loadData {
+            self.ordersTableView.reloadData()
+        }
+        
     }
     
     private func setUserRank() {
@@ -41,23 +50,51 @@ class OrdersViewController: UIViewController {
         }
     }
     
-    private func loadData(){
+    private func loadData(completion: () -> Void){
         get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: [:]) { (json) in
             
-            if let customerOrderList = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
-                for order in customerOrderList {
-                    print(order)
+            // Customer Orders
+            if let customerOrders = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
+                for order in customerOrders {
+                    let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
+                    let userID = order[CONSTANTS.JSON_KEYS.USER_ID]!
+                    let orderID = order[CONSTANTS.JSON_KEYS.ORDER_ID]!
+                    let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
+                    let totalPrice = order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!
                     
+                    self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
                 }
-//                if (self.catalogData.count == 0) {
-//                    self.noResultsFound = true
-//                } else {
-//                    self.noResultsFound = false
-//                }
-//                self.loadingIndicator.stopAnimating()
-//                self.tableView.reloadDataWithAutoSizingCells()
+            }
+            
+            // Unprocessed Orders
+            if let unprocessedOrders = json![CONSTANTS.JSON_KEYS.UNPROCESSED_ORDER_LIST] as? [[String: String]]{
+                for order in unprocessedOrder{
+                    let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
+                    let userID = order[CONSTANTS.JSON_KEYS.USER_ID]!
+                    let orderID = order[CONSTANTS.JSON_KEYS.ORDER_ID]!
+                    let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
+                    let totalPrice = order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!
+                    
+                    self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
+                }
                 
             }
+            
+            // Processed Order
+            if let processedOrders = json![CONSTANTS.JSON_KEYS.PROCESSED_ORDER_LIST] as? [[String: String]]{
+                for order in processedOrders{
+                    let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
+                    let userID = order[CONSTANTS.JSON_KEYS.USER_ID]!
+                    let orderID = order[CONSTANTS.JSON_KEYS.ORDER_ID]!
+                    let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
+                    let totalPrice = order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!
+                    let status = order[CONSTANTS.JSON_KEYS.STATUS]!
+                    
+                    self.customerOrders.append(ProcessedOrder(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID, status: status))
+                }
+            }
+            completion()
+            
         }
 
     }
@@ -70,7 +107,16 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return customerOrders.count
+        case 1:
+            return unprocessedOrders.count
+        case 2:
+            return processedOrders.count
+        default:
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -79,6 +125,23 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, forIndexPath: indexPath) as! OrderTableViewCell
+        
+        if self.accountType == .Browser {
+            cell.confirmButton.hidden = true
+            cell.totalPriceLabel.hidden = true
+        }
+        
+        switch indexPath.section {
+        case 0:
+            break
+        case 1:
+            cell.confirmButton.hidden = true
+        case 2:
+            cell.statusLabel.hidden = true
+        default:
+            break
+        }
+        
         return cell
     }
     

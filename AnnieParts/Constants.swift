@@ -78,13 +78,19 @@ struct CONSTANTS {
         static let GOODS_ID = "goods_id"
         static let ACTION = "act"
         
-        // Order List
+        // Orders
         static let CUSTOMER_ORDER_LIST = "customerOrder"
+        static let UNPROCESSED_ORDER_LIST = "unprocessedOrder"
+        static let PROCESSED_ORDER_LIST = "processedOrder"
+        
         static let ADD_TIME = "add_time"
         static let USER_ID = "user_id"
         static let ORDER_ID = "order_id"
         static let ORDER_SN = "order_sn"
-        static let TOTAL_PRICE = "goods_ammount"
+        static let TOTAL_PRICE = "goods_amount"
+        static let STATUS = "status"
+        
+    
     }
     struct CELL_IDENTIFIERS {
         static let SEARCH_OPTIONS_CELLS = "selectCell"
