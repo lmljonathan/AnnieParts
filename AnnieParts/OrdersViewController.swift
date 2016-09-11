@@ -35,14 +35,14 @@ class OrdersViewController: UIViewController {
         
         self.navigationItem.title = "Orders"
         
-        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
-        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
-        
-        
-        customerOrders.append(order)
-        unprocessedOrders.append(order)
-        processedOrders.append(processedOrder)
-        
+//        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
+//        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
+//        
+//        
+//        customerOrders.append(order)
+//        unprocessedOrders.append(order)
+//        processedOrders.append(processedOrder)
+
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
         
         self.setUserRank()
@@ -161,22 +161,14 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
-        cell.mainView.backgroundColor = UIColor.APlightGray()
-    }
-    
-    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
-        cell.mainView.backgroundColor = UIColor.whiteColor()
-    }
-    
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        return 10
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // Perform segue to order list in future
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+        customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
+        self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
