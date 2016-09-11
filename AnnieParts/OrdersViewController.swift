@@ -61,7 +61,7 @@ class OrdersViewController: UIViewController {
     }
     
     private func loadData(completion: () -> Void){
-        get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: [:]) { (json) in
+        get_json_data(CONSTANTS.URL_INFO.ORDER_LIST, query_paramters: [:]) { (json) in
             
             // Customer Orders
             if let customerOrders = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
