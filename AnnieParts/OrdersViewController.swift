@@ -33,6 +33,16 @@ class OrdersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "Orders"
+        
+        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
+        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
+        
+        
+        customerOrders.append(order)
+        unprocessedOrders.append(order)
+        processedOrders.append(processedOrder)
+        
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
         
         self.setUserRank()
@@ -133,16 +143,36 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         
         switch indexPath.section {
         case 0:
-            break
+            cell.statusLabel.hidden = true
+            cell.configureWith(customerOrders[indexPath.row])
         case 1:
             cell.confirmButton.hidden = true
-        case 2:
             cell.statusLabel.hidden = true
+            cell.configureWith(unprocessedOrders[indexPath.row])
+        case 2:
+            cell.confirmButton.hidden = true
+            cell.configureWithProcessedOrder(processedOrders[indexPath.row])
         default:
             break
         }
         
+        
+        
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
+        cell.mainView.backgroundColor = UIColor.APlightGray()
+    }
+    
+    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
+        cell.mainView.backgroundColor = UIColor.whiteColor()
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -150,6 +180,6 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 117.0
+        return 88
     }
 }

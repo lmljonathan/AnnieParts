@@ -159,6 +159,18 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             return UITableViewAutomaticDimension
         }
     }
+    
+    
+    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultsCell
+        cell.mainView.backgroundColor = UIColor.APlightGray()
+    }
+    
+    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultsCell
+        cell.mainView.backgroundColor = UIColor.whiteColor()
+    }
+    
     var selectedProductIndex: Int!
     func addProductToCart(button: UIButton) {
         let buttonPosition = button.convertPoint(CGPointZero, toView: self.tableView)

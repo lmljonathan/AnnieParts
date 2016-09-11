@@ -13,11 +13,15 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet var mainView: UIView!
     @IBOutlet var orderNumLabel: UILabel!
     @IBOutlet var createdByLabel: UILabel!
-    @IBOutlet var itemNumLabel: UILabel!
     @IBOutlet var totalPriceLabel: UILabel!
     @IBOutlet var statusLabel: UILabel!
     
     @IBOutlet var confirmButton: UIButton!
+    
+    @IBAction func confirmButtonPressed(sender: AnyObject) {
+        print("confirm pressed")
+    }
+    
     
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
@@ -28,10 +32,16 @@ class OrderTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
+    
+    func configureWith(order: Order){
+        self.createdByLabel.text = "Created By" + String(order.userID)
+        self.orderNumLabel.text = "Order #" + String(order.id)
+        self.totalPriceLabel.text = "$" + String(order.totalPrice)
+    }
+    
+    func configureWithProcessedOrder(processedOrder: ProcessedOrder){
+        self.configureWith(processedOrder)
+        self.statusLabel.text = "Status: " + processedOrder.status
     }
 
 }

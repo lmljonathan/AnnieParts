@@ -32,11 +32,6 @@ class SearchResultsCell: UITableViewCell {
         self.addShadowToCell()
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
-    
     func addShadowToCell(){
         self.mainView.addShadow(4, opacity: 0.2, offset: CGSize(width: 0, height: 4), path: true)
     }
