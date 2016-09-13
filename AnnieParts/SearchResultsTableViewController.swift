@@ -116,6 +116,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }else{
             let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
             
+            cell.selectionStyle = .None
+            
             let product = self.catalogData[indexPath.row]
             cell.productName.text = product.productName
             
@@ -131,10 +133,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.loadImage(url)
             cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
             cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
-//            
-//            cell.mainViewHeightContraint.constant = 110 + 16 * CGFloat(cell.models.numberOfLines)
-//            cell.needsUpdateConstraints()
-//            
             return cell
         }
 
@@ -163,12 +161,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell  = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultsCell
-        cell.mainView.backgroundColor = UIColor.APlightGray()
+        cell.mainView.backgroundColor = UIColor.selectedGray()
+        cell.backgroundColor = UIColor.clearColor()
+        cell.productImage.alpha = 0.8
     }
     
     override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell  = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultsCell
         cell.mainView.backgroundColor = UIColor.whiteColor()
+        cell.productImage.alpha = 1
     }
     
     var selectedProductIndex: Int!

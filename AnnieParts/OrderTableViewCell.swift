@@ -22,7 +22,6 @@ class OrderTableViewCell: UITableViewCell {
         print("confirm pressed")
     }
     
-    
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         self.mainView.addShadow(4, opacity: 0.2, offset: CGSize(width: 0, height: 4), path: true)

@@ -35,6 +35,7 @@ struct CONSTANTS {
         static let LOGIN_LOADING = "loadingVC"
         static let ADD_PRODUCT_POPUP = "popup"
         static let ORDER_SUMMARY_MODAL = "orderSummary"
+        static let ORDER_CONFIRM_MODAL = "confirmVC"
     }
     struct SEGUES {
         static let TO_SEARCH_OPTIONS = "pushToSearch"

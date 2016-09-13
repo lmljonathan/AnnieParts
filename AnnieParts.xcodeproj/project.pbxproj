@@ -53,6 +53,7 @@
 		90898C841D47DD1900719F20 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7C1D47DD1900719F20 /* Montserrat-Light.otf */; };
 		90898C851D47DD1900719F20 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 90898C7D1D47DD1900719F20 /* Montserrat-Hairline.otf */; };
 		908A1AAC1D83EDDC00FF53F1 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90240BB41D7FE14900B42996 /* OrderTableViewCell.swift */; };
+		908A1AAE1D87E0B900FF53F1 /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908A1AAD1D87E0B900FF53F1 /* ConfirmOrderViewController.swift */; };
 		90B5A1E61D669F0300D75390 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5A1E51D669F0300D75390 /* Utils.swift */; };
 		90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA32211D3F20850066B281 /* SearchOptionsVC.swift */; };
 		90EA32241D3F253A0066B281 /* SearchOptionsDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EA32231D3F253A0066B281 /* SearchOptionsDataHandler.swift */; };
@@ -131,6 +132,7 @@
 		90898C7B1D47DD1900719F20 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		90898C7C1D47DD1900719F20 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
 		90898C7D1D47DD1900719F20 /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
+		908A1AAD1D87E0B900FF53F1 /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
 		90B5A1E51D669F0300D75390 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		90EA32211D3F20850066B281 /* SearchOptionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchOptionsVC.swift; sourceTree = "<group>"; };
 		90EA32231D3F253A0066B281 /* SearchOptionsDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchOptionsDataHandler.swift; path = Data/SearchOptionsDataHandler.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		3C7B8CBF1D3DE39D00DAE60B /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				908A1AAD1D87E0B900FF53F1 /* ConfirmOrderViewController.swift */,
 				901AD9BC1D6174D00000FCE5 /* NotificationDialogViewController.swift */,
 				901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */,
 				3C68FDFA1D484A4900D0609F /* AddProductModalViewController.swift */,
@@ -541,6 +544,7 @@
 				3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */,
 				3CA281301D403A6C00229F00 /* ShoppingCartViewController.swift in Sources */,
 				90EA32221D3F20850066B281 /* SearchOptionsVC.swift in Sources */,
+				908A1AAE1D87E0B900FF53F1 /* ConfirmOrderViewController.swift in Sources */,
 				3CDA179E1D5ED6EE00A4F57C /* SideMenuViewController.swift in Sources */,
 				9075AA191D5325EA004272F4 /* SearchOptionsCell.swift in Sources */,
 				3C6A48AD1D5BD2A4006FB3E4 /* Model.swift in Sources */,

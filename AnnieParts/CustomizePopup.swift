@@ -38,7 +38,8 @@ func orderSummaryPresentr() -> Presentr {
     let height = ModalSize.Full
     let center = ModalCenterPosition.Center
     let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
-    presenter.backgroundOpacity = 0.1
+    presenter.backgroundOpacity = 0.3
+    presenter.blurBackground = true
     presenter.transitionType = .CrossDissolve
     presenter.dismissTransitionType = .CrossDissolve
     presenter.roundCorners = false

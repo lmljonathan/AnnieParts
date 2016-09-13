@@ -33,18 +33,27 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="12" width="54" height="19"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0E-KW-6gB">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="34" width="70.5" height="16.5"/>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11Q-y3-cG1">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="13" y="53.5" width="42" height="16.5"/>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZS-Q7-rDH">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -58,6 +67,9 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="290.5" y="80" width="50.5" height="19"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,14 +104,14 @@
                                 <exclude reference="v9L-Y8-Yer"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="aIW-26-vDr"/>
-                                <exclude reference="xZU-zG-B8U"/>
-                                <exclude reference="DdN-tM-SVn"/>
-                                <exclude reference="Y8q-zS-qJO"/>
-                                <exclude reference="Y7d-pq-LB9"/>
-                                <exclude reference="fXr-xa-rsN"/>
                                 <exclude reference="3gM-QG-ydf"/>
                                 <exclude reference="jlF-si-cWj"/>
+                                <exclude reference="Y7d-pq-LB9"/>
+                                <exclude reference="fXr-xa-rsN"/>
+                                <exclude reference="DdN-tM-SVn"/>
+                                <exclude reference="Y8q-zS-qJO"/>
+                                <exclude reference="aIW-26-vDr"/>
+                                <exclude reference="xZU-zG-B8U"/>
                                 <exclude reference="N7V-Ry-E2q"/>
                                 <exclude reference="rgI-3K-nMy"/>
                             </mask>
@@ -113,14 +125,14 @@
                                 <include reference="v9L-Y8-Yer"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="aIW-26-vDr"/>
-                                <include reference="xZU-zG-B8U"/>
-                                <include reference="DdN-tM-SVn"/>
-                                <include reference="Y8q-zS-qJO"/>
-                                <include reference="Y7d-pq-LB9"/>
-                                <include reference="fXr-xa-rsN"/>
                                 <include reference="3gM-QG-ydf"/>
                                 <include reference="jlF-si-cWj"/>
+                                <include reference="Y7d-pq-LB9"/>
+                                <include reference="fXr-xa-rsN"/>
+                                <include reference="DdN-tM-SVn"/>
+                                <include reference="Y8q-zS-qJO"/>
+                                <include reference="aIW-26-vDr"/>
+                                <include reference="xZU-zG-B8U"/>
                                 <include reference="N7V-Ry-E2q"/>
                                 <include reference="rgI-3K-nMy"/>
                             </mask>
@@ -176,7 +188,7 @@
                 <outlet property="statusLabel" destination="v9L-Y8-Yer" id="dwg-Fm-N4b"/>
                 <outlet property="totalPriceLabel" destination="11Q-y3-cG1" id="dAR-jy-K9Z"/>
             </connections>
-            <point key="canvasLocation" x="244.5" y="307.5"/>
+            <point key="canvasLocation" x="244.5" y="307"/>
         </tableViewCell>
     </objects>
 </document>

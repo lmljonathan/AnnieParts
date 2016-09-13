@@ -23,6 +23,13 @@ class OrdersViewController: UIViewController {
 
     @IBOutlet var ordersTableView: UITableView!
     
+    @IBAction func unwindToOrdersWithConfirmation(segue: UIStoryboardSegue){
+        let vc = segue.sourceViewController as! ConfirmOrderViewController
+        let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
+
+        self.confirmOrder(indexPath)
+    }
+    
     var accountType: UserRank!
     var sectionTitles = ["Customer Orders", "Unprocessed Orders", "Processed Orders"]
     
@@ -35,13 +42,13 @@ class OrdersViewController: UIViewController {
         
         self.navigationItem.title = "Orders"
         
-//        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
-//        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
-//        
-//        
-//        customerOrders.append(order)
-//        unprocessedOrders.append(order)
-//        processedOrders.append(processedOrder)
+        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
+        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
+        
+        
+        customerOrders.append(order)
+        unprocessedOrders.append(order)
+        processedOrders.append(processedOrder)
 
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
         
@@ -108,6 +115,38 @@ class OrdersViewController: UIViewController {
         }
 
     }
+    
+    private func confirmOrder(indexPath: NSIndexPath){
+        print("Confirmed order at row \(indexPath.row)")
+        
+        func animateConfirmed(){
+            let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
+            cell.confirmButton.userInteractionEnabled = false
+            cell.confirmButton.titleLabel!.text = "CONFIRMED!"
+            cell.confirmButton.updateConstraints()
+            
+            
+            UIView.animateWithDuration(0.9, animations: {
+                cell.confirmButton.alpha = 0
+            }) { (_) in
+                cell.confirmButton.hidden = true
+            }
+        }
+        
+        animateConfirmed()
+        // Perform API confirm order function here // CHANGE
+        
+        
+    }
+    
+    func presentConfirmOrder(button: UIButton){
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_CONFIRM_MODAL) as! ConfirmOrderViewController
+        customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
+        let row = button.tag
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        vc.row = row
+        self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
 }
 
@@ -136,8 +175,10 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, forIndexPath: indexPath) as! OrderTableViewCell
         
+        cell.selectionStyle = .None
+        
         if self.accountType == .Browser {
-            cell.confirmButton.hidden = true
+            //cell.confirmButton.hidden = true
             cell.totalPriceLabel.hidden = true
         }
         
@@ -145,6 +186,9 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         case 0:
             cell.statusLabel.hidden = true
             cell.configureWith(customerOrders[indexPath.row])
+            
+            cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), forControlEvents: .TouchUpInside)
+            cell.confirmButton.tag = indexPath.row
         case 1:
             cell.confirmButton.hidden = true
             cell.statusLabel.hidden = true
@@ -156,13 +200,21 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
             break
         }
         
-        
-        
         return cell
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
+    }
+    
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
+        cell.mainView.backgroundColor = UIColor.selectedGray()
+    }
+    
+    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
+        cell.mainView.backgroundColor = UIColor.whiteColor()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
