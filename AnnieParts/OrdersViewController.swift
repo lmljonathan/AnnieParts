@@ -219,6 +219,20 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+        switch indexPath.section {
+        case 0:
+            vc.orderID = String(self.customerOrders[indexPath.row].id)
+            vc.confirmActive = true // CHANGE
+        case 1:
+            vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
+            vc.confirmActive = false
+        case 2:
+            vc.orderID = String(self.processedOrders[indexPath.row].id)
+            vc.confirmActive = false
+        default:
+            break
+        }
+        
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

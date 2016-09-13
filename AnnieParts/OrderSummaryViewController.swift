@@ -10,14 +10,18 @@ import UIKit
 
 class OrderSummaryViewController: UIViewController {
 
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var dismissButtonWidthConstraint: NSLayoutConstraint!
 
     private var totalQuantity: Int = 0
     private var totalPrice: Double = 0.0
 
     var shoppingCart: [ShoppingCart]! = []
+    var orderID: String?
+    var confirmActive: Bool! = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,33 +30,56 @@ class OrderSummaryViewController: UIViewController {
 
         self.totalQuantity = 0
         self.totalPrice = 0.0
-
-
-        // Do any additional setup after loading the view.
+        
+        if orderID != nil{
+            self.loadDataFromOrderID({
+                self.tableView.reloadData()
+            })
+        }
+        
+        if confirmActive == false {
+            self.dismissButtonWidthConstraint.constant = self.mainView.frame.width
+            self.confirmButton.hidden = true
+        }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     @IBAction func submitOrder(sender: UIButton) {
         //add in http request
         send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     @IBAction func cancelCheckout(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    /*
-    // MARK: - Navigation
+    
+    private func loadDataFromOrderID(completion: () -> Void){
+        get_json_data(CONSTANTS.URL_INFO.ORDER_DETAIL + orderID!, query_paramters: [:]) { (json) in
+            
+            if let itemArray = json!["rlist"] as? [[String: String]]{
+                if itemArray.count > 0{
+            
+                    for item in itemArray{
+                        let name = item["goods_name"]!
+                        let quantity = Int(item["quantity"]!)
+                        let price = Double(item["unit_price"]!)
+                        
+                        let fullItem = ShoppingCart(productID: "", productName: name, image: "", serialNumber: "", startYear: "", endYear: "", brandID: -1, price: price!, quantity: quantity!, modelID: -1, modelIDlist: [])
+                        
+                        self.shoppingCart.append(fullItem)
+                    }
+                }else{
+                    print("Error retrieving JSON for id \(self.orderID!) - no items")
+                }
+            }
+            
+        }
+        completion()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    
+    
 
 }
 extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate {

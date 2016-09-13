@@ -30,6 +30,7 @@ struct CONSTANTS {
         static let LOGOUT_ACTION = ["act": "logout"]
         static let CHECKOUT = "appFinishShopping.php"
         static let ORDER_LIST = "appGetOrderList.php"
+        static let ORDER_DETAIL = "appGetOrderInfo.php?order_id="
     }
     struct VC_IDS {
         static let LOGIN_LOADING = "loadingVC"
