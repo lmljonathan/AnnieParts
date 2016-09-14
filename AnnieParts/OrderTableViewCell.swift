@@ -33,7 +33,7 @@ class OrderTableViewCell: UITableViewCell {
     }
     
     func configureWith(order: Order){
-        self.createdByLabel.text = "Created By" + String(order.userID)
+        self.createdByLabel.text = "Created By " + String(order.userID)
         self.orderNumLabel.text = "Order #" + String(order.id)
         self.totalPriceLabel.text = "$" + String(order.totalPrice)
     }

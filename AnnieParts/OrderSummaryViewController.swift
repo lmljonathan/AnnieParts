@@ -63,7 +63,7 @@ class OrderSummaryViewController: UIViewController {
     }
     
     private func loadDataFromOrderID(completion: () -> Void){
-        get_json_data(CONSTANTS.URL_INFO.ORDER_DETAIL + orderID!, query_paramters: [:]) { (json) in
+        get_json_data(CONSTANTS.URL_INFO.ORDER_DETAIL, query_paramters: ["order_id": String(orderID)]) { (json) in
             
             if let itemArray = json!["rlist"] as? [[String: String]]{
                 if itemArray.count > 0{
@@ -87,10 +87,9 @@ class OrderSummaryViewController: UIViewController {
 
     }
     
-    
-    
 
 }
+
 extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

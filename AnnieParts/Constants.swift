@@ -31,6 +31,7 @@ struct CONSTANTS {
         static let CHECKOUT = "appFinishShopping.php"
         static let ORDER_LIST = "appGetOrderList.php"
         static let ORDER_DETAIL = "appGetOrderInfo.php?order_id="
+        static let CONFIRM_BUSINESS_ORDER = "appConfirmBorder.php"
     }
     struct VC_IDS {
         static let LOGIN_LOADING = "loadingVC"

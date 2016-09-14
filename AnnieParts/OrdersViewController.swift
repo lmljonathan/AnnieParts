@@ -11,14 +11,11 @@ import UIKit
 class OrdersViewController: UIViewController {
     
     enum OrderType {
-        case Customer
-        case Unprocessed
-        case Processed
+        case Customer, Unprocessed, Processed
     }
     
     enum UserRank {
-        case Browser
-        case Dealer
+        case Browser, Dealer
     }
 
     @IBOutlet var ordersTableView: UITableView!
@@ -31,7 +28,7 @@ class OrdersViewController: UIViewController {
     }
     
     var accountType: UserRank!
-    var sectionTitles = ["Customer Orders", "Unprocessed Orders", "Processed Orders"]
+    var sectionTitles: [String]!
     
     var customerOrders: [Order] = []
     var unprocessedOrders: [Order] = []
@@ -40,12 +37,13 @@ class OrdersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // User.userRank = 2 // Uncomment to test as dealer
+        
         self.navigationItem.title = "Orders"
         
+        // Test Data
         let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
         let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
-        
-        
         customerOrders.append(order)
         unprocessedOrders.append(order)
         processedOrders.append(processedOrder)
@@ -62,24 +60,28 @@ class OrdersViewController: UIViewController {
     private func setUserRank() {
         if User.userRank == 1{
             accountType = .Browser
+            self.sectionTitles = ["Unprocessed Orders", "Processed Orders"]
         }else{
             accountType = .Dealer
+            self.sectionTitles = ["Customer Orders", "Unprocessed Orders", "Processed Orders"]
         }
     }
     
     private func loadData(completion: () -> Void){
         get_json_data(CONSTANTS.URL_INFO.ORDER_LIST, query_paramters: [:]) { (json) in
             
+            if self.accountType != .Browser{
             // Customer Orders
-            if let customerOrders = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
-                for order in customerOrders {
-                    let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
-                    let userID = Int(order[CONSTANTS.JSON_KEYS.USER_ID]!)!
-                    let orderID = Int(order[CONSTANTS.JSON_KEYS.ORDER_ID]!)!
-                    let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
-                    let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
-                    
-                    self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
+                if let customerOrders = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
+                    for order in customerOrders {
+                        let addTime = order[CONSTANTS.JSON_KEYS.ADD_TIME]!
+                        let userID = Int(order[CONSTANTS.JSON_KEYS.USER_ID]!)!
+                        let orderID = Int(order[CONSTANTS.JSON_KEYS.ORDER_ID]!)!
+                        let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
+                        let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
+                        
+                        self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
+                    }
                 }
             }
             
@@ -117,9 +119,16 @@ class OrdersViewController: UIViewController {
     }
     
     private func confirmOrder(indexPath: NSIndexPath){
-        print("Confirmed order at row \(indexPath.row)")
-        // Perform API confirm order function here // CHANGE
-        
+        let order = customerOrders[indexPath.row]
+        get_json_data(CONSTANTS.URL_INFO.CONFIRM_BUSINESS_ORDER, query_paramters: ["order_id": String(order.id), "order_sn": order.sn]) { (json) in
+            if (json!["status"] as! Int) == 1{
+                print("Order #\(order.id) confirmed.")
+                self.unprocessedOrders.append(self.customerOrders.removeAtIndex(indexPath.row))
+                self.ordersTableView.reloadData()
+            }else{
+                print("Failed at confirming order #\(order.id).")
+            }
+        }
         
     }
     
@@ -140,15 +149,27 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return customerOrders.count
-        case 1:
-            return unprocessedOrders.count
-        case 2:
-            return processedOrders.count
-        default:
-            return 0
+        if self.accountType == .Dealer{
+            switch section {
+            case 0:
+                return customerOrders.count
+            case 1:
+                return unprocessedOrders.count
+            case 2:
+                return processedOrders.count
+            default:
+                return 0
+            }
+        }else{
+            switch section {
+            case 0:
+                return unprocessedOrders.count
+            case 1:
+                return processedOrders.count
+            default:
+                return 0
+            }
+
         }
     }
     
@@ -161,27 +182,40 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.selectionStyle = .None
         
-        if self.accountType == .Browser {
-            //cell.confirmButton.hidden = true
+        if self.accountType == .Dealer{
+            // If user is Dealer
+            switch indexPath.section {
+            case 0:
+                cell.statusLabel.hidden = true
+                cell.configureWith(customerOrders[indexPath.row])
+                
+                cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), forControlEvents: .TouchUpInside)
+                cell.confirmButton.tag = indexPath.row
+            case 1:
+                cell.confirmButton.hidden = true
+                cell.statusLabel.hidden = true
+                cell.configureWith(unprocessedOrders[indexPath.row])
+            case 2:
+                cell.confirmButton.hidden = true
+                cell.configureWithProcessedOrder(processedOrders[indexPath.row])
+            default:
+                break
+            }
+        }else{
+            // If user is Browser
             cell.totalPriceLabel.hidden = true
-        }
-        
-        switch indexPath.section {
-        case 0:
-            cell.statusLabel.hidden = true
-            cell.configureWith(customerOrders[indexPath.row])
+            cell.confirmButton.hidden = true
             
-            cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), forControlEvents: .TouchUpInside)
-            cell.confirmButton.tag = indexPath.row
-        case 1:
-            cell.confirmButton.hidden = true
-            cell.statusLabel.hidden = true
-            cell.configureWith(unprocessedOrders[indexPath.row])
-        case 2:
-            cell.confirmButton.hidden = true
-            cell.configureWithProcessedOrder(processedOrders[indexPath.row])
-        default:
-            break
+            switch indexPath.section {
+            case 0:
+                cell.statusLabel.hidden = true
+                cell.configureWith(unprocessedOrders[indexPath.row])
+            case 1:
+                cell.statusLabel.hidden = false
+                cell.configureWithProcessedOrder(processedOrders[indexPath.row])
+            default:
+                break
+            }
         }
         
         return cell
@@ -203,18 +237,32 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
-        switch indexPath.section {
-        case 0:
-            vc.orderID = String(self.customerOrders[indexPath.row].id)
-            vc.confirmActive = true // CHANGE
-        case 1:
-            vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
-            vc.confirmActive = false
-        case 2:
-            vc.orderID = String(self.processedOrders[indexPath.row].id)
-            vc.confirmActive = false
-        default:
-            break
+        
+        if self.accountType == .Dealer{
+            switch indexPath.section {
+            case 0:
+                vc.orderID = String(self.customerOrders[indexPath.row].id)
+                vc.confirmActive = true // CHANGE
+            case 1:
+                vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
+                vc.confirmActive = false
+            case 2:
+                vc.orderID = String(self.processedOrders[indexPath.row].id)
+                vc.confirmActive = false
+            default:
+                break
+            }
+        }else{
+            switch indexPath.section {
+            case 0:
+                vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
+                vc.confirmActive = false
+            case 1:
+                vc.orderID = String(self.processedOrders[indexPath.row].id)
+                vc.confirmActive = false
+            default:
+                break
+            }
         }
         
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
