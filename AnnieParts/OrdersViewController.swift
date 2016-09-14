@@ -118,22 +118,6 @@ class OrdersViewController: UIViewController {
     
     private func confirmOrder(indexPath: NSIndexPath){
         print("Confirmed order at row \(indexPath.row)")
-        
-        func animateConfirmed(){
-            let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
-            cell.confirmButton.userInteractionEnabled = false
-            cell.confirmButton.titleLabel!.text = "CONFIRMED!"
-            cell.confirmButton.updateConstraints()
-            
-            
-            UIView.animateWithDuration(0.9, animations: {
-                cell.confirmButton.alpha = 0
-            }) { (_) in
-                cell.confirmButton.hidden = true
-            }
-        }
-        
-        animateConfirmed()
         // Perform API confirm order function here // CHANGE
         
         

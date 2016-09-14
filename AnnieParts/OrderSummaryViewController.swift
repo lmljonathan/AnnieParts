@@ -37,12 +37,22 @@ class OrderSummaryViewController: UIViewController {
             })
         }
         
-        if confirmActive == false {
-            self.dismissButtonWidthConstraint.constant = self.mainView.frame.width
-            self.confirmButton.hidden = true
-        }
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        // Need to change
+//        if confirmActive == false {
+//            self.cancelButton.removeConstraint(self.dismissButtonWidthConstraint)
+//            
+//            let right = NSLayoutConstraint(item: self.cancelButton, attribute: NSLayoutAttribute.TrailingMargin, relatedBy: NSLayoutRelation.Equal, toItem: self.mainView, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0)
+//            
+//            self.cancelButton.addConstraint(right)
+//            
+//            //self.dismissButtonWidthConstraint.constant = self.mainView.frame.width
+//            self.confirmButton.hidden = true
+//        }
+    }
+    
     @IBAction func submitOrder(sender: UIButton) {
         //add in http request
         send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
