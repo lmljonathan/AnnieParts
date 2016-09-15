@@ -41,12 +41,12 @@ class OrdersViewController: UIViewController {
         
         self.navigationItem.title = "Orders"
         
-        // Test Data
-        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
-        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
-        customerOrders.append(order)
-        unprocessedOrders.append(order)
-        processedOrders.append(processedOrder)
+//        // Test Data
+//        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
+//        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
+//        customerOrders.append(order)
+//        unprocessedOrders.append(order)
+//        processedOrders.append(processedOrder)
 
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
         
