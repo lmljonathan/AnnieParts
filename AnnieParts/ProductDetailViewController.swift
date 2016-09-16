@@ -222,6 +222,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
             self.tableView.beginUpdates()
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
             self.tableView.endUpdates()
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
         }
 
     }
