@@ -10,7 +10,8 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.otf">
+        <mutableArray key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
         </mutableArray>
@@ -33,27 +34,18 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="13" y="12" width="54" height="19"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0E-KW-6gB">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="13" y="34" width="70.5" height="16.5"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total $" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11Q-y3-cG1">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="13" y="53.5" width="42" height="16.5"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZS-Q7-rDH">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -67,15 +59,38 @@
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="290.5" y="80" width="50.5" height="19"/>
-                                </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBa-qv-EKF">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="X9M-gz-aIT"/>
+                                    <constraint firstAttribute="height" constant="18" id="yrF-iR-gKU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.7295495867729187" green="0.1829809844493866" blue="0.0842166468501091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="X9M-gz-aIT"/>
+                                        <exclude reference="yrF-iR-gKU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="X9M-gz-aIT"/>
+                                        <include reference="yrF-iR-gKU"/>
+                                    </mask>
+                                </variation>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="BZS-Q7-rDH" secondAttribute="bottom" constant="8" id="3gM-QG-ydf">
                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="qBa-qv-EKF" firstAttribute="top" secondItem="kXC-1F-h2E" secondAttribute="top" constant="7" id="D7k-pa-toL">
+                                <variation key="heightClass=regular-widthClass=compact" constant="12"/>
                             </constraint>
                             <constraint firstItem="F0E-KW-6gB" firstAttribute="top" secondItem="Pgi-C9-9lT" secondAttribute="bottom" constant="3" id="DdN-tM-SVn"/>
                             <constraint firstAttribute="bottom" secondItem="v9L-Y8-Yer" secondAttribute="bottom" constant="13" id="N7V-Ry-E2q">
@@ -91,6 +106,9 @@
                             <constraint firstAttribute="trailing" secondItem="v9L-Y8-Yer" secondAttribute="trailing" constant="14" id="rgI-3K-nMy">
                                 <variation key="heightClass=regular-widthClass=compact" constant="8"/>
                             </constraint>
+                            <constraint firstAttribute="trailing" secondItem="qBa-qv-EKF" secondAttribute="trailing" constant="8" id="ut1-zO-90C">
+                                <variation key="heightClass=regular-widthClass=compact" constant="13"/>
+                            </constraint>
                             <constraint firstItem="Pgi-C9-9lT" firstAttribute="top" secondItem="kXC-1F-h2E" secondAttribute="top" constant="13" id="xZU-zG-B8U">
                                 <variation key="heightClass=regular-widthClass=compact" constant="12"/>
                             </constraint>
@@ -102,18 +120,21 @@
                                 <exclude reference="11Q-y3-cG1"/>
                                 <exclude reference="BZS-Q7-rDH"/>
                                 <exclude reference="v9L-Y8-Yer"/>
+                                <exclude reference="qBa-qv-EKF"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3gM-QG-ydf"/>
-                                <exclude reference="jlF-si-cWj"/>
-                                <exclude reference="Y7d-pq-LB9"/>
-                                <exclude reference="fXr-xa-rsN"/>
-                                <exclude reference="DdN-tM-SVn"/>
-                                <exclude reference="Y8q-zS-qJO"/>
                                 <exclude reference="aIW-26-vDr"/>
                                 <exclude reference="xZU-zG-B8U"/>
+                                <exclude reference="DdN-tM-SVn"/>
+                                <exclude reference="Y8q-zS-qJO"/>
+                                <exclude reference="Y7d-pq-LB9"/>
+                                <exclude reference="fXr-xa-rsN"/>
+                                <exclude reference="3gM-QG-ydf"/>
+                                <exclude reference="jlF-si-cWj"/>
                                 <exclude reference="N7V-Ry-E2q"/>
                                 <exclude reference="rgI-3K-nMy"/>
+                                <exclude reference="D7k-pa-toL"/>
+                                <exclude reference="ut1-zO-90C"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -123,18 +144,21 @@
                                 <include reference="11Q-y3-cG1"/>
                                 <include reference="BZS-Q7-rDH"/>
                                 <include reference="v9L-Y8-Yer"/>
+                                <include reference="qBa-qv-EKF"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3gM-QG-ydf"/>
-                                <include reference="jlF-si-cWj"/>
-                                <include reference="Y7d-pq-LB9"/>
-                                <include reference="fXr-xa-rsN"/>
-                                <include reference="DdN-tM-SVn"/>
-                                <include reference="Y8q-zS-qJO"/>
                                 <include reference="aIW-26-vDr"/>
                                 <include reference="xZU-zG-B8U"/>
+                                <include reference="DdN-tM-SVn"/>
+                                <include reference="Y8q-zS-qJO"/>
+                                <include reference="Y7d-pq-LB9"/>
+                                <include reference="fXr-xa-rsN"/>
+                                <include reference="3gM-QG-ydf"/>
+                                <include reference="jlF-si-cWj"/>
                                 <include reference="N7V-Ry-E2q"/>
                                 <include reference="rgI-3K-nMy"/>
+                                <include reference="D7k-pa-toL"/>
+                                <include reference="ut1-zO-90C"/>
                             </mask>
                         </variation>
                     </view>
@@ -181,6 +205,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.89543876259999999" green="0.89543876259999999" blue="0.89543876259999999" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="cancelButton" destination="qBa-qv-EKF" id="spr-qf-35F"/>
                 <outlet property="confirmButton" destination="BZS-Q7-rDH" id="iEc-6E-UIA"/>
                 <outlet property="createdByLabel" destination="F0E-KW-6gB" id="fXx-Q9-UYb"/>
                 <outlet property="mainView" destination="kXC-1F-h2E" id="Ylh-d4-tB0"/>

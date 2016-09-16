@@ -17,9 +17,9 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet var statusLabel: UILabel!
     
     @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var cancelButton: UIButton!
     
     @IBAction func confirmButtonPressed(sender: AnyObject) {
-        print("confirm pressed")
     }
     
     override func drawRect(rect: CGRect) {
