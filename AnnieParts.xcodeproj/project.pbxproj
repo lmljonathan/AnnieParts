@@ -34,6 +34,7 @@
 		902E9B461D6C232800876669 /* videoSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B451D6C232800876669 /* videoSelectView.swift */; };
 		902E9B481D6C2D1100876669 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */; };
 		902E9B4A1D6C345300876669 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E9B491D6C345300876669 /* WebViewViewController.swift */; };
+		903014891D8BCF7D004CA027 /* CancelOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903014881D8BCF7D004CA027 /* CancelOrderViewController.swift */; };
 		907256231D397EF200C46A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256221D397EF200C46A8B /* AppDelegate.swift */; };
 		907256251D397EF200C46A8B /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907256241D397EF200C46A8B /* LoginVC.swift */; };
 		907256281D397EF200C46A8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 907256261D397EF200C46A8B /* Main.storyboard */; };
@@ -109,6 +110,7 @@
 		902E9B451D6C232800876669 /* videoSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = videoSelectView.swift; sourceTree = "<group>"; };
 		902E9B471D6C2D1100876669 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		902E9B491D6C345300876669 /* WebViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		903014881D8BCF7D004CA027 /* CancelOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelOrderViewController.swift; sourceTree = "<group>"; };
 		9072561F1D397EF200C46A8B /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907256221D397EF200C46A8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907256241D397EF200C46A8B /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		3C7B8CBF1D3DE39D00DAE60B /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				903014881D8BCF7D004CA027 /* CancelOrderViewController.swift */,
 				908A1AAD1D87E0B900FF53F1 /* ConfirmOrderViewController.swift */,
 				901AD9BC1D6174D00000FCE5 /* NotificationDialogViewController.swift */,
 				901AD9B81D6038E10000FCE5 /* LoadingViewController.swift */,
@@ -542,6 +545,7 @@
 				3C151B6E1D715AD000871035 /* UserDefaults.swift in Sources */,
 				902E9B461D6C232800876669 /* videoSelectView.swift in Sources */,
 				3CBD9F9D1D61429300C2FEE2 /* Constants.swift in Sources */,
+				903014891D8BCF7D004CA027 /* CancelOrderViewController.swift in Sources */,
 				901AD9B71D5FBEE50000FCE5 /* MenuCellTableViewCell.swift in Sources */,
 				90EA32241D3F253A0066B281 /* SearchOptionsDataHandler.swift in Sources */,
 				3CA7FF441D3D5CB400364671 /* SearchResultsCell.swift in Sources */,

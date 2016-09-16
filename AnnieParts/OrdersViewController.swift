@@ -27,6 +27,13 @@ class OrdersViewController: UIViewController {
         self.confirmOrder(indexPath)
     }
     
+    @IBAction func unwindToOrdersWithCancel(segue: UIStoryboardSegue){
+        let vc = segue.sourceViewController as! CancelOrderViewController
+        let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
+        
+        self.cancelOrder(indexPath)
+    }
+    
     var accountType: UserRank!
     var sectionTitles: [String]!
     
@@ -133,20 +140,35 @@ class OrdersViewController: UIViewController {
     }
     
     private func cancelOrder(indexPath: NSIndexPath){
-        let orderDataSourceMap = [0: self.customerOrders, 1: self.unprocessedOrders, 2: processedOrders]
-        let order = orderDataSourceMap[indexPath.section] as! Order
+        let orderDataSourceMap = [0: self.customerOrders, 1: self.unprocessedOrders, 2: self.processedOrders]
         
-        get_json_data(CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": order.id]) { (json) in
-            if let success = json!["success"] as? Int{
-                if success == 1{
-                    var source = orderDataSourceMap[indexPath.section]!
-                    source.removeAtIndex(indexPath.row)
-                    self.ordersTableView.reloadData()
-                    print("Canceled order #\(order.id) succesfully!")
-                }else{
-                    print("Failed to cancel order #\(order.id).")
+        func performCancel(orderID: Int){
+            get_json_data(CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": orderID]) { (json) in
+                if let success = json!["success"] as? Int{
+                    if success == 1{
+                        var source = orderDataSourceMap[indexPath.section]!
+                        source.removeAtIndex(indexPath.row)
+                        self.ordersTableView.reloadData()
+                        print("Canceled order #\(orderID) succesfully!")
+                    }else{
+                        print("Failed to cancel order #\(orderID).")
+                    }
                 }
             }
+        }
+        
+        switch indexPath.section {
+        case 0:
+            let id = self.customerOrders[indexPath.row].id
+            performCancel(id)
+        case 1:
+            let id = self.unprocessedOrders[indexPath.row].id
+            performCancel(id)
+        case 2:
+            let id = self.processedOrders[indexPath.row].id
+            performCancel(id)
+        default:
+            break
         }
     }
     
@@ -160,7 +182,7 @@ class OrdersViewController: UIViewController {
     }
     
     func presentCancelOrder(button: UIButton){
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_CONFIRM_MODAL) as! ConfirmOrderViewController
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_CANCEL_MODAL) as! CancelOrderViewController
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         let row = button.tag
         let indexPath = NSIndexPath(forRow: row, inSection: 0)
