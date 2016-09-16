@@ -21,7 +21,7 @@ struct CONSTANTS {
         static let CONFIG = "appGetCfg.php"
         static let OPTION_SEARCH = "appSearch.php"
         static let KEYWORD_SEARCH = "appSearchKeyword.php"
-        static let PRODUCT_DETAIL = "appGetGoodsInfo.php"
+        static let PRODUCT_DETAIL = "cppGetGoodsInfo.php"
         static let SHOPPING_CART = "appGetShoppingCart.php"
         static let ADD_TO_CART = "appAddGoods2Cart.php"
         static let DELETE_FROM_CART = "appDeleteFromCart.php"

@@ -146,8 +146,10 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
                 self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
             }
+        } else {
+            self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
         }
-        self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
