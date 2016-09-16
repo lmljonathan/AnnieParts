@@ -1890,6 +1890,9 @@
                                         <include reference="kAd-aT-JXd"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="addToCartButtonPressed:" destination="M3h-4h-3Uq" eventType="touchUpInside" id="TXs-Ks-JP7"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5CV-CB-vCm">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
