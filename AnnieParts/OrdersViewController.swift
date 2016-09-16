@@ -256,6 +256,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
             cell.configureWith(unprocessedOrders[indexPath.row])
         case 2:
             cell.confirmButton.hidden = true
+            cell.cancelButton.hidden = true
             cell.configureWithProcessedOrder(processedOrders[indexPath.row])
         default:
             break
