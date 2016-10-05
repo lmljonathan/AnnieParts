@@ -149,6 +149,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         } else {
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
             self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+            
         }
     }
     
