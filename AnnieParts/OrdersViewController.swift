@@ -48,13 +48,6 @@ class OrdersViewController: UIViewController {
         
         self.navigationItem.title = "Orders"
         
-        // Test Data
-        let order = Order(addTime: "December 32", userID: 32312, totalPrice: 34.00, sn: "1412312", id: 3413124213)
-        let processedOrder = ProcessedOrder(addTime: order.addTime, userID: order.userID, totalPrice: order.totalPrice, sn: order.sn, id: order.id, status: "On its way")
-        customerOrders.append(order)
-        unprocessedOrders.append(order)
-        processedOrders.append(processedOrder)
-
         self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
         
         self.setUserRank()
@@ -76,7 +69,7 @@ class OrdersViewController: UIViewController {
     
     private func loadData(completion: () -> Void){
         get_json_data(CONSTANTS.URL_INFO.ORDER_LIST, query_paramters: [:]) { (json) in
-            if (json!["success"] as! Int) == 1{
+            if (json!["status"] as! Int) == 1{
                 if self.accountType != .Browser{
                 // Customer Orders
                     if let customerOrders = json![CONSTANTS.JSON_KEYS.CUSTOMER_ORDER_LIST] as? [[String: String]] {
@@ -101,7 +94,7 @@ class OrdersViewController: UIViewController {
                         let orderSN = order[CONSTANTS.JSON_KEYS.ORDER_SN]!
                         let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
                         
-                        self.customerOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
+                        self.unprocessedOrders.append(Order(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID))
                     }
                     
                 }
@@ -116,7 +109,7 @@ class OrdersViewController: UIViewController {
                         let totalPrice = Double(order[CONSTANTS.JSON_KEYS.TOTAL_PRICE]!)!
                         let status = order[CONSTANTS.JSON_KEYS.STATUS]!
                         
-                        self.customerOrders.append(ProcessedOrder(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID, status: status))
+                        self.processedOrders.append(ProcessedOrder(addTime: addTime, userID: userID, totalPrice: totalPrice, sn: orderSN, id: orderID, status: status))
                     }
                 }
                 completion()
@@ -132,6 +125,9 @@ class OrdersViewController: UIViewController {
                 print("Order #\(order.id) confirmed.")
                 self.unprocessedOrders.append(self.customerOrders.removeAtIndex(indexPath.row))
                 self.ordersTableView.reloadData()
+                self.showNotificationView("Order Confirmed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                    vc.dismissViewControllerAnimated(true, completion: nil)
+                })
             }else{
                 print("Failed at confirming order #\(order.id).")
             }
@@ -247,14 +243,17 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         case 0:
             cell.statusLabel.hidden = true
             cell.configureWith(customerOrders[indexPath.row])
-            
+            cell.cancelButton.hidden = false
+            cell.confirmButton.hidden = false
             cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), forControlEvents: .TouchUpInside)
             cell.confirmButton.tag = indexPath.row
         case 1:
             cell.confirmButton.hidden = true
+            cell.cancelButton.hidden = false
             cell.statusLabel.hidden = true
             cell.configureWith(unprocessedOrders[indexPath.row])
         case 2:
+            cell.statusLabel.hidden = false
             cell.confirmButton.hidden = true
             cell.cancelButton.hidden = true
             cell.configureWithProcessedOrder(processedOrders[indexPath.row])

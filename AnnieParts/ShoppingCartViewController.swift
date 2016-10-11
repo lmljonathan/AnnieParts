@@ -18,6 +18,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     private var updatedItem: Int!
     var viewFromNavButton = true
     
+    @IBAction func unwindToCartWithConfirm(segue: UIStoryboardSegue){
+        self.shoppingCart.removeAll()
+        self.tableView.reloadData()
+        self.subtotal.text = ""
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         self.updatedItem = -1
@@ -92,10 +98,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             }
             self.calculateSubtotal()
         }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

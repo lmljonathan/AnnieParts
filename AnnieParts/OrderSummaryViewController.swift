@@ -25,6 +25,13 @@ class OrderSummaryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if confirmActive == true{
+            print("from orders")
+            self.confirmButton.titleLabel?.numberOfLines = 2
+            self.confirmButton.titleLabel?.textAlignment = .Center
+            self.confirmButton.setTitle("Confirm Business Order", forState: .Normal)
+        }
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
@@ -55,7 +62,8 @@ class OrderSummaryViewController: UIViewController {
     @IBAction func submitOrder(sender: UIButton) {
         //add in http request
         send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.performSegueWithIdentifier("unwindToCartWithConfirm", sender: self)
+        // self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func cancelCheckout(sender: UIButton) {
@@ -63,7 +71,7 @@ class OrderSummaryViewController: UIViewController {
     }
     
     private func loadDataFromOrderID(completion: () -> Void){
-        get_json_data(CONSTANTS.URL_INFO.ORDER_DETAIL, query_paramters: ["order_id": String(orderID)]) { (json) in
+        get_json_data(CONSTANTS.URL_INFO.ORDER_DETAIL, query_paramters: ["order_id": String(orderID!)]) { (json) in
             
             if let itemArray = json!["rlist"] as? [[String: String]]{
                 if itemArray.count > 0{
@@ -77,13 +85,14 @@ class OrderSummaryViewController: UIViewController {
                         
                         self.shoppingCart.append(fullItem)
                     }
+                    completion()
                 }else{
                     print("Error retrieving JSON for id \(self.orderID!) - no items")
+                    completion()
                 }
             }
             
         }
-        completion()
 
     }
     

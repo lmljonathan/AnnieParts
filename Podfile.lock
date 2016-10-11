@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.5.0)
+  - Alamofire (3.5.1)
   - Auk (2.1.5):
     - moa (~> 3.0)
   - HanekeSwift (0.10.1)
@@ -7,8 +7,8 @@ PODS:
   - moa (3.0.0)
   - Presentr (0.1.8)
   - SideMenuController (0.1.6)
-  - SKPhotoBrowser (3.1.0)
-  - SwiftyJSON (2.3.2)
+  - SKPhotoBrowser (3.1.2)
+  - SwiftyJSON (2.4.0)
   - SwiftyUserDefaults (2.2.1)
 
 DEPENDENCIES:
@@ -17,22 +17,32 @@ DEPENDENCIES:
   - HanekeSwift
   - MIBadgeButton-Swift
   - moa (~> 3.0)
-  - Presentr
-  - SideMenuController
+  - Presentr (~> 0.1.8)
+  - SideMenuController (~> 0.1.6)
   - SKPhotoBrowser
-  - SwiftyJSON
-  - SwiftyUserDefaults
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift2`)
+  - SwiftyUserDefaults (~> 2.2.1)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :branch: swift2
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 54017d514a87b2b855b407131292c510cdeb65f8
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: b70a7352335f8ea5babd0a923eb7e8eacc67b877
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   Auk: 25fe0c1ac0d22b387eca4c5ea9de48c9caea5c05
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   MIBadgeButton-Swift: b5d07924904c84bcb8e8fe3c3131b8499f28930c
   moa: 32ca142e67accf6124087abba94ff5c288ad1d7e
   Presentr: 0e65151d93a0c432f6884b66075b15b25a2870ef
   SideMenuController: 442d67af6d5892934065d42d5c1c3b7d5be4953e
-  SKPhotoBrowser: 48717c1e2602e6e99a5b1df9d6b43889aaa70e9f
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  SKPhotoBrowser: e942c03c3206b5cf229fd4ce56b872bce800124a
+  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
   SwiftyUserDefaults: 7abdba50a50ea0c18ee8903af3c88e4c1cb8448d
 
 COCOAPODS: 0.39.0
