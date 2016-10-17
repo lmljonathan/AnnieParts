@@ -128,13 +128,15 @@ class OrdersViewController: UIViewController {
                 print("Order #\(order.id) confirmed.")
                 self.unprocessedOrders.append(self.customerOrders.removeAtIndex(indexPath.row))
                 
+                // Animate Cell
                 let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath)
                 
-                UIView.animateWithDuration(2, animations: {
+                UIView.animateWithDuration(0.5, animations: {
                     cell?.transform = CGAffineTransformMakeTranslation(400, 0)
+                    }, completion: {(success) in
+                        self.ordersTableView.reloadData()
+                        self.ordersTableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Top)
                 })
-                
-                self.ordersTableView.reloadData()
                 
                 self.showNotificationView("Order Confirmed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
                     vc.dismissViewControllerAnimated(true, completion: nil)
@@ -146,16 +148,31 @@ class OrdersViewController: UIViewController {
     }
     
     private func cancelOrder(indexPath: NSIndexPath){
-        let orderDataSourceMap = [0: self.customerOrders, 1: self.unprocessedOrders, 2: self.processedOrders]
         
         func performCancel(orderID: Int){
-            get_json_data(CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": orderID]) { (json) in
-                print("json: \(json)")
+            get_json_data(CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": String(orderID)]) { (json) in
                 if let success = json!["status"] as? Int{
                     if success == 1{
-                        var source = orderDataSourceMap[indexPath.section]!
-                        source.removeAtIndex(indexPath.row)
-                        self.ordersTableView.reloadData()
+                        // Remove Item from Array
+                        switch indexPath.section{
+                        case 0:
+                            self.customerOrders.removeAtIndex(indexPath.row)
+                        case 1:
+                            self.unprocessedOrders.removeAtIndex(indexPath.row)
+                        default:
+                            break
+                        }
+                        
+                        // Animate Cell
+                        let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath)
+                        
+                        UIView.animateWithDuration(0.5, animations: {
+                            cell?.transform = CGAffineTransformMakeTranslation(-400, 0)
+                            }, completion: {(success) in
+                                self.ordersTableView.reloadData()
+                                //self.ordersTableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Top)
+                        })
+                        
                         print("Canceled order #\(orderID) succesfully!")
                     }else{
                         print("Failed to cancel order #\(orderID).")
@@ -216,29 +233,6 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             return 0
         }
-
-//        if self.accountType == .Dealer{
-//            switch section {
-//            case 0:
-//                return customerOrders.count
-//            case 1:
-//                return unprocessedOrders.count
-//            case 2:
-//                return processedOrders.count
-//            default:
-//                return 0
-//            }
-//        }else{
-//            switch section {
-//            case 0:
-//                return unprocessedOrders.count
-//            case 1:
-//                return processedOrders.count
-//            default:
-//                return 0
-//            }
-//
-//        }
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -274,42 +268,6 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
             break
         }
         
-//        if self.accountType == .Dealer{
-//            // If user is Dealer
-//            switch indexPath.section {
-//            case 0:
-//                cell.statusLabel.hidden = true
-//                cell.configureWith(customerOrders[indexPath.row])
-//                
-//                cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), forControlEvents: .TouchUpInside)
-//                cell.confirmButton.tag = indexPath.row
-//            case 1:
-//                cell.confirmButton.hidden = true
-//                cell.statusLabel.hidden = true
-//                cell.configureWith(unprocessedOrders[indexPath.row])
-//            case 2:
-//                cell.confirmButton.hidden = true
-//                cell.configureWithProcessedOrder(processedOrders[indexPath.row])
-//            default:
-//                break
-//            }
-//        }else{
-//            // If user is Browser
-//            cell.totalPriceLabel.hidden = true
-//            cell.confirmButton.hidden = true
-//            
-//            switch indexPath.section {
-//            case 0:
-//                cell.statusLabel.hidden = true
-//                cell.configureWith(unprocessedOrders[indexPath.row])
-//            case 1:
-//                cell.statusLabel.hidden = false
-//                cell.configureWithProcessedOrder(processedOrders[indexPath.row])
-//            default:
-//                break
-//            }
-//        }
-        
         return cell
     }
     
@@ -344,35 +302,6 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         default:
             break
         }
-
-        
-//        if self.accountType == .Dealer{
-//            switch indexPath.section {
-//            case 0:
-//                vc.orderID = String(self.customerOrders[indexPath.row].id)
-//                vc.confirmActive = true // CHANGE
-//            case 1:
-//                vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
-//                vc.confirmActive = false
-//            case 2:
-//                vc.orderID = String(self.processedOrders[indexPath.row].id)
-//                vc.confirmActive = false
-//            default:
-//                break
-//            }
-//        }else{
-//            switch indexPath.section {
-//            case 0:
-//                vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
-//                vc.confirmActive = false
-//            case 1:
-//                vc.orderID = String(self.processedOrders[indexPath.row].id)
-//                vc.confirmActive = false
-//            default:
-//                break
-//            }
-//        }
-        
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
