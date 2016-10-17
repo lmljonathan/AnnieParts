@@ -32,7 +32,7 @@ class OrdersViewController: UIViewController {
     
     @IBAction func unwindToOrdersWithCancel(segue: UIStoryboardSegue){
         let vc = segue.sourceViewController as! CancelOrderViewController
-        let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
+        let indexPath = vc.indexPath
     
         self.cancelOrder(indexPath)
     }
@@ -127,7 +127,15 @@ class OrdersViewController: UIViewController {
             if (json!["status"] as! Int) == 1{
                 print("Order #\(order.id) confirmed.")
                 self.unprocessedOrders.append(self.customerOrders.removeAtIndex(indexPath.row))
+                
+                let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath)
+                
+                UIView.animateWithDuration(2, animations: {
+                    cell?.transform = CGAffineTransformMakeTranslation(400, 0)
+                })
+                
                 self.ordersTableView.reloadData()
+                
                 self.showNotificationView("Order Confirmed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
                     vc.dismissViewControllerAnimated(true, completion: nil)
                 })
@@ -183,10 +191,11 @@ class OrdersViewController: UIViewController {
     func presentCancelOrder(button: UIButton){
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_CANCEL_MODAL) as! CancelOrderViewController
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
-        let row = button.tag
-        let indexPath = NSIndexPath(forRow: row, inSection: 0)
-        vc.row = row
-        self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        // let row = button.tag
+        let buttonPoint = button.convertPoint(CGPointZero, toView: self.ordersTableView)
+        let indexPath = self.ordersTableView.indexPathForRowAtPoint(buttonPoint)
+        vc.indexPath = indexPath
+        self.ordersTableView.deselectRowAtIndexPath(indexPath!, animated: true)
     }
 
 }
@@ -325,7 +334,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.section {
         case 0:
             vc.orderID = String(self.customerOrders[indexPath.row].id)
-            vc.confirmActive = true // CHANGE
+            vc.confirmActive = true
         case 1:
             vc.orderID = String(self.unprocessedOrders[indexPath.row].id)
             vc.confirmActive = false

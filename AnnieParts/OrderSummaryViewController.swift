@@ -29,7 +29,7 @@ class OrderSummaryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if confirmActive == true{
+        if row != nil{
             print("from orders")
             self.confirmButton.titleLabel?.numberOfLines = 2
             self.confirmButton.titleLabel?.textAlignment = .Center

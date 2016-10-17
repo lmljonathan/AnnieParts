@@ -10,7 +10,7 @@ import UIKit
 
 class CancelOrderViewController: UIViewController {
     
-    var row: Int!
+    var indexPath: NSIndexPath!
 
     @IBAction func cancelButtonPressed(sender: AnyObject) {
     }
