@@ -52,9 +52,11 @@ func get_json_data(query_type: String, query_paramters: [String: AnyObject], com
         query_url,
         parameters: query_paramters
     ).validate().responseJSON { response in
-        print(response.request!.URL!.URLString)
+        print("url: \(response.request!.URL!.URLString)")
         if let json = response.result.value {
             completion(json as? NSDictionary)
+        }else{
+            print("Did not recieve JSON response.")
         }
     }
 }

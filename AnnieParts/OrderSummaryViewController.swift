@@ -21,6 +21,7 @@ class OrderSummaryViewController: UIViewController {
 
     var shoppingCart: [ShoppingCart]! = []
     var orderID: String! = ""
+    var row: Int? = nil
     var confirmActive: Bool! = true
 
     override func viewDidLoad() {
@@ -65,9 +66,13 @@ class OrderSummaryViewController: UIViewController {
     
     @IBAction func submitOrder(sender: UIButton) {
         //add in http request
-        send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
-        self.performSegueWithIdentifier("unwindToCartWithConfirm", sender: self)
-        // self.dismissViewControllerAnimated(true, completion: nil)
+        if row != nil{
+            print("unwind to orders with confirm")
+            self.performSegueWithIdentifier("unwindToOrdersWithConfirm", sender: self)
+        }else{
+            send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
+            self.performSegueWithIdentifier("unwindToCartWithConfirm", sender: self)
+        }
     }
     
     @IBAction func cancelCheckout(sender: UIButton) {

@@ -21,16 +21,19 @@ class OrdersViewController: UIViewController {
     @IBOutlet var ordersTableView: UITableView!
     
     @IBAction func unwindToOrdersWithConfirmation(segue: UIStoryboardSegue){
-        let vc = segue.sourceViewController as! ConfirmOrderViewController
-        let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
-
-        self.confirmOrder(indexPath)
+        if let vc = segue.sourceViewController as? ConfirmOrderViewController{
+            let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
+            self.confirmOrder(indexPath)
+        }else if let vc = segue.sourceViewController as? OrderSummaryViewController{
+            let indexPath = NSIndexPath(forRow: vc.row!, inSection: 0)
+            self.confirmOrder(indexPath)
+        }
     }
     
     @IBAction func unwindToOrdersWithCancel(segue: UIStoryboardSegue){
         let vc = segue.sourceViewController as! CancelOrderViewController
         let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
-        
+    
         self.cancelOrder(indexPath)
     }
     
@@ -132,7 +135,6 @@ class OrdersViewController: UIViewController {
                 print("Failed at confirming order #\(order.id).")
             }
         }
-        
     }
     
     private func cancelOrder(indexPath: NSIndexPath){
@@ -140,7 +142,8 @@ class OrdersViewController: UIViewController {
         
         func performCancel(orderID: Int){
             get_json_data(CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": orderID]) { (json) in
-                if let success = json!["success"] as? Int{
+                print("json: \(json)")
+                if let success = json!["status"] as? Int{
                     if success == 1{
                         var source = orderDataSourceMap[indexPath.section]!
                         source.removeAtIndex(indexPath.row)
@@ -238,6 +241,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.selectionStyle = .None
         cell.cancelButton.addTarget(self, action: #selector(self.presentCancelOrder(_:)), forControlEvents: .TouchUpInside)
+        cell.cancelButton.tag = indexPath.row
         
         switch indexPath.section {
         case 0:
@@ -316,6 +320,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+        vc.row = indexPath.row
         
         switch indexPath.section {
         case 0:
