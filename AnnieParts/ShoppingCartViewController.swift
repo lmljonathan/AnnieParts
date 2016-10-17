@@ -9,7 +9,7 @@
 import UIKit
 import Presentr
 
-class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddProductModalView {
+class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddProductModalView, OrderSummaryModalView {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var checkoutButton: UIButton!
@@ -184,6 +184,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
         print("\(self.updatedItem) + \(id) + \(quantity)")
         send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
+    }
+    func confirmedShoppingCart(clear: Bool) {
+        if (clear) {
+            self.shoppingCart.removeAll()
+            self.tableView.reloadData()
+        }
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         loadData()
