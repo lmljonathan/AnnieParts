@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol OrderSummaryModalView {
+    func confirmedShoppingCart(clear: Bool)
+}
 class OrderSummaryViewController: UIViewController {
 
     @IBOutlet var mainView: UIView!
@@ -23,6 +25,7 @@ class OrderSummaryViewController: UIViewController {
     var orderID: String! = ""
     var row: Int? = nil
     var confirmActive: Bool! = true
+    var delegate: OrderSummaryModalView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +79,7 @@ class OrderSummaryViewController: UIViewController {
     }
     
     @IBAction func cancelCheckout(sender: UIButton) {
+        self.delegate?.confirmedShoppingCart(false)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
