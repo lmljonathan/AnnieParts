@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -10,7 +10,7 @@
             <string>Montserrat-Light</string>
             <string>Montserrat-Light</string>
         </mutableArray>
-        <mutableArray key="Montserrat-Regular.ttf">
+        <mutableArray key="Montserrat-Regular.otf">
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
@@ -23,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="122"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XPj-vj-zBu" id="qTR-kf-inK">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="121.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXC-1F-h2E">
@@ -123,18 +123,18 @@
                                 <exclude reference="qBa-qv-EKF"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="aIW-26-vDr"/>
-                                <exclude reference="xZU-zG-B8U"/>
-                                <exclude reference="DdN-tM-SVn"/>
-                                <exclude reference="Y8q-zS-qJO"/>
-                                <exclude reference="Y7d-pq-LB9"/>
-                                <exclude reference="fXr-xa-rsN"/>
                                 <exclude reference="3gM-QG-ydf"/>
                                 <exclude reference="jlF-si-cWj"/>
-                                <exclude reference="N7V-Ry-E2q"/>
-                                <exclude reference="rgI-3K-nMy"/>
                                 <exclude reference="D7k-pa-toL"/>
                                 <exclude reference="ut1-zO-90C"/>
+                                <exclude reference="Y7d-pq-LB9"/>
+                                <exclude reference="fXr-xa-rsN"/>
+                                <exclude reference="DdN-tM-SVn"/>
+                                <exclude reference="Y8q-zS-qJO"/>
+                                <exclude reference="aIW-26-vDr"/>
+                                <exclude reference="xZU-zG-B8U"/>
+                                <exclude reference="N7V-Ry-E2q"/>
+                                <exclude reference="rgI-3K-nMy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -147,18 +147,18 @@
                                 <include reference="qBa-qv-EKF"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="aIW-26-vDr"/>
-                                <include reference="xZU-zG-B8U"/>
-                                <include reference="DdN-tM-SVn"/>
-                                <include reference="Y8q-zS-qJO"/>
-                                <include reference="Y7d-pq-LB9"/>
-                                <include reference="fXr-xa-rsN"/>
                                 <include reference="3gM-QG-ydf"/>
                                 <include reference="jlF-si-cWj"/>
-                                <include reference="N7V-Ry-E2q"/>
-                                <include reference="rgI-3K-nMy"/>
                                 <include reference="D7k-pa-toL"/>
                                 <include reference="ut1-zO-90C"/>
+                                <include reference="Y7d-pq-LB9"/>
+                                <include reference="fXr-xa-rsN"/>
+                                <include reference="DdN-tM-SVn"/>
+                                <include reference="Y8q-zS-qJO"/>
+                                <include reference="aIW-26-vDr"/>
+                                <include reference="xZU-zG-B8U"/>
+                                <include reference="N7V-Ry-E2q"/>
+                                <include reference="rgI-3K-nMy"/>
                             </mask>
                         </variation>
                     </view>

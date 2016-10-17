@@ -20,7 +20,7 @@ class OrderSummaryViewController: UIViewController {
     private var totalPrice: Double = 0.0
 
     var shoppingCart: [ShoppingCart]! = []
-    var orderID: String?
+    var orderID: String! = ""
     var confirmActive: Bool! = true
 
     override func viewDidLoad() {
@@ -34,11 +34,15 @@ class OrderSummaryViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
 
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
         self.totalQuantity = 0
         self.totalPrice = 0.0
         
-        if orderID != nil{
+        if orderID != ""{
             self.loadDataFromOrderID({
                 self.tableView.reloadData()
             })
@@ -107,6 +111,9 @@ extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_SUMMARY_CELL) as! OrderSummaryTableViewCell
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+
         if (indexPath.row == 0) {
             cell.productName.text = "Product Name"
             cell.quantity.text = "Qty"
@@ -115,13 +122,14 @@ extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate
         else if (indexPath.row == shoppingCart.count + 1) {
             cell.productName.text = "TOTAL"
             cell.quantity.text = String(self.totalQuantity)
-            cell.price.text = String(self.totalPrice)
+            cell.price.text = formatter.stringFromNumber(self.totalPrice)
         }
         else {
             let item = self.shoppingCart[indexPath.row-1]
+
             cell.productName.text = item.productName
             cell.quantity.text = String(item.quantity)
-            cell.price.text = "$" + String(item.price)
+            cell.price.text = formatter.stringFromNumber(item.price)! ?? "0.00"
 
             self.totalQuantity += item.quantity
             self.totalPrice += item.price * Double(item.quantity)
