@@ -40,6 +40,7 @@ struct CONSTANTS {
         static let ORDER_SUMMARY_MODAL = "orderSummary"
         static let ORDER_CONFIRM_MODAL = "confirmVC"
         static let ORDER_CANCEL_MODAL = "cancelVC"
+        static let ORDER_NUMBER = "orderNumberVC"
     }
     struct SEGUES {
         static let TO_SEARCH_OPTIONS = "pushToSearch"

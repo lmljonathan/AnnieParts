@@ -73,7 +73,8 @@ class OrderSummaryViewController: UIViewController {
             print("unwind to orders with confirm")
             self.performSegueWithIdentifier("unwindToOrdersWithConfirm", sender: self)
         }else{
-            send_request(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:])
+            print("Submit button")
+            self.delegate?.confirmedShoppingCart(true) 
             self.performSegueWithIdentifier("unwindToCartWithConfirm", sender: self)
         }
     }

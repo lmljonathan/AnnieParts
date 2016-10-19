@@ -45,3 +45,13 @@ func orderSummaryPresentr() -> Presentr {
     presenter.roundCorners = false
     return presenter
 }
+
+func orderNumberPresentr() -> Presentr {
+    let presenter = Presentr(presentationType: .Custom(width: ModalSize.Default, height: ModalSize.Custom(size: 200), center: ModalCenterPosition.Center))
+    presenter.backgroundOpacity = 0.3
+    presenter.transitionType = .CrossDissolve
+    presenter.dismissTransitionType = .CrossDissolve
+    presenter.roundCorners = false
+    presenter.dismissOnTap = false
+    return presenter
+}

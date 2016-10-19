@@ -173,6 +173,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func checkout(sender: UIButton) {
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
         vc.shoppingCart = self.shoppingCart
+        vc.delegate = self
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         
     }
@@ -187,8 +188,17 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     func confirmedShoppingCart(clear: Bool) {
         if (clear) {
-            self.shoppingCart.removeAll()
-            self.tableView.reloadData()
+            print("clear confirmed alsdjfklasdj")
+            get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:], completion: { (json) in
+                print(json)
+                let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String
+                let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_NUMBER) as! OrderNumberVC
+                vc.sn_label = sn
+                self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
+                    self.shoppingCart.removeAll()
+                    self.tableView.reloadData()
+                })
+            })
         }
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
