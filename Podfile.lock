@@ -3,38 +3,60 @@ PODS:
   - Auk (7.0.1):
     - moa
   - HanekeSwift (0.10.1)
-  - MIBadgeButton-Swift (0.4)
+  - MIBadgeButton-Swift (0.5)
   - moa (8.0.2)
   - Presentr (1.0.3)
   - SideMenuController (0.2.1)
-  - SKPhotoBrowser (3.1.2)
+  - SKPhotoBrowser (3.1.3)
   - SwiftyJSON (3.1.1)
   - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - Auk
-  - HanekeSwift
-  - MIBadgeButton-Swift
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift`, branch `feature/swift-3`)
+  - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - moa
   - Presentr
   - SideMenuController
-  - SKPhotoBrowser
+  - SKPhotoBrowser (from `https://github.com/suzuki-0000/SKPhotoBrowser.git`, branch `swift3`)
   - SwiftyJSON
   - SwiftyUserDefaults
+
+EXTERNAL SOURCES:
+  HanekeSwift:
+    :branch: feature/swift-3
+    :git: https://github.com/Haneke/HanekeSwift
+  MIBadgeButton-Swift:
+    :branch: master
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
+  SKPhotoBrowser:
+    :branch: swift3
+    :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
+
+CHECKOUT OPTIONS:
+  HanekeSwift:
+    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
+    :git: https://github.com/Haneke/HanekeSwift
+  MIBadgeButton-Swift:
+    :commit: 44b28fd7c9071439861f9b0c366c84a55ffd7e53
+    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
+  SKPhotoBrowser:
+    :commit: 2ec9887a8f5bc82aabc61da035cd4ab9b1230b63
+    :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   Auk: 6f8c4e93427d0d02641263776dd3b66ae4050903
-  HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
-  MIBadgeButton-Swift: b5d07924904c84bcb8e8fe3c3131b8499f28930c
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
+  MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   moa: 73d2dd56fe838a31e255c64b7873d2c2fbc71076
   Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
   SideMenuController: 4c543122289d74e1db9d1e24fd3264581fd6ac4e
-  SKPhotoBrowser: e942c03c3206b5cf229fd4ce56b872bce800124a
+  SKPhotoBrowser: 4690ffb59db79849454241ecc65cc3d6af9965bf
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: 473a4d92afdd222143ca2110b6cf9e7bbe2f7cd5
+PODFILE CHECKSUM: 86ef3ce8df0d9d6bbb33e836e62637209074b8c1
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.1

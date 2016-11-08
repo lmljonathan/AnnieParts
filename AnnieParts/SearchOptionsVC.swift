@@ -26,14 +26,14 @@ struct Cell {
         option_ids = []
     }
 }
-class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchOptionsVC: UIViewController{
     
     // MARK: - IB Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var cartNavButton: UIBarButtonItem!
     
     @IBAction func performSearch(sender: AnyObject) {
-        self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
+        self.performSegue(withIdentifier: CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
     }
     // MARK: - Variables
     private var selectedOptions = ["", "", ""]
@@ -42,7 +42,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     private var cells = [Cell(), Cell(), Cell()]
 
     // MARK: - View Loading Functions
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.selectedIDs = [0, 0, 0]
     }
@@ -54,7 +54,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableView.tableFooterView = UIView()
         self.navigationController?.addSideMenuButton()
 
-        get_json_data(CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
+        get_json_data(query_type: CONSTANTS.URL_INFO.CONFIG, query_paramters: [:]) { (json) in
             if json!["status"] as! Int == 1 {
                 brand.options.removeAll()
                 vehicle.year.removeAll()
@@ -101,18 +101,34 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 self.tableView.reloadData()
             }
         }
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
     }
     
+    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
+            let destVC = segue.destination as! SearchResultsTableViewController
+            var result: [String: Int]! = [:]
+            for (index, option) in self.selectedIDs.enumerated(){
+                let key = CONSTANTS.SEARCH_OPTIONS[index]
+                result[key] = option
+            }
+            destVC.searchIDs = result
+        }
+    }
+}
+
+extension SearchOptionsVC: UITabBarDelegate, UITableViewDataSource {
     // MARK: - Table View Delegate Functions
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.cells.count
     }
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sectionTitles[section]
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.cells[section].options.count > 0 && self.cells[section].expanded {
             return self.cells[section].options.count + 1
         }
@@ -121,7 +137,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("searchHeader") as! SearchOptionsHeaderCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "searchHeader") as! SearchOptionsHeaderCell
             if self.cells[indexPath.section].expanded {
                 cell.expandedSymbol.text = "-"
             } else {
@@ -130,7 +146,7 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.selectedOption.text = self.cells[indexPath.section].value
             return cell
         } else {
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("optionCell") as! SearchOptionsCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "optionCell") as! SearchOptionsCell
             cell.optionLabel.text = self.cells[indexPath.section].options[indexPath.row-1] as? String
             return cell
         }
@@ -140,15 +156,15 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let expanded = self.cells[indexPath.section].expanded
         let option_ids = self.cells[indexPath.section].option_ids
         self.cells[indexPath.section].expanded = !expanded
-
+        
         if expanded && indexPath.row != 0 {
             if option_ids.count > 0 {
                 self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-1] as? Int)!
-                self.performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
+                self.performSegue(withIdentifier: CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
             }
         } else {
-            self.tableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
-            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+            self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, withRowAnimation: .Fade)
+            self.tableView.scrollToRowAtIndexPath(indexPath as IndexPath, atScrollPosition: .Top, animated: true)
             
         }
     }
@@ -159,15 +175,5 @@ class SearchOptionsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         return 40.0
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
-            let destVC = segue.destinationViewController as! SearchResultsTableViewController
-            var result: [String: Int]! = [:]
-            for (index, option) in self.selectedIDs.enumerate(){
-                let key = CONSTANTS.SEARCH_OPTIONS[index]
-                result[key] = option
-            }
-            destVC.searchIDs = result
-        }
-    }
+
 }

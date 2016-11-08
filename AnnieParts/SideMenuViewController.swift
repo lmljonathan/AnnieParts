@@ -37,7 +37,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         print(indexPath.row)
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SIDE_MENU_CELLS)! as! MenuCellTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.SIDE_MENU_CELLS)! as! MenuCellTableViewCell
         
         cell.menuLabel.text = self.pageOptions[indexPath.row]
         cell.menuIcon.image = UIImage(named: pageOptionIcons[indexPath.row])

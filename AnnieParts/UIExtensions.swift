@@ -131,7 +131,7 @@ extension UIView{
         }
     }
     
-    func addTapGestureRecgonizer(action: Selector, completion: (gr: UITapGestureRecognizer) -> Void){
+    func addTapGestureRecgonizer(action: Selector, completion: (_ gr: UITapGestureRecognizer) -> Void){
         let gr = UITapGestureRecognizer(target: self, action: action)
         self.addGestureRecognizer(gr)
         completion(gr: gr)
@@ -260,7 +260,7 @@ extension UIFont{
 
 extension UIViewController{
     
-    func showNotificationView(message: String, image: UIImage, completion: (vc: UIViewController) -> Void){
+    func showNotificationView(message: String, image: UIImage, completion: (_ vc: UIViewController) -> Void){
         self.definesPresentationContext = true
         let vc = self.storyboard!.instantiateViewControllerWithIdentifier("notificationVC") as! NotificationDialogViewController
         vc.setImage = image
@@ -270,7 +270,7 @@ extension UIViewController{
         }
     }
     
-    func showLoadingView(message: String, bgColor: UIColor = UIColor.APdarkGray() , completion: (loadingVC: UIViewController) -> Void){
+    func showLoadingView(message: String, bgColor: UIColor = UIColor.APdarkGray() , completion: (_ loadingVC: UIViewController) -> Void){
         self.definesPresentationContext = true
         let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
         loadingVC.message = message

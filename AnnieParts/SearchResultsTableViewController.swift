@@ -18,7 +18,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     var searchIDs: [String: Int]!
     var vehicleData: vehicle!
-    private var loadingIndicator = UIActivityIndicatorView(frame: CGRectMake(0,0,100,100))
+    private var loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +29,18 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
-        self.tableView.registerNib(UINib(nibName: "NoItemsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
-        self.tableView.registerNib(UINib(nibName: "SearchResultsCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS)
+        self.tableView.register(UINib(nibName: "NoItemsCell", bundle: Bundle.main), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL)
+        self.tableView.register(UINib(nibName: "SearchResultsCell", bundle: Bundle.main), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS)
 
-        configureTableView(self.tableView)
-        configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
+        configureTableView(sender: self.tableView)
+        configureNavBarBackButton(sender: self.navigationController!, navItem: self.navigationItem)
         initializeActivityIndicator()
         loadData()
         initializeRefreshControl()
         
     }
     func initializeActivityIndicator() {
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         loadingIndicator.center = CGPoint(x: self.tableView.bounds.width/2, y: self.tableView.bounds.height/3)
         loadingIndicator.hidesWhenStopped = true
         self.view.addSubview(loadingIndicator)
@@ -48,14 +48,14 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     func initializeRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "刷新")
-        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), for: .ValueChanged)
         self.tableView.addSubview(refreshControl)
     }
     func loadData() {
-        self.loadingIndicator.bringSubviewToFront(self.view)
+        self.loadingIndicator.bringSubview(toFront: self.view)
         self.loadingIndicator.startAnimating()
         self.catalogData.removeAll()
-        get_json_data(CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchIDs) { (json) in
+        get_json_data(query_type: CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchIDs as [String : AnyObject]) { (json) in
             
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
                 for product in productList {
@@ -98,25 +98,25 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.noResultsFound) {
             return 1
         }
         return self.catalogData.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if self.noResultsFound{
-            return self.tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL, forIndexPath: indexPath)
+            return self.tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL, for: indexPath as IndexPath)
 
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, forIndexPath: indexPath) as! SearchResultsCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, for: indexPath as IndexPath) as! SearchResultsCell
             
-            cell.selectionStyle = .None
+            cell.selectionStyle = .none
             
             let product = self.catalogData[indexPath.row]
             cell.productName.text = product.productName
@@ -130,27 +130,27 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.models.text = product.modelListText
             cell.serialNumber.text = product.serialNumber
             let url = NSURL(string: product.imagePath)!
-            cell.loadImage(url)
-            cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
-            cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), forControlEvents: .TouchUpInside)
+            cell.loadImage(url: url)
+            cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), for: .TouchUpInside)
+            cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), for: .TouchUpInside)
             return cell
         }
 
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
-            let destVC = storyboard?.instantiateViewControllerWithIdentifier("productDetail") as! ProductDetailViewController
+            let destVC = storyboard?.instantiateViewController(withIdentifier: "productDetail") as! ProductDetailViewController
             destVC.product = catalogData[indexPath.row]
 
             print(Int(self.catalogData[indexPath.row].productID)!)
             destVC.productID = Int(self.catalogData[indexPath.row].productID)!
             self.navigationController?.pushViewController(destVC, animated: true)
-            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         }
     }
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (self.noResultsFound) {
             return 132
         } else {
@@ -159,24 +159,24 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     
-    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultsCell
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell  = tableView.cellForRow(at: indexPath as IndexPath) as! SearchResultsCell
         cell.mainView.backgroundColor = UIColor.selectedGray()
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.clear
         cell.productImage.alpha = 0.8
     }
     
-    override func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell  = tableView.cellForRowAtIndexPath(indexPath) as! SearchResultsCell
-        cell.mainView.backgroundColor = UIColor.whiteColor()
+    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell  = tableView.cellForRow(at: indexPath as IndexPath) as! SearchResultsCell
+        cell.mainView.backgroundColor = UIColor.white
         cell.productImage.alpha = 1
     }
     
     var selectedProductIndex: Int!
     func addProductToCart(button: UIButton) {
-        let buttonPosition = button.convertPoint(CGPointZero, toView: self.tableView)
-        let index = self.tableView.indexPathForRowAtPoint(buttonPosition)
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
+        let buttonPosition = button.convert(.zero, to: self.tableView)
+        let index = self.tableView.indexPathForRow(at: buttonPosition)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         
         let product = self.catalogData[(index?.row)!]
@@ -187,7 +187,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     func returnIDandQuantity(id: String, quantity: Int) {
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": id, CONSTANTS.JSON_KEYS.QUANTITY: quantity])
+        send_request(query_type: CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": id as AnyObject, CONSTANTS.JSON_KEYS.QUANTITY: quantity as AnyObject])
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
         refreshControl.beginRefreshing()

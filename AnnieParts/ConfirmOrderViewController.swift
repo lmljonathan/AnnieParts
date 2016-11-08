@@ -17,7 +17,7 @@ class ConfirmOrderViewController: UIViewController {
     }
     
     @IBAction func dismissButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -26,8 +26,8 @@ class ConfirmOrderViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

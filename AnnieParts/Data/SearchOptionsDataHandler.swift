@@ -13,7 +13,7 @@ struct brand{
     static var optionsIDs: [Int]! = []
 }
 struct vehicle{
-    static var year: [String!] = []
+    static var year: [String?] = []
     static var yearIDs: [Int]! = []
     
     static var make: [String]! = []
@@ -35,23 +35,23 @@ struct product{
 }
 
 func getMake(id: Int) -> String {
-    let index = vehicle.makeIDs.indexOf(id)
+    let index = vehicle.makeIDs.index(of: id)
     if (index == nil) {
         return ""
     }
-    return vehicle.make[index!] ?? ""
+    return vehicle.make[index!] 
 }
 func getModel(id: Int) -> String {
-    let index = vehicle.allModelIDs.indexOf(id) ?? -1
+    let index = vehicle.allModelIDs.index(of: id) ?? -1
     if (index < 0 || index > vehicle.allModel.count) {
         return "" 
     }
-    return vehicle.allModel[index] ?? ""
+    return vehicle.allModel[index] 
 }
 func getListOfModels(model_ids: [Int]) -> String {
     var model_string = ""
     for id in model_ids {
-        model_string += getModel(id) + ", "
+        model_string += getModel(id: id) + ", "
     }
     return model_string
 }

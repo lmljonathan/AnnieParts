@@ -27,18 +27,18 @@ class SearchResultsCell: UITableViewCell {
         // Initialization code
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         self.addShadowToCell()
     }
     
     func addShadowToCell(){
-        self.mainView.addShadow(4, opacity: 0.2, offset: CGSize(width: 0, height: 4), path: true)
+        self.mainView.addShadow(radius: 4, opacity: 0.2, offset: CGSize(width: 0, height: 4), path: true)
     }
     
     func loadImage(url: NSURL) {
         self.productImage.image = UIImage() // CHANGE - Add placeholder Image
-        self.productImage.hnk_setImageFromURL(url)
+        self.productImage.hnk_setImageFromURL(url as URL)
         self.layoutSubviews()
     }
     
