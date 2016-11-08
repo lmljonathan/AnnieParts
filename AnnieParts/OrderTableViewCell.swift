@@ -33,9 +33,12 @@ class OrderTableViewCell: UITableViewCell {
     }
     
     func configureWith(order: Order){
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+
         self.createdByLabel.text = "Created By " + String(order.userID)
-        self.orderNumLabel.text = "Order #" + String(order.id)
-        self.totalPriceLabel.text = "$" + String(order.totalPrice)
+        self.orderNumLabel.text = "Order #" + String(order.sn)
+        self.totalPriceLabel.text = formatter.stringFromNumber(order.totalPrice)
     }
     
     func configureWithProcessedOrder(processedOrder: ProcessedOrder){

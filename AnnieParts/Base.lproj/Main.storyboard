@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -1400,7 +1400,7 @@
                         <viewControllerLayoutGuide type="bottom" id="m23-Dk-ciY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fbH-zq-7K6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fia-1q-71X">
@@ -1429,8 +1429,7 @@
                                         <exclude reference="h6c-Ka-bEd"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="38"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="eVr-vy-sbh"/>
                                     </mask>
@@ -1795,9 +1794,6 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="100" width="400" height="511"/>
-                                </variation>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2387,7 +2383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRi-gq-GWC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3078.75" y="1567.125"/>
+            <point key="canvasLocation" x="2963.25" y="1536.375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WPH-MR-5yN">
@@ -2960,6 +2956,7 @@
                         <viewControllerLayoutGuide type="bottom" id="atB-YV-eto"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zNc-NH-ZMQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTl-16-SUd">
@@ -2986,7 +2983,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="8" y="55" width="304" height="20"/>
+                                            <rect key="frame" x="84.5" y="54" width="151" height="21"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的订单号码是：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juz-MP-YmK">
@@ -2994,9 +2991,6 @@
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="40" y="27" width="241" height="20"/>
-                                        </variation>
                                     </label>
                                 </subviews>
                                 <constraints>
@@ -3020,14 +3014,14 @@
                                     <mask key="constraints">
                                         <exclude reference="3g9-J7-gbd"/>
                                         <exclude reference="hoV-Xh-dlY"/>
-                                        <exclude reference="3iw-6z-AcZ"/>
-                                        <exclude reference="rmi-NA-w8q"/>
-                                        <exclude reference="DzK-nn-IYi"/>
-                                        <exclude reference="adK-a1-kkX"/>
                                         <exclude reference="NgE-TW-daF"/>
                                         <exclude reference="RqW-hw-s4T"/>
                                         <exclude reference="c1v-u1-PkU"/>
                                         <exclude reference="uTZ-UQ-qFx"/>
+                                        <exclude reference="DzK-nn-IYi"/>
+                                        <exclude reference="adK-a1-kkX"/>
+                                        <exclude reference="3iw-6z-AcZ"/>
+                                        <exclude reference="rmi-NA-w8q"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -3039,14 +3033,14 @@
                                     <mask key="constraints">
                                         <include reference="3g9-J7-gbd"/>
                                         <include reference="hoV-Xh-dlY"/>
-                                        <include reference="3iw-6z-AcZ"/>
-                                        <include reference="rmi-NA-w8q"/>
-                                        <include reference="DzK-nn-IYi"/>
-                                        <include reference="adK-a1-kkX"/>
                                         <include reference="NgE-TW-daF"/>
                                         <include reference="RqW-hw-s4T"/>
                                         <include reference="c1v-u1-PkU"/>
                                         <include reference="uTZ-UQ-qFx"/>
+                                        <include reference="DzK-nn-IYi"/>
+                                        <include reference="adK-a1-kkX"/>
+                                        <include reference="3iw-6z-AcZ"/>
+                                        <include reference="rmi-NA-w8q"/>
                                     </mask>
                                 </variation>
                             </view>
