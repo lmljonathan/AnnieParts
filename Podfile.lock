@@ -1,48 +1,40 @@
 PODS:
-  - Alamofire (3.5.1)
-  - Auk (2.1.5):
-    - moa (~> 3.0)
+  - Alamofire (4.0.1)
+  - Auk (7.0.1):
+    - moa
   - HanekeSwift (0.10.1)
   - MIBadgeButton-Swift (0.4)
-  - moa (3.0.0)
-  - Presentr (0.1.8)
-  - SideMenuController (0.1.6)
+  - moa (8.0.2)
+  - Presentr (1.0.3)
+  - SideMenuController (0.2.1)
   - SKPhotoBrowser (3.1.2)
-  - SwiftyJSON (2.4.0)
-  - SwiftyUserDefaults (2.2.1)
+  - SwiftyJSON (3.1.1)
+  - SwiftyUserDefaults (3.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5.0)
-  - Auk (~> 2.1)
+  - Alamofire
+  - Auk
   - HanekeSwift
   - MIBadgeButton-Swift
-  - moa (~> 3.0)
-  - Presentr (~> 0.1.8)
-  - SideMenuController (~> 0.1.6)
+  - moa
+  - Presentr
+  - SideMenuController
   - SKPhotoBrowser
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `swift2`)
-  - SwiftyUserDefaults (~> 2.2.1)
-
-EXTERNAL SOURCES:
-  SwiftyJSON:
-    :branch: swift2
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: 54017d514a87b2b855b407131292c510cdeb65f8
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  - SwiftyJSON
+  - SwiftyUserDefaults
 
 SPEC CHECKSUMS:
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
-  Auk: 25fe0c1ac0d22b387eca4c5ea9de48c9caea5c05
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Auk: 6f8c4e93427d0d02641263776dd3b66ae4050903
   HanekeSwift: 08e47d3d0f2899ec58e5d257beba0de619aca9e8
   MIBadgeButton-Swift: b5d07924904c84bcb8e8fe3c3131b8499f28930c
-  moa: 32ca142e67accf6124087abba94ff5c288ad1d7e
-  Presentr: 0e65151d93a0c432f6884b66075b15b25a2870ef
-  SideMenuController: 442d67af6d5892934065d42d5c1c3b7d5be4953e
+  moa: 73d2dd56fe838a31e255c64b7873d2c2fbc71076
+  Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
+  SideMenuController: 4c543122289d74e1db9d1e24fd3264581fd6ac4e
   SKPhotoBrowser: e942c03c3206b5cf229fd4ce56b872bce800124a
-  SwiftyJSON: 96918c1bf505efa50c4f72957018dd3452090c9c
-  SwiftyUserDefaults: 7abdba50a50ea0c18ee8903af3c88e4c1cb8448d
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 473a4d92afdd222143ca2110b6cf9e7bbe2f7cd5
+
+COCOAPODS: 1.1.1
