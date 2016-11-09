@@ -24,8 +24,8 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
     var productID: Int!
     var product: Product!
 
-    private var cells = [Cell(value: "规格"), Cell(value: "视频"), Cell(value: "安装")]
-    private var cellsToDisplay: [Cell]! = []
+    fileprivate var cells = [Cell(value: "规格"), Cell(value: "视频"), Cell(value: "安装")]
+    fileprivate var cellsToDisplay: [Cell]! = []
 
     private var aboutString: String! = ""
     private var brief_description: String! = ""
@@ -98,10 +98,10 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
             if let imgpaths = json!["thumb_url"] as? [String]{
                 self.imagePaths = imgpaths
             }
-            if let videos = json!["video"] as? [NSDictionary] {
+            if let videos = json!["video"] as? [[String: AnyObject]] {
                 for video in videos {
-                    self.videoTitles.append(video["title"] as? String ?? "")
-                    self.videoPaths.append(video["href"] as? String ?? "")
+                    self.videoTitles.append(video["title"] as! String)
+                    self.videoPaths.append(video["href"] as! String)
                 }
             }
             if let install_files = json!["ins"] as? [NSDictionary] {
@@ -112,10 +112,10 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
             }
             self.aboutString = self.decodeString(encodedString: description_html)!.string
             self.cells[0].options = [self.aboutString]
-            self.cells[1].options = self.videoTitles as NSArray
-            self.cells[2].options = self.installTitles as NSArray
-            self.cells[1].option_ids = self.videoPaths as NSArray
-            self.cells[2].option_ids = self.installPaths as NSArray
+            self.cells[1].options = self.videoTitles as [String]
+            self.cells[2].options = self.installTitles as [String]
+            self.cells[1].option_ids = self.videoPaths as [String]
+            self.cells[2].option_ids = self.installPaths as [String]
             self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
             self.tableView.reloadData()
         })
