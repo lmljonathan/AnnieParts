@@ -30,30 +30,30 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginVC.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.defaultCenter.addObserver(self, selector: #selector(LoginVC.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.defaultCenter.addObserver(self, selector: #selector(LoginVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
 
         
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         self.username.delegate = self
         self.password.delegate = self
 
         if (Defaults[.automaticLogin]) {
-            self.loginButton.userInteractionEnabled = false
-            self.username.enabled = false
-            self.password.enabled = false
+            self.loginButton.isUserInteractionEnabled = false
+            self.username.isEnabled = false
+            self.password.isEnabled = false
             let seconds = 1.0
             let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-            let dispatchTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            let dispatchTime = DispatchTime(uptimeNanoseconds: .now() + delay)
 
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 self.automaticLogin()
             })
         }
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.originalFrames = [self.username: self.username.y, self.password: self.password.y, self.loginButton: self.loginButton.y]
         for y in self.originalFrames!.keys{
             print(self.originalFrames![y]!)
@@ -63,17 +63,17 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func keyboardWillShow(notification: NSNotification) {
         if self.username.y != 50{
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 
                 // Hide Logo
-                self.anniepartsLogo.hidden = true
-                self.anniepartsText.hidden = true
+                self.anniepartsLogo.isHidden = true
+                self.anniepartsText.isHidden = true
                 
-                UIView.animateWithDuration(0.3, animations: {
-                    self.username.makeTranslation(self.username.x, y: 50)
-                    self.password.makeTranslation(self.password.x, y: self.username.frame.maxY + 10)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.username.makeTranslation(x: self.username.x, y: 50)
+                    self.password.makeTranslation(x: self.password.x, y: self.username.frame.maxY + 10)
                     
-                    self.loginButton.makeTranslation(self.loginButton.x, y: self.view.height - (keyboardSize.height + 70))
+                    self.loginButton.makeTranslation(x: self.loginButton.x, y: self.view.height - (keyboardSize.height + 70))
                 })
                 
             }
@@ -82,12 +82,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func keyboardWillHide(notification: NSNotification) {
         if originalFrames != nil{
-            self.anniepartsLogo.hidden = false
-            self.anniepartsText.hidden = false
+            self.anniepartsLogo.isHidden = false
+            self.anniepartsText.isHidden = false
             
             for view in originalFrames!.keys{
-                UIView.animateWithDuration(0.3, animations: {
-                    view.transform = CGAffineTransformMakeTranslation(0, 0)
+                UIView.animate(withDuration: 0.3, animations: {
+                    view.transform = CGAffineTransform(translationX: 0, y: 0)
                 })
             }
         }
@@ -108,11 +108,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         let password = Defaults[.password]
         self.username.text = username
         self.password.text = password
-        login(username, password: password, completion: { (json) in
+        login(username: username, password: password, completion: { (json) in
             if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
                 if status == 1 {
                     if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
-                        User.setUserRank(rank)
+                        User.setUserRank(rank: rank)
                     }
                     if let username = json![CONSTANTS.JSON_KEYS.USERNAME] as? String {
                         User.username = username
@@ -120,27 +120,27 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     if let companyname = json![CONSTANTS.JSON_KEYS.COMPANY_NAME] as? String {
                         User.companyName = companyname
                     }
-                    self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
+                    self.performSegue(withIdentifier: CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                 } else {
                     self.incorrectPassword()
                     Defaults[.automaticLogin] = false
-                    self.username.enabled = true
-                    self.password.enabled = true
-                    self.loginButton.userInteractionEnabled = true
+                    self.username.isEnabled = true
+                    self.password.isEnabled = true
+                    self.loginButton.isUserInteractionEnabled = true
                 }
             }
         })
     }
     func performLogin(){
-        let username_text = self.username.text! ?? ""
-        let pass_text = self.password.text! ?? ""
-        self.loginButton.userInteractionEnabled = false
+        let username_text = self.username.text! 
+        let pass_text = self.password.text! 
+        self.loginButton.isUserInteractionEnabled = false
         if (!username_text.isEmpty && !pass_text.isEmpty) {
-            login(username_text, password: pass_text, completion: { (json) in
+            login(username: username_text, password: pass_text, completion: { (json) in
                 if let status = json![CONSTANTS.JSON_KEYS.API_STATUS] as? Int {
                     if status == 1 {
                         if let rank = json![CONSTANTS.JSON_KEYS.USER_RANK] as? Int {
-                            User.setUserRank(rank)
+                            User.setUserRank(rank: rank)
                         }
                         if let username = json![CONSTANTS.JSON_KEYS.USERNAME] as? String {
                             User.username = username
@@ -148,13 +148,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         if let companyname = json![CONSTANTS.JSON_KEYS.COMPANY_NAME] as? String {
                             User.companyName = companyname
                         }
-                        self.performSegueWithIdentifier(CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
+                        self.performSegue(withIdentifier: CONSTANTS.SEGUES.TO_SEARCH_OPTIONS, sender: self)
                         Defaults[.username] = username_text
                         Defaults[.password] = pass_text
                         Defaults[.automaticLogin] = true
                     } else {
                         self.incorrectPassword()
-                        self.loginButton.userInteractionEnabled = true
+                        self.loginButton.isUserInteractionEnabled = true
                     }
                 }
             })
@@ -162,8 +162,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         else {
             print("username or password field empty")
             incorrectPassword()
-            self.loginButton.userInteractionEnabled = true
-            self.loginButton.highlighted = false
+            self.loginButton.isUserInteractionEnabled = true
+            self.loginButton.isHighlighted = false
         }
     }
     func incorrectPassword() {
@@ -173,15 +173,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.password.text = ""
         self.username.becomeFirstResponder()
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         self.resignFirstResponder()
-//        if view.frame.origin.y != 0{
-//            self.view.frame.origin.y = 0
-//        }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == username{
             if textField.text != ""{
                 password.becomeFirstResponder()
@@ -192,7 +190,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
     
 }
 

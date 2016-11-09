@@ -138,7 +138,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
 
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
             let destVC = storyboard?.instantiateViewController(withIdentifier: "productDetail") as! ProductDetailViewController

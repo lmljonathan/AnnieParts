@@ -16,21 +16,23 @@ class WebViewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
+        configureNavBarBackButton(sender: self.navigationController!, navItem: self.navigationItem)
         self.webView = WKWebView()
         self.view = self.webView
         
-        url = self.url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        let encodedURL = NSURL(string: url)! ?? NSURL()
-        let req = NSURLRequest(URL: encodedURL)
-        self.webView!.loadRequest(req)
+        url =
+            
+            self.url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let encodedURL = NSURL(string: url)! 
+        let req = NSURLRequest(url: encodedURL as URL)
+        self.webView!.load(req as URLRequest)
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate: Bool {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.AllButUpsideDown
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .allButUpsideDown
     }
 }

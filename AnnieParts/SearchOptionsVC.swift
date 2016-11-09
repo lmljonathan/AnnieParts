@@ -117,8 +117,9 @@ class SearchOptionsVC: UIViewController{
     }
 }
 
-extension SearchOptionsVC: UITabBarDelegate, UITableViewDataSource {
+extension SearchOptionsVC: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Table View Delegate Functions
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.cells.count
