@@ -24,7 +24,7 @@ class OrderNumberVC: UIViewController {
     }
     
     @IBAction func dismiss(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*

@@ -67,14 +67,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         if (subtotal > 0) {
             let priceFormatter = NumberFormatter()
             priceFormatter.numberStyle = .currency
-            self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(NSNumber(subtotal))!
+            self.subtotal.text = "Subtotal: " + priceFormatter.string(from: NSNumber(value: subtotal))!
         }
     }
     func loadData() {
         self.shoppingCart.removeAll()
         get_json_data(query_type: CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
-            if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
-                print("array")
+            if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? [[String: AnyObject]] {
                 for product in products {
                     let id = product[CONSTANTS.JSON_KEYS.ID] as! String
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
@@ -90,8 +89,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let modelIDlist = product[CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as! [Int]
 
                     let shoppingItem = ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist)
-                    shoppingItem.setMakeText(getMake(shoppingItem.brandId))
-                    shoppingItem.setModelListText(getListOfModels(shoppingItem.modelIDlist))
+                    shoppingItem.setMakeText(text: getMake(id: shoppingItem.brandId))
+                    shoppingItem.setModelListText(text: getListOfModels(model_ids: shoppingItem.modelIDlist))
                     self.shoppingCart.append(shoppingItem)
                 }
                 self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
@@ -162,7 +161,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     @IBAction func deleteItemFromCart(sender:UIButton) {
         let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
-        send_request(query_type: CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: ["goods_id": self.shoppingCart[index!.row].productID])
+        send_request(query_type: CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: ["goods_id": self.shoppingCart[index!.row].productID as AnyObject])
         self.shoppingCart.remove(at: index!.row)
         
         self.tableView.beginUpdates()
