@@ -13,17 +13,20 @@ struct Cell {
     var value: String
     var options: [String]
     var option_ids: [Int]
+    var option_paths: [String]
     init() {
         expanded = false
         value = "选择"
         options = []
         option_ids = []
+        option_paths = []
     }
     init(value: String) {
         expanded = false
         self.value = value
         options = []
         option_ids = []
+        option_paths = []
     }
 }
 class SearchOptionsVC: UIViewController{
