@@ -57,7 +57,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         self.catalogData.removeAll()
         get_json_data(query_type: CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchIDs as [String : AnyObject]) { (json) in
             
-            if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
+            if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? [[String: AnyObject]]{
                 for product in productList {
                     let id = String(product[CONSTANTS.JSON_KEYS.ID] as? Int ?? -1)
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as? String ?? ""
@@ -78,8 +78,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                         modelIDlist = x
                     }
                     let product = Product(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: 0, modelID: modelID, modelIDlist: modelIDlist)
-                    product.setMakeText(getMake(product.brandId))
-                    product.setModelListText(getListOfModels(product.modelIDlist))
+                    product.setMakeText(text: getMake(id: product.brandId))
+                    product.setModelListText(text: getListOfModels(model_ids: product.modelIDlist))
                     self.catalogData.append(product)
                 }
                 if (self.catalogData.count == 0) {
@@ -137,8 +137,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
 
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
             let destVC = storyboard?.instantiateViewController(withIdentifier: "productDetail") as! ProductDetailViewController
@@ -150,23 +149,21 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         }
     }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (self.noResultsFound) {
             return 132
         } else {
             return UITableViewAutomaticDimension
         }
     }
-    
-    
-    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell  = tableView.cellForRow(at: indexPath as IndexPath) as! SearchResultsCell
         cell.mainView.backgroundColor = UIColor.selectedGray()
         cell.backgroundColor = UIColor.clear
         cell.productImage.alpha = 0.8
     }
-    
-    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
+
+    override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell  = tableView.cellForRow(at: indexPath as IndexPath) as! SearchResultsCell
         cell.mainView.backgroundColor = UIColor.white
         cell.productImage.alpha = 1
@@ -174,7 +171,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     var selectedProductIndex: Int!
     func addProductToCart(button: UIButton) {
-        let buttonPosition = button.convert(.zero, to: self.tableView)
+        let buttonPosition = button.convert(CGPoint.zero, from: self.tableView)
         let index = self.tableView.indexPathForRow(at: buttonPosition)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self

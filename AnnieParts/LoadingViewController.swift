@@ -15,7 +15,7 @@ class LoadingViewController: UIViewController {
     @IBOutlet var indicationLabel: UILabel!
     
     var message: String!
-    var bgColor: UIColor! = .darkGrayColor()
+    var bgColor: UIColor! = .darkGray
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class LoadingViewController: UIViewController {
         bgView.backgroundColor = bgColor
         bgView.alpha = 0.8
         
-        if bgColor == UIColor.whiteColor(){
+        if bgColor == UIColor.white{
             indicationLabel.textColor = UIColor.APdarkGray()
             activityIndicator.color = UIColor.APdarkGray()
         }

@@ -10,47 +10,47 @@ import Foundation
 import Presentr
 
 func initializePresentr() -> Presentr {
-    let width = ModalSize.Default
-    let height = ModalSize.Custom(size: 200)
-    let center = ModalCenterPosition.TopCenter
-    let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
+    let width = ModalSize.default
+    let height = ModalSize.custom(size: 200)
+    let center = ModalCenterPosition.topCenter
+    let presenter = Presentr(presentationType: .custom(width: width, height: height, center: center))
     presenter.blurBackground = true
-    presenter.transitionType = .CrossDissolve
-    presenter.dismissTransitionType = .CrossDissolve
+    presenter.transitionType = TransitionType.crossDissolve
+    presenter.dismissTransitionType = TransitionType.crossDissolve
     presenter.roundCorners = false
     
     return presenter
 }
 
 func notificationPresentr() -> Presentr {
-    let width = ModalSize.Default
-    let height = ModalSize.Default
-    let center = ModalCenterPosition.Center
-    let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
+    let width = ModalSize.default
+    let height = ModalSize.default
+    let center = ModalCenterPosition.center
+    let presenter = Presentr(presentationType: .custom(width: width, height: height, center: center))
     presenter.backgroundOpacity = 0.1
-    presenter.transitionType = .CrossDissolve
-    presenter.dismissTransitionType = .CrossDissolve
+    presenter.transitionType = TransitionType.crossDissolve
+    presenter.dismissTransitionType = TransitionType.crossDissolve
     return presenter
 }
 
 func orderSummaryPresentr() -> Presentr {
-    let width = ModalSize.Full
-    let height = ModalSize.Full
-    let center = ModalCenterPosition.Center
-    let presenter = Presentr(presentationType: .Custom(width: width, height: height, center: center))
+    let width = ModalSize.full
+    let height = ModalSize.full
+    let center = ModalCenterPosition.center
+    let presenter = Presentr(presentationType: .custom(width: width, height: height, center: center))
     presenter.backgroundOpacity = 0.3
     presenter.blurBackground = true
-    presenter.transitionType = .CrossDissolve
-    presenter.dismissTransitionType = .CrossDissolve
+    presenter.transitionType = TransitionType.crossDissolve
+    presenter.dismissTransitionType = TransitionType.crossDissolve
     presenter.roundCorners = false
     return presenter
 }
 
 func orderNumberPresentr() -> Presentr {
-    let presenter = Presentr(presentationType: .Custom(width: ModalSize.Default, height: ModalSize.Custom(size: 200), center: ModalCenterPosition.Center))
+    let presenter = Presentr(presentationType: .custom(width: ModalSize.default, height: ModalSize.custom(size: 200), center: ModalCenterPosition.center))
     presenter.backgroundOpacity = 0.3
-    presenter.transitionType = .CrossDissolve
-    presenter.dismissTransitionType = .CrossDissolve
+    presenter.transitionType = TransitionType.crossDissolve
+    presenter.dismissTransitionType = TransitionType.crossDissolve
     presenter.roundCorners = false
     presenter.dismissOnTap = false
     return presenter
