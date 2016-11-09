@@ -21,20 +21,20 @@ class OrdersViewController: UIViewController {
     @IBOutlet var ordersTableView: UITableView!
     
     @IBAction func unwindToOrdersWithConfirmation(segue: UIStoryboardSegue){
-        if let vc = segue.sourceViewController as? ConfirmOrderViewController{
-            let indexPath = NSIndexPath(forRow: vc.row, inSection: 0)
-            self.confirmOrder(indexPath)
-        }else if let vc = segue.sourceViewController as? OrderSummaryViewController{
-            let indexPath = NSIndexPath(forRow: vc.row!, inSection: 0)
-            self.confirmOrder(indexPath)
+        if let vc = segue.source as? ConfirmOrderViewController{
+            let indexPath = IndexPath(row: vc.row, section: 0)//IndexPath(forRow: vc.row, inSection: 0)
+            self.confirmOrder(indexPath: indexPath as NSIndexPath)
+        }else if let vc = segue.source as? OrderSummaryViewController{
+            let indexPath = IndexPath(row: vc.row!, section: 0)//IndexPath(forRow: vc.row!, inSection: 0)
+            self.confirmOrder(indexPath: indexPath as NSIndexPath)
         }
     }
     
     @IBAction func unwindToOrdersWithCancel(segue: UIStoryboardSegue){
-        let vc = segue.sourceViewController as! CancelOrderViewController
+        let vc = segue.source as! CancelOrderViewController
         let indexPath = vc.indexPath
     
-        self.cancelOrder(indexPath)
+        self.cancelOrder(indexPath: indexPath!)
     }
     
     var accountType: UserRank!
@@ -51,7 +51,7 @@ class OrdersViewController: UIViewController {
         
         self.navigationItem.title = "Orders"
         
-        self.ordersTableView.registerNib(UINib(nibName: "OrderCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
+        self.ordersTableView.register(UINib(nibName: "OrderCell", bundle: Bundle.main), forCellReuseIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL)
         
         self.setUserRank()
         self.loadData {
@@ -70,8 +70,8 @@ class OrdersViewController: UIViewController {
         }
     }
     
-    private func loadData(completion: () -> Void){
-        get_json_data(CONSTANTS.URL_INFO.ORDER_LIST, query_paramters: [:]) { (json) in
+    private func loadData(completion: @escaping () -> Void){
+        get_json_data(query_type: CONSTANTS.URL_INFO.ORDER_LIST, query_paramters: [:]) { (json) in
             if (json!["status"] as! Int) == 1{
                 if self.accountType != .Browser{
                 // Customer Orders
@@ -123,7 +123,7 @@ class OrdersViewController: UIViewController {
     
     private func confirmOrder(indexPath: NSIndexPath){
         let order = customerOrders[indexPath.row]
-        get_json_data(CONSTANTS.URL_INFO.CONFIRM_BUSINESS_ORDER, query_paramters: ["order_id": String(order.id), "order_sn": order.sn]) { (json) in
+        get_json_data(query_type: CONSTANTS.URL_INFO.CONFIRM_BUSINESS_ORDER, query_paramters: ["order_id": String(order.id), "order_sn": order.sn]) { (json) in
             if (json!["status"] as! Int) == 1{
                 print("Order #\(order.id) confirmed.")
                 self.unprocessedOrders.append(self.customerOrders.removeAtIndex(indexPath.row))
@@ -150,7 +150,7 @@ class OrdersViewController: UIViewController {
     private func cancelOrder(indexPath: NSIndexPath){
         
         func performCancel(orderID: Int){
-            get_json_data(CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": String(orderID)]) { (json) in
+            get_json_data(query_type: CONSTANTS.URL_INFO.CANCEL_ORDER, query_paramters: ["order_id": String(orderID) as AnyObject]) { (json) in
                 if let success = json!["status"] as? Int{
                     if success == 1{
                         // Remove Item from Array
@@ -184,41 +184,41 @@ class OrdersViewController: UIViewController {
         switch indexPath.section {
         case 0:
             let id = self.customerOrders[indexPath.row].id
-            performCancel(id)
+            performCancel(orderID: id!)
         case 1:
             let id = self.unprocessedOrders[indexPath.row].id
-            performCancel(id)
+            performCancel(orderID: id!)
         case 2:
             let id = self.processedOrders[indexPath.row].id
-            performCancel(id)
+            performCancel(orderID: id!)
         default:
             break
         }
     }
     
     func presentConfirmOrder(button: UIButton){
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_CONFIRM_MODAL) as! ConfirmOrderViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_CONFIRM_MODAL) as! ConfirmOrderViewController
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         let row = button.tag
-        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        let indexPath = NSIndexPath(row: row, section: 0)//NSIndexPath(forRow: row, inSection: 0)
         vc.row = row
-        self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.ordersTableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     func presentCancelOrder(button: UIButton){
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_CANCEL_MODAL) as! CancelOrderViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_CANCEL_MODAL) as! CancelOrderViewController
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         // let row = button.tag
-        let buttonPoint = button.convertPoint(CGPointZero, toView: self.ordersTableView)
-        let indexPath = self.ordersTableView.indexPathForRowAtPoint(buttonPoint)
-        vc.indexPath = indexPath
-        self.ordersTableView.deselectRowAtIndexPath(indexPath!, animated: true)
+        let buttonPoint = button.convert(.zero, to: self.ordersTableView)
+        let indexPath = self.ordersTableView.indexPathForRow(at: buttonPoint)
+        vc.indexPath = indexPath as NSIndexPath!
+        self.ordersTableView.deselectRow(at: indexPath!, animated: true)
     }
 
 }
 
 extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    private func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return sectionTitles.count
     }
     
@@ -240,30 +240,30 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, forIndexPath: indexPath as IndexPath) as! OrderTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, for: indexPath as IndexPath) as! OrderTableViewCell
         
-        cell.selectionStyle = .None
-        cell.cancelButton.addTarget(self, action: #selector(self.presentCancelOrder(_:)), forControlEvents: .TouchUpInside)
+        cell.selectionStyle = .none
+        cell.cancelButton.addTarget(self, action: #selector(self.presentCancelOrder(_:)), for: .TouchUpInside)
         cell.cancelButton.tag = indexPath.row
         
         switch indexPath.section {
         case 0:
-            cell.statusLabel.hidden = true
-            cell.configureWith(customerOrders[indexPath.row])
-            cell.cancelButton.hidden = false
-            cell.confirmButton.hidden = false
-            cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), forControlEvents: .TouchUpInside)
+            cell.statusLabel.isHidden = true
+            cell.configureWith(order: customerOrders[indexPath.row])
+            cell.cancelButton.isHidden = false
+            cell.confirmButton.isHidden = false
+            cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), for: .TouchUpInside)
             cell.confirmButton.tag = indexPath.row
         case 1:
-            cell.confirmButton.hidden = true
-            cell.cancelButton.hidden = false
-            cell.statusLabel.hidden = true
-            cell.configureWith(unprocessedOrders[indexPath.row])
+            cell.confirmButton.isHidden = true
+            cell.cancelButton.isHidden = false
+            cell.statusLabel.isHidden = true
+            cell.configureWith(order: unprocessedOrders[indexPath.row])
         case 2:
-            cell.statusLabel.hidden = false
-            cell.confirmButton.hidden = true
-            cell.cancelButton.hidden = true
-            cell.configureWithProcessedOrder(processedOrders[indexPath.row])
+            cell.statusLabel.isHidden = false
+            cell.confirmButton.isHidden = true
+            cell.cancelButton.isHidden = true
+            cell.configureWithProcessedOrder(processedOrder: processedOrders[indexPath.row])
         default:
             break
         }
@@ -285,7 +285,8 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         cell.mainView.backgroundColor = .white
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
         vc.row = indexPath.row
         
@@ -304,9 +305,10 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         }
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         self.ordersTableView.deselectRow(at: indexPath as IndexPath, animated: true)
+
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 88
     }
 }
