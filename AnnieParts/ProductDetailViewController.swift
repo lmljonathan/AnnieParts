@@ -114,8 +114,8 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
             self.cells[0].options = [self.aboutString]
             self.cells[1].options = self.videoTitles as [String]
             self.cells[2].options = self.installTitles as [String]
-            self.cells[1].option_ids = self.videoPaths as [String]
-            self.cells[2].option_ids = self.installPaths as [String]
+            self.cells[1].option_paths = self.videoPaths as [String]
+            self.cells[2].option_paths = self.installPaths as [String]
             self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
             self.tableView.reloadData()
         })
@@ -223,7 +223,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
         let expanded = self.cellsToDisplay[section].expanded
         if (expanded && indexPath.row > 0 && section > 0) {
             let webVC = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! WebViewViewController
-            let url_string = self.cellsToDisplay[section].option_ids[indexPath.row - 1] as? String ?? ""
+            let url_string = self.cellsToDisplay[section].option_paths[indexPath.row - 1]
             webVC.url = url_string
             self.navigationController?.pushViewController(webVC, animated: true)
             
@@ -258,7 +258,7 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
                 return cell
             } else {
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: "infoCell") as! SearchOptionsCell
-                cell.optionLabel.text = self.cellsToDisplay[section].options[indexPath.row-1] as? String ?? ""
+                cell.optionLabel.text = self.cellsToDisplay[section].options[indexPath.row-1]
                 return cell
             }
         }

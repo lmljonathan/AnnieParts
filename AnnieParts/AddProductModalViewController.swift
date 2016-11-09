@@ -32,12 +32,12 @@ class AddProductModalViewController: UIViewController {
             self.quantityTextField.becomeFirstResponder()
         }
         self.productName.text = self.name
-        self.confirmButton.setTitle(self.buttonString, forState: .Normal)
+        self.confirmButton.setTitle(self.buttonString, for: .normal)
         self.quantityTextField.text = String(quantity)
         self.serialNumber.text = sn
 
     }
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         self.view.endEditing(true)
     }
@@ -53,24 +53,24 @@ class AddProductModalViewController: UIViewController {
     
     @IBAction func addToCart(sender: UIButton) {
         if (self.quantity > 0) {
-            self.delegate?.returnIDandQuantity(self.id, quantity: self.quantity)
+            self.delegate?.returnIDandQuantity(id: self.id, quantity: self.quantity)
         }
         let mainVC = self.presentingViewController
         
-        self.dismissViewControllerAnimated(true) {
+        self.dismiss(animated: true) {
             if self.buttonString == "Update"{
-                mainVC?.showNotificationView(CONSTANTS.UPDATED_QUANTITY_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
-                    vc.delayDismiss(0.3)
+                mainVC?.showNotificationView(message: CONSTANTS.UPDATED_QUANTITY_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
+                    vc.delayDismiss(seconds: 0.3)
                 })
             }else{
-                mainVC?.showNotificationView(CONSTANTS.ADDED_TO_CART_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
-                    vc.delayDismiss(0.3)
+                mainVC?.showNotificationView(message: CONSTANTS.ADDED_TO_CART_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
+                    vc.delayDismiss(seconds: 0.3)
                 })
             }
         }
     }
     
     @IBAction func cancel(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
