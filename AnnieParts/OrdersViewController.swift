@@ -222,7 +222,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         return sectionTitles.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return customerOrders.count
@@ -235,12 +235,12 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
     }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, forIndexPath: indexPath) as! OrderTableViewCell
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, forIndexPath: indexPath as IndexPath) as! OrderTableViewCell
         
         cell.selectionStyle = .None
         cell.cancelButton.addTarget(self, action: #selector(self.presentCancelOrder(_:)), forControlEvents: .TouchUpInside)
@@ -271,22 +271,22 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
     }
-    
-    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
-        cell.mainView.backgroundColor = UIColor.selectedGray()
+
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = self.ordersTableView.cellForRow(at: indexPath as IndexPath) as! OrderTableViewCell
+        cell.mainView.backgroundColor = .selectedGray()
     }
     
-    func tableView(tableView: UITableView, didUnhighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath) as! OrderTableViewCell
-        cell.mainView.backgroundColor = UIColor.whiteColor()
+    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = self.ordersTableView.cellForRow(at: indexPath as IndexPath) as! OrderTableViewCell
+        cell.mainView.backgroundColor = .white
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
         vc.row = indexPath.row
         
         switch indexPath.section {
@@ -303,7 +303,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
             break
         }
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
-        self.ordersTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.ordersTableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
