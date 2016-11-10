@@ -281,14 +281,19 @@ extension UIViewController{
     }
     
     func delayDismiss(seconds: Double){
-        func delay(delay:Double, closure:()->()) {
-            dispatch_after(
-                DispatchTime.now(
-                    dispatch_time_t(DispatchTime.now()),
-                    Int64(delay * Double(NSEC_PER_SEC))
-                ),
-                DispatchQueue.main, closure)
+        func delay(delay:Double, closure:@escaping ()->()) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                closure()
+            }
         }
+        
+//            dispatch_after(
+//                DispatchTime.now(
+//                    DispatchTime(uptimeNanoseconds: .now()),
+//                    Int64(delay * Double(NSEC_PER_SEC))
+//                ),
+//                DispatchQueue.main, closure)
+//        }
         
         delay(delay: seconds) {
             self.dismiss(animated: true, completion: nil)
