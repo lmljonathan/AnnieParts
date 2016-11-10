@@ -12,13 +12,13 @@ class CustomSideMenuViewController: SideMenuController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegueWithIdentifier(CONSTANTS.SEGUES.SHOW_CENTER, sender: nil)
-        performSegueWithIdentifier(CONSTANTS.SEGUES.SIDE_MENU, sender: nil)
+        performSegue(withIdentifier: CONSTANTS.SEGUES.SHOW_CENTER, sender: nil)
+        performSegue(withIdentifier: CONSTANTS.SEGUES.SIDE_MENU, sender: nil)
         // Do any additional setup after loading the view.
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == CONSTANTS.SEGUES.SHOPPING_CART) {
-            let vc = segue.destinationViewController.childViewControllers[0] as! ShoppingCartViewController
+            let vc = segue.destination.childViewControllers[0] as! ShoppingCartViewController
             vc.viewFromNavButton = false
         }
     }

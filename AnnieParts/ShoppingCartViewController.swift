@@ -51,7 +51,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "刷新")
-        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), for: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(refreshControl:)), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
 
         loadData()
@@ -120,13 +120,14 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.priceLabel.text = "$" + String(format: "%.2f", product.price)
         cell.manufacturer.text = product.makeText
         cell.modelListLabel.text = product.modelListText
-        
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), for: .TouchUpInside)
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), for: .TouchDown)
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), for: .TouchDragExit)
-        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), for: .TouchUpInside)
-        cell.deleteButton.addTarget(self, action: #selector(self.highlightView(_:)), for: .TouchDown)
-        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(_:)), for: .TouchDragExit)
+
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(sender:)), for: .touchUpInside)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(view:)), for: .touchDown)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(view: )), for: .touchDragExit)
+
+        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(sender:)), for: .touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(self.highlightView(view:)), for: .touchDown)
+        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(view: )), for: .touchDragExit)
         return cell
     }
     

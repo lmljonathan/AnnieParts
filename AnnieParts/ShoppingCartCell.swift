@@ -34,13 +34,13 @@ class ShoppingCartCell: UITableViewCell {
 //        deleteButton.layer.cornerRadius = 5.0
     }
     func loadImage(url: NSURL) {
-        self.productImage.hnk_setImageFromURL(url)
-        self.productImage.hnk_setImageFromURL(url, failure: { (error) in
+        self.productImage.hnk_setImageFromURL(url as URL)
+        self.productImage.hnk_setImageFromURL(url as URL, failure: { (error) in
             print("cannot fetch image error")
         })
         self.layoutSubviews()
     }
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

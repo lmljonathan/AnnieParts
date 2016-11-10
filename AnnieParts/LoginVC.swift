@@ -29,9 +29,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         anniepartsText.frame.size.width = self.view.frame.size.width * 6/7
         anniepartsText.adjustsFontSizeToFitWidth = true
-        
-        NotificationCenter.defaultCenter.addObserver(self, selector: #selector(LoginVC.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NotificationCenter.defaultCenter.addObserver(self, selector: #selector(LoginVC.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 
         
         self.navigationController?.isNavigationBarHidden = true
@@ -44,7 +44,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             self.password.isEnabled = false
             let seconds = 1.0
             let delay = seconds * Double(NSEC_PER_SEC)  // nanoseconds per seconds
-            let dispatchTime = DispatchTime(uptimeNanoseconds: .now() + delay)
+            let dispatchTime = DispatchTime(uptimeNanoseconds: UInt64(delay))
 
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: {
                 self.automaticLogin()

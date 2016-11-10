@@ -48,7 +48,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     func initializeRefreshControl() {
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "刷新")
-        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), for: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(refreshControl:)), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
     }
     func loadData() {
@@ -131,8 +131,8 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.serialNumber.text = product.serialNumber
             let url = NSURL(string: product.imagePath)!
             cell.loadImage(url: url)
-            cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), for: .TouchUpInside)
-            cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(_:)), for: .TouchUpInside)
+            cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
+            cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
             return cell
         }
 

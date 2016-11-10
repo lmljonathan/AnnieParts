@@ -123,23 +123,23 @@ class OrdersViewController: UIViewController {
     
     private func confirmOrder(indexPath: NSIndexPath){
         let order = customerOrders[indexPath.row]
-        get_json_data(query_type: CONSTANTS.URL_INFO.CONFIRM_BUSINESS_ORDER, query_paramters: ["order_id": String(order.id), "order_sn": order.sn]) { (json) in
+        get_json_data(query_type: CONSTANTS.URL_INFO.CONFIRM_BUSINESS_ORDER, query_paramters: ["order_id": order.id as AnyObject, "order_sn": order.sn as AnyObject]) { (json) in
             if (json!["status"] as! Int) == 1{
                 print("Order #\(order.id) confirmed.")
-                self.unprocessedOrders.append(self.customerOrders.removeAtIndex(indexPath.row))
+                self.unprocessedOrders.append(self.customerOrders.remove(at: indexPath.row))
                 
                 // Animate Cell
-                let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath)
+                let cell = self.ordersTableView.cellForRow(at: indexPath as IndexPath)
                 
-                UIView.animateWithDuration(0.5, animations: {
-                    cell?.transform = CGAffineTransformMakeTranslation(400, 0)
+                UIView.animate(withDuration: 0.5, animations: {
+                    cell?.transform = CGAffineTransform(translationX: 400, y: 0)
                     }, completion: {(success) in
                         self.ordersTableView.reloadData()
-                        self.ordersTableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Top)
+                        self.ordersTableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .top)
                 })
                 
-                self.showNotificationView("Order Confirmed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
-                    vc.dismissViewControllerAnimated(true, completion: nil)
+                self.showNotificationView(message: "Order Confirmed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
+                    vc.dismiss(animated: true, completion: nil)
                 })
             }else{
                 print("Failed at confirming order #\(order.id).")
@@ -156,18 +156,18 @@ class OrdersViewController: UIViewController {
                         // Remove Item from Array
                         switch indexPath.section{
                         case 0:
-                            self.customerOrders.removeAtIndex(indexPath.row)
+                            self.customerOrders.remove(at: indexPath.row)
                         case 1:
-                            self.unprocessedOrders.removeAtIndex(indexPath.row)
+                            self.unprocessedOrders.remove(at: indexPath.row)
                         default:
                             break
                         }
                         
                         // Animate Cell
-                        let cell = self.ordersTableView.cellForRowAtIndexPath(indexPath)
+                        let cell = self.ordersTableView.cellForRow(at: indexPath as IndexPath)
                         
-                        UIView.animateWithDuration(0.5, animations: {
-                            cell?.transform = CGAffineTransformMakeTranslation(-400, 0)
+                        UIView.animate(withDuration: 0.5, animations: {
+                            cell?.transform = CGAffineTransform(translationX: -400, y: 0)
                             }, completion: {(success) in
                                 self.ordersTableView.reloadData()
                                 //self.ordersTableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Top)
@@ -209,8 +209,8 @@ class OrdersViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_CANCEL_MODAL) as! CancelOrderViewController
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         // let row = button.tag
-        let buttonPoint = button.convert(.zero, to: self.ordersTableView)
-        let indexPath = self.ordersTableView.indexPathForRow(at: buttonPoint)
+        let buttonPosition = button.convert(CGPoint.zero, from: self.ordersTableView)
+        let indexPath = self.ordersTableView.indexPathForRow(at: buttonPosition)
         vc.indexPath = indexPath as NSIndexPath!
         self.ordersTableView.deselectRow(at: indexPath!, animated: true)
     }
