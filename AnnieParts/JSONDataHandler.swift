@@ -12,17 +12,16 @@ import SwiftyUserDefaults
 import Foundation
 import UIKit
 
-func login(username: String, password: String, completion: (NSDictionary?) -> Void) {
+func login(username: String, password: String, completion: @escaping (NSDictionary?) -> Void) {
     let query_url = CONSTANTS.URL_INFO.BASE_URL + CONSTANTS.URL_INFO.LOGIN_URL + "?"
-    Alamofire.request(
-        .GET,
-        query_url,
-        parameters: ["act": "login", "u": username, "p": password]
-    ).validate().responseJSON { (response) in
-        print(response.request!.URL!.URLString)
-        print(String(data: response.data!, encoding: NSUTF8StringEncoding))
+    
+    Alamofire.request(query_url,
+                      method: .get,
+                      parameters: ["act": "login", "u": username, "p": password]).validate().responseJSON { (response) in
+        print(response.request!.url!.absoluteString)
+        print(String(data: response.data!, encoding: String.Encoding.utf8)!)
         if let json = response.result.value {
-            checkStatus(json as! NSDictionary)
+            checkStatus(json: json as! NSDictionary)
             completion(json as? NSDictionary)
         }
     }
