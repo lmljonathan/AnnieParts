@@ -16,17 +16,17 @@ func configureTableView(sender: UITableView) {
             break
         }
     }
-    sender.tableFooterView = UIView(frame: CGRectZero)
+    sender.tableFooterView = UIView(frame: CGRect.zero)
 }
 func configureNavBarBackButton(sender: UINavigationController, navItem: UINavigationItem) {
     sender.addSideMenuButton()
-    let backButton = UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .Done, target: sender, action: #selector(sender.popViewControllerAnimated(_:)))
+    let backButton = UIBarButtonItem(image: UIImage(named: CONSTANTS.IMAGES.BACK_BUTTON), style: .done, target: sender, action: #selector(sender.popViewController))
     backButton.imageInsets = UIEdgeInsetsMake(0, -5.0, 0, -25.0)
-    navItem.leftBarButtonItems?.insert(backButton, atIndex:0)
+    navItem.leftBarButtonItems?.insert(backButton, at:0)
 }
 func removeNavBarBackButton(sender: UINavigationController, navItem: UINavigationItem) {
     sender.addSideMenuButton()
     if (navItem.leftBarButtonItems?.count == 3) {
-        navItem.leftBarButtonItems?.removeAtIndex(0)
+        navItem.leftBarButtonItems?.remove(at: 0)
     }
 }

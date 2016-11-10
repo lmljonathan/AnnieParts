@@ -243,7 +243,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_CELL, for: indexPath as IndexPath) as! OrderTableViewCell
         
         cell.selectionStyle = .none
-        cell.cancelButton.addTarget(self, action: #selector(self.presentCancelOrder(_:)), for: .TouchUpInside)
+        cell.cancelButton.addTarget(self, action: #selector(self.presentCancelOrder(button:)), for: .touchUpInside)
         cell.cancelButton.tag = indexPath.row
         
         switch indexPath.section {
@@ -252,7 +252,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
             cell.configureWith(order: customerOrders[indexPath.row])
             cell.cancelButton.isHidden = false
             cell.confirmButton.isHidden = false
-            cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(_:)), for: .TouchUpInside)
+            cell.confirmButton.addTarget(self, action: #selector(self.presentConfirmOrder(button:)), for: .touchUpInside)
             cell.confirmButton.tag = indexPath.row
         case 1:
             cell.confirmButton.isHidden = true
