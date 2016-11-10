@@ -171,7 +171,7 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
         }
     }
     func unwind() {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     func showShoppingCart() {
         self.performSegue(withIdentifier: "showCart", sender: self)
