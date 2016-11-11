@@ -106,8 +106,8 @@ class SearchOptionsVC: UIViewController{
         }
         self.navigationController?.isNavigationBarHidden = false
     }
-    
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS{
             let destVC = segue.destination as! SearchResultsTableViewController
             var result: [String: Int]! = [:]
@@ -115,6 +115,7 @@ class SearchOptionsVC: UIViewController{
                 let key = CONSTANTS.SEARCH_OPTIONS[index]
                 result[key] = option
             }
+            print(result)
             destVC.searchIDs = result
         }
     }

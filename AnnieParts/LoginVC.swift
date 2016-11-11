@@ -94,11 +94,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     // MARK: - IB Outlet Actions
     
-    @IBAction func loginPressed(sender: UIButton) {
+    @IBAction func loginPressed(_ sender: UIButton) {
         performLogin()
     }
-    
-    @IBAction func forgetPasswordPressed(sender: UIButton) {
+    @IBAction func forgetPasswordPressed(_ sender: UIButton) {
         
     }
     

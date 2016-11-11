@@ -16,7 +16,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     private var catalogData: [Product]! = []
     private var noResultsFound = false
     
-    var searchIDs: [String: Int]!
+    var searchIDs: [String: Int] = [:]
     var vehicleData: vehicle!
     private var loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     
@@ -89,16 +89,14 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                 }
                 self.loadingIndicator.stopAnimating()
                 self.title = String(self.catalogData.count) + "个产品"
+                print(self.catalogData)
                 self.tableView.reloadDataWithAutoSizingCells()
-                //self.tableView.reloadSectionWithAutoSizingCells(0, animation: .Automatic)
-                //self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-
             }
         }
     }
 
     // MARK: - Table view data source
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,20 +105,18 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
         return self.catalogData.count
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.noResultsFound{
             return self.tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL, for: indexPath as IndexPath)
 
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, for: indexPath as IndexPath) as! SearchResultsCell
-            
+
             cell.selectionStyle = .none
-            
+
             let product = self.catalogData[indexPath.row]
             cell.productName.text = product.productName
-            
+
             if product.startYear != "0" && product.endYear != "0"{
                 cell.year.text = product.startYear + " - " + product.endYear
             }else{
@@ -135,7 +131,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
             return cell
         }
-
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.catalogData.count > 0{
@@ -171,11 +166,10 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     
     var selectedProductIndex: Int!
     func addProductToCart(button: UIButton) {
-        let buttonPosition = button.convert(CGPoint.zero, from: self.tableView)
-        let index = self.tableView.indexPathForRow(at: buttonPosition)
+        let index = self.tableView.indexPathForRow(at: button.center)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
-        
+        print(index?.row)
         let product = self.catalogData[(index?.row)!]
         vc.name = product.productName
         vc.id = String(product.productID)

@@ -42,7 +42,7 @@ class AddProductModalViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func numberInputChanged(sender: UITextField) {
+    @IBAction func numberInputChanged(_ sender: UITextField) {
         if (Int(sender.text!) != nil){
             self.quantity = Int(sender.text!)!
         } else {
@@ -51,7 +51,7 @@ class AddProductModalViewController: UIViewController {
         print(self.quantity)
     }
     
-    @IBAction func addToCart(sender: UIButton) {
+    @IBAction func addToCart(_ sender: UIButton) {
         if (self.quantity > 0) {
             self.delegate?.returnIDandQuantity(id: self.id, quantity: self.quantity)
         }
@@ -70,7 +70,7 @@ class AddProductModalViewController: UIViewController {
         }
     }
     
-    @IBAction func cancel(sender: UIButton) {
+    @IBAction func cancel(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }

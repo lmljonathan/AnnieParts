@@ -67,7 +67,7 @@ class OrderSummaryViewController: UIViewController {
         }
     }
     
-    @IBAction func submitOrder(sender: UIButton) {
+    @IBAction func submitOrder(_ sender: UIButton) {
         //add in http request
         if row != nil{
             print("unwind to orders with confirm")
@@ -79,7 +79,7 @@ class OrderSummaryViewController: UIViewController {
         }
     }
     
-    @IBAction func cancelCheckout(sender: UIButton) {
+    @IBAction func cancelCheckout(_ sender: UIButton) {
         self.delegate?.confirmedShoppingCart(clear: false)
         self.dismiss(animated: true, completion: nil)
     }

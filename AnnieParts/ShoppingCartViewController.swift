@@ -121,11 +121,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.manufacturer.text = product.makeText
         cell.modelListLabel.text = product.modelListText
 
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(sender:)), for: .touchUpInside)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), for: .touchUpInside)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(view:)), for: .touchDown)
         cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(view: )), for: .touchDragExit)
 
-        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(sender:)), for: .touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), for: .touchUpInside)
         cell.deleteButton.addTarget(self, action: #selector(self.highlightView(view:)), for: .touchDown)
         cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(view: )), for: .touchDragExit)
         return cell
@@ -145,7 +145,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    @IBAction func editItemQuantity(sender: UIButton) {
+    @IBAction func editItemQuantity(_ sender: UIButton) {
         self.normalizeView(view: sender)
         let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
         self.updatedItem = index!.row
@@ -162,7 +162,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
     
-    @IBAction func deleteItemFromCart(sender:UIButton) {
+    @IBAction func deleteItemFromCart(_ sender:UIButton) {
         let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
         send_request(query_type: CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: ["goods_id": self.shoppingCart[index!.row].productID as AnyObject])
         self.shoppingCart.remove(at: index!.row)
@@ -172,7 +172,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.endUpdates()
         
     }
-    @IBAction func checkout(sender: UIButton) {
+    @IBAction func checkout(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
         vc.shoppingCart = self.shoppingCart
         vc.delegate = self
