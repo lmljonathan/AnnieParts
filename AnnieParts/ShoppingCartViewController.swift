@@ -27,7 +27,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.updatedItem = -1
-        print("view is appearing")
     }
     
     override func viewDidLoad() {
@@ -59,7 +58,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func calculateSubtotal() {
-        print("hello")
         var subtotal = 0.0
         for product in self.shoppingCart {
             subtotal += product.price * Double(product.quantity)
@@ -74,7 +72,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.shoppingCart.removeAll()
         get_json_data(query_type: CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? [AnyObject] {
-                print("array")
                 for product: AnyObject in products {
                     let id = product[CONSTANTS.JSON_KEYS.ID] as! String
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
@@ -190,16 +187,20 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     func confirmedShoppingCart(clear: Bool) {
         if (clear) {
-            print("clear confirmed alsdjfklasdj")
+            self.shoppingCart.removeAll()
+            self.tableView.reloadData()
+            self.subtotal.text = ""
             get_json_data(query_type: CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:], completion: { (json) in
-                print(json!)
                 let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_NUMBER) as! OrderNumberVC
                 vc.sn_label = sn
-                self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
-                    self.shoppingCart.removeAll()
-                    self.tableView.reloadData()
+                self.dismiss(animated: true, completion: {
+                    self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
+                        self.shoppingCart.removeAll()
+                        self.tableView.reloadData()
+                    })
                 })
+
             })
         }
     }
