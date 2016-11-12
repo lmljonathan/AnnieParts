@@ -277,7 +277,7 @@ extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
 
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = self.ordersTableView.cellForRow(at: indexPath as IndexPath) as! OrderTableViewCell
-        cell.mainView.backgroundColor = .selectedGray()
+        cell.mainView.backgroundColor = .selectedGray
     }
     
     func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {

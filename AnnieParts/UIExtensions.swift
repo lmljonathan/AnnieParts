@@ -23,7 +23,11 @@ extension UIColor {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
     
-    public class func selectedGray() -> UIColor{
+//    public class func selectedGray() -> UIColor{
+//        return UIColor(netHex: 0xd5d5d5)
+//    }
+    
+    static var selectedGray: UIColor {
         return UIColor(netHex: 0xd5d5d5)
     }
     

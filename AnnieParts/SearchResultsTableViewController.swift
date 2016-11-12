@@ -153,7 +153,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell  = tableView.cellForRow(at: indexPath as IndexPath) as! SearchResultsCell
-        cell.mainView.backgroundColor = UIColor.selectedGray()
+        cell.mainView.backgroundColor = UIColor.selectedGray
         cell.backgroundColor = UIColor.clear
         cell.productImage.alpha = 0.8
     }

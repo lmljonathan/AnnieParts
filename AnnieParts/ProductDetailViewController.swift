@@ -37,6 +37,7 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
     override func viewDidLoad() {
         configureNavBarBackButton(sender: self.navigationController!, navItem: self.navigationItem)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "cart"), style: .done, target: self, action: #selector(self.showShoppingCart))
+        self.navigationItem.title = ""
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableViewAutomaticDimension

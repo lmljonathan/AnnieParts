@@ -13,11 +13,14 @@ import SideMenuController
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         UIApplication.shared.statusBarStyle = .lightContent
         
         UINavigationBar.appearance().isTranslucent = false
+        
+        
         // Set navigation bar tint / background colour
         UINavigationBar.appearance().barTintColor = UIColor.APdarkGray()
         
@@ -25,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
         // Set navigation bar ItemButton tint colour
-        UIBarButtonItem.appearance().tintColor = UIColor.white
+        UIBarButtonItem.appearance().tintColor = .white
         
         SideMenuController.preferences.drawing.menuButtonImage = UIImage(named: "menu")
         SideMenuController.preferences.drawing.sidePanelPosition = .overCenterPanelLeft
@@ -35,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SideMenuController.preferences.animating.transitionAnimator = FadeAnimator.self
         SideMenuController.preferences.interaction.swipingEnabled = true
         return true
+        
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
