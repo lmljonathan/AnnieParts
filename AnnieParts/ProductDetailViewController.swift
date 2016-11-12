@@ -46,9 +46,10 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
 
     private func decodeString(encodedString:String) -> NSAttributedString?
     {
-        let encodedData = encodedString.data(using: String.Encoding.utf8)!
+        let encodedData = encodedString.data(using: .utf8)
         do {
-            return try NSAttributedString(data: encodedData, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType,NSCharacterEncodingDocumentAttribute:String.Encoding.utf8], documentAttributes: nil)
+            return NSAttributedString(string: "")
+            //try NSAttributedString(data: encodedData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8], documentAttributes: nil)
         } catch let error as NSError {
             print(error.localizedDescription)
             return nil
@@ -110,13 +111,13 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
                     self.installPaths.append(file["href"] as? String ?? "")
                 }
             }
-            self.aboutString = self.decodeString(encodedString: description_html)!.string
+            self.aboutString = self.decodeString(encodedString: description_html)?.string
             self.cells[0].options = [self.aboutString]
             self.cells[1].options = self.videoTitles as [String]
             self.cells[2].options = self.installTitles as [String]
             self.cells[1].option_paths = self.videoPaths as [String]
             self.cells[2].option_paths = self.installPaths as [String]
-            self.cellsToDisplay = self.cells.filter({$0.options.count != 0})
+            self.cellsToDisplay = self.cells.filter({$0.options.count != 0 && $0.options[0] != ""})
             self.tableView.reloadData()
         })
     }
@@ -155,7 +156,7 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
 //        }
 //    }
 
-    @IBAction func addToCartButtonPressed(sender: AnyObject) {
+    @IBAction func addToCartButtonPressed(_ sender: AnyObject) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         vc.name = product.productName
