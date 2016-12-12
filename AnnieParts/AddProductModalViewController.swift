@@ -25,7 +25,7 @@ class AddProductModalViewController: UIViewController {
     var sn: String! = "Serial Number"
     var delegate: AddProductModalView?
     var buttonString: String! = ""
-    var quantity = 0
+    var quantity = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,6 @@ class AddProductModalViewController: UIViewController {
         self.confirmButton.setTitle(self.buttonString, for: .normal)
         self.quantityTextField.text = String(quantity)
         self.serialNumber.text = sn
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,18 +62,18 @@ class AddProductModalViewController: UIViewController {
     @IBAction func addToCart(_ sender: UIButton) {
         if (self.quantity > 0) {
             self.delegate?.returnIDandQuantity(id: self.id, quantity: self.quantity)
-        }
-        let mainVC = self.presentingViewController
-        
-        self.dismiss(animated: true) {
-            if self.buttonString == "Update"{
-                mainVC?.showNotificationView(message: CONSTANTS.UPDATED_QUANTITY_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
-                    vc.delayDismiss(seconds: 0.3)
-                })
-            }else{
-                mainVC?.showNotificationView(message: CONSTANTS.ADDED_TO_CART_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
-                    vc.delayDismiss(seconds: 0.3)
-                })
+            let mainVC = self.presentingViewController
+            
+            self.dismiss(animated: true) {
+                if self.buttonString == "Update"{
+                    mainVC?.showNotificationView(message: CONSTANTS.UPDATED_QUANTITY_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
+                        vc.delayDismiss(seconds: 0.3)
+                    })
+                }else{
+                    mainVC?.showNotificationView(message: CONSTANTS.ADDED_TO_CART_LABEL, image: UIImage(named: "checkmark")!, completion: { (vc) in
+                        vc.delayDismiss(seconds: 0.3)
+                    })
+                }
             }
         }
     }
