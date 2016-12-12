@@ -17,6 +17,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     private var shoppingCart: [ShoppingCart]! = []
     private var updatedItem: Int!
     var viewFromNavButton = true
+    let refreshControl = UIRefreshControl()
+
     
     @IBAction func unwindToCartWithConfirm(segue: UIStoryboardSegue){
         self.shoppingCart.removeAll()
@@ -48,7 +50,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.dataSource = self
         configureTableView(sender: self.tableView)
 
-        let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "刷新")
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(refreshControl:)), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
@@ -69,6 +70,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     func loadData() {
+        self.refreshControl.isEnabled = false
         self.shoppingCart.removeAll()
         get_json_data(query_type: CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
             if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? [AnyObject] {
@@ -92,6 +94,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     self.shoppingCart.append(shoppingItem)
                 }
                 self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                self.refreshControl.isEnabled = true
             }
             self.calculateSubtotal()
         }
@@ -205,10 +208,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
+        refreshControl.beginRefreshing()
         loadData()
         calculateSubtotal()
-        refreshControl.beginRefreshing()
-        self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .automatic)
+        self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
         refreshControl.endRefreshing()
     }
 }
