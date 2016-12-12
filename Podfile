@@ -16,7 +16,6 @@ target 'AnnieParts' do
     pod 'MIBadgeButton-Swift', :git => 'https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git', :branch => 'master'
     pod 'SwiftyUserDefaults'
     pod 'SKPhotoBrowser', :git => 'https://github.com/suzuki-0000/SKPhotoBrowser.git', :branch => 'swift3'
-    use_frameworks!
     
     target 'AnniePartsTests' do
         inherit! :search_paths

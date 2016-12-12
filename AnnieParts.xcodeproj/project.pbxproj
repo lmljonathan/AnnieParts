@@ -446,7 +446,7 @@
 				TargetAttributes = {
 					9072561E1D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = CQD8Z7UVJ4;
+						DevelopmentTeam = QBURSC393N;
 					};
 					907256321D397EF200C46A8B = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -852,10 +852,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DA03B895C8E00CC146B5A835 /* Pods-AnnieParts.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CQD8Z7UVJ4;
+				DEVELOPMENT_TEAM = QBURSC393N;
 				INFOPLIST_FILE = AnnieParts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -870,10 +871,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 26FC728750DEA783CEE38464 /* Pods-AnnieParts.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = CQD8Z7UVJ4;
+				DEVELOPMENT_TEAM = QBURSC393N;
 				INFOPLIST_FILE = AnnieParts/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -163,6 +163,7 @@ extension SearchOptionsVC: UITableViewDelegate, UITableViewDataSource {
                 tableView.deselectRow(at: indexPath, animated: true)
                 self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-1])
                 self.performSegue(withIdentifier: CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
+                self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
             }
         } else {
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
