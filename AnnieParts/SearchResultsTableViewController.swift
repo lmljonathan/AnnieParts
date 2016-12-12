@@ -51,6 +51,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(refreshControl:)), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
     }
+    
     func loadData() {
         self.loadingIndicator.bringSubview(toFront: self.view)
         self.loadingIndicator.startAnimating()
@@ -82,15 +83,18 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     product.setModelListText(text: getListOfModels(model_ids: product.modelIDlist))
                     self.catalogData.append(product)
                 }
+                
                 if (self.catalogData.count == 0) {
                     self.noResultsFound = true
                 } else {
                     self.noResultsFound = false
                 }
+                
                 self.loadingIndicator.stopAnimating()
                 self.title = String(self.catalogData.count) + "个产品"
-                print(self.catalogData)
-                self.tableView.reloadDataWithAutoSizingCells()
+                print(self.catalogData.map({$0.productName}))
+                self.tableView.reloadData()
+                //self.tableView.reloadDataWithAutoSizingCells()
             }
         }
     }
@@ -105,6 +109,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         }
         return self.catalogData.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if self.noResultsFound{
             return self.tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.NO_RESULTS_FOUND_CELL, for: indexPath as IndexPath)
@@ -113,25 +118,29 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
             let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.SEARCH_RESULTS_CELLS, for: indexPath as IndexPath) as! SearchResultsCell
 
             cell.selectionStyle = .none
+            
+            if self.catalogData.count > 0{ // CHANGE?
 
-            let product = self.catalogData[indexPath.row]
-            cell.productName.text = product.productName
+                let product = self.catalogData[indexPath.row]
+                cell.productName.text = product.productName
 
-            if product.startYear != "0" && product.endYear != "0"{
-                cell.year.text = product.startYear + " - " + product.endYear
-            }else{
-                cell.year.text = "No Years Specified"
+                if product.startYear != "0" && product.endYear != "0"{
+                    cell.year.text = product.startYear + " - " + product.endYear
+                }else{
+                    cell.year.text = "No Years Specified"
+                }
+                cell.manufacturer.text = product.makeText
+                cell.models.text = product.modelListText
+                cell.serialNumber.text = product.serialNumber
+                let url = NSURL(string: product.imagePath)!
+                cell.loadImage(url: url)
+                cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
+                cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
             }
-            cell.manufacturer.text = product.makeText
-            cell.models.text = product.modelListText
-            cell.serialNumber.text = product.serialNumber
-            let url = NSURL(string: product.imagePath)!
-            cell.loadImage(url: url)
-            cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
-            cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
             return cell
         }
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if self.catalogData.count > 0{
             self.selectedProductIndex = indexPath.row
@@ -165,11 +174,13 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     }
     
     var selectedProductIndex: Int!
+    
     func addProductToCart(button: UIButton) {
-        let index = self.tableView.indexPathForRow(at: button.center)
+        let cell = button.superview!.superview!.superview! as! SearchResultsCell
+        // have to go 3 levels deep to get to the cell
+        let index = self.tableView.indexPath(for: cell)
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
-        print(index?.row)
         let product = self.catalogData[(index?.row)!]
         vc.name = product.productName
         vc.id = String(product.productID)
@@ -177,9 +188,11 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         vc.buttonString = CONSTANTS.ADD_TO_CART_LABEL
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
+    
     func returnIDandQuantity(id: String, quantity: Int) {
         send_request(query_type: CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: ["goods_id": id as AnyObject, CONSTANTS.JSON_KEYS.QUANTITY: quantity as AnyObject])
     }
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
         refreshControl.beginRefreshing()
         loadData()

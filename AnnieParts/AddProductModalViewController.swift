@@ -13,6 +13,7 @@ protocol AddProductModalView {
 }
 class AddProductModalViewController: UIViewController {
 
+    @IBOutlet var modalView: UIView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
@@ -37,6 +38,14 @@ class AddProductModalViewController: UIViewController {
         self.serialNumber.text = sn
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let newRect = CGRect(x: self.modalView.frame.origin.x, y: self.modalView.frame.origin.y, width: self.modalView.frame.width, height: self.modalView.frame.height + self.productName.height - 23.0)
+        self.modalView.frame = newRect
+        self.modalView.addShadow(opacity: 0.2, offset: CGSize(width: 0, height: 5))
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         self.view.endEditing(true)

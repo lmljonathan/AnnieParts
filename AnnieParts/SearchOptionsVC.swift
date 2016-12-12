@@ -160,6 +160,7 @@ extension SearchOptionsVC: UITableViewDelegate, UITableViewDataSource {
         
         if expanded && indexPath.row != 0 {
             if option_ids.count > 0 {
+                tableView.deselectRow(at: indexPath, animated: true)
                 self.selectedIDs[indexPath.section] = (option_ids[indexPath.row-1])
                 self.performSegue(withIdentifier: CONSTANTS.SEGUES.SHOW_SEARCH_RESULTS, sender: self)
             }

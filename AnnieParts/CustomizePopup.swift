@@ -15,8 +15,8 @@ func initializePresentr() -> Presentr {
     let center = ModalCenterPosition.topCenter
     let presenter = Presentr(presentationType: .custom(width: width, height: height, center: center))
     presenter.blurBackground = true
-    presenter.transitionType = TransitionType.crossDissolve
-    presenter.dismissTransitionType = TransitionType.crossDissolve
+    presenter.transitionType = .crossDissolve
+    presenter.dismissTransitionType = .crossDissolve
     presenter.roundCorners = false
     
     return presenter
