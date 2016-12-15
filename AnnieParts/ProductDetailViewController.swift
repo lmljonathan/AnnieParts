@@ -223,19 +223,17 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section - 1
         let expanded = self.cellsToDisplay[section].expanded
-        if (expanded && indexPath.row > 0 && section > 0) {
+        if (expanded && indexPath.row > 0 && section >= 0) {
             let webVC = self.storyboard?.instantiateViewController(withIdentifier: "webVC") as! WebViewViewController
             let url_string = self.cellsToDisplay[section].option_paths[indexPath.row - 1]
             webVC.url = url_string
             self.navigationController?.pushViewController(webVC, animated: true)
-            
-            self.tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+            self.tableView.deselectRow(at: indexPath, animated: false)
+            self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
         }
         else {
             self.cellsToDisplay[section].expanded = !expanded
-            self.tableView.beginUpdates()
             self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
-            self.tableView.endUpdates()
             self.tableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
         }
 
