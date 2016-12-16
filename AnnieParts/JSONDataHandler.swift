@@ -57,6 +57,7 @@ func get_json_data(query_type: String, query_paramters: [String: AnyObject], com
             completion(json as? NSDictionary)
         }else{
             print("Did not recieve JSON response.")
+            completion(nil)
         }
     }
 }

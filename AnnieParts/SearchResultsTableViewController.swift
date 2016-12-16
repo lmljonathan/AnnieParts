@@ -58,7 +58,15 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
         self.catalogData.removeAll()
         get_json_data(query_type: CONSTANTS.URL_INFO.OPTION_SEARCH, query_paramters: self.searchIDs as [String : AnyObject]) { (json) in
             
+            if json == nil{
+                self.noResultsFound = true
+                self.loadingIndicator.stopAnimating()
+                self.tableView.reloadData()
+                return // this breaks out from the closure
+            }
+            
             if let productList = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? [[String: AnyObject]]{
+                
                 for product in productList {
                     let id = String(product[CONSTANTS.JSON_KEYS.ID] as? Int ?? -1)
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as? String ?? ""
@@ -84,12 +92,6 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                     self.catalogData.append(product)
                 }
                 
-                if (self.catalogData.count == 0) {
-                    self.noResultsFound = true
-                } else {
-                    self.noResultsFound = false
-                }
-                
                 self.loadingIndicator.stopAnimating()
                 self.title = String(self.catalogData.count) + "个产品"
                 print(self.catalogData.map({$0.productName}))
@@ -103,6 +105,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.noResultsFound) {
             return 1
@@ -137,6 +140,7 @@ class SearchResultsTableViewController: UITableViewController, AddProductModalVi
                 cell.addButton.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
                 cell.addButtonOver.addTarget(self, action: #selector(SearchResultsTableViewController.addProductToCart(button:)), for: .touchUpInside)
             }
+            
             return cell
         }
     }
