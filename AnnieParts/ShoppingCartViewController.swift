@@ -63,11 +63,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         for product in self.shoppingCart {
             subtotal += product.price * Double(product.quantity)
         }
-        if (subtotal > 0) {
-            let priceFormatter = NumberFormatter()
-            priceFormatter.numberStyle = .currency
-            self.subtotal.text = "Subtotal: " + priceFormatter.string(from: subtotal as NSNumber)!
-        }
+        let priceFormatter = NumberFormatter()
+        priceFormatter.numberStyle = .currency
+        self.subtotal.text = "Subtotal: " + priceFormatter.string(from: subtotal as NSNumber)!
     }
     func loadData() {
         self.refreshControl.isEnabled = false
@@ -170,7 +168,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.beginUpdates()
         self.tableView.deleteRows(at: [index!], with: .fade)
         self.tableView.endUpdates()
-        
+        self.calculateSubtotal()
     }
     @IBAction func checkout(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
@@ -187,6 +185,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
         print("\(self.updatedItem) + \(id) + \(quantity)")
         send_request(query_type: CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id as AnyObject, CONSTANTS.JSON_KEYS.QUANTITY: quantity as AnyObject, CONSTANTS.JSON_KEYS.ACTION: "set" as AnyObject])
+        self.calculateSubtotal()
     }
     func confirmedShoppingCart(clear: Bool) {
         if (clear) {
