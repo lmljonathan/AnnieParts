@@ -3,7 +3,6 @@ PODS:
   - Auk (7.0.1):
     - moa
   - HanekeSwift (0.10.1)
-  - MIBadgeButton-Swift (0.5)
   - moa (8.0.2)
   - Presentr (1.0.3)
   - SideMenuController (0.2.1)
@@ -15,7 +14,6 @@ DEPENDENCIES:
   - Alamofire
   - Auk
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift`, branch `feature/swift-3`)
-  - MIBadgeButton-Swift (from `https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git`, branch `master`)
   - moa
   - Presentr
   - SideMenuController
@@ -27,9 +25,6 @@ EXTERNAL SOURCES:
   HanekeSwift:
     :branch: feature/swift-3
     :git: https://github.com/Haneke/HanekeSwift
-  MIBadgeButton-Swift:
-    :branch: master
-    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
   SKPhotoBrowser:
     :branch: swift3
     :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
@@ -38,9 +33,6 @@ CHECKOUT OPTIONS:
   HanekeSwift:
     :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
     :git: https://github.com/Haneke/HanekeSwift
-  MIBadgeButton-Swift:
-    :commit: 44b28fd7c9071439861f9b0c366c84a55ffd7e53
-    :git: https://github.com/mustafaibrahim989/MIBadgeButton-Swift.git
   SKPhotoBrowser:
     :commit: 2b51155541dcf95a32917a9a610f851630fa4e41
     :git: https://github.com/suzuki-0000/SKPhotoBrowser.git
@@ -49,7 +41,6 @@ SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Auk: 6f8c4e93427d0d02641263776dd3b66ae4050903
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
-  MIBadgeButton-Swift: 9e57309b00b168d75ca8fecb45bc75124a8ffddf
   moa: 73d2dd56fe838a31e255c64b7873d2c2fbc71076
   Presentr: 9759bf538d9f3211a5ee1314a541a11bbea7ea71
   SideMenuController: 4c543122289d74e1db9d1e24fd3264581fd6ac4e
@@ -57,6 +48,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
 
-PODFILE CHECKSUM: f6df18056491b791e35a413d08abb3706ec3a909
+PODFILE CHECKSUM: 4bc08eb886b00c58cee7e90b459f216d59372329
 
 COCOAPODS: 1.1.1
