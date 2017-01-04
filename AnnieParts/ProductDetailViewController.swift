@@ -49,8 +49,7 @@ class ProductDetailViewController: UIViewController, SKPhotoBrowserDelegate, Add
     {
         let encodedData = encodedString.data(using: .utf8)
         do {
-            return NSAttributedString(string: "")
-            //try NSAttributedString(data: encodedData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8], documentAttributes: nil)
+            return try NSAttributedString(data: encodedData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
         } catch let error as NSError {
             print(error.localizedDescription)
             return nil
