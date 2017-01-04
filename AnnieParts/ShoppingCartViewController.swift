@@ -19,7 +19,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     var viewFromNavButton = true
     let refreshControl = UIRefreshControl()
 
-    
     @IBAction func unwindToCartWithConfirm(segue: UIStoryboardSegue){
         self.shoppingCart.removeAll()
         self.tableView.reloadData()
@@ -177,6 +176,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         
     }
+    
     func returnIDandQuantity(id: String, quantity: Int) {
         if (self.updatedItem != -1) {
             self.shoppingCart[self.updatedItem].editQuantity(num: quantity)
@@ -187,21 +187,27 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         send_request(query_type: CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id as AnyObject, CONSTANTS.JSON_KEYS.QUANTITY: quantity as AnyObject, CONSTANTS.JSON_KEYS.ACTION: "set" as AnyObject])
         self.calculateSubtotal()
     }
+    
     func confirmedShoppingCart(clear: Bool) {
         if (clear) {
             self.shoppingCart.removeAll()
             self.tableView.reloadData()
             self.subtotal.text = ""
             get_json_data(query_type: CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:], completion: { (json) in
-                let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_NUMBER) as! OrderNumberVC
-                vc.sn_label = sn
-                self.dismiss(animated: true, completion: {
-                    self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
-                        self.shoppingCart.removeAll()
-                        self.tableView.reloadData()
+                if json != nil {
+                    let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_NUMBER) as! OrderNumberVC
+                    vc.sn_label = sn
+                    self.dismiss(animated: true, completion: {
+                        self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
+                            self.shoppingCart.removeAll()
+                            self.tableView.reloadData()
+                        })
                     })
-                })
+                }else{
+                    print("order failed")
+                    self.dismiss(animated: true, completion: nil)
+                }
 
             })
         }

@@ -22,7 +22,8 @@ class OrdersViewController: UIViewController {
     
     @IBAction func unwindToOrdersWithConfirmation(segue: UIStoryboardSegue){
         if let vc = segue.source as? ConfirmOrderViewController{
-            let indexPath = IndexPath(row: vc.row, section: 0)//IndexPath(forRow: vc.row, inSection: 0)
+            print("confirmed")
+            let indexPath = IndexPath(row: vc.row, section: 0) //IndexPath(forRow: vc.row, inSection: 0)
             self.confirmOrder(indexPath: indexPath as NSIndexPath)
         }else if let vc = segue.source as? OrderSummaryViewController{
             let indexPath = IndexPath(row: vc.row!, section: 0)//IndexPath(forRow: vc.row!, inSection: 0)
@@ -135,7 +136,7 @@ class OrdersViewController: UIViewController {
                     cell?.transform = CGAffineTransform(translationX: 400, y: 0)
                     }, completion: {(success) in
                         self.ordersTableView.reloadData()
-                        self.ordersTableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .top)
+                        // self.ordersTableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .top)
                 })
                 
                 self.showNotificationView(message: "Order Confirmed!", image: UIImage(named: "checkmark")!, completion: { (vc) in
@@ -170,7 +171,7 @@ class OrdersViewController: UIViewController {
                             cell?.transform = CGAffineTransform(translationX: -400, y: 0)
                             }, completion: {(success) in
                                 self.ordersTableView.reloadData()
-                                //self.ordersTableView.reloadSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Top)
+                                // self.ordersTableView.reloadSections(IndexSet(index: indexPath.section), with: .Top)
                         })
                         
                         print("Canceled order #\(orderID) succesfully!")
@@ -218,7 +219,8 @@ class OrdersViewController: UIViewController {
 }
 
 extension OrdersViewController: UITableViewDelegate, UITableViewDataSource{
-    private func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sectionTitles.count
     }
     

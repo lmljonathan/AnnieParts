@@ -12,10 +12,6 @@ class ConfirmOrderViewController: UIViewController {
     
     var row: Int!
 
-    @IBAction func confirmButtonPressed(sender: AnyObject) {
-        
-    }
-    
     @IBAction func dismissButtonPressed(sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
