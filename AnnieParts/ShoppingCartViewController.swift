@@ -17,17 +17,17 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     private var shoppingCart: [ShoppingCart]! = []
     private var updatedItem: Int!
     var viewFromNavButton = true
-    
+    let refreshControl = UIRefreshControl()
+
     @IBAction func unwindToCartWithConfirm(segue: UIStoryboardSegue){
         self.shoppingCart.removeAll()
         self.tableView.reloadData()
         self.subtotal.text = ""
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.updatedItem = -1
-        print("view is appearing")
     }
     
     override func viewDidLoad() {
@@ -37,21 +37,20 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         if (User.userRank == 1) {
-            self.subtotal.hidden = true
+            self.subtotal.isHidden = true
         }
         if (self.viewFromNavButton) {
-            configureNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
+            configureNavBarBackButton(sender: self.navigationController!, navItem: self.navigationItem)
             viewFromNavButton = false
         } else {
-            removeNavBarBackButton(self.navigationController!, navItem: self.navigationItem)
+            removeNavBarBackButton(sender: self.navigationController!, navItem: self.navigationItem)
         }
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        configureTableView(self.tableView)
+        configureTableView(sender: self.tableView)
 
-        let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "刷新")
-        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SearchResultsTableViewController.handleRefresh(refreshControl:)), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
 
         loadData()
@@ -59,23 +58,20 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func calculateSubtotal() {
-        print("hello")
         var subtotal = 0.0
         for product in self.shoppingCart {
             subtotal += product.price * Double(product.quantity)
         }
-        if (subtotal > 0) {
-            let priceFormatter = NSNumberFormatter()
-            priceFormatter.numberStyle = .CurrencyStyle
-            self.subtotal.text = "Subtotal: " + priceFormatter.stringFromNumber(subtotal)!
-        }
+        let priceFormatter = NumberFormatter()
+        priceFormatter.numberStyle = .currency
+        self.subtotal.text = "Subtotal: " + priceFormatter.string(from: subtotal as NSNumber)!
     }
     func loadData() {
+        self.refreshControl.isEnabled = false
         self.shoppingCart.removeAll()
-        get_json_data(CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
-            if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? NSArray {
-                print("array")
-                for product in products {
+        get_json_data(query_type: CONSTANTS.URL_INFO.SHOPPING_CART, query_paramters: [:]) { (json) in
+            if let products = json![CONSTANTS.JSON_KEYS.SEARCH_RESULTS_LIST] as? [AnyObject] {
+                for product: AnyObject in products {
                     let id = product[CONSTANTS.JSON_KEYS.ID] as! String
                     let name = product[CONSTANTS.JSON_KEYS.NAME] as! String
                     let img = product[CONSTANTS.JSON_KEYS.IMAGE] as! String
@@ -90,66 +86,68 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     let modelIDlist = product[CONSTANTS.JSON_KEYS.MODEL_ID_LIST] as! [Int]
 
                     let shoppingItem = ShoppingCart(productID: id, productName: name, image: img, serialNumber: sn, startYear: startYear, endYear: endYear, brandID: make, price: price!, quantity: quantity!, modelID: modelID, modelIDlist: modelIDlist)
-                    shoppingItem.setMakeText(getMake(shoppingItem.brandId))
-                    shoppingItem.setModelListText(getListOfModels(shoppingItem.modelIDlist))
+                    shoppingItem.setMakeText(text: getMake(id: shoppingItem.brandId))
+                    shoppingItem.setModelListText(text: getListOfModels(model_ids: shoppingItem.modelIDlist))
                     self.shoppingCart.append(shoppingItem)
                 }
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                self.refreshControl.isEnabled = true
             }
             self.calculateSubtotal()
         }
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.shoppingCart.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SHOPPING_CART_CELLS) as! ShoppingCartCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.SHOPPING_CART_CELLS) as! ShoppingCartCell
         cell.configureCell()
         let product = self.shoppingCart[indexPath.row]
         cell.productName.text = product.productName
         let url = NSURL(string: product.imagePath)!
-        cell.loadImage(url)
+        cell.loadImage(url: url)
         
         cell.quantityLabel.text = String(product.quantity)
         cell.serialNumber.text = product.serialNumber
         if (User.userRank == 1) {
-            cell.priceLabel.hidden = true
+            cell.priceLabel.isHidden = true
         }
         cell.priceLabel.text = "$" + String(format: "%.2f", product.price)
         cell.manufacturer.text = product.makeText
         cell.modelListLabel.text = product.modelListText
-        
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), forControlEvents: .TouchUpInside)
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
-        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchDragExit)
-        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), forControlEvents: .TouchUpInside)
-        cell.deleteButton.addTarget(self, action: #selector(self.highlightView(_:)), forControlEvents: .TouchDown)
-        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(_:)), forControlEvents: .TouchDragExit)
+
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.editItemQuantity(_:)), for: .touchUpInside)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.highlightView(view:)), for: .touchDown)
+        cell.quantitySelectButton.addTarget(self, action: #selector(self.normalizeView(view: )), for: .touchDragExit)
+
+        cell.deleteButton.addTarget(self, action: #selector(self.deleteItemFromCart(_:)), for: .touchUpInside)
+        cell.deleteButton.addTarget(self, action: #selector(self.highlightView(view:)), for: .touchDown)
+        cell.deleteButton.addTarget(self, action: #selector(self.normalizeView(view: )), for: .touchDragExit)
         return cell
     }
     
     func highlightView(view: UIView){
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             view.alpha = 0.6
         }
     }
     
     func normalizeView(view: UIView){
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             view.alpha = 1
         }
     }
     
     
     
-    @IBAction func editItemQuantity(sender: UIButton) {
-        self.normalizeView(sender)
-        let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
+    @IBAction func editItemQuantity(_ sender: UIButton) {
+        self.normalizeView(view: sender)
+        let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
         self.updatedItem = index!.row
         print(self.updatedItem)
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ADD_PRODUCT_POPUP) as! AddProductModalViewController
         vc.delegate = self
         
         let item = self.shoppingCart[index!.row]
@@ -160,52 +158,65 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         vc.buttonString = CONSTANTS.UPDATE_CART_LABEL
         customPresentViewController(initializePresentr(), viewController: vc, animated: true, completion: nil)
     }
-    @IBAction func deleteItemFromCart(sender:UIButton) {
-        let index = self.tableView.indexPathForRowAtPoint(sender.convertPoint(CGPointZero, toView: self.tableView))
-        send_request(CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: ["goods_id": self.shoppingCart[index!.row].productID])
-        self.shoppingCart.removeAtIndex(index!.row)
+    
+    @IBAction func deleteItemFromCart(_ sender:UIButton) {
+        let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
+        send_request(query_type: CONSTANTS.URL_INFO.DELETE_FROM_CART, query_paramters: ["goods_id": self.shoppingCart[index!.row].productID as AnyObject])
+        self.shoppingCart.remove(at: index!.row)
         
         self.tableView.beginUpdates()
-        self.tableView.deleteRowsAtIndexPaths([index!], withRowAnimation: .Fade)
+        self.tableView.deleteRows(at: [index!], with: .fade)
         self.tableView.endUpdates()
-        
+        self.calculateSubtotal()
     }
-    @IBAction func checkout(sender: UIButton) {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
+    @IBAction func checkout(_ sender: UIButton) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_SUMMARY_MODAL) as! OrderSummaryViewController
         vc.shoppingCart = self.shoppingCart
         vc.delegate = self
         customPresentViewController(orderSummaryPresentr(), viewController: vc, animated: true, completion: nil)
         
     }
+    
     func returnIDandQuantity(id: String, quantity: Int) {
         if (self.updatedItem != -1) {
-            self.shoppingCart[self.updatedItem].editQuantity(quantity)
+            self.shoppingCart[self.updatedItem].editQuantity(num: quantity)
             self.tableView.reloadData()
             self.updatedItem = -1
         }
         print("\(self.updatedItem) + \(id) + \(quantity)")
-        send_request(CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id, CONSTANTS.JSON_KEYS.QUANTITY: quantity, CONSTANTS.JSON_KEYS.ACTION: "set"])
+        send_request(query_type: CONSTANTS.URL_INFO.ADD_TO_CART, query_paramters: [CONSTANTS.JSON_KEYS.GOODS_ID: id as AnyObject, CONSTANTS.JSON_KEYS.QUANTITY: quantity as AnyObject, CONSTANTS.JSON_KEYS.ACTION: "set" as AnyObject])
+        self.calculateSubtotal()
     }
+    
     func confirmedShoppingCart(clear: Bool) {
         if (clear) {
-            print("clear confirmed alsdjfklasdj")
-            get_json_data(CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:], completion: { (json) in
-                print(json)
-                let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.ORDER_NUMBER) as! OrderNumberVC
-                vc.sn_label = sn
-                self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
-                    self.shoppingCart.removeAll()
-                    self.tableView.reloadData()
-                })
+            self.shoppingCart.removeAll()
+            self.tableView.reloadData()
+            self.subtotal.text = ""
+            get_json_data(query_type: CONSTANTS.URL_INFO.CHECKOUT, query_paramters: [:], completion: { (json) in
+                if json != nil {
+                    let sn = json![CONSTANTS.JSON_KEYS.SERIAL_NUMBER] as? String
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.ORDER_NUMBER) as! OrderNumberVC
+                    vc.sn_label = sn
+                    self.dismiss(animated: true, completion: {
+                        self.customPresentViewController(orderNumberPresentr(), viewController: vc, animated: true, completion: {
+                            self.shoppingCart.removeAll()
+                            self.tableView.reloadData()
+                        })
+                    })
+                }else{
+                    print("order failed")
+                    self.dismiss(animated: true, completion: nil)
+                }
+
             })
         }
     }
     func handleRefresh(refreshControl: UIRefreshControl) {
+        refreshControl.beginRefreshing()
         loadData()
         calculateSubtotal()
-        refreshControl.beginRefreshing()
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+        self.tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
         refreshControl.endRefreshing()
     }
 }

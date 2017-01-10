@@ -23,7 +23,11 @@ extension UIColor {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
     
-    public class func selectedGray() -> UIColor{
+//    public class func selectedGray() -> UIColor{
+//        return UIColor(netHex: 0xd5d5d5)
+//    }
+    
+    static var selectedGray: UIColor {
         return UIColor(netHex: 0xd5d5d5)
     }
     
@@ -82,11 +86,11 @@ extension UIView{
         }
     }
     
-    func addShadow(radius: CGFloat = 3, opacity: Float = 0.3, offset: CGSize = CGSizeZero, path: Bool = false){
+    func addShadow(radius: CGFloat = 3, opacity: Float = 0.3, offset: CGSize = CGSize.zero, path: Bool = false){
         if path{
-            self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+            self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         }
-        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = opacity
         self.layer.shadowOffset = offset
         self.layer.shadowRadius = radius
@@ -106,35 +110,35 @@ extension UIView{
     
     
     func makeTranslation(x: CGFloat, y: CGFloat) {
-        self.transform = CGAffineTransformMakeTranslation(x - self.x, y - self.y)
+        self.transform = CGAffineTransform(translationX: x - self.x, y: y - self.y)
     }
     
     func disable(){
-        self.backgroundColor = .grayColor()
-        self.userInteractionEnabled = false
+        self.backgroundColor = .gray
+        self.isUserInteractionEnabled = false
     }
     
     func enable(color: UIColor){
         self.backgroundColor = color
-        self.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
     }
     
     func highlight(){
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 0.6
         }
     }
     
     func normalize(){
-        UIView.animateWithDuration(0.5) {
+        UIView.animate(withDuration: 0.5) {
             self.alpha = 1
         }
     }
     
-    func addTapGestureRecgonizer(action: Selector, completion: (gr: UITapGestureRecognizer) -> Void){
+    func addTapGestureRecgonizer(action: Selector, completion: (_ gr: UITapGestureRecognizer) -> Void){
         let gr = UITapGestureRecognizer(target: self, action: action)
         self.addGestureRecognizer(gr)
-        completion(gr: gr)
+        completion(gr)
     }
     
     func becomeFirstResponderWithOptions(completion: () -> Void){
@@ -154,11 +158,11 @@ extension UIBarButtonItem{
     func addText(drawText: NSString, toImage: UIImage, atPoint:CGPoint) -> UIImage{
         
         // Setup the font specific variables
-        let textColor: UIColor = UIColor.redColor()
+        let textColor: UIColor = UIColor.red
         let textFont: UIFont = UIFont(name: "Helvetica Bold", size: 12)!
         
         //Setup the image context using the passed image.
-        let scale = UIScreen.mainScreen().scale
+        let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(toImage.size, false, scale)
         
         //Setups up the font attributes that will be later used to dictate how the text should be drawn
@@ -171,21 +175,21 @@ extension UIBarButtonItem{
         let context = UIGraphicsGetCurrentContext()
         let rectangle = CGRect(x: 0, y: 0, width: 12, height: 12)
         
-        CGContextAddEllipseInRect(context, rectangle)
-        CGContextDrawPath(context, .Fill)
-        CGContextSetFillColorWithColor(context, UIColor.redColor().CGColor)
+        context!.addEllipse(in: rectangle)
+        context!.drawPath(using: .fill)
+        context!.setFillColor(UIColor.red.cgColor)
         
         //Put the image into a rectangle as large as the original image.
-        toImage.drawInRect(CGRectMake(0, 0, toImage.size.width, toImage.size.height))
+        toImage.draw(in: CGRect(x: 0, y: 0, width: toImage.size.width, height: toImage.size.height))
         
         // Creating a point within the space that is as bit as the image.
-        let rect: CGRect = CGRectMake(atPoint.x, atPoint.y, toImage.size.width, toImage.size.height)
+        let rect: CGRect = CGRect(x: atPoint.x, y: atPoint.y, width: toImage.size.width, height: toImage.size.height)
         
         //Now Draw the text into an image.
-        drawText.drawInRect(rect, withAttributes: textFontAttributes)
+        drawText.draw(in: rect, withAttributes: textFontAttributes)
         
         // Create a new image out of the images we have created
-        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         // End the context now that we have the image we need
         UIGraphicsEndImageContext()
@@ -195,7 +199,7 @@ extension UIBarButtonItem{
     }
     
     func addBadge(){
-        self.image = addText("1", toImage: self.image!, atPoint: CGPoint(x: 0,y: 0))
+        self.image = addText(drawText: "1", toImage: self.image!, atPoint: CGPoint(x: 0,y: 0))
     }
     
 }
@@ -213,7 +217,7 @@ extension UITableView{
         self.reloadData()
         self.setNeedsLayout()
         self.layoutIfNeeded()
-        self.reloadSections(NSIndexSet(index: section), withRowAnimation: animation)
+        self.reloadSections(NSIndexSet(index: section) as IndexSet, with: animation)
     }
     
     
@@ -232,22 +236,22 @@ extension UITableView{
 
 extension UITableViewCell{
     func enable(){
-        self.userInteractionEnabled = true
+        self.isUserInteractionEnabled = true
     }
     
     override func disable() {
-        self.userInteractionEnabled = false
+        self.isUserInteractionEnabled = false
     }
     
     func hide(){
         for view in (self.subviews){
-            view.hidden = true
+            view.isHidden = true
         }
     }
     
     func show(){
         for view in (self.subviews){
-            view.hidden = false
+            view.isHidden = false
         }
     }
 }
@@ -260,38 +264,43 @@ extension UIFont{
 
 extension UIViewController{
     
-    func showNotificationView(message: String, image: UIImage, completion: (vc: UIViewController) -> Void){
+    func showNotificationView(message: String, image: UIImage, completion: @escaping (_ vc: UIViewController) -> Void){
         self.definesPresentationContext = true
-        let vc = self.storyboard!.instantiateViewControllerWithIdentifier("notificationVC") as! NotificationDialogViewController
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "notificationVC") as! NotificationDialogViewController
         vc.setImage = image
         vc.message = message
         customPresentViewController(notificationPresentr(), viewController: vc, animated: true) {
-            completion(vc: vc)
+            completion(vc)
         }
     }
     
-    func showLoadingView(message: String, bgColor: UIColor = UIColor.APdarkGray() , completion: (loadingVC: UIViewController) -> Void){
+    func showLoadingView(message: String, bgColor: UIColor = UIColor.APdarkGray() , completion: @escaping (_ loadingVC: UIViewController) -> Void){
         self.definesPresentationContext = true
-        let loadingVC = self.storyboard?.instantiateViewControllerWithIdentifier(CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
+        let loadingVC = self.storyboard?.instantiateViewController(withIdentifier: CONSTANTS.VC_IDS.LOGIN_LOADING) as! LoadingViewController
         loadingVC.message = message
         loadingVC.bgColor = bgColor
         customPresentViewController(notificationPresentr(), viewController: loadingVC, animated: true) {
-            completion(loadingVC: loadingVC)
+            completion(loadingVC)
         }
     }
     
     func delayDismiss(seconds: Double){
-        func delay(delay:Double, closure:()->()) {
-            dispatch_after(
-                dispatch_time(
-                    DISPATCH_TIME_NOW,
-                    Int64(delay * Double(NSEC_PER_SEC))
-                ),
-                dispatch_get_main_queue(), closure)
+        func delay(delay:Double, closure:@escaping ()->()) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                closure()
+            }
         }
         
-        delay(seconds) {
-            self.dismissViewControllerAnimated(true, completion: nil)
+//            dispatch_after(
+//                DispatchTime.now(
+//                    DispatchTime(uptimeNanoseconds: .now()),
+//                    Int64(delay * Double(NSEC_PER_SEC))
+//                ),
+//                DispatchQueue.main, closure)
+//        }
+        
+        delay(delay: seconds) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

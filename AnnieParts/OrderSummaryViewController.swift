@@ -18,8 +18,8 @@ class OrderSummaryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var dismissButtonWidthConstraint: NSLayoutConstraint!
 
-    private var totalQuantity: Int = 0
-    private var totalPrice: Double = 0.0
+    fileprivate var totalQuantity: Int = 0
+    fileprivate var totalPrice: Double = 0.0
 
     var shoppingCart: [ShoppingCart]! = []
     var orderID: String! = ""
@@ -32,8 +32,8 @@ class OrderSummaryViewController: UIViewController {
         if row != nil{
             print("from orders")
             self.confirmButton.titleLabel?.numberOfLines = 2
-            self.confirmButton.titleLabel?.textAlignment = .Center
-            self.confirmButton.setTitle("Confirm Business Order", forState: .Normal)
+            self.confirmButton.titleLabel?.textAlignment = .center
+            self.confirmButton.setTitle("Confirm Business Order", for: .normal)
         }
         
         self.tableView.delegate = self
@@ -47,7 +47,7 @@ class OrderSummaryViewController: UIViewController {
         self.totalPrice = 0.0
         
         if orderID != ""{
-            self.loadDataFromOrderID({
+            self.loadDataFromOrderID(completion: {
                 self.tableView.reloadData()
             })
         }
@@ -59,33 +59,33 @@ class OrderSummaryViewController: UIViewController {
             self.mainView.removeConstraint(self.dismissButtonWidthConstraint)
             self.cancelButton.translatesAutoresizingMaskIntoConstraints = false
             
-            let right = NSLayoutConstraint(item: self.cancelButton, attribute: NSLayoutAttribute.TrailingMargin, relatedBy: NSLayoutRelation.Equal, toItem: self.mainView, attribute: NSLayoutAttribute.TrailingMargin, multiplier: 1, constant: 0)
+            let right = NSLayoutConstraint(item: self.cancelButton, attribute: NSLayoutAttribute.trailingMargin, relatedBy: NSLayoutRelation.equal, toItem: self.mainView, attribute: NSLayoutAttribute.trailingMargin, multiplier: 1, constant: 0)
             
             self.mainView.addConstraint(right)
             
-            self.confirmButton.hidden = true
+            self.confirmButton.isHidden = true
         }
     }
     
-    @IBAction func submitOrder(sender: UIButton) {
+    @IBAction func submitOrder(_ sender: UIButton) {
         //add in http request
         if row != nil{
             print("unwind to orders with confirm")
-            self.performSegueWithIdentifier("unwindToOrdersWithConfirm", sender: self)
+            self.performSegue(withIdentifier: "unwindToOrdersWithConfirm", sender: self)
         }else{
             print("Submit button")
-            self.delegate?.confirmedShoppingCart(true) 
-            self.performSegueWithIdentifier("unwindToCartWithConfirm", sender: self)
+            self.delegate?.confirmedShoppingCart(clear: true) 
+            self.performSegue(withIdentifier: "unwindToCartWithConfirm", sender: self)
         }
     }
     
-    @IBAction func cancelCheckout(sender: UIButton) {
-        self.delegate?.confirmedShoppingCart(false)
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelCheckout(_ sender: UIButton) {
+        self.delegate?.confirmedShoppingCart(clear: false)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    private func loadDataFromOrderID(completion: () -> Void){
-        get_json_data(CONSTANTS.URL_INFO.ORDER_DETAIL, query_paramters: ["order_id": String(orderID!)]) { (json) in
+    private func loadDataFromOrderID(completion: @escaping () -> Void){
+        get_json_data(query_type: CONSTANTS.URL_INFO.ORDER_DETAIL, query_paramters: ["order_id": String(orderID!) as AnyObject]) { (json) in
             
             if let itemArray = json!["rlist"] as? [[String: String]]{
                 if itemArray.count > 0{
@@ -115,14 +115,14 @@ class OrderSummaryViewController: UIViewController {
 
 extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shoppingCart.count + 2
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.ORDER_SUMMARY_CELL) as! OrderSummaryTableViewCell
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .CurrencyStyle
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.ORDER_SUMMARY_CELL) as! OrderSummaryTableViewCell
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.currency
 
         if (indexPath.row == 0) {
             cell.productName.text = "Product Name"
@@ -132,14 +132,14 @@ extension OrderSummaryViewController: UITableViewDataSource, UITableViewDelegate
         else if (indexPath.row == shoppingCart.count + 1) {
             cell.productName.text = "TOTAL"
             cell.quantity.text = String(self.totalQuantity)
-            cell.price.text = formatter.stringFromNumber(self.totalPrice)
+            cell.price.text = formatter.string(from: NSNumber(value: self.totalPrice))!
         }
         else {
             let item = self.shoppingCart[indexPath.row-1]
 
             cell.productName.text = item.productName
             cell.quantity.text = String(item.quantity)
-            cell.price.text = formatter.stringFromNumber(item.price)! ?? "0.00"
+            cell.price.text = formatter.string(from: NSNumber(value: item.price))! 
 
             self.totalQuantity += item.quantity
             self.totalPrice += item.price * Double(item.quantity)

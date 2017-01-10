@@ -20,9 +20,9 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     private let pageOptions = CONSTANTS.SIDE_MENU_OPTIONS
     
     override func viewDidLoad() {
-        let index = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.cellForRowAtIndexPath(index)?.selected = true
-        self.userRank.text = User.getUserStatus().uppercaseString
+        let index = NSIndexPath(item: 0, section: 0)
+        self.tableView.cellForRow(at: index as IndexPath)?.isSelected = true
+        self.userRank.text = User.getUserStatus().uppercased()
         self.name.text = User.username + " | " + User.companyName
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,21 +31,21 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         self.tableView.reloadData()
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return segues.count
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print(indexPath.row)
-        let cell = tableView.dequeueReusableCellWithIdentifier(CONSTANTS.CELL_IDENTIFIERS.SIDE_MENU_CELLS)! as! MenuCellTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CONSTANTS.CELL_IDENTIFIERS.SIDE_MENU_CELLS)! as! MenuCellTableViewCell
         
         cell.menuLabel.text = self.pageOptions[indexPath.row]
         cell.menuIcon.image = UIImage(named: pageOptionIcons[indexPath.row])
         //cell.textLabel?.text = self.vcNames[indexPath.row]
         return cell
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        sideMenuController?.performSegueWithIdentifier(segues[indexPath.row], sender: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sideMenuController?.performSegue(withIdentifier: segues[indexPath.row], sender: nil)
     }
     
 
@@ -63,6 +63,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         logout()
         let storyboard = self.storyboard
         let loginVC = storyboard?.instantiateInitialViewController() as! LoginVC
-        self.presentViewController(loginVC, animated: true, completion: nil)
+        self.present(loginVC, animated: true, completion: nil)
     }
 }
