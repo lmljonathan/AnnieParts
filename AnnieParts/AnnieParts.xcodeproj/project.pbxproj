@@ -1,0 +1,728 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2FA02AA67E27054DA812F803 /* Pods_AnnieParts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2770DCED801A9C62B20E0E35 /* Pods_AnnieParts.framework */; };
+		3CB01C3B1E2472BE00EE22F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */; };
+		3CB01C3D1E2472BE00EE22F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C3C1E2472BE00EE22F6 /* ViewController.swift */; };
+		3CB01C401E2472BE00EE22F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */; };
+		3CB01C421E2472BE00EE22F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C411E2472BE00EE22F6 /* Assets.xcassets */; };
+		3CB01C451E2472BE00EE22F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */; };
+		3CB01C501E2472BE00EE22F6 /* AnniePartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C4F1E2472BE00EE22F6 /* AnniePartsTests.swift */; };
+		3CB01C5B1E2472BE00EE22F6 /* AnniePartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */; };
+		87CB8430062B220C672381D8 /* Pods_AnniePartsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7922A15B6AC13A3AA97CB1D2 /* Pods_AnniePartsTests.framework */; };
+		D843790EA11CBC8C2131CE15 /* Pods_AnniePartsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1804BF67F2EF41CEA246AC5 /* Pods_AnniePartsUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3CB01C4C1E2472BE00EE22F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CB01C2F1E2472BE00EE22F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CB01C361E2472BE00EE22F6;
+			remoteInfo = AnnieParts;
+		};
+		3CB01C571E2472BE00EE22F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CB01C2F1E2472BE00EE22F6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CB01C361E2472BE00EE22F6;
+			remoteInfo = AnnieParts;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		157CCDD56086A09E4F732AB6 /* Pods-AnnieParts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnieParts.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts.release.xcconfig"; sourceTree = "<group>"; };
+		2770DCED801A9C62B20E0E35 /* Pods_AnnieParts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnnieParts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AF9C8A2952C3ACA65B3A318 /* Pods-AnniePartsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnniePartsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnniePartsTests/Pods-AnniePartsTests.release.xcconfig"; sourceTree = "<group>"; };
+		3CB01C371E2472BE00EE22F6 /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3CB01C3C1E2472BE00EE22F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3CB01C3F1E2472BE00EE22F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3CB01C411E2472BE00EE22F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3CB01C441E2472BE00EE22F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3CB01C461E2472BE00EE22F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CB01C4B1E2472BE00EE22F6 /* AnniePartsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnniePartsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB01C4F1E2472BE00EE22F6 /* AnniePartsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsTests.swift; sourceTree = "<group>"; };
+		3CB01C511E2472BE00EE22F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CB01C561E2472BE00EE22F6 /* AnniePartsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnniePartsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsUITests.swift; sourceTree = "<group>"; };
+		3CB01C5C1E2472BE00EE22F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7922A15B6AC13A3AA97CB1D2 /* Pods_AnniePartsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniePartsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1804BF67F2EF41CEA246AC5 /* Pods_AnniePartsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniePartsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8388E93E779F4F93DF81594 /* Pods-AnnieParts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnieParts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts.debug.xcconfig"; sourceTree = "<group>"; };
+		CDEA649DA55F78A1EE000568 /* Pods-AnniePartsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnniePartsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnniePartsUITests/Pods-AnniePartsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E60929C9473B874F841491C7 /* Pods-AnniePartsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnniePartsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnniePartsTests/Pods-AnniePartsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E66DE27A2C049078C8873E73 /* Pods-AnniePartsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnniePartsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnniePartsUITests/Pods-AnniePartsUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CB01C341E2472BE00EE22F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FA02AA67E27054DA812F803 /* Pods_AnnieParts.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB01C481E2472BE00EE22F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CB8430062B220C672381D8 /* Pods_AnniePartsTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB01C531E2472BE00EE22F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D843790EA11CBC8C2131CE15 /* Pods_AnniePartsUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CB01C2E1E2472BE00EE22F6 = {
+			isa = PBXGroup;
+			children = (
+				3CB01C391E2472BE00EE22F6 /* AnnieParts */,
+				3CB01C4E1E2472BE00EE22F6 /* AnniePartsTests */,
+				3CB01C591E2472BE00EE22F6 /* AnniePartsUITests */,
+				3CB01C381E2472BE00EE22F6 /* Products */,
+				DC62CB597C9BF8526349F24C /* Pods */,
+				670943EFB763317D2A969DF4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3CB01C381E2472BE00EE22F6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CB01C371E2472BE00EE22F6 /* AnnieParts.app */,
+				3CB01C4B1E2472BE00EE22F6 /* AnniePartsTests.xctest */,
+				3CB01C561E2472BE00EE22F6 /* AnniePartsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CB01C391E2472BE00EE22F6 /* AnnieParts */ = {
+			isa = PBXGroup;
+			children = (
+				3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */,
+				3CB01C3C1E2472BE00EE22F6 /* ViewController.swift */,
+				3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */,
+				3CB01C411E2472BE00EE22F6 /* Assets.xcassets */,
+				3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */,
+				3CB01C461E2472BE00EE22F6 /* Info.plist */,
+			);
+			path = AnnieParts;
+			sourceTree = "<group>";
+		};
+		3CB01C4E1E2472BE00EE22F6 /* AnniePartsTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CB01C4F1E2472BE00EE22F6 /* AnniePartsTests.swift */,
+				3CB01C511E2472BE00EE22F6 /* Info.plist */,
+			);
+			path = AnniePartsTests;
+			sourceTree = "<group>";
+		};
+		3CB01C591E2472BE00EE22F6 /* AnniePartsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */,
+				3CB01C5C1E2472BE00EE22F6 /* Info.plist */,
+			);
+			path = AnniePartsUITests;
+			sourceTree = "<group>";
+		};
+		670943EFB763317D2A969DF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2770DCED801A9C62B20E0E35 /* Pods_AnnieParts.framework */,
+				7922A15B6AC13A3AA97CB1D2 /* Pods_AnniePartsTests.framework */,
+				A1804BF67F2EF41CEA246AC5 /* Pods_AnniePartsUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC62CB597C9BF8526349F24C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B8388E93E779F4F93DF81594 /* Pods-AnnieParts.debug.xcconfig */,
+				157CCDD56086A09E4F732AB6 /* Pods-AnnieParts.release.xcconfig */,
+				E60929C9473B874F841491C7 /* Pods-AnniePartsTests.debug.xcconfig */,
+				2AF9C8A2952C3ACA65B3A318 /* Pods-AnniePartsTests.release.xcconfig */,
+				CDEA649DA55F78A1EE000568 /* Pods-AnniePartsUITests.debug.xcconfig */,
+				E66DE27A2C049078C8873E73 /* Pods-AnniePartsUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CB01C361E2472BE00EE22F6 /* AnnieParts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB01C5F1E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnnieParts" */;
+			buildPhases = (
+				D1871583A29B7B2C8E819D35 /* [CP] Check Pods Manifest.lock */,
+				3CB01C331E2472BE00EE22F6 /* Sources */,
+				3CB01C341E2472BE00EE22F6 /* Frameworks */,
+				3CB01C351E2472BE00EE22F6 /* Resources */,
+				A57B8E21C0C4219BE32E5FEE /* [CP] Embed Pods Frameworks */,
+				917B8DEFFAFDBC66D872AD0A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AnnieParts;
+			productName = AnnieParts;
+			productReference = 3CB01C371E2472BE00EE22F6 /* AnnieParts.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3CB01C4A1E2472BE00EE22F6 /* AnniePartsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB01C621E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnniePartsTests" */;
+			buildPhases = (
+				5446A2ECC033378B42ED5144 /* [CP] Check Pods Manifest.lock */,
+				3CB01C471E2472BE00EE22F6 /* Sources */,
+				3CB01C481E2472BE00EE22F6 /* Frameworks */,
+				3CB01C491E2472BE00EE22F6 /* Resources */,
+				6425D5205E7347C9F3153E91 /* [CP] Embed Pods Frameworks */,
+				92655779807B12DE942C7C25 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CB01C4D1E2472BE00EE22F6 /* PBXTargetDependency */,
+			);
+			name = AnniePartsTests;
+			productName = AnniePartsTests;
+			productReference = 3CB01C4B1E2472BE00EE22F6 /* AnniePartsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CB01C551E2472BE00EE22F6 /* AnniePartsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB01C651E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnniePartsUITests" */;
+			buildPhases = (
+				DA02A11F3F2CDEFC19874A11 /* [CP] Check Pods Manifest.lock */,
+				3CB01C521E2472BE00EE22F6 /* Sources */,
+				3CB01C531E2472BE00EE22F6 /* Frameworks */,
+				3CB01C541E2472BE00EE22F6 /* Resources */,
+				F012B0FC28EF9C98C3A36FB1 /* [CP] Embed Pods Frameworks */,
+				2DC939359B506C0117D4193B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CB01C581E2472BE00EE22F6 /* PBXTargetDependency */,
+			);
+			name = AnniePartsUITests;
+			productName = AnniePartsUITests;
+			productReference = 3CB01C561E2472BE00EE22F6 /* AnniePartsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CB01C2F1E2472BE00EE22F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = boyang;
+				TargetAttributes = {
+					3CB01C361E2472BE00EE22F6 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = QBURSC393N;
+						ProvisioningStyle = Automatic;
+					};
+					3CB01C4A1E2472BE00EE22F6 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = QBURSC393N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3CB01C361E2472BE00EE22F6;
+					};
+					3CB01C551E2472BE00EE22F6 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = QBURSC393N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3CB01C361E2472BE00EE22F6;
+					};
+				};
+			};
+			buildConfigurationList = 3CB01C321E2472BE00EE22F6 /* Build configuration list for PBXProject "AnnieParts" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3CB01C2E1E2472BE00EE22F6;
+			productRefGroup = 3CB01C381E2472BE00EE22F6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CB01C361E2472BE00EE22F6 /* AnnieParts */,
+				3CB01C4A1E2472BE00EE22F6 /* AnniePartsTests */,
+				3CB01C551E2472BE00EE22F6 /* AnniePartsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CB01C351E2472BE00EE22F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB01C451E2472BE00EE22F6 /* LaunchScreen.storyboard in Resources */,
+				3CB01C421E2472BE00EE22F6 /* Assets.xcassets in Resources */,
+				3CB01C401E2472BE00EE22F6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB01C491E2472BE00EE22F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB01C541E2472BE00EE22F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DC939359B506C0117D4193B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnniePartsUITests/Pods-AnniePartsUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5446A2ECC033378B42ED5144 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6425D5205E7347C9F3153E91 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnniePartsTests/Pods-AnniePartsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		917B8DEFFAFDBC66D872AD0A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92655779807B12DE942C7C25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnniePartsTests/Pods-AnniePartsTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A57B8E21C0C4219BE32E5FEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1871583A29B7B2C8E819D35 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DA02A11F3F2CDEFC19874A11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F012B0FC28EF9C98C3A36FB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnniePartsUITests/Pods-AnniePartsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CB01C331E2472BE00EE22F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB01C3D1E2472BE00EE22F6 /* ViewController.swift in Sources */,
+				3CB01C3B1E2472BE00EE22F6 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB01C471E2472BE00EE22F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB01C501E2472BE00EE22F6 /* AnniePartsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB01C521E2472BE00EE22F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB01C5B1E2472BE00EE22F6 /* AnniePartsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3CB01C4D1E2472BE00EE22F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CB01C361E2472BE00EE22F6 /* AnnieParts */;
+			targetProxy = 3CB01C4C1E2472BE00EE22F6 /* PBXContainerItemProxy */;
+		};
+		3CB01C581E2472BE00EE22F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CB01C361E2472BE00EE22F6 /* AnnieParts */;
+			targetProxy = 3CB01C571E2472BE00EE22F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CB01C3F1E2472BE00EE22F6 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CB01C441E2472BE00EE22F6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CB01C5D1E2472BE00EE22F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3CB01C5E1E2472BE00EE22F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CB01C601E2472BE00EE22F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8388E93E779F4F93DF81594 /* Pods-AnnieParts.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QBURSC393N;
+				INFOPLIST_FILE = AnnieParts/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.boyang.AnnieParts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3CB01C611E2472BE00EE22F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 157CCDD56086A09E4F732AB6 /* Pods-AnnieParts.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QBURSC393N;
+				INFOPLIST_FILE = AnnieParts/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.boyang.AnnieParts;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3CB01C631E2472BE00EE22F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E60929C9473B874F841491C7 /* Pods-AnniePartsTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QBURSC393N;
+				INFOPLIST_FILE = AnniePartsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.boyang.AnniePartsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AnnieParts.app/AnnieParts";
+			};
+			name = Debug;
+		};
+		3CB01C641E2472BE00EE22F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AF9C8A2952C3ACA65B3A318 /* Pods-AnniePartsTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = QBURSC393N;
+				INFOPLIST_FILE = AnniePartsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.boyang.AnniePartsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AnnieParts.app/AnnieParts";
+			};
+			name = Release;
+		};
+		3CB01C661E2472BE00EE22F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDEA649DA55F78A1EE000568 /* Pods-AnniePartsUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = QBURSC393N;
+				INFOPLIST_FILE = AnniePartsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.boyang.AnniePartsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = AnnieParts;
+			};
+			name = Debug;
+		};
+		3CB01C671E2472BE00EE22F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E66DE27A2C049078C8873E73 /* Pods-AnniePartsUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = QBURSC393N;
+				INFOPLIST_FILE = AnniePartsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.boyang.AnniePartsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = AnnieParts;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CB01C321E2472BE00EE22F6 /* Build configuration list for PBXProject "AnnieParts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB01C5D1E2472BE00EE22F6 /* Debug */,
+				3CB01C5E1E2472BE00EE22F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CB01C5F1E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnnieParts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB01C601E2472BE00EE22F6 /* Debug */,
+				3CB01C611E2472BE00EE22F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3CB01C621E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnniePartsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB01C631E2472BE00EE22F6 /* Debug */,
+				3CB01C641E2472BE00EE22F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3CB01C651E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnniePartsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB01C661E2472BE00EE22F6 /* Debug */,
+				3CB01C671E2472BE00EE22F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3CB01C2F1E2472BE00EE22F6 /* Project object */;
+}
