@@ -8,35 +8,17 @@
 
 import Foundation
 
-class User {
-    private var _user_rank: Int
-    private var _username: String
-    private var _company_name: String
-    private var _shopping_cart_count: Int
 
-    var username: String {
-        return _username
-    }
-    var user_rank: Int {
-        return _user_rank
-    }
-    var company_name: String {
-        return _company_name
-    }
-    var shopping_cart_count: Int {
-        return _shopping_cart_count
-    }
+struct User {
+    static var user_rank: Int = -1
+    static var username: String = ""
+    static var company_name: String = ""
+    static var shopping_count = -1
 
-    init(username: String, user_rank: Int, company_name: String, shopping_cart: Int) {
-        _username = username
-        _user_rank = user_rank
-        _company_name = company_name
-        _shopping_cart_count = shopping_cart
-    }
-    init() {
-        _username = ""
-        _user_rank = -1
-        _company_name = ""
-        _shopping_cart_count = -1
+    init(name: String, rank: Int, company: String, shopping: Int) {
+        User.user_rank = rank
+        User.username = name
+        User.company_name = company
+        User.shopping_count = shopping
     }
 }

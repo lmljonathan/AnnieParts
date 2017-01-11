@@ -104,12 +104,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.login_button.isSelected = true
         if (!username.isEmpty && !password.isEmpty) {
             self.loading.startAnimating()
-            login_request(username: username, password: password, completion: { (user, status) in
+            login_request(username: username, password: password, completion: { (status) in
                 print(status)
                 if (status) {
-                    //perform segue
-                }
-                else {
+                    print(User.username)
+                } else {
+                    print("lksdjflksjdkl")
                     self.login_button.isSelected = false
                     self.loading.stopAnimating()
                     self.login_failure()
