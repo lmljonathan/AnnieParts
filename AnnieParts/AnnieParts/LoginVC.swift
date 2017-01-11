@@ -16,7 +16,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var login_button: UIButton!
     @IBOutlet weak var annieparts_logo: UIImageView!
     @IBOutlet weak var annieparts_label: UILabel!
-
     private var original_frames: [UIView: CGFloat]?
 
     override func viewDidLoad() {
@@ -50,7 +49,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.username_field.makeTranslation(x: self.username_field.x, y: 50)
                     self.password_field.makeTranslation(x: self.password_field.x, y: self.username_field.frame.maxY + 15)
-
                     self.loading.makeTranslation(x: self.loading.x, y: self.view.height - (keyboard_size.height + 60))
                     self.login_button.makeTranslation(x: self.login_button.x, y: self.view.height - (keyboard_size.height + 70))
                 })
