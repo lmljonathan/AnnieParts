@@ -5,16 +5,6 @@ target 'AnnieParts' do
 
   # Pods for AnnieParts
   pod 'Alamofire'
-  pod 'SwiftyJSON'
 
-  target 'AnniePartsTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'AnniePartsUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
 end

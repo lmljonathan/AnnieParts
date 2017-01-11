@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 
 let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
@@ -26,9 +25,7 @@ func login_request(username: String, password: String, completion: @escaping (Us
                     completion(User(username: username, user_rank: user_rank, company_name: company, shopping_cart: shopping_count), true)
                 }
             }
-            else {
-                completion(User(),false)
-            }
         }
+        completion(User(),false)
     }
 }

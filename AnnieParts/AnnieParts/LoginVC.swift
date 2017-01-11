@@ -8,47 +8,118 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var username_field: UITextField!
     @IBOutlet weak var password_field: UITextField!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var login_button: UIButton!
-    
+    @IBOutlet weak var annieparts_logo: UIImageView!
+    @IBOutlet weak var annieparts_label: UILabel!
+
+    private var original_frames: [UIView: CGFloat]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.login_button.setTitleColor(UIColor.lightGray, for: .selected)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+        self.navigationController?.isNavigationBarHidden = true
+        self.username_field.delegate = self
+        self.password_field.delegate = self
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.original_frames = [self.username_field: self.username_field.y, self.password_field: self.password_field.y, self.login_button: self.login_button.y, self.loading: self.loading.y]
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    func login_failure() {
 
-    }
-    
     @IBAction func login(_ sender: UIButton) {
+        request_login()
+    }
+
+    func keyboardWillShow(notification: NSNotification) {
+        if self.username_field.y != 50{
+            if let keyboard_size = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+
+                self.annieparts_logo.isHidden = true
+                self.annieparts_label.isHidden = true
+
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.username_field.makeTranslation(x: self.username_field.x, y: 50)
+                    self.password_field.makeTranslation(x: self.password_field.x, y: self.username_field.frame.maxY + 10)
+
+                    self.loading.makeTranslation(x: self.loading.x, y: self.view.height - (keyboard_size.height + 60))
+                    self.login_button.makeTranslation(x: self.login_button.x, y: self.view.height - (keyboard_size.height + 70))
+                })
+
+            }
+        }
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        if original_frames != nil{
+            self.annieparts_logo.isHidden = false
+            self.annieparts_label.isHidden = false
+            for view in original_frames!.keys{
+                UIView.animate(withDuration: 0.5, animations: {
+                    view.transform = CGAffineTransform(translationX: 0, y: 0)
+                })
+            }
+        }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.username_field{
+            if textField.text != ""{
+                self.password_field.becomeFirstResponder()
+            }
+        }else{
+            textField.resignFirstResponder()
+            request_login()
+        }
+        return true
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+        self.resignFirstResponder()
+    }
+
+    func login_failure() {
+        self.username_field.layer.shake()
+        self.password_field.layer.shake()
+        self.username_field.text = ""
+        self.password_field.text = ""
+        self.username_field.becomeFirstResponder()
+    }
+
+    func request_login() {
         let username = self.username_field.text!
         let password = self.password_field.text!
-        sender.isSelected = true
+        self.login_button.isSelected = true
         if (!username.isEmpty && !password.isEmpty) {
             self.loading.startAnimating()
             login_request(username: username, password: password, completion: { (user, status) in
+                print(status)
                 if (status) {
-                    print("hello")
                     //perform segue
                 }
                 else {
-                    //feedback that login failed
+                    self.login_button.isSelected = false
+                    self.loading.stopAnimating()
+                    self.login_failure()
                 }
-                sender.isSelected = false
+                self.login_button.isSelected = false
                 self.loading.stopAnimating()
             })
         }
         else {
-            //feedback that login failed
+            login_failure()
         }
     }
 }
