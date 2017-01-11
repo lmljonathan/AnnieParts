@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2FA02AA67E27054DA812F803 /* Pods_AnnieParts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2770DCED801A9C62B20E0E35 /* Pods_AnnieParts.framework */; };
+		3CABAA081E25E7EC002AA0ED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABAA071E25E7EC002AA0ED /* LoginVC.swift */; };
+		3CABAA0A1E25E9F0002AA0ED /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABAA091E25E9F0002AA0ED /* DataHandler.swift */; };
+		3CABAA0C1E25EF22002AA0ED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABAA0B1E25EF22002AA0ED /* Model.swift */; };
 		3CB01C3B1E2472BE00EE22F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */; };
-		3CB01C3D1E2472BE00EE22F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C3C1E2472BE00EE22F6 /* ViewController.swift */; };
 		3CB01C401E2472BE00EE22F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */; };
 		3CB01C421E2472BE00EE22F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C411E2472BE00EE22F6 /* Assets.xcassets */; };
 		3CB01C451E2472BE00EE22F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */; };
@@ -40,9 +42,11 @@
 		157CCDD56086A09E4F732AB6 /* Pods-AnnieParts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnieParts.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts.release.xcconfig"; sourceTree = "<group>"; };
 		2770DCED801A9C62B20E0E35 /* Pods_AnnieParts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnnieParts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF9C8A2952C3ACA65B3A318 /* Pods-AnniePartsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnniePartsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnniePartsTests/Pods-AnniePartsTests.release.xcconfig"; sourceTree = "<group>"; };
+		3CABAA071E25E7EC002AA0ED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		3CABAA091E25E9F0002AA0ED /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		3CABAA0B1E25EF22002AA0ED /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3CB01C371E2472BE00EE22F6 /* AnnieParts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnieParts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3CB01C3C1E2472BE00EE22F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3CB01C3F1E2472BE00EE22F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3CB01C411E2472BE00EE22F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CB01C441E2472BE00EE22F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C677A4F1E25B0BC003719FC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3CABAA071E25E7EC002AA0ED /* LoginVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		3CB01C2E1E2472BE00EE22F6 = {
 			isa = PBXGroup;
 			children = (
@@ -115,8 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */,
-				3CB01C3C1E2472BE00EE22F6 /* ViewController.swift */,
+				3CABAA091E25E9F0002AA0ED /* DataHandler.swift */,
+				3CABAA0B1E25EF22002AA0ED /* Model.swift */,
 				3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */,
+				3C677A4F1E25B0BC003719FC /* Controller */,
 				3CB01C411E2472BE00EE22F6 /* Assets.xcassets */,
 				3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */,
 				3CB01C461E2472BE00EE22F6 /* Info.plist */,
@@ -449,8 +463,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CB01C3D1E2472BE00EE22F6 /* ViewController.swift in Sources */,
+				3CABAA081E25E7EC002AA0ED /* LoginVC.swift in Sources */,
+				3CABAA0A1E25E9F0002AA0ED /* DataHandler.swift in Sources */,
 				3CB01C3B1E2472BE00EE22F6 /* AppDelegate.swift in Sources */,
+				3CABAA0C1E25EF22002AA0ED /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +539,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -545,7 +562,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -572,6 +589,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -588,7 +606,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -600,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B8388E93E779F4F93DF81594 /* Pods-AnnieParts.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QBURSC393N;
 				INFOPLIST_FILE = AnnieParts/Info.plist;
@@ -614,6 +633,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 157CCDD56086A09E4F732AB6 /* Pods-AnnieParts.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QBURSC393N;
 				INFOPLIST_FILE = AnnieParts/Info.plist;
@@ -705,6 +725,7 @@
 				3CB01C611E2472BE00EE22F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CB01C621E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnniePartsTests" */ = {
 			isa = XCConfigurationList;
@@ -713,6 +734,7 @@
 				3CB01C641E2472BE00EE22F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CB01C651E2472BE00EE22F6 /* Build configuration list for PBXNativeTarget "AnniePartsUITests" */ = {
 			isa = XCConfigurationList;
@@ -721,6 +743,7 @@
 				3CB01C671E2472BE00EE22F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
