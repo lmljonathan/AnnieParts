@@ -45,10 +45,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification) {
         if self.username_field.y != 50{
             if let keyboard_size = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-
                 self.annieparts_logo.isHidden = true
                 self.annieparts_label.isHidden = true
-
                 UIView.animate(withDuration: 0.5, animations: {
                     self.username_field.makeTranslation(x: self.username_field.x, y: 50)
                     self.password_field.makeTranslation(x: self.password_field.x, y: self.username_field.frame.maxY + 15)
@@ -56,7 +54,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.loading.makeTranslation(x: self.loading.x, y: self.view.height - (keyboard_size.height + 60))
                     self.login_button.makeTranslation(x: self.login_button.x, y: self.view.height - (keyboard_size.height + 70))
                 })
-
             }
         }
     }
@@ -105,11 +102,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if (!username.isEmpty && !password.isEmpty) {
             self.loading.startAnimating()
             login_request(username: username, password: password, completion: { (status) in
-                print(status)
                 if (status) {
                     print(User.username)
                 } else {
-                    print("lksdjflksjdkl")
                     self.login_button.isSelected = false
                     self.loading.stopAnimating()
                     self.login_failure()
