@@ -33,10 +33,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.original_frames = [self.username_field: self.username_field.y, self.password_field: self.password_field.y, self.login_button: self.login_button.y, self.loading: self.loading.y]
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     @IBAction func login(_ sender: UIButton) {
         request_login()
     }
@@ -101,7 +97,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             self.loading.startAnimating()
             login_request(username: username, password: password, completion: { (status) in
                 if (status) {
-                    print(User.username)
+                    self.performSegue(withIdentifier: CONSTANTS.SEGUES.SEARCH, sender: nil)
                 } else {
                     self.login_button.isSelected = false
                     self.loading.stopAnimating()

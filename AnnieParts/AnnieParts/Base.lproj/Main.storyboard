@@ -202,11 +202,129 @@
                         <outlet property="login_button" destination="qTe-ia-4Ub" id="4Sw-sR-W54"/>
                         <outlet property="password_field" destination="ZYS-Mp-0IV" id="es0-lU-5jt"/>
                         <outlet property="username_field" destination="FtD-WY-k15" id="IZ7-PS-CVe"/>
+                        <segue destination="Jj8-zY-aiQ" kind="show" identifier="showSearch" id="37G-pr-isA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1493.25" y="310.125"/>
+        </scene>
+        <!--SearchVC-->
+        <scene sceneID="MUJ-wR-yv9">
+            <objects>
+                <tableViewController id="Jj8-zY-aiQ" customClass="SearchVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Jxo-3f-obc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="SearchHeaderCell" id="ccW-Dq-OPZ" customClass="SearchHeaderCell" customModule="AnnieParts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ccW-Dq-OPZ" id="f4W-84-anT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sao-99-iyW">
+                                            <rect key="frame" x="13" y="11" width="318" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sls-aw-r7l">
+                                            <rect key="frame" x="339" y="11" width="23" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="5a3-0D-qNw"/>
+                                                <constraint firstAttribute="width" constant="23" id="ota-zy-uHU"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="sls-aw-r7l" firstAttribute="leading" secondItem="sao-99-iyW" secondAttribute="trailing" constant="8" id="0V6-80-1ST"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sao-99-iyW" secondAttribute="bottom" constant="3" id="FN7-lj-u4B"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sls-aw-r7l" secondAttribute="trailing" constant="5" id="LDn-sU-Dzr"/>
+                                        <constraint firstItem="sls-aw-r7l" firstAttribute="centerY" secondItem="sao-99-iyW" secondAttribute="centerY" id="XpK-RA-3D3"/>
+                                        <constraint firstItem="sao-99-iyW" firstAttribute="leading" secondItem="f4W-84-anT" secondAttribute="leadingMargin" constant="5" id="ehS-vq-lOj"/>
+                                        <constraint firstItem="sao-99-iyW" firstAttribute="top" secondItem="f4W-84-anT" secondAttribute="topMargin" constant="3" id="hfg-08-Sjw"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="expand_symbol" destination="sls-aw-r7l" id="bLF-cB-Z1d"/>
+                                    <outlet property="title" destination="sao-99-iyW" id="8cX-3R-tid"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchOptionCell" id="WE4-uH-Opw" customClass="SearchOptionCell" customModule="AnnieParts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WE4-uH-Opw" id="Ld9-S1-FEH">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-vo-vAJ">
+                                            <rect key="frame" x="13" y="11" width="349" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="QBr-vo-vAJ" firstAttribute="top" secondItem="Ld9-S1-FEH" secondAttribute="topMargin" constant="3" id="mCH-xX-XgC"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="QBr-vo-vAJ" secondAttribute="bottom" constant="3" id="nQ5-BQ-lGO"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="QBr-vo-vAJ" secondAttribute="trailing" constant="5" id="s9i-7g-Cd7"/>
+                                        <constraint firstItem="QBr-vo-vAJ" firstAttribute="leading" secondItem="Ld9-S1-FEH" secondAttribute="leadingMargin" constant="5" id="zzp-xH-R6o"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="title" destination="QBr-vo-vAJ" id="zrL-vb-4ea"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Jj8-zY-aiQ" id="pZ1-Et-5rK"/>
+                            <outlet property="delegate" destination="Jj8-zY-aiQ" id="Seb-3r-4Ix"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="kQZ-vd-dHd" kind="show" identifier="showProductList" id="Bkd-tK-gB9"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KP2-QC-jTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2365.5999999999999" y="309.89505247376314"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="N4k-EI-LNI">
+            <objects>
+                <tableViewController id="kQZ-vd-dHd" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cEp-OO-uTp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rqD-qW-XBB">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rqD-qW-XBB" id="29K-pm-eKj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kQZ-vd-dHd" id="9Ff-4B-V5P"/>
+                            <outlet property="delegate" destination="kQZ-vd-dHd" id="Aj1-La-oZB"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LhX-16-geM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3138" y="310"/>
         </scene>
     </scenes>
     <resources>
