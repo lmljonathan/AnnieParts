@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kQZ-vd-dHd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -202,7 +202,7 @@
                         <outlet property="login_button" destination="qTe-ia-4Ub" id="4Sw-sR-W54"/>
                         <outlet property="password_field" destination="ZYS-Mp-0IV" id="es0-lU-5jt"/>
                         <outlet property="username_field" destination="FtD-WY-k15" id="IZ7-PS-CVe"/>
-                        <segue destination="Jj8-zY-aiQ" kind="show" identifier="showSearch" id="37G-pr-isA"/>
+                        <segue destination="M8T-QF-y2o" kind="show" identifier="showSearch" id="37G-pr-isA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -290,30 +290,61 @@
                             <outlet property="delegate" destination="Jj8-zY-aiQ" id="Seb-3r-4Ix"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Bh5-Jt-OeT"/>
                     <connections>
                         <segue destination="kQZ-vd-dHd" kind="show" identifier="showProductList" id="Bkd-tK-gB9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KP2-QC-jTG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2365.5999999999999" y="309.89505247376314"/>
+            <point key="canvasLocation" x="3304.8000000000002" y="309.89505247376314"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Product ListVC-->
         <scene sceneID="N4k-EI-LNI">
             <objects>
-                <tableViewController id="kQZ-vd-dHd" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cEp-OO-uTp">
+                <tableViewController id="kQZ-vd-dHd" customClass="ProductListVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="130" sectionHeaderHeight="18" sectionFooterHeight="18" id="cEp-OO-uTp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rqD-qW-XBB">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductCell" rowHeight="130" id="rqD-qW-XBB" customClass="ProductCell" customModule="AnnieParts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rqD-qW-XBB" id="29K-pm-eKj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dvx-AW-PwB">
+                                            <rect key="frame" x="0.0" y="5" width="375" height="120"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anniepartslogo" translatesAutoresizingMaskIntoConstraints="NO" id="840-Iv-X04">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="mnY-0I-mya"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="840-Iv-X04" firstAttribute="leading" secondItem="dvx-AW-PwB" secondAttribute="leading" id="GET-mG-erw"/>
+                                                <constraint firstItem="840-Iv-X04" firstAttribute="centerY" secondItem="dvx-AW-PwB" secondAttribute="centerY" id="SRd-q6-v7h"/>
+                                                <constraint firstItem="840-Iv-X04" firstAttribute="height" secondItem="dvx-AW-PwB" secondAttribute="height" id="uMD-Iz-0r1"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dvx-AW-PwB" firstAttribute="top" secondItem="29K-pm-eKj" secondAttribute="top" constant="5" id="1G8-AD-gfo"/>
+                                        <constraint firstAttribute="bottom" secondItem="dvx-AW-PwB" secondAttribute="bottom" constant="5" id="6IB-oC-LgS"/>
+                                        <constraint firstAttribute="trailing" secondItem="dvx-AW-PwB" secondAttribute="trailing" id="CT4-Oc-DFH"/>
+                                        <constraint firstItem="dvx-AW-PwB" firstAttribute="leading" secondItem="29K-pm-eKj" secondAttribute="leading" id="DOz-nw-lde"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="product_cell_view" destination="dvx-AW-PwB" id="h0W-pv-eo9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -324,7 +355,25 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LhX-16-geM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3138" y="310"/>
+            <point key="canvasLocation" x="4076" y="309.89505247376314"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nuj-AI-YiM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M8T-QF-y2o" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQR-ja-tMj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jj8-zY-aiQ" kind="relationship" relationship="rootViewController" id="XD0-vL-RY3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZV-CD-9es" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2365.5999999999999" y="309.89505247376314"/>
         </scene>
     </scenes>
     <resources>

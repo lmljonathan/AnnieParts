@@ -69,10 +69,10 @@ class SearchVC: UITableViewController {
 
         if (expanded && indexPath.row > 0) {
             if (option_ids.count > 0) {
-                self.tableView.deselectRow(at: indexPath, animated: true)
                 selected_search_option_id = option_ids[indexPath.row - 1]
                 self.performSegue(withIdentifier: CONSTANTS.SEGUES.PRODUCTS, sender: nil)
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
+                self.tableView.deselectRow(at: indexPath, animated: true)
             }
         }
         else {

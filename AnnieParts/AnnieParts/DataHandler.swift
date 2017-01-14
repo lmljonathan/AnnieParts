@@ -12,6 +12,7 @@ import Alamofire
 let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
+let PRODUCTS_URL = "appSearch.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
@@ -49,6 +50,17 @@ func search_options_request(completion: @escaping (Search) -> Void) {
                     option3 = extract_options(data: attributes)
                 }
                 completion(Search(option1: option1, option2: option2, option3: option3))
+            }
+        }
+    }
+}
+
+func product_list_request(search_option: String, id: Int, completion: @escaping ([Product]) -> Void) {
+    let query_url = BASE_URL + PRODUCTS_URL + "?"
+    Alamofire.request(query_url, method: .get, parameters: [search_option: id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if let data = response.result.value as? [String:Any] {
+            if (check_status(response: data)) {
+                // finish this
             }
         }
     }

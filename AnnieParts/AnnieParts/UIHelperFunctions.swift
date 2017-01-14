@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 
 func startActivityIndicator(view: UIView) -> UIActivityIndicatorView {
-    let loading = UIActivityIndicatorView(frame: CGRect(x: view.center.x, y: view.center.y, width: 100.0, height: 100.0))
-    loading.center = view.center
+    let loading = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 50.0, y: view.center.y - 100.0, width: 100.0, height: 100.0))
     loading.activityIndicatorViewStyle = .gray
     loading.hidesWhenStopped = true
-    
+
     view.addSubview(loading)
     loading.startAnimating()
     view.bringSubview(toFront: loading)

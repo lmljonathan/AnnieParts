@@ -48,3 +48,37 @@ struct Search {
         search_options = []
     }
 }
+
+class Product {
+    private var _product_id: Int
+    private var _model_ids: [Int]
+    private var _make_id: Int
+
+    private var _name: String
+    private var _serial_number: String
+    private var _make: String
+    private var _models: [String]
+    private var _start_year: Int
+    private var _end_year: Int
+    private var _image_path: String
+
+    var name: String {
+        return _name
+    }
+    var serial_number: String {
+        return _serial_number
+    }
+
+    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String) {
+        _product_id = product_id
+        _model_ids = model_ids
+        _make_id = make_id
+        _name = name
+        _serial_number = serial_number
+        _make = ""
+        _start_year = start_year
+        _end_year = end_year
+        _image_path = image
+        _models = ["", "", ""]
+    }
+}

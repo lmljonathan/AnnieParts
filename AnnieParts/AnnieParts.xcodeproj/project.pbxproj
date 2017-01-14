@@ -24,6 +24,7 @@
 		3CB01C451E2472BE00EE22F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */; };
 		3CB01C501E2472BE00EE22F6 /* AnniePartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C4F1E2472BE00EE22F6 /* AnniePartsTests.swift */; };
 		3CB01C5B1E2472BE00EE22F6 /* AnniePartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */; };
+		3CC0E0C71E29AA0000A3E86E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		3CB01C561E2472BE00EE22F6 /* AnniePartsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnniePartsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsUITests.swift; sourceTree = "<group>"; };
 		3CB01C5C1E2472BE00EE22F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		7922A15B6AC13A3AA97CB1D2 /* Pods_AnniePartsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniePartsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1804BF67F2EF41CEA246AC5 /* Pods_AnniePartsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniePartsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8388E93E779F4F93DF81594 /* Pods-AnnieParts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnieParts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			children = (
 				3C0CD7FB1E29732C00F70652 /* SearchHeaderCell.swift */,
 				3C0CD7FD1E29733500F70652 /* SearchOptionCell.swift */,
+				3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				3CB01C3B1E2472BE00EE22F6 /* AppDelegate.swift in Sources */,
 				3CABAA0E1E25FF0B002AA0ED /* UIExtensions.swift in Sources */,
 				3CABAA0C1E25EF22002AA0ED /* Model.swift in Sources */,
+				3CC0E0C71E29AA0000A3E86E /* ProductCell.swift in Sources */,
 				3C7052D91E282A8F00D2AF0E /* Constants.swift in Sources */,
 				3C0CD7FC1E29732C00F70652 /* SearchHeaderCell.swift in Sources */,
 			);
