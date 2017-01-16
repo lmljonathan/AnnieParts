@@ -64,13 +64,13 @@ func search_options_request(completion: @escaping (Search) -> Void) {
         if let data = response.result.value as? [String:Any] {
             if (check_status(response: data)) {
                 if let models = data["models"] as? [[String:Any]] {
-                    option1 = extract_options(data: models, category: "车型")
+                    option1 = extract_options(data: models, category: "model")
                 }
                 if let pinpai = data["pinpai"] as? [[String:Any]] {
-                    option2 = extract_options(data: pinpai, category: "品牌")
+                    option2 = extract_options(data: pinpai, category: "pinpai")
                 }
                 if let attributes = data["attributes"] as? [[String:Any]] {
-                    option3 = extract_options(data: attributes, category: "产品")
+                    option3 = extract_options(data: attributes, category: "attr")
                 }
                 completion(Search(option1: option1, option2: option2, option3: option3))
             }
@@ -81,6 +81,7 @@ func search_options_request(completion: @escaping (Search) -> Void) {
 func product_list_request(search_query: String, completion: @escaping ([Product]) -> Void) {
     let query_url = BASE_URL + PRODUCTS_URL + "?" + search_query
     var product_list: [Product] = []
+    print(query_url)
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if let data = response.result.value as? [String:Any] {
             if (check_status(response: data)) {

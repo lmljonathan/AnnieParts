@@ -31,10 +31,14 @@ class ProductCell: UITableViewCell {
     }
 
     func configureCell(data: Product) {
-        print("configure cell;sdlkfajsd")
         product_name.text = data.name
         product_serial_number.text = data.serial_number
+        product_make.text = data.make
+        product_years.text = data.years
+        product_models.text = data.models
+
         let image_url = URL(string: data.image_path)
         product_image.kf.setImage(with: image_url)
+
     }
 }
