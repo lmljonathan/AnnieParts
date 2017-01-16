@@ -66,6 +66,9 @@ class Product {
     private var _end_year: Int
     private var _image_path: String
 
+    var product_id: Int {
+        return _product_id
+    }
     var name: String {
         return _name
     }
@@ -74,6 +77,24 @@ class Product {
     }
     var image_path: String {
         return _image_path
+    }
+    var make: String {
+        if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) as Int! {
+            return CONSTANTS.IDS.MANUFACTURERS[index]
+        }
+        return ""
+    }
+    var years: String {
+        return String(_start_year) + " - " + String(_end_year)
+    }
+    var models: String {
+        var model_string = ""
+        for id in _model_ids {
+            if let index = CONSTANTS.IDS.MODEL_IDS.index(of: id) as Int! {
+                model_string += CONSTANTS.IDS.MODELS[index] + ", "
+            }
+        }
+        return model_string
     }
     init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String) {
         _product_id = product_id
