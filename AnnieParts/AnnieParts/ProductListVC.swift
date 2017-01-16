@@ -27,6 +27,8 @@ class ProductListVC: UITableViewController {
         self.tableView.tableHeaderView = UIView()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
     }
     // MARK: - Table view data source
 
@@ -40,7 +42,11 @@ class ProductListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductCell
-        cell.configureCell(data: products[indexPath.row])
+        cell.initialize(data: products[indexPath.row])
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }

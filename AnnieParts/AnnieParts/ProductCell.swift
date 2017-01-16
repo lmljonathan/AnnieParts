@@ -22,6 +22,8 @@ class ProductCell: UITableViewCell {
     @IBOutlet weak var product_models: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        super.layoutSubviews()
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,7 +32,7 @@ class ProductCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureCell(data: Product) {
+    func initialize(data: Product) {
         product_name.text = data.name
         product_serial_number.text = data.serial_number
         product_make.text = data.make
@@ -39,6 +41,5 @@ class ProductCell: UITableViewCell {
 
         let image_url = URL(string: data.image_path)
         product_image.kf.setImage(with: image_url)
-
     }
 }
