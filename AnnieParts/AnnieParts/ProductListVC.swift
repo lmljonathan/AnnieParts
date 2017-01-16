@@ -10,11 +10,24 @@ import UIKit
 
 class ProductListVC: UITableViewController {
 
-    var search_option_id: Int = -1
+    var search_query: String = ""
+    private var products: [Product] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
+        configureTableView()
 
+        let loading = startActivityIndicator(view: self.view)
+        product_list_request(search_query: search_query, completion: { (products) in
+            self.products = products
+            self.tableView.reloadData()
+            loading.stopAnimating()
+        })
+    }
+    func configureTableView() {
+        self.tableView.tableHeaderView = UIView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 120
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -22,12 +35,12 @@ class ProductListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return products.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductCell
+        cell.configureCell(data: products[indexPath.row])
         return cell
     }
-
 }

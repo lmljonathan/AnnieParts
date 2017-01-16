@@ -13,4 +13,14 @@ struct CONSTANTS {
         static let SEARCH = "showSearch"
         static let PRODUCTS = "showProductList"
     }
+    struct IDS {
+        static var ATTRIBUTES: [String] = []
+        static var ATTRIBUTE_IDS: [Int] = []
+        static var MANUFACTURERS: [String] = []
+        static var MANUFACTURER_IDS: [Int] = []
+        static var PINPAI: [String] = []
+        static var PINPAI_IDS: [Int] = []
+        static var MODELS: [String] = []
+        static var MODEL_IDS: [Int] = []
+    }
 }

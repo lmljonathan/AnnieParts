@@ -13,23 +13,25 @@ class SearchVC: UITableViewController {
 
     private var search: Search = Search()
     private var selected_search_option_id: Int = -1
-
+    private var selected_category: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         let loading = startActivityIndicator(view: self.view)
-        if (search.search_options.count == 0) {
-            search_options_request(completion: { (search) in
-                self.search = search
-                loading.stopAnimating()
-                self.tableView.reloadData()
-            })
+        configureIDS {
+            if (self.search.search_options.count == 0) {
+                search_options_request(completion: { (search) in
+                    self.search = search
+                    loading.stopAnimating()
+                    self.tableView.reloadData()
+                })
+            }
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == CONSTANTS.SEGUES.PRODUCTS) {
             let destinationVC = segue.destination as? ProductListVC
-            destinationVC?.search_option_id = selected_search_option_id
+            destinationVC?.search_query = selected_category + "=" + String(selected_search_option_id)
         }
     }
     // MARK: - Table view data source
@@ -70,6 +72,7 @@ class SearchVC: UITableViewController {
         if (expanded && indexPath.row > 0) {
             if (option_ids.count > 0) {
                 selected_search_option_id = option_ids[indexPath.row - 1]
+                selected_category = search_option.category
                 self.performSegue(withIdentifier: CONSTANTS.SEGUES.PRODUCTS, sender: nil)
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
                 self.tableView.deselectRow(at: indexPath, animated: true)

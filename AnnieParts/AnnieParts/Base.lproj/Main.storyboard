@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kQZ-vd-dHd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -219,10 +219,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="SearchHeaderCell" id="ccW-Dq-OPZ" customClass="SearchHeaderCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ccW-Dq-OPZ" id="f4W-84-anT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sao-99-iyW">
@@ -259,10 +259,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchOptionCell" id="WE4-uH-Opw" customClass="SearchOptionCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WE4-uH-Opw" id="Ld9-S1-FEH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-vo-vAJ">
@@ -309,7 +309,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductCell" rowHeight="130" id="rqD-qW-XBB" customClass="ProductCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rqD-qW-XBB" id="29K-pm-eKj">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
@@ -320,16 +320,54 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="anniepartslogo" translatesAutoresizingMaskIntoConstraints="NO" id="840-Iv-X04">
                                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                                                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="mnY-0I-mya"/>
                                                     </constraints>
                                                 </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="SHK-sr-lDs">
+                                                    <rect key="frame" x="128" y="8" width="239" height="103"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AfT-UM-Mq2">
+                                                            <rect key="frame" x="0.0" y="0.0" width="58.5" height="29.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serial Number" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AM9-9R-UMd">
+                                                            <rect key="frame" x="0.0" y="29.5" width="80.5" height="16.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWY-3z-5h7">
+                                                            <rect key="frame" x="0.0" y="46" width="35" height="19"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Years" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="836-DX-SyW">
+                                                            <rect key="frame" x="0.0" y="65" width="36" height="19"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Models" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h0-AK-ked">
+                                                            <rect key="frame" x="0.0" y="84" width="47.5" height="19"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="SHK-sr-lDs" firstAttribute="top" secondItem="dvx-AW-PwB" secondAttribute="top" constant="8" id="1zx-TZ-nHB"/>
                                                 <constraint firstItem="840-Iv-X04" firstAttribute="leading" secondItem="dvx-AW-PwB" secondAttribute="leading" id="GET-mG-erw"/>
+                                                <constraint firstAttribute="trailing" secondItem="SHK-sr-lDs" secondAttribute="trailing" constant="8" id="HZS-yc-Dn5"/>
                                                 <constraint firstItem="840-Iv-X04" firstAttribute="centerY" secondItem="dvx-AW-PwB" secondAttribute="centerY" id="SRd-q6-v7h"/>
+                                                <constraint firstItem="SHK-sr-lDs" firstAttribute="leading" secondItem="840-Iv-X04" secondAttribute="trailing" constant="8" id="hPo-e7-lL4"/>
+                                                <constraint firstAttribute="bottom" secondItem="SHK-sr-lDs" secondAttribute="bottom" constant="9" id="hWl-Uf-gai"/>
                                                 <constraint firstItem="840-Iv-X04" firstAttribute="height" secondItem="dvx-AW-PwB" secondAttribute="height" id="uMD-Iz-0r1"/>
                                             </constraints>
                                         </view>
@@ -344,6 +382,12 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
                                     <outlet property="product_cell_view" destination="dvx-AW-PwB" id="h0W-pv-eo9"/>
+                                    <outlet property="product_image" destination="840-Iv-X04" id="byb-lI-DpQ"/>
+                                    <outlet property="product_make" destination="jWY-3z-5h7" id="it3-dv-vGg"/>
+                                    <outlet property="product_models" destination="6h0-AK-ked" id="1lF-uT-GMS"/>
+                                    <outlet property="product_name" destination="AfT-UM-Mq2" id="wQ9-ua-Vtm"/>
+                                    <outlet property="product_serial_number" destination="AM9-9R-UMd" id="z3W-N5-7ea"/>
+                                    <outlet property="product_years" destination="836-DX-SyW" id="Tql-fJ-dlJ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProductCell: UITableViewCell {
 
     @IBOutlet weak var product_cell_view: UIView!
+
+    @IBOutlet weak var product_image: UIImageView!
+
+    @IBOutlet weak var product_name: UILabel!
+    @IBOutlet weak var product_serial_number: UILabel!
+    @IBOutlet weak var product_make: UILabel!
+    @IBOutlet weak var product_years: UILabel!
+    @IBOutlet weak var product_models: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        product_cell_view.layer.addBorder(edge: .bottom, color: .lightGray, thickness: 2.0)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,4 +30,11 @@ class ProductCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(data: Product) {
+        print("configure cell;sdlkfajsd")
+        product_name.text = data.name
+        product_serial_number.text = data.serial_number
+        let image_url = URL(string: data.image_path)
+        product_image.kf.setImage(with: image_url)
+    }
 }

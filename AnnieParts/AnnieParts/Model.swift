@@ -25,20 +25,24 @@ struct User {
 
 struct Search {
     var search_options: [Option]
+
     struct Option {
         var expanded: Bool
         var options: [String]
         var option_ids: [Int]
+        var category: String
 
-        init(option_array: [String], option_ids_array: [Int]) {
+        init(option_array: [String], option_ids_array: [Int], title: String) {
             expanded = false
             options = option_array
             option_ids = option_ids_array
+            category = title
         }
         init() {
             expanded = false
             options = []
             option_ids = []
+            category = ""
         }
     }
     init(option1: Option, option2: Option, option3: Option) {
@@ -68,7 +72,9 @@ class Product {
     var serial_number: String {
         return _serial_number
     }
-
+    var image_path: String {
+        return _image_path
+    }
     init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String) {
         _product_id = product_id
         _model_ids = model_ids
