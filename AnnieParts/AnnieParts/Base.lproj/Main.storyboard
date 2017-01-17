@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -313,7 +313,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rqD-qW-XBB" id="29K-pm-eKj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="On4-ZK-fyZ">
@@ -399,7 +399,7 @@
         <!--Product DetailVC-->
         <scene sceneID="qyz-84-vfF">
             <objects>
-                <viewController id="B2R-Dd-cgZ" customClass="ProductDetailVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="B2R-Dd-cgZ" customClass="ProductDetailVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xGF-rk-dMm"/>
                         <viewControllerLayoutGuide type="bottom" id="f7b-S3-HGT"/>
@@ -407,12 +407,34 @@
                     <view key="view" contentMode="scaleToFill" id="Lpm-Aa-V8L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkM-TW-9QS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="Yii-gO-uOb"/>
+                                </constraints>
+                            </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UtO-wA-IGB">
+                                <rect key="frame" x="177" y="164" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NkM-TW-9QS" secondAttribute="trailing" id="1mD-ot-uB9"/>
+                            <constraint firstItem="NkM-TW-9QS" firstAttribute="centerX" secondItem="UtO-wA-IGB" secondAttribute="centerX" id="SW8-OT-O6k"/>
+                            <constraint firstItem="NkM-TW-9QS" firstAttribute="leading" secondItem="Lpm-Aa-V8L" secondAttribute="leading" id="T93-Eq-uJm"/>
+                            <constraint firstItem="NkM-TW-9QS" firstAttribute="top" secondItem="xGF-rk-dMm" secondAttribute="bottom" id="YhL-DY-pvP"/>
+                            <constraint firstItem="NkM-TW-9QS" firstAttribute="centerY" secondItem="UtO-wA-IGB" secondAttribute="centerY" id="i6U-k7-m0F"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="slideshowIndicator" destination="UtO-wA-IGB" id="crh-dX-91E"/>
+                        <outlet property="slideshowScrollView" destination="NkM-TW-9QS" id="S0X-gl-xYT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUE-0N-qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4854" y="321"/>
+            <point key="canvasLocation" x="4852" y="309.89505247376314"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nuj-AI-YiM">

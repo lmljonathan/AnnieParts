@@ -119,6 +119,9 @@ class Product {
     var install_paths: [String] {
         return _install_file_paths
     }
+    var images: [String] {
+        return _all_images
+    }
 
     func initializeDetails(price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
         _price = price
