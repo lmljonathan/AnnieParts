@@ -114,6 +114,16 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		3C4D02551E2DD24600188377 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3C7052D81E282A8F00D2AF0E /* Constants.swift */,
+				3CABAA091E25E9F0002AA0ED /* DataHandler.swift */,
+				3CABAA0B1E25EF22002AA0ED /* Model.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		3C677A4F1E25B0BC003719FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,13 +171,11 @@
 			isa = PBXGroup;
 			children = (
 				3C0CD8011E2979B000F70652 /* UI */,
-				3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */,
-				3C7052D81E282A8F00D2AF0E /* Constants.swift */,
-				3CABAA091E25E9F0002AA0ED /* DataHandler.swift */,
-				3CABAA0B1E25EF22002AA0ED /* Model.swift */,
+				3C4D02551E2DD24600188377 /* Data */,
 				3CA951A41E283DBD00F92D42 /* Cells */,
 				3C677A4F1E25B0BC003719FC /* Controller */,
 				3CB01C411E2472BE00EE22F6 /* Assets.xcassets */,
+				3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */,
 				3CB01C461E2472BE00EE22F6 /* Info.plist */,
 			);
 			path = AnnieParts;

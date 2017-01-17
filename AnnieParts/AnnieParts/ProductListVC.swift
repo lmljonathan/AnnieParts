@@ -14,12 +14,16 @@ class ProductListVC: UITableViewController {
     private var products: [Product] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
+
+        tableView.estimatedRowHeight = 130
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .none
 
         let loading = startActivityIndicator(view: self.view)
         product_list_request(search_query: search_query, completion: { (products) in
             self.products = products
             self.tableView.reloadData()
+            self.tableView.separatorStyle = .singleLine
             loading.stopAnimating()
         })
     }
@@ -31,13 +35,6 @@ class ProductListVC: UITableViewController {
         }
     }
 
-    func configureTableView() {
-        self.tableView.tableHeaderView = UIView()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 120
-        self.tableView.setNeedsLayout()
-        self.tableView.layoutIfNeeded()
-    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,9 +51,6 @@ class ProductListVC: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: CONSTANTS.SEGUES.DETAIL, sender: nil)
     }

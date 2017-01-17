@@ -11,10 +11,7 @@ import Kingfisher
 
 class ProductCell: UITableViewCell {
 
-    @IBOutlet weak var product_cell_view: UIView!
-
     @IBOutlet weak var product_image: UIImageView!
-
     @IBOutlet weak var product_name: UILabel!
     @IBOutlet weak var product_serial_number: UILabel!
     @IBOutlet weak var product_make: UILabel!
@@ -22,13 +19,10 @@ class ProductCell: UITableViewCell {
     @IBOutlet weak var product_models: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        super.layoutSubviews()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

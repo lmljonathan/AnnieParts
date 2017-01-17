@@ -14,15 +14,16 @@ class ProductDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeBasicProductData()
-        initializeDetailedProductData()
+        product_detail_request(product: product, product_id: product.product_id, completion: { (product) in
+            self.product = product
+            self.initializeDetailedProductData()
+        })
     }
 
     func initializeBasicProductData() {
 
     }
     func initializeDetailedProductData() {
-        product_detail_request(product: product, product_id: product.product_id, completion: { (product) in
-            self.product = product
-        })
+
     }
 }
