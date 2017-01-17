@@ -12,6 +12,7 @@ struct CONSTANTS {
     struct SEGUES {
         static let SEARCH = "showSearch"
         static let PRODUCTS = "showProductList"
+        static let DETAIL = "showProductDetail"
     }
     struct IDS {
         static var ATTRIBUTES: [String] = []

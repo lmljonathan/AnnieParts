@@ -13,6 +13,7 @@ let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
 let PRODUCTS_URL = "appSearch.php"
+let PRODUCT_DETAIL_URL = "appGetGoodsInfo.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
@@ -81,7 +82,6 @@ func search_options_request(completion: @escaping (Search) -> Void) {
 func product_list_request(search_query: String, completion: @escaping ([Product]) -> Void) {
     let query_url = BASE_URL + PRODUCTS_URL + "?" + search_query
     var product_list: [Product] = []
-    print(query_url)
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if let data = response.result.value as? [String:Any] {
             if (check_status(response: data)) {
@@ -99,6 +99,25 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
                     }
                     completion(product_list)
                 }
+            }
+        }
+    }
+}
+
+func product_detail_request(product: Product, product_id: Int, completion: @escaping(Product) -> Void) {
+    let query_url = BASE_URL + PRODUCT_DETAIL_URL + "?"
+    Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if let data = response.result.value as? [String:Any] {
+            if (check_status(response: data)) {
+                let price = data["shop_price"] as? Double ?? 0.0
+                let brief_description = data["brief"] as? String ?? ""
+                let description = data["desc"] as? String ?? ""
+                let installs = data["ins"] as? [[String: String]] ?? []
+                let videos = data["video"] as? [String] ?? []
+                let all_images = data["thumb_url"] as? [String] ?? []
+
+                product.initializeDetails(price: price, brief: brief_description, description: description, installs: installs, videos: videos, all_images: all_images)
+                completion(product)
             }
         }
     }

@@ -64,7 +64,15 @@ class Product {
     private var _models: [String]
     private var _start_year: Int
     private var _end_year: Int
-    private var _image_path: String
+    private var _thumb_image_path: String
+
+    private var _price: Double
+    private var _brief_description: String
+    private var _description: String
+    private var _install_file_titles: [String]
+    private var _install_file_paths: [String]
+    private var _video_paths: [String]
+    private var _all_images: [String]
 
     var product_id: Int {
         return _product_id
@@ -75,8 +83,8 @@ class Product {
     var serial_number: String {
         return _serial_number
     }
-    var image_path: String {
-        return _image_path
+    var thumb_image_path: String {
+        return _thumb_image_path
     }
     var make: String {
         if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) as Int! {
@@ -96,6 +104,33 @@ class Product {
         }
         return model_string
     }
+    var price: Double {
+        return _price
+    }
+    var brief_description: String {
+        return _brief_description
+    }
+    var description: String {
+        return _description
+    }
+    var install_titles: [String] {
+        return _install_file_titles
+    }
+    var install_paths: [String] {
+        return _install_file_paths
+    }
+
+    func initializeDetails(price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
+        _price = price
+        _brief_description = brief
+        _description = description
+        _video_paths = videos
+        _all_images = all_images
+        for install in installs {
+            _install_file_titles.append(install["title"] ?? "")
+            _install_file_paths.append(install["href"] ?? "")
+        }
+    }
     init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String) {
         _product_id = product_id
         _model_ids = model_ids
@@ -105,7 +140,36 @@ class Product {
         _make = ""
         _start_year = start_year
         _end_year = end_year
-        _image_path = image
+        _thumb_image_path = image
         _models = ["", "", ""]
+
+        _price = -1.0
+        _brief_description = ""
+        _description = ""
+        _install_file_titles = []
+        _install_file_paths = []
+        _video_paths = []
+        _all_images = []
+    }
+
+    init() {
+        _product_id = -1
+        _model_ids = []
+        _make_id = -1
+        _name = ""
+        _serial_number = ""
+        _make = ""
+        _start_year = -1
+        _end_year = -1
+        _thumb_image_path = ""
+        _models = []
+
+        _price = -1.0
+        _brief_description = ""
+        _description = ""
+        _install_file_titles = []
+        _install_file_paths = []
+        _video_paths = []
+        _all_images = []
     }
 }

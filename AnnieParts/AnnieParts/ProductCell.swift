@@ -39,7 +39,7 @@ class ProductCell: UITableViewCell {
         product_years.text = data.years
         product_models.text = data.models
 
-        let image_url = URL(string: data.image_path)
+        let image_url = URL(string: data.thumb_image_path)
         product_image.kf.setImage(with: image_url)
     }
 }

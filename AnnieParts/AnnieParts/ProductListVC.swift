@@ -23,6 +23,14 @@ class ProductListVC: UITableViewController {
             loading.stopAnimating()
         })
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == CONSTANTS.SEGUES.DETAIL) {
+            let destinationVC = segue.destination as? ProductDetailVC
+            destinationVC?.product = products[(self.tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+
     func configureTableView() {
         self.tableView.tableHeaderView = UIView()
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -48,5 +56,8 @@ class ProductListVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: CONSTANTS.SEGUES.DETAIL, sender: nil)
     }
 }
