@@ -15,6 +15,12 @@ class ProductDetailVC: UIViewController {
     @IBOutlet var slideshowScrollView: UIScrollView!
     @IBOutlet var slideshowIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var product_name: UILabel!
+    @IBOutlet weak var product_serial_number: UILabel!
+    @IBOutlet weak var product_make: UILabel!
+    @IBOutlet weak var product_years: UILabel!
+    @IBOutlet weak var product_models: UILabel!
+
     var product: Product = Product()
 
     let autoScrollDelay: TimeInterval = 3.0 // adjust the number of seconds between scrolling
@@ -30,7 +36,11 @@ class ProductDetailVC: UIViewController {
     }
 
     func initializeBasicProductData() {
-
+        product_name.text = product.name
+        product_serial_number.text = product.serial_number
+        product_make.text = product.make
+        product_years.text = product.years
+        product_models.text = product.models
     }
     
     func initializeDetailedProductData() {
