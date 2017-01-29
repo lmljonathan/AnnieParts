@@ -30,8 +30,10 @@ class ProductListVC: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == CONSTANTS.SEGUES.DETAIL) {
-            let destinationVC = segue.destination as? ProductDetailVC
-            destinationVC?.product = products[(self.tableView.indexPathForSelectedRow?.row)!]
+            let destinationVC = segue.destination as? ProductDetailsVC
+            let index = tableView.indexPathForSelectedRow
+            destinationVC?.product = products[(index?.row)!]
+            tableView.deselectRow(at: index!, animated: false)
         }
     }
 
@@ -52,6 +54,7 @@ class ProductListVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: CONSTANTS.SEGUES.DETAIL, sender: nil)
+        performSegue(withIdentifier: CONSTANTS.SEGUES.DETAIL, sender: nil)
+        //self.tableView.deselectRow(at: indexPath, animated: false)
     }
 }

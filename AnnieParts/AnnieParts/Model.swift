@@ -119,6 +119,9 @@ class Product {
     var install_paths: [String] {
         return _install_file_paths
     }
+    var video_paths: [String] {
+        return _video_paths
+    }
     var images: [String] {
         return _all_images
     }

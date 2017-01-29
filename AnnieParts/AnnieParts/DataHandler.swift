@@ -117,6 +117,10 @@ func product_detail_request(product: Product, product_id: Int, completion: @esca
                 let all_images = data["thumb_url"] as? [String] ?? []
 
                 product.initializeDetails(price: price, brief: brief_description, description: description, installs: installs, videos: videos, all_images: all_images)
+
+                print(product.install_paths)
+                print(product.install_titles)
+                print(product.video_paths)
                 completion(product)
             }
         }
@@ -146,7 +150,6 @@ func extract_options(data: [[String:Any]], category: String) -> Search.Option {
 func check_status(response: [String:Any]) -> Bool {
     if let status = response["status"] as? Int {
         if (status == 1) {
-            print("HTTP OK")
             return true
         }
     }

@@ -55,7 +55,7 @@ class SearchVC: UITableViewController {
             return cell
         }
         else {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "SearchOptionCell") as! SearchOptionCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "labelCell") as! LabelCell
             cell.initialize(title: self.search.search_options[indexPath.section].options[indexPath.row-1])
             return cell
         }
