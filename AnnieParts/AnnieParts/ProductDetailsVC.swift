@@ -16,17 +16,10 @@ class ProductDetailsVC: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         tableView.separatorStyle = .none
-        let loading = startActivityIndicator(view: self.view)
         
-        product_detail_request(product: self.product, product_id: product.product_id, completion: { (product) in
+        product_detail_request(product: product, product_id: product.product_id, completion: { () in
             self.tableView.reloadData()
-            print("done with product detailed")
-            if let detailCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProductDetailCell{
-                detailCell.configureSlideshow(with: self.product.images)
-            }
             self.tableView.separatorStyle = .singleLine
-            loading.stopAnimating()
-            
         })
     }
 
@@ -37,14 +30,7 @@ class ProductDetailsVC: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        var number_of_available_sections = 1
-        if (product.install_paths.count > 0) {
-            number_of_available_sections += 1
-        }
-        if (product.video_paths.count > 0) {
-            number_of_available_sections += 1
-        }
-        return number_of_available_sections
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,7 +39,16 @@ class ProductDetailsVC: UITableViewController {
         }
         return 0
     }
-
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 1:
+            return "Install"
+        case 2:
+            return "Videos"
+        default:
+            return ""
+        }
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "productDetailCell", for: indexPath) as! ProductDetailCell
@@ -64,6 +59,11 @@ class ProductDetailsVC: UITableViewController {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
+            if (indexPath.section == 1) {
+                cell.initialize(title: product.install_titles[indexPath.row])
+            } else {
+                cell.initialize(title: product.video_paths[indexPath.row])
+            }
             return cell
         }
     }
