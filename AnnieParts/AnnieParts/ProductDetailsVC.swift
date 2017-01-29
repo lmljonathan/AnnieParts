@@ -42,9 +42,9 @@ class ProductDetailsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 1:
-            return "Install"
+            return " Install"
         case 2:
-            return "Videos"
+            return " Videos"
         default:
             return ""
         }
