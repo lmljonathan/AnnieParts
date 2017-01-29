@@ -30,10 +30,11 @@ class ProductListVC: UITableViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == CONSTANTS.SEGUES.DETAIL) {
-            let destinationVC = segue.destination as? ProductDetailsVC
-            let index = tableView.indexPathForSelectedRow
-            destinationVC?.product = products[(index?.row)!]
-            tableView.deselectRow(at: index!, animated: false)
+            if let destinationVC = segue.destination as? ProductDetailsVC{
+                let index = tableView.indexPathForSelectedRow
+                destinationVC.product = products[(index?.row)!]
+                tableView.deselectRow(at: index!, animated: false)
+            }
         }
     }
 

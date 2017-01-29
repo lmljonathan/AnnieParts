@@ -21,10 +21,12 @@ class ProductDetailCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+    
     func initialize(data: Product) {
         product_name.text = data.name
         product_serial.text = data.serial_number

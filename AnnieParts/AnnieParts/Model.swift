@@ -137,6 +137,7 @@ class Product {
             _install_file_paths.append(install["href"] ?? "")
         }
     }
+    
     init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String) {
         _product_id = product_id
         _model_ids = model_ids
