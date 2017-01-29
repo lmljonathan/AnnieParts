@@ -10,17 +10,23 @@ import UIKit
 
 class ProductDetailsVC: UITableViewController {
 
-    var product: Product = Product()
+    var product: Product!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         tableView.separatorStyle = .none
         let loading = startActivityIndicator(view: self.view)
-        product_detail_request(product: product, product_id: product.product_id, completion: { (product) in
-            self.product = product
+        
+        product_detail_request(product: self.product, product_id: product.product_id, completion: { (product) in
             self.tableView.reloadData()
+            print("done with product detailed")
+            if let detailCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProductDetailCell{
+                detailCell.configureSlideshow(with: self.product.images)
+            }
             self.tableView.separatorStyle = .singleLine
             loading.stopAnimating()
+            
         })
     }
 
@@ -49,16 +55,17 @@ class ProductDetailsVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if (indexPath.section == 0) {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "productDetailCell", for: indexPath) as! ProductDetailCell
-//            cell.initialize(data: product)
-//            return cell
-//        }
-//        else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
-//            return cell
-//        }
-        return UITableViewCell()
+        if (indexPath.section == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "productDetailCell", for: indexPath) as! ProductDetailCell
+            
+            cell.slideshowScrollView.delegate = self
+            cell.initialize(data: product, parent: self)
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
+            return cell
+        }
     }
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section == 0) {

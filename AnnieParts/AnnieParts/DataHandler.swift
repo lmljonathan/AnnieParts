@@ -104,9 +104,11 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     }
 }
 
-func product_detail_request(product: Product, product_id: Int, completion: @escaping(Product) -> Void) {
+func product_detail_request(product: Product, product_id: Int, completion: @escaping () -> Void) {
     let query_url = BASE_URL + PRODUCT_DETAIL_URL + "?"
     Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+
+        print(response)
         if let data = response.result.value as? [String:Any] {
             if (check_status(response: data)) {
                 let price = data["shop_price"] as? Double ?? 0.0
@@ -115,14 +117,19 @@ func product_detail_request(product: Product, product_id: Int, completion: @esca
                 let installs = data["ins"] as? [[String: String]] ?? []
                 let videos = data["video"] as? [String] ?? []
                 let all_images = data["thumb_url"] as? [String] ?? []
+                
 
                 product.initializeDetails(price: price, brief: brief_description, description: description, installs: installs, videos: videos, all_images: all_images)
 
                 print(product.install_paths)
                 print(product.install_titles)
                 print(product.video_paths)
-                completion(product)
+                completion()
+            }else{
+                print("Error retrieving details")
             }
+        }else{
+            print("Error retrieving details")
         }
     }
 }
