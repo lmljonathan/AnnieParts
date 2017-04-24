@@ -16,13 +16,7 @@ class ProductDetailsVC: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         tableView.separatorStyle = .none
-        
-        product_detail_request(product: product, product_id: product.product_id, completion: { () in
-            self.tableView.reloadData()
-            self.tableView.separatorStyle = .singleLine
-        })
     }
-
     func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
     }

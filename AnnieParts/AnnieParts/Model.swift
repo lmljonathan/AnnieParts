@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 struct User {
     static var user_rank: Int = -1
@@ -125,20 +125,8 @@ class Product {
     var images: [String] {
         return _all_images
     }
-
-    func initializeDetails(price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
-        _price = price
-        _brief_description = brief
-        _description = description
-        _video_paths = videos
-        _all_images = all_images
-        for install in installs {
-            _install_file_titles.append(install["title"] ?? "")
-            _install_file_paths.append(install["href"] ?? "")
-        }
-    }
     
-    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String) {
+    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String, price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
         _product_id = product_id
         _model_ids = model_ids
         _make_id = make_id
@@ -150,13 +138,21 @@ class Product {
         _thumb_image_path = image
         _models = ["", "", ""]
 
-        _price = -1.0
-        _brief_description = ""
-        _description = ""
+        _price = price
+        _brief_description = brief
+        _description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget tellus nec nisi tincidunt dapibus bibendum quis nibh. Nunc diam justo, fermentum et risus nec, consequat scelerisque nisl. Nulla vitae porttitor erat. Nulla dapibus nulla non nibh feugiat fermentum. Praesent vestibulum tortor lectus, eu vestibulum nisi ultricies eget. Aliquam auctor eleifend tincidunt. Nulla nisi augue, blandit eget turpis et, tristique convallis libero. Nulla dictum condimentum laoreet."
+        _video_paths = videos
+        _all_images = all_images
+
         _install_file_titles = []
         _install_file_paths = []
         _video_paths = []
         _all_images = []
+
+        for install in installs {
+            _install_file_titles.append(install["title"] ?? "")
+            _install_file_paths.append(install["href"] ?? "")
+        }
     }
 
     init() {
@@ -178,5 +174,15 @@ class Product {
         _install_file_paths = []
         _video_paths = []
         _all_images = []
+    }
+    func decodeString(encodedString:String) -> NSAttributedString?
+    {
+        let encodedData = encodedString.data(using: .utf8)
+        do {
+            return try NSAttributedString(data: encodedData!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return nil
+        }
     }
 }
