@@ -23,6 +23,35 @@ struct User {
     }
 }
 
+struct Details {
+    var detail_options: [Option]
+    struct Option {
+        var expanded: Bool
+        var options: [String]
+        var option_paths: [String]
+        var category: String
+
+        init(option_array: [String], option_paths_array: [String], title: String) {
+            expanded = false
+            options = option_array
+            option_paths = option_paths_array
+            category = title
+        }
+        init() {
+            expanded = false
+            options = []
+            option_paths = []
+            category = ""
+        }
+    }
+    init() {
+        detail_options = []
+    }
+    mutating func addOption(new_option: Option) {
+        detail_options.append(new_option)
+    }
+}
+
 struct Search {
     var search_options: [Option]
 
@@ -62,8 +91,8 @@ class Product {
     private var _serial_number: String
     private var _make: String
     private var _models: [String]
-    private var _start_year: Int
-    private var _end_year: Int
+    private var _start_year: String
+    private var _end_year: String
     private var _thumb_image_path: String
 
     private var _price: Double
@@ -126,7 +155,7 @@ class Product {
         return _all_images
     }
     
-    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: Int, end_year: Int, image: String, price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
+    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: String, end_year: String, image: String, price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
         _product_id = product_id
         _model_ids = model_ids
         _make_id = make_id
@@ -162,8 +191,8 @@ class Product {
         _name = ""
         _serial_number = ""
         _make = ""
-        _start_year = -1
-        _end_year = -1
+        _start_year = ""
+        _end_year = ""
         _thumb_image_path = ""
         _models = []
 

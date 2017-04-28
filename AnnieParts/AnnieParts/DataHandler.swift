@@ -90,10 +90,11 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
                         let id = product["id"] as? Int ?? 0
                         let model_ids = product["model_list"] as? [Int] ?? []
                         let make_id = product["brand_id"] as? Int ?? 0
+
                         let name = product["name"] as? String ?? ""
                         let serial_number = product["sn"] as? String ?? ""
-                        let start_year = product["start_time"] as? Int ?? 0
-                        let end_year = product["end_time"] as? Int ?? 0
+                        let start_year = product["start_time"] as? String ?? ""
+                        let end_year = product["end_time"] as? String ?? ""
                         let image = product["img"] as? String ?? ""
 
                         let price = data["shop_price"] as? Double ?? 0.0

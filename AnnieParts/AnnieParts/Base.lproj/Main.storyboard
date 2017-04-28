@@ -219,10 +219,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="SearchHeaderCell" id="ccW-Dq-OPZ" customClass="SearchHeaderCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ccW-Dq-OPZ" id="f4W-84-anT">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sao-99-iyW">
@@ -259,10 +259,10 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" id="WE4-uH-Opw" userLabel="LabelCell" customClass="LabelCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WE4-uH-Opw" id="Ld9-S1-FEH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBr-vo-vAJ">
@@ -313,7 +313,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rqD-qW-XBB" id="29K-pm-eKj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="On4-ZK-fyZ">
@@ -400,7 +400,7 @@
         <scene sceneID="7fs-i7-KGE">
             <objects>
                 <tableViewController id="eTc-lo-bM0" customClass="ProductDetailsVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WlM-At-DDS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WlM-At-DDS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -410,7 +410,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="354"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FU3-4p-M2F" id="TOC-fA-zCE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="353"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="353.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="E6N-1v-Cla">
@@ -422,7 +422,7 @@
                                                 <constraint firstAttribute="height" constant="200" id="SyF-e9-6F7"/>
                                             </constraints>
                                         </scrollView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="3YI-ao-Jhf">
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3YI-ao-Jhf">
                                             <rect key="frame" x="8" y="208" width="359" height="17"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ie-Cp-mVb">
@@ -527,16 +527,17 @@
                                     <outlet property="slideshowScrollView" destination="FPe-J2-5wi" id="ueb-Bo-kSS"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pathCell" rowHeight="42" id="Re5-be-KyM" customClass="PathCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="382" width="375" height="42"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="descriptionCell" rowHeight="37" id="Re5-be-KyM" customClass="ProductDescriptionCell" customModule="AnnieParts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="382" width="375" height="37"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Re5-be-KyM" id="7jg-UJ-29c">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9M-rY-Oce" customClass="ExpandableLabel" customModule="ExpandableLabel">
-                                            <rect key="frame" x="8" y="10" width="359" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9M-rY-Oce">
+                                            <rect key="frame" x="9" y="2" width="357" height="31.5"/>
+                                            <gestureRecognizers/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                             <size key="shadowOffset" width="0.0" height="0.0"/>
@@ -546,14 +547,38 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Z9M-rY-Oce" firstAttribute="top" secondItem="7jg-UJ-29c" secondAttribute="topMargin" constant="2" id="2YZ-fB-JOX"/>
-                                        <constraint firstItem="Z9M-rY-Oce" firstAttribute="leading" secondItem="7jg-UJ-29c" secondAttribute="leadingMargin" id="5eG-AJ-spz"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Z9M-rY-Oce" secondAttribute="bottom" constant="2" id="kfg-zM-yBi"/>
-                                        <constraint firstItem="Z9M-rY-Oce" firstAttribute="trailing" secondItem="7jg-UJ-29c" secondAttribute="trailingMargin" id="yco-tA-tef"/>
+                                        <constraint firstAttribute="bottom" secondItem="Z9M-rY-Oce" secondAttribute="bottom" constant="3" id="6oW-9H-8Hb"/>
+                                        <constraint firstItem="Z9M-rY-Oce" firstAttribute="leading" secondItem="7jg-UJ-29c" secondAttribute="leading" constant="9" id="EWU-bt-3DG"/>
+                                        <constraint firstAttribute="trailing" secondItem="Z9M-rY-Oce" secondAttribute="trailing" constant="9" id="VVI-Ac-np2"/>
+                                        <constraint firstItem="Z9M-rY-Oce" firstAttribute="top" secondItem="7jg-UJ-29c" secondAttribute="top" constant="2" id="enc-lw-FYW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="temp" destination="Z9M-rY-Oce" id="nGY-dw-E8O"/>
+                                    <outlet property="product_description" destination="Z9M-rY-Oce" id="5vI-cv-5iD"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pathCell" rowHeight="40" id="GoO-SN-W9H" customClass="LabelCell" customModule="AnnieParts" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="419" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GoO-SN-W9H" id="HUW-ur-1bS">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdc-xc-Q47">
+                                            <rect key="frame" x="8" y="11" width="359" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Jdc-xc-Q47" firstAttribute="leading" secondItem="HUW-ur-1bS" secondAttribute="leadingMargin" id="3OA-su-DUA"/>
+                                        <constraint firstItem="Jdc-xc-Q47" firstAttribute="trailing" secondItem="HUW-ur-1bS" secondAttribute="trailingMargin" id="qPH-h3-iD2"/>
+                                        <constraint firstItem="Jdc-xc-Q47" firstAttribute="centerY" secondItem="HUW-ur-1bS" secondAttribute="centerY" id="wY1-8o-jYl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="Jdc-xc-Q47" id="Itj-b4-D2L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
