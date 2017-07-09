@@ -11,7 +11,6 @@ import UIKit
 class ProductDetailsVC: UITableViewController {
 
     var product: Product!
-
     private var details = Details()
 
     override func viewDidLoad() {
@@ -38,10 +37,18 @@ class ProductDetailsVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (!details.detail_options[section].expanded) {
-            return 1
+        if (section == 0) {
+            if (product.description.isEmpty) {
+                return 1
+            }
+            return 2
         }
-        return details.detail_options[section].options.count + 1
+        else {
+            if (!details.detail_options[section].expanded) {
+                return 1
+            }
+            return details.detail_options[section].options.count + 1
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
