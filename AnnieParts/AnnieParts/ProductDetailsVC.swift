@@ -16,22 +16,21 @@ class ProductDetailsVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         details.addOption(new_option: Details.Option())
-//        if (product.install_titles.count > 0) {
-//            details.addOption(new_option: Details.Option(option_array: product.install_titles, option_paths_array: product.install_paths, title: "Install"))
-//        }
-//        if (product.video_paths.count > 0) {
-//            details.addOption(new_option: Details.Option(option_array: product.video_paths, option_paths_array: product.video_paths, title: "Videos"))
-//        }
-        details.addOption(new_option: Details.Option(option_array: ["hi", "hello"], option_paths_array: ["hi", "hello"], title: "Installs"))
+        if (product.install_titles.count > 0) {
+            details.addOption(new_option: Details.Option(option_array: product.install_titles, option_paths_array: product.install_paths, title: "Install"))
+        }
+        if (product.video_paths.count > 0) {
+            details.addOption(new_option: Details.Option(option_array: product.video_paths, option_paths_array: product.video_paths, title: "Videos"))
+        }
         configureTableView()
-        tableView.separatorStyle = .none
     }
     func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = .none
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return details.detail_options.count
     }
@@ -67,6 +66,7 @@ class ProductDetailsVC: UITableViewController {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
             if (indexPath.row == 0) {
+                cell.backgroundColor = UIColor(red: 239, green: 239, blue: 244, alpha: 1)
                 cell.initialize(title: details.detail_options[indexPath.section].category)
             }
             else {
@@ -81,7 +81,8 @@ class ProductDetailsVC: UITableViewController {
             details.detail_options[indexPath.section].expanded = !expanded
 
             if (!expanded && indexPath.row > 0) {
-                //segue
+                performSegue(withIdentifier: "showWebView", sender: nil)
+                tableView.deselectRow(at: indexPath, animated: false)
             }
             else {
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
@@ -94,6 +95,14 @@ class ProductDetailsVC: UITableViewController {
         }
         else {
             return 50
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showWebView") {
+            let destination = segue.destination as! WebViewVC
+            let index = tableView.indexPathForSelectedRow
+            destination.path = details.detail_options[index!.section].option_paths[index!.row]
         }
     }
 }
