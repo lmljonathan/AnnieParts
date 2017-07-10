@@ -47,9 +47,11 @@ class ProductDetailCell: UITableViewCell {
         product_make.text = data.make
         product_years.text = data.years
         product_models.text = data.models
+        product_description.text = data.brief_description
+        configureSlideshow(imageURLs: data.images)
     }
     
-    func configureSlideshow(with imageURLs: [String]){
+    func configureSlideshow(imageURLs: [String]){
         let gr = UITapGestureRecognizer(target: self, action: #selector(self.showPhotoBrowser))
         gr.numberOfTapsRequired = 1
         self.slideshowScrollView.addGestureRecognizer(gr)
@@ -62,8 +64,6 @@ class ProductDetailCell: UITableViewCell {
             print("url of image: \(url)")
             self.slideshowScrollView.auk.show(url: url)
         }
-        
-        // self.slideshowScrollView.auk.startAutoScroll(delaySeconds: autoScrollDelay)
         self.slideshowIndicator.stopAnimating()
     }
     
@@ -78,11 +78,10 @@ class ProductDetailCell: UITableViewCell {
             return current_images
         }
         
-        if product.images.count != 0 {
+        if (product.images.count != 0) {
             let browser = SKPhotoBrowser(photos: images)
             browser.initializePageIndex(self.slideshowScrollView.auk.currentPageIndex!)
             browser.delegate = self
-            // self.slideshowScrollView.auk.stopAutoScroll()
             parent.present(browser, animated: true, completion: nil)
         }
     }
@@ -91,17 +90,12 @@ class ProductDetailCell: UITableViewCell {
 extension ProductDetailCell: SKPhotoBrowserDelegate {
     // MARK: - SKPhotoBrowserDelegate
     func didShowPhotoAtIndex(_ index: Int) {
-        // when photo will be shown
     }
     
     func willDismissAtPageIndex(_ index: Int) {
-        // when PhotoBrowser will be dismissed
         self.slideshowScrollView.auk.scrollToPage(atIndex: index, animated: false)
     }
     
     func didDismissAtPageIndex(_ index: Int) {
-        // when PhotoBrowser did dismissed
-        // self.slideshowScrollView.auk.startAutoScroll(delaySeconds: autoScrollDelay)
     }
-    
 }

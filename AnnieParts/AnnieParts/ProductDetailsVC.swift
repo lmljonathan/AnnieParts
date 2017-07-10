@@ -15,6 +15,7 @@ class ProductDetailsVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        product.printProduct()
         details.addOption(new_option: Details.Option())
         if (product.install_titles.count > 0) {
             details.addOption(new_option: Details.Option(option_array: product.install_titles, option_paths_array: product.install_paths, title: "Install"))
@@ -27,6 +28,7 @@ class ProductDetailsVC: UITableViewController {
     func configureTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+        print(details.detail_options.count)
         tableView.reloadData()
     }
 

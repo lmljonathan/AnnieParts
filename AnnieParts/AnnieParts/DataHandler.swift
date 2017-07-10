@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
@@ -17,16 +18,16 @@ let PRODUCTS_URL = "bppSearch.php"
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
     Alamofire.request(query_url, method: .get, parameters: ["act": "login", "u": username, "p": password], encoding: URLEncoding.default).validate().responseJSON { (response) in
-        if let data = response.result.value as? [String: Any] {
-            if check_status(response: data) {
-                let username = data["uname"] as! String
-                let user_rank = data["user_rank"] as! Int
-                let company = data["cname"] as! String
-                let shopping_count = data["shopping_cnt"] as! Int
-                User(name: username, rank: user_rank, company: company, shopping: shopping_count)
-                completion(true)
-                return
-            }
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            User(
+                name: json["uname"].stringValue,
+                rank: json["user_rank"].intValue,
+                company: json["cname"].stringValue,
+                shopping: json["shopping_cnt"].intValue
+            )
+            completion(true)
+            return
         }
         completion(false)
     }
@@ -35,6 +36,7 @@ func login_request(username: String, password: String, completion: @escaping (Bo
 func configureIDS(completion: @escaping() -> Void) {
     let query_url = BASE_URL + SEARCH_OPTIONS_URL
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
+
         if let data = response.result.value as? [String:Any] {
             if check_status(response: data) {
                 if let attributes = data["attributes"] as? [[String:Any]] {
@@ -83,49 +85,47 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     var product_list: [Product] = []
     print(query_url)
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
-        if let data = response.result.value as? [String:Any] {
-            if (check_status(response: data)) {
-                if let products = data["rlist"] as? [[String:Any]] {
-                    for product in products {
-                        let id = product["id"] as? Int ?? 0
-                        let model_ids = product["model_list"] as? [Int] ?? []
-                        let make_id = product["brand_id"] as? Int ?? 0
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            let products = json["rlist"].arrayValue
+            for product in products {
+                let id = product["id"].intValue
+                let model_ids = product["model_list"].arrayValue.map{$0.intValue}
+                let make_id = product["brand_id"].intValue
+                let name = product["name"].stringValue
+                let serial_number = product["sn"].stringValue
+                let start_year = product["start_time"].stringValue
+                let end_year = product["end_time"].stringValue
+                let image = product["img"].stringValue
+                let price = product["shop_price"].doubleValue
+                let brief_description = product["brief"].stringValue
+                let description = product["desc"].stringValue
+                let install_titles = product["ins"].arrayValue.map{$0["title"].stringValue}
+                let install_paths = product["ins"].arrayValue.map{$0["href"].stringValue}
+                let videos = product["video"].arrayValue.map{$0.stringValue}
+                let image_paths = product["thumb_url"].arrayValue.map{$0.stringValue}
 
-                        let name = product["name"] as? String ?? ""
-                        let serial_number = product["sn"] as? String ?? ""
-                        let start_year = product["start_time"] as? String ?? ""
-                        let end_year = product["end_time"] as? String ?? ""
-                        let image = product["img"] as? String ?? ""
-
-                        let price = data["shop_price"] as? Double ?? 0.0
-                        let brief_description = data["brief"] as? String ?? ""
-                        let description = data["desc"] as? String ?? ""
-                        let installs = data["ins"] as? [[String: String]] ?? []
-                        let videos = data["video"] as? [String] ?? []
-                        let all_images = data["thumb_url"] as? [String] ?? []
-
-                        product_list.append(
-                            Product(
-                                product_id: id,
-                                model_ids: model_ids,
-                                make_id: make_id,
-                                name: name,
-                                serial_number: serial_number,
-                                start_year: start_year,
-                                end_year: end_year,
-                                image: image,
-                                price: price,
-                                brief: brief_description,
-                                description: description,
-                                installs: installs,
-                                videos: videos,
-                                all_images: all_images
-                            )
-                        )
-                    }
-                    completion(product_list)
-                }
+                product_list.append(
+                    Product(
+                        product_id: id,
+                        model_ids: model_ids,
+                        make_id: make_id,
+                        name: name,
+                        serial_number: serial_number,
+                        start_year: start_year,
+                        end_year: end_year,
+                        image: image,
+                        price: price,
+                        brief: brief_description,
+                        description: description,
+                        install_titles: install_titles,
+                        install_paths: install_paths,
+                        videos: videos,
+                        all_images: image_paths
+                    )
+                )
             }
+            completion(product_list)
         }
     }
 }

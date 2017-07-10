@@ -90,7 +90,6 @@ class Product {
     private var _name: String
     private var _serial_number: String
     private var _make: String
-    private var _models: [String]
     private var _start_year: String
     private var _end_year: String
     private var _thumb_image_path: String
@@ -155,7 +154,7 @@ class Product {
         return _all_images
     }
     
-    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: String, end_year: String, image: String, price: Double, brief: String, description: String, installs: [[String:String]], videos: [String], all_images: [String]) {
+    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: String, end_year: String, image: String, price: Double, brief: String, description: String, install_titles: [String], install_paths: [String], videos: [String], all_images: [String]) {
         _product_id = product_id
         _model_ids = model_ids
         _make_id = make_id
@@ -165,23 +164,16 @@ class Product {
         _start_year = start_year
         _end_year = end_year
         _thumb_image_path = image
-        _models = ["", "", ""]
 
         _price = price
         _brief_description = brief
         _description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget tellus nec nisi tincidunt dapibus bibendum quis nibh. Nunc diam justo, fermentum et risus nec, consequat scelerisque nisl. Nulla vitae porttitor erat. Nulla dapibus nulla non nibh feugiat fermentum. Praesent vestibulum tortor lectus, eu vestibulum nisi ultricies eget. Aliquam auctor eleifend tincidunt. Nulla nisi augue, blandit eget turpis et, tristique convallis libero. Nulla dictum condimentum laoreet."
         _video_paths = videos
         _all_images = all_images
-
-        _install_file_titles = []
-        _install_file_paths = []
-        _video_paths = []
-        _all_images = []
-
-        for install in installs {
-            _install_file_titles.append(install["title"] ?? "")
-            _install_file_paths.append(install["href"] ?? "")
-        }
+        _install_file_titles = install_titles
+        _install_file_paths = install_paths
+        _video_paths = videos
+        _all_images = all_images
     }
 
     init() {
@@ -194,8 +186,6 @@ class Product {
         _start_year = ""
         _end_year = ""
         _thumb_image_path = ""
-        _models = []
-
         _price = -1.0
         _brief_description = ""
         _description = ""
@@ -213,5 +203,15 @@ class Product {
             print(error.localizedDescription)
             return nil
         }
+    }
+    func printProduct()
+    {
+        print("Product id: \(_product_id)")
+        print("Model ids: \(_model_ids)")
+        print("Make id: \(_make_id)")
+        print("install_file_titles: \(_install_file_titles)")
+        print("install_file_paths: \(_install_file_paths)")
+        print("video paths: \(_video_paths)")
+        print("all images: \(_all_images)")
     }
 }
