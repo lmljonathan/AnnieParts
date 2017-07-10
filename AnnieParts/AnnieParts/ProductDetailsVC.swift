@@ -68,7 +68,6 @@ class ProductDetailsVC: UITableViewController {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
             if (indexPath.row == 0) {
-                cell.backgroundColor = UIColor(red: 239, green: 239, blue: 244, alpha: 1)
                 cell.initialize(title: details.detail_options[indexPath.section].category)
             }
             else {
@@ -98,6 +97,14 @@ class ProductDetailsVC: UITableViewController {
         else {
             return 50
         }
+    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if (section > 0) {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 2))
+            view.backgroundColor = UIColor.lightGray
+            return view
+        }
+        return UIView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

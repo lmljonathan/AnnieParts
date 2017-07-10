@@ -20,14 +20,17 @@ func login_request(username: String, password: String, completion: @escaping (Bo
     Alamofire.request(query_url, method: .get, parameters: ["act": "login", "u": username, "p": password], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil) {
             let json = JSON(data: response.data!)
-            User(
-                name: json["uname"].stringValue,
-                rank: json["user_rank"].intValue,
-                company: json["cname"].stringValue,
-                shopping: json["shopping_cnt"].intValue
-            )
-            completion(true)
-            return
+            if (json["status"].intValue == 1)
+            {
+                User(
+                    name: json["uname"].stringValue,
+                    rank: json["user_rank"].intValue,
+                    company: json["cname"].stringValue,
+                    shopping: json["shopping_cnt"].intValue
+                )
+                completion(true)
+                return
+            }
         }
         completion(false)
     }
@@ -85,47 +88,51 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     var product_list: [Product] = []
     print(query_url)
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
-        if (response.data != nil) {
+        if (response.data != nil)
+        {
             let json = JSON(data: response.data!)
-            let products = json["rlist"].arrayValue
-            for product in products {
-                let id = product["id"].intValue
-                let model_ids = product["model_list"].arrayValue.map{$0.intValue}
-                let make_id = product["brand_id"].intValue
-                let name = product["name"].stringValue
-                let serial_number = product["sn"].stringValue
-                let start_year = product["start_time"].stringValue
-                let end_year = product["end_time"].stringValue
-                let image = product["img"].stringValue
-                let price = product["shop_price"].doubleValue
-                let brief_description = product["brief"].stringValue
-                let description = product["desc"].stringValue
-                let install_titles = product["ins"].arrayValue.map{$0["title"].stringValue}
-                let install_paths = product["ins"].arrayValue.map{$0["href"].stringValue}
-                let videos = product["video"].arrayValue.map{$0.stringValue}
-                let image_paths = product["thumb_url"].arrayValue.map{$0.stringValue}
+            if (json["status"].intValue == 1) {
+                let products = json["rlist"].arrayValue
+                for product in products {
+                    let id = product["id"].intValue
+                    let model_ids = product["model_list"].arrayValue.map{$0.intValue}
+                    let make_id = product["brand_id"].intValue
+                    let name = product["name"].stringValue
+                    let serial_number = product["sn"].stringValue
+                    let start_year = product["start_time"].stringValue
+                    let end_year = product["end_time"].stringValue
+                    let image = product["img"].stringValue
+                    let price = product["shop_price"].doubleValue
+                    let brief_description = product["brief"].stringValue
+                    let description = product["desc"].stringValue
+                    let install_titles = product["ins"].arrayValue.map{$0["title"].stringValue}
+                    let install_paths = product["ins"].arrayValue.map{$0["href"].stringValue}
+                    let videos = product["video"].arrayValue.map{$0.stringValue}
+                    let image_paths = product["thumb_url"].arrayValue.map{$0.stringValue}
 
-                product_list.append(
-                    Product(
-                        product_id: id,
-                        model_ids: model_ids,
-                        make_id: make_id,
-                        name: name,
-                        serial_number: serial_number,
-                        start_year: start_year,
-                        end_year: end_year,
-                        image: image,
-                        price: price,
-                        brief: brief_description,
-                        description: description,
-                        install_titles: install_titles,
-                        install_paths: install_paths,
-                        videos: videos,
-                        all_images: image_paths
+                    product_list.append(
+                        Product(
+                            product_id: id,
+                            model_ids: model_ids,
+                            make_id: make_id,
+                            name: name,
+                            serial_number: serial_number,
+                            start_year: start_year,
+                            end_year: end_year,
+                            image: image,
+                            price: price,
+                            brief: brief_description,
+                            description: description,
+                            install_titles: install_titles,
+                            install_paths: install_paths,
+                            videos: videos,
+                            all_images: image_paths
+                        )
                     )
-                )
+                }
+                completion(product_list)
             }
-            completion(product_list)
+            completion([])
         }
     }
 }
