@@ -56,13 +56,14 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="qTe-ia-4Ub">
-                                <rect key="frame" x="12" y="399" width="351" height="40"/>
+                                <rect key="frame" x="12" y="399" width="351" height="44"/>
                                 <color key="backgroundColor" red="0.59607843137254901" green="0.050980392156862744" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Yde-L5-jbE"/>
+                                    <constraint firstAttribute="height" constant="44" id="Yde-L5-jbE"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="LOGIN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
@@ -79,31 +80,11 @@
                                     <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HGx-3G-uQW"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtD-WY-k15">
-                                <rect key="frame" x="12" y="293" width="351" height="35"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="sFH-Er-ogL"/>
-                                </constraints>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="sFH-Er-ogL"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="sFH-Er-ogL"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYS-Mp-0IV">
-                                <rect key="frame" x="12" y="336" width="351" height="35"/>
+                                <rect key="frame" x="12" y="336" width="351" height="45"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="xuE-3F-pCb"/>
+                                    <constraint firstAttribute="height" constant="45" id="xuE-3F-pCb"/>
                                 </constraints>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
@@ -120,25 +101,45 @@
                                 </variation>
                             </textField>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4hU-nO-9WO">
-                                <rect key="frame" x="339" y="409" width="20" height="20"/>
+                                <rect key="frame" x="333" y="409" width="20" height="20"/>
                             </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtD-WY-k15">
+                                <rect key="frame" x="12" y="290" width="351" height="44"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="sFH-Er-ogL"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sFH-Er-ogL"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="sFH-Er-ogL"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qTe-ia-4Ub" firstAttribute="top" secondItem="ZYS-Mp-0IV" secondAttribute="bottom" constant="28" id="0t2-vc-wQm"/>
+                            <constraint firstItem="qTe-ia-4Ub" firstAttribute="top" secondItem="ZYS-Mp-0IV" secondAttribute="bottom" constant="18" id="0t2-vc-wQm"/>
                             <constraint firstItem="xZv-2l-tIV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="42" id="2PB-Id-qgq"/>
                             <constraint firstItem="xZv-2l-tIV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6zp-SB-VcU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FtD-WY-k15" secondAttribute="trailing" constant="-4" id="B9a-Hv-XSh"/>
                             <constraint firstItem="sMn-Cj-Y2M" firstAttribute="top" secondItem="xZv-2l-tIV" secondAttribute="bottom" constant="14" id="BjN-mG-ubz"/>
                             <constraint firstItem="ZYS-Mp-0IV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-4" id="EyD-IN-0uk"/>
-                            <constraint firstItem="4hU-nO-9WO" firstAttribute="leading" secondItem="qTe-ia-4Ub" secondAttribute="trailing" constant="-24" id="M62-RG-NG5"/>
-                            <constraint firstItem="FtD-WY-k15" firstAttribute="top" secondItem="sMn-Cj-Y2M" secondAttribute="bottom" constant="120" id="SGs-IT-MUX"/>
+                            <constraint firstItem="4hU-nO-9WO" firstAttribute="leading" secondItem="qTe-ia-4Ub" secondAttribute="trailing" constant="-30" id="M62-RG-NG5"/>
+                            <constraint firstItem="FtD-WY-k15" firstAttribute="top" secondItem="sMn-Cj-Y2M" secondAttribute="bottom" constant="117" id="SGs-IT-MUX"/>
                             <constraint firstItem="sMn-Cj-Y2M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SyX-Jf-bIK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZYS-Mp-0IV" secondAttribute="trailing" constant="-4" id="XHZ-Af-uYh"/>
-                            <constraint firstItem="4hU-nO-9WO" firstAttribute="centerY" secondItem="qTe-ia-4Ub" secondAttribute="centerY" id="gTP-5B-gSo"/>
+                            <constraint firstItem="4hU-nO-9WO" firstAttribute="centerY" secondItem="qTe-ia-4Ub" secondAttribute="centerY" constant="-2" id="gTP-5B-gSo"/>
                             <constraint firstItem="qTe-ia-4Ub" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-4" id="h2F-5o-dux"/>
                             <constraint firstItem="FtD-WY-k15" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-4" id="qYo-LS-3sb"/>
-                            <constraint firstItem="ZYS-Mp-0IV" firstAttribute="top" secondItem="FtD-WY-k15" secondAttribute="bottom" constant="8" id="wAT-aS-emY"/>
+                            <constraint firstItem="ZYS-Mp-0IV" firstAttribute="top" secondItem="FtD-WY-k15" secondAttribute="bottom" constant="2" id="wAT-aS-emY"/>
                             <constraint firstItem="qTe-ia-4Ub" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yy4-x1-5RG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qTe-ia-4Ub" secondAttribute="trailing" constant="-4" id="zXZ-2o-Vgt"/>
                         </constraints>
@@ -147,8 +148,8 @@
                                 <exclude reference="sMn-Cj-Y2M"/>
                                 <exclude reference="xZv-2l-tIV"/>
                                 <exclude reference="qTe-ia-4Ub"/>
-                                <exclude reference="FtD-WY-k15"/>
                                 <exclude reference="ZYS-Mp-0IV"/>
+                                <exclude reference="FtD-WY-k15"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="2PB-Id-qgq"/>
@@ -172,8 +173,8 @@
                                 <include reference="sMn-Cj-Y2M"/>
                                 <include reference="xZv-2l-tIV"/>
                                 <include reference="qTe-ia-4Ub"/>
-                                <include reference="FtD-WY-k15"/>
                                 <include reference="ZYS-Mp-0IV"/>
+                                <include reference="FtD-WY-k15"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="2PB-Id-qgq"/>
@@ -207,7 +208,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493.25" y="310.125"/>
+            <point key="canvasLocation" x="1492" y="309.89505247376314"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="MUJ-wR-yv9">
