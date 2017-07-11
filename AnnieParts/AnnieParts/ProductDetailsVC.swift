@@ -72,6 +72,7 @@ class ProductDetailsVC: UITableViewController {
                 cell.initialize(title: details.detail_options[indexPath.section].category)
             }
             else {
+                cell.backgroundColor = UIColor.clear 
                 cell.initialize(title: details.detail_options[indexPath.section].options[indexPath.row-1])
             }
             return cell
@@ -80,12 +81,12 @@ class ProductDetailsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section > 0) {
             let expanded = details.detail_options[indexPath.section].expanded
-            details.detail_options[indexPath.section].expanded = !expanded
 
             if (expanded && indexPath.row > 0) {
                 performSegue(withIdentifier: "showWebView", sender: nil)
             }
             else {
+                details.detail_options[indexPath.section].expanded = !expanded
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
@@ -101,11 +102,6 @@ class ProductDetailsVC: UITableViewController {
         }
     }
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if (section > 0) {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 2))
-            view.backgroundColor = UIColor.lightGray
-            return view
-        }
         return UIView()
     }
 
