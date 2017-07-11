@@ -68,6 +68,7 @@ class ProductDetailsVC: UITableViewController {
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
             if (indexPath.row == 0) {
+                cell.backgroundColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
                 cell.initialize(title: details.detail_options[indexPath.section].category)
             }
             else {

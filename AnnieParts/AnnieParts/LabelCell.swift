@@ -22,7 +22,12 @@ class LabelCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func initialize(title: String) {
-        label.text = title
+        if (title.isEmpty) {
+            label.text = "Title"
+        }
+        else {
+            label.text = title
+        }
     }
 
 }
