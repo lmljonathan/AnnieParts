@@ -99,6 +99,7 @@ class Product {
     private var _description: String
     private var _install_file_titles: [String]
     private var _install_file_paths: [String]
+    private var _video_titles: [String]
     private var _video_paths: [String]
     private var _all_images: [String]
 
@@ -147,6 +148,9 @@ class Product {
     var install_paths: [String] {
         return _install_file_paths
     }
+    var video_titles: [String] {
+        return _video_titles
+    }
     var video_paths: [String] {
         return _video_paths
     }
@@ -154,7 +158,7 @@ class Product {
         return _all_images
     }
     
-    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: String, end_year: String, image: String, price: Double, brief: String, description: String, install_titles: [String], install_paths: [String], videos: [String], all_images: [String]) {
+    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: String, end_year: String, image: String, price: Double, brief: String, description: String, install_titles: [String], install_paths: [String], video_titles: [String], video_paths: [String], all_images: [String]) {
         _product_id = product_id
         _model_ids = model_ids
         _make_id = make_id
@@ -168,11 +172,11 @@ class Product {
         _price = price
         _brief_description = brief
         _description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget tellus nec nisi tincidunt dapibus bibendum quis nibh. Nunc diam justo, fermentum et risus nec, consequat scelerisque nisl. Nulla vitae porttitor erat. Nulla dapibus nulla non nibh feugiat fermentum. Praesent vestibulum tortor lectus, eu vestibulum nisi ultricies eget. Aliquam auctor eleifend tincidunt. Nulla nisi augue, blandit eget turpis et, tristique convallis libero. Nulla dictum condimentum laoreet."
-        _video_paths = videos
         _all_images = all_images
         _install_file_titles = install_titles
         _install_file_paths = install_paths
-        _video_paths = videos
+        _video_titles = video_titles
+        _video_paths = video_paths
         _all_images = all_images
     }
 
@@ -191,6 +195,7 @@ class Product {
         _description = ""
         _install_file_titles = []
         _install_file_paths = []
+        _video_titles = []
         _video_paths = []
         _all_images = []
     }

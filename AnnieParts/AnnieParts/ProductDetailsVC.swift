@@ -81,7 +81,7 @@ class ProductDetailsVC: UITableViewController {
             let expanded = details.detail_options[indexPath.section].expanded
             details.detail_options[indexPath.section].expanded = !expanded
 
-            if (!expanded && indexPath.row > 0) {
+            if (expanded && indexPath.row > 0) {
                 performSegue(withIdentifier: "showWebView", sender: nil)
                 tableView.deselectRow(at: indexPath, animated: false)
             }
@@ -111,7 +111,7 @@ class ProductDetailsVC: UITableViewController {
         if (segue.identifier == "showWebView") {
             let destination = segue.destination as! WebViewVC
             let index = tableView.indexPathForSelectedRow
-            destination.path = details.detail_options[index!.section].option_paths[index!.row]
+            destination.path = details.detail_options[index!.section].option_paths[index!.row-1]
         }
     }
 }

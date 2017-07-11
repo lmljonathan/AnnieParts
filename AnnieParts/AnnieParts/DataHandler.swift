@@ -107,7 +107,8 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
                     let description = product["desc"].stringValue
                     let install_titles = product["ins"].arrayValue.map{$0["title"].stringValue}
                     let install_paths = product["ins"].arrayValue.map{$0["href"].stringValue}
-                    let videos = product["video"].arrayValue.map{$0.stringValue}
+                    let video_titles = product["video"].arrayValue.map{$0["title"].stringValue}
+                    let video_paths = product["video"].arrayValue.map{$0["href"].stringValue}
                     let image_paths = product["thumb_url"].arrayValue.map{$0.stringValue}
 
                     product_list.append(
@@ -125,14 +126,14 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
                             description: description,
                             install_titles: install_titles,
                             install_paths: install_paths,
-                            videos: videos,
+                            video_titles: video_titles,
+                            video_paths: video_paths,
                             all_images: image_paths
                         )
                     )
                 }
                 completion(product_list)
             }
-            completion([])
         }
     }
 }

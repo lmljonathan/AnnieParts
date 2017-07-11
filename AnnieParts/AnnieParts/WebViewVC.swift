@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import WebKit
 
-class WebViewVC: UIViewController {
+class WebViewVC: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webview: UIWebView!
     var path: String!
+    var loading: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let loading = startActivityIndicator(view: self.view)
+        webview.delegate = self
+        loading = startActivityIndicator(view: self.view)
+        let encoded_url = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = NSURL(string: encoded_url!)
+        let request = NSURLRequest(url: url as! URL)
+        webview.loadRequest(request as URLRequest)
+
+
         // Do any additional setup after loading the view.
     }
 
@@ -23,7 +32,10 @@ class WebViewVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        loading.stopAnimating()
+    }
+
 
     /*
     // MARK: - Navigation
