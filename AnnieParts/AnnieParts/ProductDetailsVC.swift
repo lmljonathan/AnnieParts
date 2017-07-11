@@ -101,8 +101,13 @@ class ProductDetailsVC: UITableViewController {
             return 50
         }
     }
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if (section == 0) {
+            return 0.01
+        }
+        else {
+            return 5
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
