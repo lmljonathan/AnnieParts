@@ -86,7 +86,9 @@ class ProductDetailsVC: UITableViewController {
             }
             else {
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -111,7 +113,6 @@ class ProductDetailsVC: UITableViewController {
             let destination = segue.destination as! WebViewVC
             let index = tableView.indexPathForSelectedRow
             destination.path = details.detail_options[index!.section].option_paths[index!.row-1]
-            tableView.deselectRow(at: index!, animated: false)
         }
     }
 }
