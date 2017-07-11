@@ -83,7 +83,6 @@ class ProductDetailsVC: UITableViewController {
 
             if (expanded && indexPath.row > 0) {
                 performSegue(withIdentifier: "showWebView", sender: nil)
-                tableView.deselectRow(at: indexPath, animated: false)
             }
             else {
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
@@ -112,6 +111,7 @@ class ProductDetailsVC: UITableViewController {
             let destination = segue.destination as! WebViewVC
             let index = tableView.indexPathForSelectedRow
             destination.path = details.detail_options[index!.section].option_paths[index!.row-1]
+            tableView.deselectRow(at: index!, animated: false)
         }
     }
 }
