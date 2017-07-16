@@ -14,9 +14,11 @@
 		3C15C7FE1E3A9B1400BDB31A /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C7FD1E3A9B1400BDB31A /* ProductDetailsVC.swift */; };
 		3C15C8001E3AA58F00BDB31A /* LabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15C7FF1E3AA58F00BDB31A /* LabelCell.swift */; };
 		3C33AA331E35855100BE7F13 /* ProductDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C33AA321E35855100BE7F13 /* ProductDetailCell.swift */; };
+		3C5356211F159240007659B3 /* Popups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C5356201F159240007659B3 /* Popups.storyboard */; };
 		3C5A57F01F140A3E00E1472C /* WebViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A57EF1F140A3E00E1472C /* WebViewVC.swift */; };
 		3C62C3BD1EB14BBD008EDCB4 /* ProductDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62C3BC1EB14BBD008EDCB4 /* ProductDescriptionCell.swift */; };
 		3C7052D91E282A8F00D2AF0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7052D81E282A8F00D2AF0E /* Constants.swift */; };
+		3C8723F41F19720600F2A1BC /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C8723F31F19720600F2A1BC /* ProductCell.xib */; };
 		3CA951A81E283E1500F92D42 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA951A71E283E1500F92D42 /* SearchVC.swift */; };
 		3CABAA081E25E7EC002AA0ED /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABAA071E25E7EC002AA0ED /* LoginVC.swift */; };
 		3CABAA0A1E25E9F0002AA0ED /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABAA091E25E9F0002AA0ED /* DataHandler.swift */; };
@@ -29,6 +31,10 @@
 		3CB01C501E2472BE00EE22F6 /* AnniePartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C4F1E2472BE00EE22F6 /* AnniePartsTests.swift */; };
 		3CB01C5B1E2472BE00EE22F6 /* AnniePartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */; };
 		3CC0E0C71E29AA0000A3E86E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */; };
+		3CF7E0E01F1C040000CF1448 /* ProductDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF7E0DF1F1C040000CF1448 /* ProductDetailCell.xib */; };
+		3CF7E0E31F1C049500CF1448 /* ProductDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF7E0E21F1C049500CF1448 /* ProductDescriptionCell.xib */; };
+		3CF7E0E51F1C04DB00CF1448 /* SearchHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF7E0E41F1C04DB00CF1448 /* SearchHeaderCell.xib */; };
+		3CF7E0E71F1C04F900CF1448 /* LabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF7E0E61F1C04F900CF1448 /* LabelCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,9 +63,11 @@
 		3C15C7FD1E3A9B1400BDB31A /* ProductDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		3C15C7FF1E3AA58F00BDB31A /* LabelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelCell.swift; sourceTree = "<group>"; };
 		3C33AA321E35855100BE7F13 /* ProductDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailCell.swift; sourceTree = "<group>"; };
+		3C5356201F159240007659B3 /* Popups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popups.storyboard; sourceTree = "<group>"; };
 		3C5A57EF1F140A3E00E1472C /* WebViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewVC.swift; sourceTree = "<group>"; };
 		3C62C3BC1EB14BBD008EDCB4 /* ProductDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDescriptionCell.swift; sourceTree = "<group>"; };
 		3C7052D81E282A8F00D2AF0E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3C8723F31F19720600F2A1BC /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		3CA951A71E283E1500F92D42 /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		3CABAA071E25E7EC002AA0ED /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3CABAA091E25E9F0002AA0ED /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
@@ -78,6 +86,10 @@
 		3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsUITests.swift; sourceTree = "<group>"; };
 		3CB01C5C1E2472BE00EE22F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		3CF7E0DF1F1C040000CF1448 /* ProductDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDetailCell.xib; sourceTree = "<group>"; };
+		3CF7E0E21F1C049500CF1448 /* ProductDescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductDescriptionCell.xib; sourceTree = "<group>"; };
+		3CF7E0E41F1C04DB00CF1448 /* SearchHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderCell.xib; sourceTree = "<group>"; };
+		3CF7E0E61F1C04F900CF1448 /* LabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelCell.xib; sourceTree = "<group>"; };
 		7922A15B6AC13A3AA97CB1D2 /* Pods_AnniePartsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniePartsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1804BF67F2EF41CEA246AC5 /* Pods_AnniePartsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniePartsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8388E93E779F4F93DF81594 /* Pods-AnnieParts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnnieParts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnnieParts/Pods-AnnieParts.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,6 +127,7 @@
 				3CABAA0D1E25FF0B002AA0ED /* UIExtensions.swift */,
 				3C0CD7FF1E29783700F70652 /* UIHelperFunctions.swift */,
 				3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */,
+				3C5356201F159240007659B3 /* Popups.storyboard */,
 				3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */,
 			);
 			name = UI;
@@ -179,6 +192,7 @@
 		3CB01C391E2472BE00EE22F6 /* AnnieParts */ = {
 			isa = PBXGroup;
 			children = (
+				3CF7E0E11F1C047E00CF1448 /* Xibs */,
 				3C0CD8011E2979B000F70652 /* UI */,
 				3C4D02551E2DD24600188377 /* Data */,
 				3CA951A41E283DBD00F92D42 /* Cells */,
@@ -206,6 +220,18 @@
 				3CB01C5C1E2472BE00EE22F6 /* Info.plist */,
 			);
 			path = AnniePartsUITests;
+			sourceTree = "<group>";
+		};
+		3CF7E0E11F1C047E00CF1448 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				3C8723F31F19720600F2A1BC /* ProductCell.xib */,
+				3CF7E0E21F1C049500CF1448 /* ProductDescriptionCell.xib */,
+				3CF7E0DF1F1C040000CF1448 /* ProductDetailCell.xib */,
+				3CF7E0E41F1C04DB00CF1448 /* SearchHeaderCell.xib */,
+				3CF7E0E61F1C04F900CF1448 /* LabelCell.xib */,
+			);
+			name = Xibs;
 			sourceTree = "<group>";
 		};
 		670943EFB763317D2A969DF4 /* Frameworks */ = {
@@ -342,7 +368,13 @@
 			files = (
 				3CB01C451E2472BE00EE22F6 /* LaunchScreen.storyboard in Resources */,
 				3CB01C421E2472BE00EE22F6 /* Assets.xcassets in Resources */,
+				3CF7E0E31F1C049500CF1448 /* ProductDescriptionCell.xib in Resources */,
+				3CF7E0E01F1C040000CF1448 /* ProductDetailCell.xib in Resources */,
+				3CF7E0E51F1C04DB00CF1448 /* SearchHeaderCell.xib in Resources */,
+				3C8723F41F19720600F2A1BC /* ProductCell.xib in Resources */,
+				3CF7E0E71F1C04F900CF1448 /* LabelCell.xib in Resources */,
 				3CB01C401E2472BE00EE22F6 /* Main.storyboard in Resources */,
+				3C5356211F159240007659B3 /* Popups.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +437,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

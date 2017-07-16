@@ -15,7 +15,8 @@ class ProductDetailsVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        product.printProduct()
+        registerNibs()
+
         details.addOption(new_option: Details.Option())
         if (product.install_titles.count > 0) {
             details.addOption(new_option: Details.Option(option_array: product.install_titles, option_paths_array: product.install_paths, title: "Install"))
@@ -30,6 +31,20 @@ class ProductDetailsVC: UITableViewController {
         tableView.separatorStyle = .none
         print(details.detail_options.count)
         tableView.reloadData()
+    }
+    func registerNibs()
+    {
+        let productDetail = UINib(nibName: "ProductDetailCell", bundle: nil)
+        tableView.register(productDetail, forCellReuseIdentifier: "ProductDetailCell")
+
+        let productDescription = UINib(nibName: "ProductDescriptionCell", bundle: nil)
+        tableView.register(productDescription, forCellReuseIdentifier: "ProductDescriptionCell")
+
+        let searchHeader = UINib(nibName: "SearchHeaderCell", bundle: nil)
+        tableView.register(searchHeader, forCellReuseIdentifier: "SearchHeaderCell")
+
+        let labelCell = UINib(nibName: "LabelCell", bundle: nil)
+        tableView.register(labelCell, forCellReuseIdentifier: "LabelCell")
     }
 
     // MARK: - Table view data source
@@ -54,28 +69,29 @@ class ProductDetailsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "productDetailCell", for: indexPath) as! ProductDetailCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailCell", for: indexPath) as! ProductDetailCell
                 cell.slideshowScrollView.delegate = self
                 cell.initialize(data: product, parent: self)
                 return cell
             }
             else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! ProductDescriptionCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDescriptionCell", for: indexPath) as! ProductDescriptionCell
                 cell.initializeProductDescription(product: product)
                 return cell
             }
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "pathCell", for: indexPath) as! LabelCell
             if (indexPath.row == 0) {
-                cell.backgroundColor = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
-                cell.initialize(title: details.detail_options[indexPath.section].category)
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHeaderCell", for: indexPath) as! SearchHeaderCell
+                cell.initialize(expanded: details.detail_options[indexPath.section].expanded)
+                cell.title.text = details.detail_options[indexPath.section].category
+                return cell
             }
             else {
-                cell.backgroundColor = UIColor.clear 
+                let cell = tableView.dequeueReusableCell(withIdentifier: "LabelCell", for: indexPath) as! LabelCell
                 cell.initialize(title: details.detail_options[indexPath.section].options[indexPath.row-1])
+                return cell
             }
-            return cell
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -87,8 +103,8 @@ class ProductDetailsVC: UITableViewController {
             }
             else {
                 details.detail_options[indexPath.section].expanded = !expanded
-                self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
-                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .automatic)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
             tableView.deselectRow(at: indexPath, animated: false)
         }

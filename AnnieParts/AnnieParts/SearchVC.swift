@@ -74,12 +74,12 @@ class SearchVC: UITableViewController {
                 selected_search_option_id = option_ids[indexPath.row - 1]
                 selected_category = search_option.category
                 self.performSegue(withIdentifier: CONSTANTS.SEGUES.PRODUCTS, sender: nil)
-                self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
+                self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .none)
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }
         }
         else {
-            self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .fade)
+            self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .automatic)
             self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }

@@ -1,16 +1,14 @@
 # Moa, an image downloader written in Swift for iOS, tvOS and macOS
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)][carthage]
-[![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)][cocoadocs]
-[![License](https://img.shields.io/cocoapods/l/moa.svg?style=flat)][cocoadocs]
-[![Platform](https://img.shields.io/cocoapods/p/moa.svg?style=flat)][cocoadocs]
-[cocoadocs]: http://cocoadocs.org/docsets/moa
-[carthage]: https://github.com/Carthage/Carthage
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
+[![License](https://img.shields.io/cocoapods/l/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
+[![Platform](https://img.shields.io/cocoapods/p/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
 
 Moa is an image download library written in Swift. It allows to download and show an image in an image view by setting its `moa.url` property.
 
 ```Swift
-    imageView.moa.url = "https://bit.ly/moa_image"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * Images are downloaded asynchronously.
@@ -173,6 +171,9 @@ Moa.settings.cache.requestCachePolicy = .useProtocolCachePolicy
 
 // Always cache images locally regardless of their response HTTP headers
 Moa.settings.cache.requestCachePolicy = .returnCacheDataElseLoad
+
+// Change the name of the cache directory. Useful for sharing cache with the rest of the app.
+Moa.settings.cache.diskPath = "MyAppSharedCache"
 ```
 
 ## Settings

@@ -18,6 +18,10 @@ class ProductListVC: UITableViewController {
         tableView.estimatedRowHeight = 130
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
+
+        let nib = UINib(nibName: "ProductCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ProductCell")
+        
         let loading = startActivityIndicator(view: self.view)
         product_list_request(search_query: search_query, completion: { (products) in
             self.products = products

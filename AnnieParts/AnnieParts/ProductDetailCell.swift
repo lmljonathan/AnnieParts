@@ -41,7 +41,7 @@ class ProductDetailCell: UITableViewCell {
         self.parent = parent
         
         self.slideshowIndicator.startAnimating()
-        
+
         product_name.text = data.name
         product_serial.text = data.serial_number
         product_make.text = data.make
