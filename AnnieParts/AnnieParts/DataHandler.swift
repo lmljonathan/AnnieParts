@@ -14,20 +14,20 @@ let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
 let PRODUCTS_URL = "bppSearch.php"
+let SHOPPING_URL = ""
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
     Alamofire.request(query_url, method: .get, parameters: ["act": "login", "u": username, "p": password], encoding: URLEncoding.default).validate().responseJSON { (response) in
-        if (response.data != nil) {
+        if (response.data != nil)
+        {
             let json = JSON(data: response.data!)
             if (json["status"].intValue == 1)
             {
-                User(
-                    name: json["uname"].stringValue,
-                    rank: json["user_rank"].intValue,
-                    company: json["cname"].stringValue,
-                    shopping: json["shopping_cnt"].intValue
-                )
+                User.sharedInstance.username = json["uname"].stringValue
+                User.sharedInstance.user_rank = json["user_rank"].intValue
+                User.sharedInstance.company_name = json["cname"].stringValue
+                User.sharedInstance.shopping_count = json["shopping_cnt"].intValue
                 completion(true)
                 return
             }
@@ -91,9 +91,11 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)
-            if (json["status"].intValue == 1) {
+            if (json["status"].intValue == 1)
+            {
                 let products = json["rlist"].arrayValue
-                for product in products {
+                for product in products
+                {
                     let id = product["id"].intValue
                     let model_ids = product["model_list"].arrayValue.map{$0.intValue}
                     let make_id = product["brand_id"].intValue
@@ -138,29 +140,81 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     }
 }
 
-func extract_options(data: [[String:Any]]) -> ([String], [Int]) {
+func shopping_cart_request(search_query: String, completion: @escaping ([ShoppingProduct]) -> Void) {
+    let query_url = BASE_URL + SHOPPING_URL
+    var shopping_product_list: [ShoppingProduct] = []
+    Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil)
+        {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1)
+            {
+                let products = json["rlist"].arrayValue
+                for product in products
+                {
+                    let id = product["id"].intValue
+                    let model_ids = product["model_list"].arrayValue.map{$0.intValue}
+                    let make_id = product["brand_id"].intValue
+                    let name = product["name"].stringValue
+                    let serial_number = product["sn"].stringValue
+                    let start_year = product["start_time"].stringValue
+                    let end_year = product["end_time"].stringValue
+                    let image = product["img"].stringValue
+                    let price = product["shop_price"].doubleValue
+                    let quantity = product["cnt"].intValue
+
+                    shopping_product_list.append(
+                        ShoppingProduct(
+                            product_id: id,
+                            model_ids: model_ids,
+                            make_id: make_id,
+                            name: name,
+                            serial: serial_number,
+                            start_year: start_year,
+                            end_year: end_year,
+                            image: image,
+                            price: price,
+                            quantity: quantity
+                        )
+                    )
+                }
+                completion(shopping_product_list)
+            }
+        }
+    }
+
+}
+
+func extract_options(data: [[String:Any]]) -> ([String], [Int])
+{
     var options: [String] = []
     var optionids: [Int] = []
-    for dict in data {
+    for dict in data
+    {
         options.append(dict["name"] as? String ?? "")
         optionids.append(dict["id"] as? Int ?? -1)
     }
     return (options, optionids)
 }
 
-func extract_options(data: [[String:Any]], category: String) -> Search.Option {
+func extract_options(data: [[String:Any]], category: String) -> Search.Option
+{
     var options: [String] = []
     var optionids: [Int] = []
-    for dict in data {
+    for dict in data
+    {
         options.append(dict["name"] as? String ?? "")
         optionids.append(dict["id"] as? Int ?? -1)
     }
     return Search.Option(option_array: options, option_ids_array: optionids, title: category)
 }
 
-func check_status(response: [String:Any]) -> Bool {
-    if let status = response["status"] as? Int {
-        if (status == 1) {
+func check_status(response: [String:Any]) -> Bool
+{
+    if let status = response["status"] as? Int
+    {
+        if (status == 1)
+        {
             return true
         }
     }

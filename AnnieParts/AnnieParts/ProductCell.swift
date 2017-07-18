@@ -17,14 +17,6 @@ class ProductCell: UITableViewCell {
     @IBOutlet weak var product_make: UILabel!
     @IBOutlet weak var product_years: UILabel!
     @IBOutlet weak var product_models: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
 
     func initialize(data: Product) {
         product_name.text = data.name

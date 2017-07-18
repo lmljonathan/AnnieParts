@@ -9,19 +9,16 @@
 import Foundation
 import UIKit
 
-struct User {
-    static var user_rank: Int = -1
-    static var username: String = ""
-    static var company_name: String = ""
-    static var shopping_count = -1
+class User {
+    static let sharedInstance = User()
+    var user_rank: Int = -1
+    var username: String = ""
+    var company_name: String = ""
+    var shopping_count = -1
 
-    init(name: String, rank: Int, company: String, shopping: Int) {
-        User.user_rank = rank
-        User.username = name
-        User.company_name = company
-        User.shopping_count = shopping
-    }
+    private init () {}
 }
+
 
 struct Details {
     var detail_options: [Option]
@@ -83,25 +80,24 @@ struct Search {
 }
 
 class Product {
-    private var _product_id: Int
-    private var _model_ids: [Int]
-    private var _make_id: Int
+    private var _product_id: Int = -1
+    private var _model_ids: [Int] = []
+    private var _make_id: Int = -1
 
-    private var _name: String
-    private var _serial_number: String
-    private var _make: String
-    private var _start_year: String
-    private var _end_year: String
-    private var _thumb_image_path: String
+    private var _name: String = ""
+    private var _serial_number: String = ""
+    private var _start_year: String = ""
+    private var _end_year: String = ""
+    private var _thumb_image_path: String = ""
 
-    private var _price: Double
-    private var _brief_description: String
-    private var _description: String
-    private var _install_file_titles: [String]
-    private var _install_file_paths: [String]
-    private var _video_titles: [String]
-    private var _video_paths: [String]
-    private var _all_images: [String]
+    private var _price: Double = 0
+    private var _brief_description: String = ""
+    private var _description: String = ""
+    private var _install_file_titles: [String] = []
+    private var _install_file_paths: [String] = []
+    private var _video_titles: [String] = []
+    private var _video_paths: [String] = []
+    private var _all_images: [String] = []
 
     var product_id: Int {
         return _product_id
@@ -164,7 +160,6 @@ class Product {
         _make_id = make_id
         _name = name
         _serial_number = serial_number
-        _make = ""
         _start_year = start_year
         _end_year = end_year
         _thumb_image_path = image
@@ -180,25 +175,6 @@ class Product {
         _all_images = all_images
     }
 
-    init() {
-        _product_id = -1
-        _model_ids = []
-        _make_id = -1
-        _name = ""
-        _serial_number = ""
-        _make = ""
-        _start_year = ""
-        _end_year = ""
-        _thumb_image_path = ""
-        _price = -1.0
-        _brief_description = ""
-        _description = ""
-        _install_file_titles = []
-        _install_file_paths = []
-        _video_titles = []
-        _video_paths = []
-        _all_images = []
-    }
     func decodeString(encodedString:String) -> NSAttributedString?
     {
         let encodedData = encodedString.data(using: .utf8)
@@ -218,5 +194,71 @@ class Product {
         print("install_file_paths: \(_install_file_paths)")
         print("video paths: \(_video_paths)")
         print("all images: \(_all_images)")
+    }
+}
+
+class ShoppingProduct
+{
+    private var _product_id: Int = -1
+    private var _model_ids: [Int] = []
+    private var _make_id: Int = -1
+
+    private var _name: String = ""
+    private var _serial_number: String = ""
+    private var _start_year: String = ""
+    private var _end_year: String = ""
+    private var _thumb_image_path: String = ""
+
+    private var _price: Double = 0
+    private var _quantity: Int = 0
+
+    var product_id: Int {
+        return _product_id
+    }
+    var name: String {
+        return _name
+    }
+    var serial_number: String {
+        return _serial_number
+    }
+    var thumb_image_path: String {
+        return _thumb_image_path
+    }
+    var make: String {
+        if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) as Int! {
+            return CONSTANTS.IDS.MANUFACTURERS[index]
+        }
+        return ""
+    }
+    var years: String {
+        return String(_start_year) + " - " + String(_end_year)
+    }
+    var models: String {
+        var model_string = ""
+        for id in _model_ids {
+            if let index = CONSTANTS.IDS.MODEL_IDS.index(of: id) as Int! {
+                model_string += CONSTANTS.IDS.MODELS[index] + ", "
+            }
+        }
+        return model_string
+    }
+    var price: Double {
+        return _price
+    }
+    var quantity: Int {
+        return _quantity
+    }
+
+    init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial: String,  start_year: String, end_year: String, image: String, price: Double, quantity: Int)
+    {
+        _product_id = product_id
+        _model_ids = model_ids
+        _name = name
+        _serial_number = serial
+        _start_year = start_year
+        _end_year = end_year
+        _thumb_image_path = image
+        _price = price
+        _quantity = quantity
     }
 }
