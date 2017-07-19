@@ -307,7 +307,7 @@
             </objects>
             <point key="canvasLocation" x="3304.8000000000002" y="309.89505247376314"/>
         </scene>
-        <!--Product ListVC-->
+        <!--Results-->
         <scene sceneID="N4k-EI-LNI">
             <objects>
                 <tableViewController id="kQZ-vd-dHd" customClass="ProductListVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -331,6 +331,15 @@
                             <outlet property="delegate" destination="kQZ-vd-dHd" id="Aj1-La-oZB"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Results" id="AZ8-pv-FUa">
+                        <barButtonItem key="rightBarButtonItem" title="Cart" id="DtK-ml-Wwj">
+                            <connections>
+                                <segue destination="CTd-FD-47Y" kind="show" id="SKF-ol-FoZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="eTc-lo-bM0" kind="show" identifier="showProductDetail" id="wvb-tB-4Af"/>
                     </connections>
@@ -360,7 +369,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nCn-cH-PN8" id="JbF-JN-h8F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -398,7 +407,7 @@
             </objects>
             <point key="canvasLocation" x="3304.8000000000002" y="1026.8365817091455"/>
         </scene>
-        <!--Product DetailsVC-->
+        <!--Detail-->
         <scene sceneID="7fs-i7-KGE">
             <objects>
                 <tableViewController id="eTc-lo-bM0" customClass="ProductDetailsVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -409,7 +418,7 @@
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductDetailCell" rowHeight="360" id="FU3-4p-M2F" customClass="ProductDetailCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="360"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="360"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FU3-4p-M2F" id="TOC-fA-zCE">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="359.5"/>
@@ -417,7 +426,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductDescriptionCell" rowHeight="37" id="Re5-be-KyM" customClass="ProductDescriptionCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="415.5" width="375" height="37"/>
+                                <rect key="frame" x="0.0" y="416" width="375" height="37"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Re5-be-KyM" id="7jg-UJ-29c">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="36.5"/>
@@ -425,7 +434,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchHeaderCell" id="qHq-KV-bd6" customClass="SearchHeaderCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="452.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="453" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qHq-KV-bd6" id="N9w-iI-H4V">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -433,7 +442,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" rowHeight="36" id="GoO-SN-W9H" customClass="LabelCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="496.5" width="375" height="36"/>
+                                <rect key="frame" x="0.0" y="497" width="375" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GoO-SN-W9H" id="HUW-ur-1bS">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
@@ -446,6 +455,14 @@
                             <outlet property="delegate" destination="eTc-lo-bM0" id="Mlp-o0-Vcf"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Detail" id="Htq-b9-Wyr">
+                        <barButtonItem key="rightBarButtonItem" title="Cart" id="XZy-9T-hfF">
+                            <connections>
+                                <segue destination="CTd-FD-47Y" kind="show" id="uh0-u9-iJ8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="xBk-g8-85Z" kind="show" identifier="showWebView" id="B17-o0-Qhq"/>
                     </connections>
@@ -511,4 +528,7 @@
     <resources>
         <image name="anniepartslogo" width="500" height="500"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uh0-u9-iJ8"/>
+    </inferredMetricsTieBreakers>
 </document>

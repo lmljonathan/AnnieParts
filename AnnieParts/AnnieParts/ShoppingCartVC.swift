@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyUtils
 
-class ShoppingCartVC: UIViewController {
+class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subtotal: UILabel!
@@ -19,11 +19,20 @@ class ShoppingCartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+
         shopping_cart_request { (products) in
             self.products = products
             self.calculateSubtotal()
             self.tableView.reloadData()
         }
+    }
+
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        let nib = UINib(nibName: "ShoppingCartCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ShoppingCartCell")
     }
 
     func calculateSubtotal() {
@@ -36,6 +45,8 @@ class ShoppingCartVC: UIViewController {
         subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
     }
 
+
+
     func deleteItem() {
 
     }
@@ -45,5 +56,19 @@ class ShoppingCartVC: UIViewController {
     }
 
     @IBAction func checkout(_ sender: UIButton) {
+    }
+}
+
+extension ShoppingCartVC {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.products.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell", for: indexPath) as? ShoppingCartCell {
+            let product = products[indexPath.row]
+            cell.initialize(data: product)
+            return cell
+        }
+        return ShoppingCartCell()
     }
 }
