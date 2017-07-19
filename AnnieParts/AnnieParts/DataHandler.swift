@@ -197,8 +197,8 @@ func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
                     let start_year = product["start_time"].stringValue
                     let end_year = product["end_time"].stringValue
                     let image = product["img"].stringValue
-                    let price = product["shop_price"].doubleValue
-                    let quantity = product["cnt"].intValue
+                    let price = product["goods_price"].doubleValue
+                    let quantity = product["goods_number"].intValue
 
                     shopping_product_list.append(
                         ShoppingProduct(
