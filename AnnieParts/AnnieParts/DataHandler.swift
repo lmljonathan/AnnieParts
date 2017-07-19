@@ -14,7 +14,9 @@ let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
 let PRODUCTS_URL = "bppSearch.php"
-let SHOPPING_URL = ""
+let DELETE_FROM_CART_URL = "appDeleteFromCart.php?"
+let SHOPPING_URL = "appFinishShopping.php"
+let CHECKOUT_URL = "appFinishShopping.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
@@ -140,6 +142,22 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     }
 }
 
+func delete_product_from_cart_request(product_id: Int, completion: @escaping(Bool) -> Void) {
+    let query_url = BASE_URL + DELETE_FROM_CART_URL
+    Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil)
+        {
+            let json = JSON(data:response.data!)
+            if (json["status"].intValue == 1) {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        }
+    }
+}
+
 func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
     let query_url = BASE_URL + SHOPPING_URL
     var shopping_product_list: [ShoppingProduct] = []
@@ -182,7 +200,20 @@ func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
             }
         }
     }
-
+}
+func checkout_request(completion: @escaping (String) -> Void) {
+    let query_url = BASE_URL + CHECKOUT_URL
+    Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil)
+        {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1)
+            {
+                let order_number = json["sn"].stringValue
+                completion(order_number)
+            }
+        }
+    }
 }
 
 func extract_options(data: [[String:Any]]) -> ([String], [Int])

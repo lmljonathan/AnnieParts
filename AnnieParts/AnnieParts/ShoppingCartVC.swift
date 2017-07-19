@@ -45,17 +45,26 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
     }
 
-
-
-    func deleteItem() {
-
+    func deleteItem(row: Int) {
+        let id = products[row].product_id
+        delete_product_from_cart_request(product_id: id, completion: { success in
+            if (success) {
+                self.products.remove(at: row)
+            }
+            else {
+                print("ERROR DELETING PRODUCT")
+            }
+        })
     }
 
-    func changeQuantityForItem() {
+    func changeQuantityForItem(id: Int, new_quantity: Int) {
 
     }
 
     @IBAction func checkout(_ sender: UIButton) {
+        checkout_request { (order_number) in
+            // present modal view
+        }
     }
 }
 

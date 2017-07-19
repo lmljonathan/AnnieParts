@@ -46,7 +46,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.username_field.makeTranslation(x: self.username_field.x, y: 50)
                     self.password_field.makeTranslation(x: self.password_field.x, y: self.username_field.frame.maxY + 3)
                     self.login_button.makeTranslation(x: self.login_button.x, y: self.password_field.frame.maxY + 13)
-                    self.loading.makeTranslation(x: self.loading.x, y: self.login_button.centerY - 5)
+                    self.loading.makeTranslation(x: self.loading.x, y: self.login_button.centerY - 10)
                 })
             }
         }
