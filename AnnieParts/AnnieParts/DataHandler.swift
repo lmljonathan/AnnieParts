@@ -140,7 +140,7 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     }
 }
 
-func shopping_cart_request(search_query: String, completion: @escaping ([ShoppingProduct]) -> Void) {
+func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
     let query_url = BASE_URL + SHOPPING_URL
     var shopping_product_list: [ShoppingProduct] = []
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in

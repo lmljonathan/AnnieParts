@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ShoppingCartCell: UITableViewCell {
 
@@ -22,5 +23,16 @@ class ShoppingCartCell: UITableViewCell {
 
     @IBAction func deleteItem(_ sender: UIButton) {
 
+    }
+
+    func initialize(data: ShoppingProduct) {
+        let image_url = URL(string: data.thumb_image_path)
+        img.kf.setImage(with: image_url)
+        name.text = data.name
+        serial_number.text = data.serial_number
+        make.text = data.make
+        years.text = data.years
+        models.text = data.models
+        price.text = String(data.price)
     }
 }
