@@ -57,8 +57,16 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
 
-    func changeQuantityForItem(id: Int, new_quantity: Int) {
-
+    func changeQuantityForItem(row: Int, new_quantity: Int) {
+        let id = products[row].product_id
+        update_cart_request(product_id: id, new_quantity: new_quantity, completion: { success in
+            if (success) {
+                // reload the view
+            }
+            else {
+                print("ERROR DELETING PRODUCT")
+            }
+        })
     }
 
     @IBAction func checkout(_ sender: UIButton) {
