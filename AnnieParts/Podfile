@@ -1,0 +1,17 @@
+platform :ios, '9.0'
+
+target 'AnnieParts' do
+  use_frameworks!
+
+  # Pods for AnnieParts
+  pod 'Alamofire'
+  pod 'Kingfisher'
+
+  pod 'SKPhotoBrowser'
+  pod 'Auk'
+  pod 'moa'
+
+  pod 'SwiftyJSON'
+  pod 'SwiftyUtils'
+  pod 'Presentr'
+end
