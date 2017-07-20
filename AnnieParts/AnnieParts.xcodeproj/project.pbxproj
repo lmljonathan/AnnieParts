@@ -130,13 +130,14 @@
 		3C0CD8011E2979B000F70652 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				3CABAA0D1E25FF0B002AA0ED /* UIExtensions.swift */,
-				3C0CD7FF1E29783700F70652 /* UIHelperFunctions.swift */,
+				3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */,
 				3CB01C3E1E2472BE00EE22F6 /* Main.storyboard */,
 				3C5356201F159240007659B3 /* Popups.storyboard */,
-				3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */,
+				3CABAA0D1E25FF0B002AA0ED /* UIExtensions.swift */,
+				3C0CD7FF1E29783700F70652 /* UIHelperFunctions.swift */,
 			);
 			name = UI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		3C4D02551E2DD24600188377 /* Data */ = {
@@ -147,32 +148,35 @@
 				3CABAA0B1E25EF22002AA0ED /* Model.swift */,
 			);
 			name = Data;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		3C677A4F1E25B0BC003719FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				3CABAA071E25E7EC002AA0ED /* LoginVC.swift */,
-				3CF6D5CD1F1D82DF00A466A2 /* ShoppingCartVC.swift */,
-				3CA951A71E283E1500F92D42 /* SearchVC.swift */,
-				3C0CD7F71E29723000F70652 /* ProductListVC.swift */,
 				3C15C7FD1E3A9B1400BDB31A /* ProductDetailsVC.swift */,
+				3C0CD7F71E29723000F70652 /* ProductListVC.swift */,
+				3CA951A71E283E1500F92D42 /* SearchVC.swift */,
+				3CF6D5CD1F1D82DF00A466A2 /* ShoppingCartVC.swift */,
 				3C5A57EF1F140A3E00E1472C /* WebViewVC.swift */,
 			);
 			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		3CA951A41E283DBD00F92D42 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3C0CD7FB1E29732C00F70652 /* SearchHeaderCell.swift */,
-				3CF6D5CB1F1D7CB200A466A2 /* ShoppingCartCell.swift */,
 				3C15C7FF1E3AA58F00BDB31A /* LabelCell.swift */,
 				3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */,
-				3C33AA321E35855100BE7F13 /* ProductDetailCell.swift */,
 				3C62C3BC1EB14BBD008EDCB4 /* ProductDescriptionCell.swift */,
+				3C33AA321E35855100BE7F13 /* ProductDetailCell.swift */,
+				3C0CD7FB1E29732C00F70652 /* SearchHeaderCell.swift */,
+				3CF6D5CB1F1D7CB200A466A2 /* ShoppingCartCell.swift */,
 			);
 			name = Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		3CB01C2E1E2472BE00EE22F6 = {
@@ -181,9 +185,9 @@
 				3CB01C391E2472BE00EE22F6 /* AnnieParts */,
 				3CB01C4E1E2472BE00EE22F6 /* AnniePartsTests */,
 				3CB01C591E2472BE00EE22F6 /* AnniePartsUITests */,
-				3CB01C381E2472BE00EE22F6 /* Products */,
-				DC62CB597C9BF8526349F24C /* Pods */,
 				670943EFB763317D2A969DF4 /* Frameworks */,
+				DC62CB597C9BF8526349F24C /* Pods */,
+				3CB01C381E2472BE00EE22F6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -200,13 +204,13 @@
 		3CB01C391E2472BE00EE22F6 /* AnnieParts */ = {
 			isa = PBXGroup;
 			children = (
-				3C4D02551E2DD24600188377 /* Data */,
-				3CF7E0E11F1C047E00CF1448 /* Xibs */,
-				3C0CD8011E2979B000F70652 /* UI */,
 				3CA951A41E283DBD00F92D42 /* Cells */,
 				3C677A4F1E25B0BC003719FC /* Controller */,
-				3CB01C411E2472BE00EE22F6 /* Assets.xcassets */,
+				3C4D02551E2DD24600188377 /* Data */,
+				3C0CD8011E2979B000F70652 /* UI */,
+				3CF7E0E11F1C047E00CF1448 /* Xibs */,
 				3CB01C3A1E2472BE00EE22F6 /* AppDelegate.swift */,
+				3CB01C411E2472BE00EE22F6 /* Assets.xcassets */,
 				3CB01C461E2472BE00EE22F6 /* Info.plist */,
 			);
 			path = AnnieParts;
@@ -233,14 +237,15 @@
 		3CF7E0E11F1C047E00CF1448 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				3CF7E0E61F1C04F900CF1448 /* LabelCell.xib */,
 				3C8723F31F19720600F2A1BC /* ProductCell.xib */,
 				3CF7E0E21F1C049500CF1448 /* ProductDescriptionCell.xib */,
 				3CF7E0DF1F1C040000CF1448 /* ProductDetailCell.xib */,
-				3CF6D5C91F1D7C8A00A466A2 /* ShoppingCartCell.xib */,
 				3CF7E0E41F1C04DB00CF1448 /* SearchHeaderCell.xib */,
-				3CF7E0E61F1C04F900CF1448 /* LabelCell.xib */,
+				3CF6D5C91F1D7C8A00A466A2 /* ShoppingCartCell.xib */,
 			);
 			name = Xibs;
+			path = Xibs;
 			sourceTree = "<group>";
 		};
 		670943EFB763317D2A969DF4 /* Frameworks */ = {
@@ -516,6 +521,7 @@
 				3CB01C3F1E2472BE00EE22F6 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		3CB01C431E2472BE00EE22F6 /* LaunchScreen.storyboard */ = {
@@ -524,6 +530,7 @@
 				3CB01C441E2472BE00EE22F6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -8,14 +8,16 @@
 
 import UIKit
 
-class ProductDetailsVC: UITableViewController {
+class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
     var product: Product!
     private var details = Details()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNibs()
+        configureTableView()
 
         details.addOption(new_option: Details.Option())
         if (product.install_titles.count > 0) {
@@ -24,13 +26,15 @@ class ProductDetailsVC: UITableViewController {
         if (product.video_paths.count > 0) {
             details.addOption(new_option: Details.Option(option_array: product.video_paths, option_paths_array: product.video_paths, title: "Videos"))
         }
-        configureTableView()
+
     }
     func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
         print(details.detail_options.count)
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     func registerNibs()
     {
@@ -48,11 +52,11 @@ class ProductDetailsVC: UITableViewController {
     }
 
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return details.detail_options.count
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
             if (product.description.isEmpty) {
                 return 1
@@ -66,7 +70,7 @@ class ProductDetailsVC: UITableViewController {
             return details.detail_options[section].options.count + 1
         }
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailCell", for: indexPath) as! ProductDetailCell
@@ -94,7 +98,7 @@ class ProductDetailsVC: UITableViewController {
             }
         }
     }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.section > 0) {
             let expanded = details.detail_options[indexPath.section].expanded
 
@@ -109,7 +113,7 @@ class ProductDetailsVC: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: false)
         }
     }
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section == 0) {
             return tableView.frame.height
         }
@@ -117,7 +121,7 @@ class ProductDetailsVC: UITableViewController {
             return 50
         }
     }
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (section == 0) {
             return 0.01
         }

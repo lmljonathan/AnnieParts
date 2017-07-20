@@ -13,7 +13,7 @@
         <array key="Montserrat-Light.otf">
             <string>Montserrat-Light</string>
         </array>
-        <array key="Montserrat-Regular.otf">
+        <array key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
         </array>
     </customFonts>
@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANNIEPARTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-Cj-Y2M">
-                                <rect key="frame" x="115" y="145" width="146" height="28"/>
+                                <rect key="frame" x="114.5" y="145" width="146" height="28"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -341,7 +341,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="eTc-lo-bM0" kind="show" identifier="showProductDetail" id="wvb-tB-4Af"/>
+                        <segue destination="59c-9O-tDr" kind="show" identifier="showProductDetail" id="XSf-G1-Krs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LhX-16-geM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,7 +369,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nCn-cH-PN8" id="JbF-JN-h8F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -405,71 +405,123 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tU-Le-K6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3304.8000000000002" y="1026.8365817091455"/>
+            <point key="canvasLocation" x="3305" y="1072"/>
         </scene>
-        <!--Detail-->
-        <scene sceneID="7fs-i7-KGE">
+        <!--Product DetailsVC-->
+        <scene sceneID="OJm-NN-wU8">
             <objects>
-                <tableViewController id="eTc-lo-bM0" customClass="ProductDetailsVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="WlM-At-DDS">
+                <viewController id="59c-9O-tDr" customClass="ProductDetailsVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bme-2F-Jr2"/>
+                        <viewControllerLayoutGuide type="bottom" id="0HX-Sw-0GW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LdR-SN-VV6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="mdR-VF-Usz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="509"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductDetailCell" id="t9J-vH-HF1" customClass="ProductDetailCell" customModule="AnnieParts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9J-vH-HF1" id="VOy-xv-k0n">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductDescriptionCell" rowHeight="37" id="YQ1-bE-8D5" customClass="ProductDescriptionCell" customModule="AnnieParts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="99.5" width="375" height="37"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQ1-bE-8D5" id="JcO-Qq-vnr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="36.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchHeaderCell" id="xew-Bj-e9c" customClass="SearchHeaderCell" customModule="AnnieParts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="136.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xew-Bj-e9c" id="m70-dW-bxF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" rowHeight="36" id="Q7K-aW-0nh" customClass="LabelCell" customModule="AnnieParts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="180.5" width="375" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q7K-aW-0nh" id="Pk1-Yz-X58">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWA-7s-GTt">
+                                <rect key="frame" x="0.0" y="573" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-hP-IwL">
+                                        <rect key="frame" x="255" y="10" width="100" height="30"/>
+                                        <color key="backgroundColor" red="0.59607843140000005" green="0.050980392159999999" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="WKg-Lf-zDq"/>
+                                        </constraints>
+                                        <state key="normal" title="Add To Cart"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoE-c9-JKd">
+                                        <rect key="frame" x="20" y="15" width="32" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="LU8-Xg-mDz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7XI-Uc-0Ph">
+                                        <rect key="frame" x="72" y="10" width="88" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="d8u-XV-ia1"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="7XI-Uc-0Ph" firstAttribute="leading" secondItem="xoE-c9-JKd" secondAttribute="trailing" constant="20" id="2fZ-jZ-Yic"/>
+                                    <constraint firstAttribute="bottom" secondItem="mgt-hP-IwL" secondAttribute="bottom" constant="10" id="38D-6y-eJs"/>
+                                    <constraint firstAttribute="bottom" secondItem="xoE-c9-JKd" secondAttribute="bottom" constant="14" id="4f4-Yr-229"/>
+                                    <constraint firstAttribute="height" constant="50" id="8xy-8N-tDf"/>
+                                    <constraint firstAttribute="bottom" secondItem="7XI-Uc-0Ph" secondAttribute="bottom" constant="10" id="IG1-oA-QrD"/>
+                                    <constraint firstAttribute="trailing" secondItem="mgt-hP-IwL" secondAttribute="trailing" constant="20" id="PvE-cn-G0J"/>
+                                    <constraint firstItem="xoE-c9-JKd" firstAttribute="top" secondItem="TWA-7s-GTt" secondAttribute="top" constant="15" id="RQm-Dd-zrA"/>
+                                    <constraint firstItem="mgt-hP-IwL" firstAttribute="top" secondItem="TWA-7s-GTt" secondAttribute="top" constant="10" id="asB-Oy-lAy"/>
+                                    <constraint firstItem="7XI-Uc-0Ph" firstAttribute="top" secondItem="TWA-7s-GTt" secondAttribute="top" constant="10" id="sCm-ej-EA9"/>
+                                    <constraint firstItem="xoE-c9-JKd" firstAttribute="leading" secondItem="TWA-7s-GTt" secondAttribute="leading" constant="20" id="vPd-QB-Zdd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductDetailCell" rowHeight="360" id="FU3-4p-M2F" customClass="ProductDetailCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="360"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FU3-4p-M2F" id="TOC-fA-zCE">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="359.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductDescriptionCell" rowHeight="37" id="Re5-be-KyM" customClass="ProductDescriptionCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="416" width="375" height="37"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Re5-be-KyM" id="7jg-UJ-29c">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="36.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchHeaderCell" id="qHq-KV-bd6" customClass="SearchHeaderCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="453" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qHq-KV-bd6" id="N9w-iI-H4V">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LabelCell" rowHeight="36" id="GoO-SN-W9H" customClass="LabelCell" customModule="AnnieParts" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="497" width="375" height="36"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GoO-SN-W9H" id="HUW-ur-1bS">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="eTc-lo-bM0" id="7Pa-Y4-gPq"/>
-                            <outlet property="delegate" destination="eTc-lo-bM0" id="Mlp-o0-Vcf"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="Htq-b9-Wyr">
-                        <barButtonItem key="rightBarButtonItem" title="Cart" id="XZy-9T-hfF">
-                            <connections>
-                                <segue destination="CTd-FD-47Y" kind="show" id="uh0-u9-iJ8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                        <constraints>
+                            <constraint firstItem="mdR-VF-Usz" firstAttribute="top" secondItem="bme-2F-Jr2" secondAttribute="bottom" id="8qm-Vc-9v1"/>
+                            <constraint firstItem="0HX-Sw-0GW" firstAttribute="top" secondItem="TWA-7s-GTt" secondAttribute="bottom" id="ATZ-lc-NQb"/>
+                            <constraint firstItem="mdR-VF-Usz" firstAttribute="leading" secondItem="LdR-SN-VV6" secondAttribute="leadingMargin" constant="-16" id="Eea-BP-uRL"/>
+                            <constraint firstItem="TWA-7s-GTt" firstAttribute="top" secondItem="mdR-VF-Usz" secondAttribute="bottom" id="Jzo-1r-lfi"/>
+                            <constraint firstAttribute="trailing" secondItem="TWA-7s-GTt" secondAttribute="trailing" id="b6z-th-7wE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mdR-VF-Usz" secondAttribute="trailing" constant="-16" id="ixF-P6-l08"/>
+                            <constraint firstItem="TWA-7s-GTt" firstAttribute="leading" secondItem="LdR-SN-VV6" secondAttribute="leading" id="zBq-OE-Gdv"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <segue destination="xBk-g8-85Z" kind="show" identifier="showWebView" id="B17-o0-Qhq"/>
+                        <outlet property="tableView" destination="mdR-VF-Usz" id="i3k-x5-emD"/>
+                        <segue destination="xBk-g8-85Z" kind="show" identifier="showWebView" id="tbW-CD-mRr"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lId-Js-1n3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ah2-lI-2E4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4876" y="314.39280359820094"/>
+            <point key="canvasLocation" x="4887.1999999999998" y="1040.3298350824589"/>
         </scene>
         <!--Web ViewVC-->
         <scene sceneID="HVF-ah-HPx">
@@ -483,8 +535,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ka-BT-qip">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <webView contentMode="scaleAspectFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ka-BT-qip">
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
@@ -493,7 +545,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5ka-BT-qip" firstAttribute="leading" secondItem="KrP-be-811" secondAttribute="leading" id="MFS-No-5Z0"/>
-                            <constraint firstItem="5ka-BT-qip" firstAttribute="top" secondItem="bZT-b8-RkR" secondAttribute="bottom" constant="-64" id="foc-MX-y3Z"/>
+                            <constraint firstItem="5ka-BT-qip" firstAttribute="top" secondItem="bZT-b8-RkR" secondAttribute="bottom" id="foc-MX-y3Z"/>
                             <constraint firstAttribute="trailing" secondItem="5ka-BT-qip" secondAttribute="trailing" id="mkD-Dt-var"/>
                             <constraint firstItem="Kk3-Bh-6qH" firstAttribute="top" secondItem="5ka-BT-qip" secondAttribute="bottom" id="qJf-8B-qV9"/>
                         </constraints>
@@ -529,6 +581,6 @@
         <image name="anniepartslogo" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uh0-u9-iJ8"/>
+        <segue reference="bCa-OG-Bjr"/>
     </inferredMetricsTieBreakers>
 </document>
