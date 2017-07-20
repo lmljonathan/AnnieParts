@@ -21,7 +21,7 @@ class WebViewVC: UIViewController, UIWebViewDelegate {
         loading = startActivityIndicator(view: self.view)
         let encoded_url = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let url = NSURL(string: encoded_url!)
-        let request = NSURLRequest(url: url as! URL)
+        let request = NSURLRequest(url: url! as URL)
         webview.loadRequest(request as URLRequest)
     }
 

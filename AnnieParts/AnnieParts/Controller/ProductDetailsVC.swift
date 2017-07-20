@@ -8,16 +8,20 @@
 
 import UIKit
 
-class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet weak var bottomBarView: UIView!
+
     var product: Product!
-    private var details = Details()
+    var details = Details()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNibs()
         configureTableView()
+        configureTextField()
 
         details.addOption(new_option: Details.Option())
         if (product.install_titles.count > 0) {
@@ -28,12 +32,22 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
 
     }
+    func configureTextField() {
+        quantityTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(ProductDetailsVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProductDetailsVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+
+        let dismissKeyboardRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        dismissKeyboardRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(dismissKeyboardRecognizer)
+
+    }
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorStyle = .none
-        print(details.detail_options.count)
+        self.automaticallyAdjustsScrollViewInsets = false
         self.tableView.reloadData()
     }
     func registerNibs()
@@ -50,6 +64,46 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let labelCell = UINib(nibName: "LabelCell", bundle: nil)
         tableView.register(labelCell, forCellReuseIdentifier: "LabelCell")
     }
+
+    func keyboardWillShow(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+        let difference = keyboardSize.height - (self.tabBarController?.tabBar.frame.height)!
+
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.bottomBarView.frame.origin.y -= difference
+            self.tableView.frame.size.height -= difference
+        })
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+        let difference = keyboardSize.height - (self.tabBarController?.tabBar.frame.height)!
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.bottomBarView.frame.origin.y += difference
+            self.tableView.frame.size.height += difference
+        })
+    }
+
+    func dismissKeyboard() {
+        quantityTextField.resignFirstResponder()
+    }
+
+    @IBAction func addToCart(_ sender: UIButton) {
+        quantityTextField.resignFirstResponder()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showWebView") {
+            let destination = segue.destination as! WebViewVC
+            let index = tableView.indexPathForSelectedRow
+            destination.path = details.detail_options[index!.section].option_paths[index!.row-1]
+        }
+    }
+}
+
+extension ProductDetailsVC {
 
     // MARK: - Table view data source
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -122,19 +176,6 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (section == 0) {
-            return 0.01
-        }
-        else {
-            return 5
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showWebView") {
-            let destination = segue.destination as! WebViewVC
-            let index = tableView.indexPathForSelectedRow
-            destination.path = details.detail_options[index!.section].option_paths[index!.row-1]
-        }
+        return 5
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Auk
 import SKPhotoBrowser
 
-class ProductDetailCell: UITableViewCell {
+class ProductDetailCell: UITableViewCell, SKPhotoBrowserDelegate {
     
     var product: Product!
     var parent: ProductDetailsVC!
@@ -41,11 +41,10 @@ class ProductDetailCell: UITableViewCell {
         configureSlideshow(imageURLs: data.images)
     }
     
-    func configureSlideshow(imageURLs: [String]){
+    func configureSlideshow(imageURLs: [String]) {
         let gr = UITapGestureRecognizer(target: self, action: #selector(self.showPhotoBrowser))
-        gr.numberOfTapsRequired = 1
+
         self.slideshowScrollView.addGestureRecognizer(gr)
-        
         self.slideshowIndicator.hidesWhenStopped = true
         self.slideshowScrollView.auk.settings.preloadRemoteImagesAround = 1
         
@@ -58,6 +57,7 @@ class ProductDetailCell: UITableViewCell {
     }
     
     internal func showPhotoBrowser() {
+        self.parent.quantityTextField.resignFirstResponder()
         var images: [SKPhoto] {
             var current_images = self.slideshowScrollView.auk.images.map({SKPhoto.photoWithImage($0)})
             for index in (current_images.count)..<self.product.images.count {
@@ -74,18 +74,5 @@ class ProductDetailCell: UITableViewCell {
             browser.delegate = self
             parent.present(browser, animated: true, completion: nil)
         }
-    }
-}
-
-extension ProductDetailCell: SKPhotoBrowserDelegate {
-    // MARK: - SKPhotoBrowserDelegate
-    func didShowPhotoAtIndex(_ index: Int) {
-    }
-    
-    func willDismissAtPageIndex(_ index: Int) {
-        self.slideshowScrollView.auk.scrollToPage(atIndex: index, animated: false)
-    }
-    
-    func didDismissAtPageIndex(_ index: Int) {
     }
 }
