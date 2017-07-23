@@ -26,7 +26,6 @@ class ProductListVC: UITableViewController {
         product_list_request(search_query: search_query, completion: { (products) in
             self.products = products
             self.tableView.reloadData()
-            self.tableView.separatorStyle = .singleLine
             loading.stopAnimating()
         })
     }

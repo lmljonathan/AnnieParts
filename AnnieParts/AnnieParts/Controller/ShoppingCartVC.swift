@@ -15,22 +15,26 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var subtotal: UILabel!
     @IBOutlet weak var checkout_button: UIButton!
 
-    var products: [ShoppingProduct]!
+    var products: [ShoppingProduct] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
 
+        let loading = startActivityIndicator(view: self.view)
         shopping_cart_request { (products) in
             self.products = products
             self.calculateSubtotal()
             self.tableView.reloadData()
+            loading.stopAnimating()
         }
     }
 
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableHeaderView = UIView()
+        self.automaticallyAdjustsScrollViewInsets = false
         let nib = UINib(nibName: "ShoppingCartCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ShoppingCartCell")
     }
@@ -77,7 +81,11 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 }
 
 extension ShoppingCartVC {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(self.products.count)
         return self.products.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,5 +95,14 @@ extension ShoppingCartVC {
             return cell
         }
         return ShoppingCartCell()
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
 }

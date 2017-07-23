@@ -16,7 +16,7 @@ let SEARCH_OPTIONS_URL = "appGetCfg.php"
 let PRODUCTS_URL = "bppSearch.php"
 let DELETE_FROM_CART_URL = "appDeleteFromCart.php?"
 let UPDATE_CART_URL = "appAddGoods2Cart.php?"
-let SHOPPING_URL = "appFinishShopping.php"
+let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
@@ -179,6 +179,7 @@ func delete_product_from_cart_request(product_id: Int, completion: @escaping(Boo
 
 func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
     let query_url = BASE_URL + SHOPPING_URL
+    print(query_url)
     var shopping_product_list: [ShoppingProduct] = []
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)

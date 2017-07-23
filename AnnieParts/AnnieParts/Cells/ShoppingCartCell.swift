@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SwiftyUtils
 
 class ShoppingCartCell: UITableViewCell {
 
@@ -33,6 +34,6 @@ class ShoppingCartCell: UITableViewCell {
         make.text = data.make
         years.text = data.years
         models.text = data.models
-        price.text = String(data.price)
+        price.text = data.price.formattedPrice
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,24 +21,13 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="2Ji-i5-d5d">
                         <rect key="frame" x="136" y="8" width="231" height="85"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="HMc-Ic-S1J">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsb-YD-8O6">
                                 <rect key="frame" x="0.0" y="0.0" width="231" height="20.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsb-YD-8O6">
-                                        <rect key="frame" x="0.0" y="0.0" width="203.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <size key="shadowOffset" width="0.0" height="0.0"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-Eu-de4">
-                                        <rect key="frame" x="203.5" y="0.0" width="27.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serial Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykh-US-JYR">
                                 <rect key="frame" x="0.0" y="22.5" width="231" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -97,9 +86,16 @@
                             <action selector="deleteItem:" destination="JIZ-Jc-GX0" eventType="touchUpInside" id="OZ4-Gf-A8N"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-Eu-de4">
+                        <rect key="frame" x="282" y="103" width="85" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="XN3-pj-OuH" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kmC-Hz-clq" secondAttribute="bottomMargin" id="32X-sg-ebH"/>
+                    <constraint firstItem="Vg6-Eu-de4" firstAttribute="trailing" secondItem="kmC-Hz-clq" secondAttribute="trailingMargin" id="BQ0-nB-970"/>
                     <constraint firstItem="XN3-pj-OuH" firstAttribute="top" secondItem="kmC-Hz-clq" secondAttribute="topMargin" id="EBV-3Y-nn6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="vC3-Hh-vLz" secondAttribute="bottom" priority="750" constant="-1.5" id="FU1-Ci-RIH"/>
                     <constraint firstItem="2Ji-i5-d5d" firstAttribute="leading" secondItem="XN3-pj-OuH" secondAttribute="trailing" constant="8" id="JQu-Ic-tKX"/>
@@ -109,6 +105,8 @@
                     <constraint firstItem="vC3-Hh-vLz" firstAttribute="leading" secondItem="XN3-pj-OuH" secondAttribute="trailing" constant="8" id="dLR-vk-DIH"/>
                     <constraint firstAttribute="trailing" secondItem="2Ji-i5-d5d" secondAttribute="trailing" constant="8" id="glW-cH-Zlu"/>
                     <constraint firstItem="KbB-So-ssH" firstAttribute="leading" secondItem="vC3-Hh-vLz" secondAttribute="trailing" constant="8" id="hH3-dO-Mrs"/>
+                    <constraint firstItem="Vg6-Eu-de4" firstAttribute="leading" secondItem="KbB-So-ssH" secondAttribute="trailing" constant="8" id="o1d-xz-VZL"/>
+                    <constraint firstItem="Vg6-Eu-de4" firstAttribute="centerY" secondItem="KbB-So-ssH" secondAttribute="centerY" id="sgN-zA-IhX"/>
                     <constraint firstItem="XN3-pj-OuH" firstAttribute="leading" secondItem="kmC-Hz-clq" secondAttribute="leadingMargin" id="wLV-mE-sJT"/>
                     <constraint firstItem="vC3-Hh-vLz" firstAttribute="top" secondItem="2Ji-i5-d5d" secondAttribute="bottom" constant="5" id="ycx-Vd-Vl5"/>
                 </constraints>
@@ -123,7 +121,7 @@
                 <outlet property="serial_number" destination="ykh-US-JYR" id="JY0-sd-AVH"/>
                 <outlet property="years" destination="20w-0f-Csh" id="OoT-fk-YDc"/>
             </connections>
-            <point key="canvasLocation" x="-120.5" y="-142.5"/>
+            <point key="canvasLocation" x="-120.5" y="-147.5"/>
         </tableViewCell>
     </objects>
 </document>

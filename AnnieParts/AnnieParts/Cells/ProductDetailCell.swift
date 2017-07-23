@@ -43,14 +43,10 @@ class ProductDetailCell: UITableViewCell, SKPhotoBrowserDelegate {
     
     func configureSlideshow(imageURLs: [String]) {
         let gr = UITapGestureRecognizer(target: self, action: #selector(self.showPhotoBrowser))
-
         self.slideshowScrollView.addGestureRecognizer(gr)
         self.slideshowIndicator.hidesWhenStopped = true
         self.slideshowScrollView.auk.settings.preloadRemoteImagesAround = 1
-        
-        print(imageURLs)
         for url in imageURLs {
-            print("url of image: \(url)")
             self.slideshowScrollView.auk.show(url: url)
         }
         self.slideshowIndicator.stopAnimating()

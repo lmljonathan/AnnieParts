@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANNIEPARTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-Cj-Y2M">
-                                <rect key="frame" x="107" y="145" width="161.5" height="29.5"/>
+                                <rect key="frame" x="107.5" y="145" width="161.5" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -397,13 +397,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
-                                <rect key="frame" x="0.0" y="98" width="375" height="521"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
+                                <rect key="frame" x="0.0" y="98" width="375" height="478"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShoppingCartCell" id="nCn-cH-PN8" customClass="ShoppingCartCell" customModule="AnnieParts" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nCn-cH-PN8" id="JbF-JN-h8F">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -412,10 +412,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-Fv-kMU">
-                                <rect key="frame" x="0.0" y="627" width="375" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-Fv-kMU">
+                                <rect key="frame" x="0.0" y="573" width="375" height="45"/>
                                 <color key="backgroundColor" red="0.59512418509999998" green="0.049755223100000003" blue="0.062657751139999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="5IZ-1e-77k"/>
+                                </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Checkout">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -424,15 +426,26 @@
                                     <action selector="checkout:" destination="CTd-FD-47Y" eventType="touchUpInside" id="p2I-5F-nqL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cart subtotal (0 items): $0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-YX-KN0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart subtotal (0 items): $0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-YX-KN0">
                                 <rect key="frame" x="16" y="72" width="343" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kqw-ox-I6O" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leading" id="2Wf-PZ-Yp6"/>
+                            <constraint firstAttribute="trailing" secondItem="Kqw-ox-I6O" secondAttribute="trailing" id="84n-bT-Ivs"/>
+                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="top" secondItem="Kqw-ox-I6O" secondAttribute="bottom" constant="-3" id="DJN-N1-wZf"/>
+                            <constraint firstItem="Kqw-ox-I6O" firstAttribute="top" secondItem="oC4-YX-KN0" secondAttribute="bottom" constant="8" id="Kjx-F9-K2H"/>
+                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leading" id="NCF-dl-jR5"/>
+                            <constraint firstItem="oC4-YX-KN0" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leadingMargin" id="Ng4-iM-Nm3"/>
+                            <constraint firstItem="oC4-YX-KN0" firstAttribute="trailing" secondItem="uVC-Y7-ReI" secondAttribute="trailingMargin" id="WCZ-V2-dlg"/>
+                            <constraint firstItem="oC4-YX-KN0" firstAttribute="top" secondItem="HMV-NI-mIJ" secondAttribute="bottom" constant="8" id="kjq-Dc-vSr"/>
+                            <constraint firstAttribute="trailing" secondItem="9ab-Fv-kMU" secondAttribute="trailing" id="oJd-Gz-dFd"/>
+                            <constraint firstItem="Aue-8b-qE2" firstAttribute="top" secondItem="9ab-Fv-kMU" secondAttribute="bottom" id="rEL-vJ-Gez"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="checkout_button" destination="9ab-Fv-kMU" id="gEp-QF-8Rs"/>
@@ -442,7 +455,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tU-Le-K6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3254" y="-367"/>
+            <point key="canvasLocation" x="3253.5999999999999" y="-367.46626686656674"/>
         </scene>
         <!--Product DetailsVC-->
         <scene sceneID="OJm-NN-wU8">
@@ -609,7 +622,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M8T-QF-y2o" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="XAE-4N-YhZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQR-ja-tMj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZQR-ja-tMj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -628,7 +641,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hnh-pK-DSF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="xSJ-pB-F3N"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pDb-Q7-5yf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pDb-Q7-5yf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -646,6 +659,6 @@
         <image name="anniepartslogo" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SKF-ol-FoZ"/>
+        <segue reference="bCa-OG-Bjr"/>
     </inferredMetricsTieBreakers>
 </document>
