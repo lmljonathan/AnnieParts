@@ -19,8 +19,8 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var dismissKeyboard: UITapGestureRecognizer!
 
     var products: [ShoppingProduct] = []
-    var changed_product_number: Int!
-    
+    var row_in_edit: Int!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -34,6 +34,12 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             loading.stopAnimating()
         }
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        quantityTextField.resignFirstResponder()
+        super.viewWillDisappear(true)
+    }
+
 
     func configureTextField() {
         quantityTextField.delegate = self
@@ -117,10 +123,10 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBAction func editItem(_ sender: UIButton) {
         let index = tableView.indexPathForRow(at: sender.convert(.zero, to: tableView))
+        row_in_edit = index?.row
         tableView.beginUpdates()
         tableView.scrollToRow(at: index!, at: .top, animated: true)
         tableView.endUpdates()
-        changed_product_number = sender.tag
         quantityTextField.becomeFirstResponder()
     }
 
@@ -141,18 +147,17 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func editQuantityConfirmed(_ sender: UIButton) {
-        if (changed_product_number != nil) {
-            let changed_item = products[changed_product_number]
-            let new_quantity = Int(quantityTextField.text!)!
-            update_cart_request(product_id: changed_item.product_id, new_quantity: new_quantity, completion: { (success) in
-                if (success) {
-                    self.products[self.changed_product_number].updateQuantity(quantity: new_quantity)
-                    self.calculateSubtotal()
-                    self.tableView.reloadData()
-                    print("updated")
-                }
-            })
-        }
+        let new_quantity = Int(quantityTextField.text!)!
+        update_cart_request(product_id: products[row_in_edit].product_id, new_quantity: new_quantity, completion: { (success) in
+            if (success) {
+                self.products[self.row_in_edit].updateQuantity(quantity: new_quantity)
+                self.calculateSubtotal()
+                self.tableView.reloadData()
+                self.quantityTextField.text = ""
+                print("updated")
+            }
+        })
+
         quantityTextField.resignFirstResponder()
     }
 
@@ -182,9 +187,7 @@ extension ShoppingCartVC {
             cell.initialize(data: product)
             cell.quantityButton.titleLabel?.text = String(product.quantity)
             cell.quantityButton.addTarget(self, action: #selector(self.editItem(_:)), for: .touchUpInside)
-            cell.quantityButton.tag = indexPath.row
             cell.deleteButton.addTarget(self, action: #selector(self.deleteItem(_:)), for: .touchUpInside)
-            cell.deleteButton.tag = indexPath.row
             return cell
         }
         return ShoppingCartCell()
