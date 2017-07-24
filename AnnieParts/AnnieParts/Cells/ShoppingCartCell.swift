@@ -12,7 +12,6 @@ import SwiftyUtils
 
 class ShoppingCartCell: UITableViewCell {
 
-
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var serial_number: UILabel!
@@ -21,10 +20,8 @@ class ShoppingCartCell: UITableViewCell {
     @IBOutlet weak var models: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var quantityButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
 
-    @IBAction func deleteItem(_ sender: UIButton) {
-
-    }
 
     func initialize(data: ShoppingProduct) {
         let image_url = URL(string: data.thumb_image_path)

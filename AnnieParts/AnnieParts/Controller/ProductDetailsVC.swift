@@ -36,11 +36,6 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         quantityTextField.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(ProductDetailsVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ProductDetailsVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
-
-        let dismissKeyboardRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        dismissKeyboardRecognizer.cancelsTouchesInView = false
-        view.addGestureRecognizer(dismissKeyboardRecognizer)
-
     }
     func configureTableView() {
         tableView.delegate = self
@@ -86,11 +81,12 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         })
     }
 
-    func dismissKeyboard() {
+    @IBAction func addToCart(_ sender: UIButton) {
         quantityTextField.resignFirstResponder()
     }
 
-    @IBAction func addToCart(_ sender: UIButton) {
+
+    @IBAction func finishedEditingQuantity(_ sender: UITapGestureRecognizer) {
         quantityTextField.resignFirstResponder()
     }
 

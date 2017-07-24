@@ -53,7 +53,6 @@ class ProductDetailCell: UITableViewCell, SKPhotoBrowserDelegate {
     }
     
     internal func showPhotoBrowser() {
-        self.parent.quantityTextField.resignFirstResponder()
         var images: [SKPhoto] {
             var current_images = self.slideshowScrollView.auk.images.map({SKPhoto.photoWithImage($0)})
             for index in (current_images.count)..<self.product.images.count {

@@ -9,17 +9,20 @@
 import UIKit
 import SwiftyUtils
 
-class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subtotal: UILabel!
     @IBOutlet weak var checkout_button: UIButton!
+    @IBOutlet weak var bottomBarView: UIView!
+    @IBOutlet weak var quantityTextField: UITextField!
 
     var products: [ShoppingProduct] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        configureTextField()
 
         let loading = startActivityIndicator(view: self.view)
         shopping_cart_request { (products) in
@@ -30,10 +33,16 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
+    func configureTextField() {
+        quantityTextField.delegate = self
+        bottomBarView.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(ShoppingCartVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ShoppingCartVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+    }
+
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView = UIView()
         self.automaticallyAdjustsScrollViewInsets = false
         let nib = UINib(nibName: "ShoppingCartCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ShoppingCartCell")
@@ -73,10 +82,63 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
 
+    func keyboardWillShow(notification: NSNotification) {
+        bottomBarView.isHidden = false
+        let userInfo = notification.userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+        let difference = keyboardSize.height - (self.tabBarController?.tabBar.frame.height)!
+
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.bottomBarView.frame.origin.y -= difference
+            self.tableView.frame.size.height -= difference
+        })
+    }
+
+    func keyboardWillHide(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
+        let difference = keyboardSize.height - (self.tabBarController?.tabBar.frame.height)!
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            self.bottomBarView.frame.origin.y += difference
+            self.tableView.frame.size.height += difference
+            self.bottomBarView.isHidden = true
+        })
+    }
+
+    @IBAction func editItem(_ sender: UIButton) {
+        let index = tableView.indexPathForRow(at: sender.convert(.zero, to: tableView))
+        tableView.beginUpdates()
+        tableView.scrollToRow(at: index!, at: .top, animated: true)
+        tableView.endUpdates()
+        quantityTextField.becomeFirstResponder()
+    }
+
+    @IBAction func deleteItem(_ sender: UIButton) {
+        delete_product_from_cart_request(product_id: products[sender.tag].product_id) { (success) in
+            if (success) {
+                self.products.remove(at: sender.tag)
+                let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
+                self.tableView.beginUpdates()
+                self.tableView.deleteRows(at: [index!], with: .automatic)
+                self.tableView.endUpdates()
+            }
+            else {
+                print("ERROR - cannot delete product from cart, please try again")
+            }
+        }
+    }
+
+    @IBAction func editQuantityConfirmed(_ sender: UIButton) {
+        quantityTextField.resignFirstResponder()
+    }
+
     @IBAction func checkout(_ sender: UIButton) {
         checkout_request { (order_number) in
             // present modal view
         }
+    }
+    @IBAction func finishedEditingQuantity(_ sender: UITapGestureRecognizer) {
+        quantityTextField.resignFirstResponder()
     }
 }
 
@@ -92,12 +154,16 @@ extension ShoppingCartVC {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell", for: indexPath) as? ShoppingCartCell {
             let product = products[indexPath.row]
             cell.initialize(data: product)
+            cell.quantityButton.addTarget(self, action: #selector(self.editItem(_:)), for: .touchUpInside)
+            cell.quantityButton.tag = indexPath.row
+            cell.deleteButton.addTarget(self, action: #selector(self.deleteItem(_:)), for: .touchUpInside)
+            cell.deleteButton.tag = indexPath.row
             return cell
         }
         return ShoppingCartCell()
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.1
+        return 1
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

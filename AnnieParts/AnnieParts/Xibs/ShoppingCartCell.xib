@@ -81,10 +81,9 @@
                             <constraint firstAttribute="width" constant="65" id="Zh6-pd-vXP"/>
                             <constraint firstAttribute="height" constant="30" id="kOD-Rt-GXR"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
-                        <connections>
-                            <action selector="deleteItem:" destination="JIZ-Jc-GX0" eventType="touchUpInside" id="OZ4-Gf-A8N"/>
-                        </connections>
+                        <state key="normal" title="DELETE">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$45" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vg6-Eu-de4">
                         <rect key="frame" x="282" y="103" width="85" height="20.5"/>
@@ -112,6 +111,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="deleteButton" destination="KbB-So-ssH" id="rcU-Hf-Om8"/>
                 <outlet property="img" destination="XN3-pj-OuH" id="G9V-IA-OO4"/>
                 <outlet property="make" destination="Jip-DU-bfP" id="d6I-69-sfu"/>
                 <outlet property="models" destination="E1E-7K-mrc" id="JMg-ER-iNz"/>
