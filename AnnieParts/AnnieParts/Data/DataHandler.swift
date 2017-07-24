@@ -15,6 +15,7 @@ let LOGIN_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
 let PRODUCTS_URL = "bppSearch.php"
 let DELETE_FROM_CART_URL = "appDeleteFromCart.php?"
+let ADD_TO_CART_URL = "appAddGoods2Cart.php?"
 let UPDATE_CART_URL = "appAddGoods2Cart.php?"
 let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
@@ -143,12 +144,27 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
     }
 }
 
+func add_product_to_cart_request(product_id: Int, quantity: Int, completion: @escaping(Bool) -> Void) {
+    let query_url = BASE_URL + ADD_TO_CART_URL
+    Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id, "cnt": quantity], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1) {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        }
+    }
+}
+
 func update_cart_request(product_id: Int, new_quantity: Int, completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + UPDATE_CART_URL
     Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id, "cnt": new_quantity, "act":"set"], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
-            let json = JSON(data:response.data!)
+            let json = JSON(data: response.data!)
             if (json["status"].intValue == 1) {
                 completion(true)
             }

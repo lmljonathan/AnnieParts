@@ -9,15 +9,17 @@
 import UIKit
 import SwiftyUtils
 
-class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subtotal: UILabel!
     @IBOutlet weak var checkout_button: UIButton!
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var quantityTextField: UITextField!
+    @IBOutlet var dismissKeyboard: UITapGestureRecognizer!
 
     var products: [ShoppingProduct] = []
+    var changed_product_number: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func configureTextField() {
         quantityTextField.delegate = self
+        dismissKeyboard.delegate = self
         bottomBarView.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(ShoppingCartVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ShoppingCartVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
@@ -82,6 +85,13 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
     }
 
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isKind(of: UIButton.self))! {
+            return false
+        }
+        return true
+    }
+
     func keyboardWillShow(notification: NSNotification) {
         bottomBarView.isHidden = false
         let userInfo = notification.userInfo!
@@ -110,6 +120,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.beginUpdates()
         tableView.scrollToRow(at: index!, at: .top, animated: true)
         tableView.endUpdates()
+        changed_product_number = sender.tag
         quantityTextField.becomeFirstResponder()
     }
 
@@ -117,6 +128,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         delete_product_from_cart_request(product_id: products[sender.tag].product_id) { (success) in
             if (success) {
                 self.products.remove(at: sender.tag)
+                self.calculateSubtotal()
                 let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
                 self.tableView.beginUpdates()
                 self.tableView.deleteRows(at: [index!], with: .automatic)
@@ -129,13 +141,27 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func editQuantityConfirmed(_ sender: UIButton) {
+        if (changed_product_number != nil) {
+            let changed_item = products[changed_product_number]
+            let new_quantity = Int(quantityTextField.text!)!
+            update_cart_request(product_id: changed_item.product_id, new_quantity: new_quantity, completion: { (success) in
+                if (success) {
+                    self.products[self.changed_product_number].updateQuantity(quantity: new_quantity)
+                    self.calculateSubtotal()
+                    self.tableView.reloadData()
+                    print("updated")
+                }
+            })
+        }
         quantityTextField.resignFirstResponder()
     }
 
     @IBAction func checkout(_ sender: UIButton) {
-        checkout_request { (order_number) in
-            // present modal view
-        }
+
+        print("checkout pressed")
+//        checkout_request { (order_number) in
+//
+//        }
     }
     @IBAction func finishedEditingQuantity(_ sender: UITapGestureRecognizer) {
         quantityTextField.resignFirstResponder()
@@ -154,6 +180,7 @@ extension ShoppingCartVC {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell", for: indexPath) as? ShoppingCartCell {
             let product = products[indexPath.row]
             cell.initialize(data: product)
+            cell.quantityButton.titleLabel?.text = String(product.quantity)
             cell.quantityButton.addTarget(self, action: #selector(self.editItem(_:)), for: .touchUpInside)
             cell.quantityButton.tag = indexPath.row
             cell.deleteButton.addTarget(self, action: #selector(self.deleteItem(_:)), for: .touchUpInside)

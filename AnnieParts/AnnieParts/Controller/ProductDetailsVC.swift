@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var bottomBarView: UIView!
+    @IBOutlet var dismissKeyboard: UITapGestureRecognizer!
 
     var product: Product!
     var details = Details()
@@ -32,8 +33,15 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
 
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        quantityTextField.resignFirstResponder()
+        super.viewWillDisappear(true)
+    }
+
     func configureTextField() {
         quantityTextField.delegate = self
+        dismissKeyboard.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(ProductDetailsVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ProductDetailsVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
@@ -60,10 +68,17 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableView.register(labelCell, forCellReuseIdentifier: "LabelCell")
     }
 
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view?.isKind(of: UIButton.self))! {
+            return false
+        }
+        return true
+    }
+
     func keyboardWillShow(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
-        let difference = keyboardSize.height - (self.tabBarController?.tabBar.frame.height)!
+        let difference = keyboardSize.height - 49
 
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.bottomBarView.frame.origin.y -= difference
@@ -74,7 +89,7 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func keyboardWillHide(notification: NSNotification) {
         let userInfo = notification.userInfo!
         let keyboardSize: CGSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue.size
-        let difference = keyboardSize.height - (self.tabBarController?.tabBar.frame.height)!
+        let difference = keyboardSize.height - 49
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.bottomBarView.frame.origin.y += difference
             self.tableView.frame.size.height += difference
@@ -82,7 +97,13 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     @IBAction func addToCart(_ sender: UIButton) {
+        print("add to cart pressed")
         quantityTextField.resignFirstResponder()
+        add_product_to_cart_request(product_id: product.product_id, quantity: Int(quantityTextField.text!)!) { (success) in
+            if (success) {
+                print("product added!")
+            }
+        }
     }
 
 

@@ -8,20 +8,14 @@
 
 import UIKit
 
-class ProductListVC: UITableViewController {
+class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
     var search_query: String = ""
     private var products: [Product] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tableView.estimatedRowHeight = 130
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorStyle = .none
-
-        let nib = UINib(nibName: "ProductCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ProductCell")
-        
+        configureTableView()
         let loading = startActivityIndicator(view: self.view)
         product_list_request(search_query: search_query, completion: { (products) in
             self.products = products
@@ -40,24 +34,37 @@ class ProductListVC: UITableViewController {
         }
     }
 
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 130
+        tableView.rowHeight = UITableViewAutomaticDimension
+        self.automaticallyAdjustsScrollViewInsets = false
+
+        let nib = UINib(nibName: "ProductCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ProductCell")
+    }
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return products.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductCell
         cell.initialize(data: products[indexPath.row])
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: CONSTANTS.SEGUES.DETAIL, sender: nil)
-        //self.tableView.deselectRow(at: indexPath, animated: false)
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1.0
     }
 }

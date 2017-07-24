@@ -261,4 +261,8 @@ class ShoppingProduct
         _price = price
         _quantity = quantity
     }
+
+    func updateQuantity(quantity: Int) {
+        _quantity = quantity
+    }
 }
