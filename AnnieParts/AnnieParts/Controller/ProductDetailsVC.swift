@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Presentr
 
 class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
@@ -97,11 +98,20 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     @IBAction func addToCart(_ sender: UIButton) {
-        print("add to cart pressed")
+        let quantity = Int(quantityTextField.text!)!
         quantityTextField.resignFirstResponder()
-        add_product_to_cart_request(product_id: product.product_id, quantity: Int(quantityTextField.text!)!) { (success) in
+
+
+        add_product_to_cart_request(product_id: product.product_id, quantity: quantity) { (success) in
             if (success) {
-                print("product added!")
+                let presenter = Presentr(presentationType: .alert)
+                var alertController: AlertViewController {
+                    let alertController = Presentr.alertViewController(title: "Product Added", body: "You added \(quantity) of \(self.product.name) to your cart")
+                    let okAction = AlertAction(title: "Okay", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    return alertController
+                }
+                self.customPresentViewController(presenter, viewController: alertController, animated: true, completion: nil)
             }
         }
     }

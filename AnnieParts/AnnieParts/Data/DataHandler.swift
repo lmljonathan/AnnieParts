@@ -239,6 +239,7 @@ func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
 }
 func checkout_request(completion: @escaping (String) -> Void) {
     let query_url = BASE_URL + CHECKOUT_URL
+    print(query_url)
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {

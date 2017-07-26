@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyUtils
+import Presentr
 
 class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
 
@@ -19,6 +20,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var dismissKeyboard: UITapGestureRecognizer!
 
     var products: [ShoppingProduct] = []
+    var subtotal_amount: Double = 0
     var row_in_edit: Int!
 
     override func viewDidLoad() {
@@ -64,6 +66,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             quantity += item.quantity
             price_amount += (item.price * Double(item.quantity))
         }
+        subtotal_amount = price_amount
         subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
     }
 
@@ -162,11 +165,33 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func checkout(_ sender: UIButton) {
-
-        print("checkout pressed")
-//        checkout_request { (order_number) in
-//
-//        }
+        if (products.isEmpty) {
+            return
+        }
+        let presenter = Presentr(presentationType: .alert)
+        var alertController: AlertViewController {
+            let alertController = Presentr.alertViewController(title: "Checkout", body: "Cart Subtotal: \(subtotal_amount.formattedPrice)")
+            let cancelAction = AlertAction(title: "Cancel", style: .cancel) { alert in
+                print("CANCEL!!")
+            }
+            let okAction = AlertAction(title: "Confirm", style: .default) { alert in
+                checkout_request { (order_number) in
+                    let presenter2 = Presentr(presentationType: .alert)
+                    var alertController2: AlertViewController {
+                        let alertController2 = Presentr.alertViewController(title: "Order Completed", body: "\(order_number)")
+                        let okAction2 = AlertAction(title: "Okay", style: .default, handler: nil)
+                        alertController2.addAction(okAction2)
+                        return alertController2
+                    }
+                    self.customPresentViewController(presenter2, viewController: alertController2, animated: true, completion: nil)
+                    self.products.removeAll()
+                }
+            }
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            return alertController
+        }
+        customPresentViewController(presenter, viewController: alertController, animated: true, completion: nil)
     }
     @IBAction func finishedEditingQuantity(_ sender: UITapGestureRecognizer) {
         quantityTextField.resignFirstResponder()
