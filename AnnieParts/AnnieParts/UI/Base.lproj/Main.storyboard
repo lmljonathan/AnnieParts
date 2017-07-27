@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANNIEPARTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-Cj-Y2M">
-                                <rect key="frame" x="107" y="145" width="161.5" height="29.5"/>
+                                <rect key="frame" x="107.5" y="145" width="161.5" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -337,13 +337,28 @@
                     <view key="view" contentMode="scaleToFill" id="OdY-9I-JeV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deX-Fq-EHt">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="deX-Fq-EHt" firstAttribute="top" secondItem="a2B-TS-71b" secondAttribute="bottom" id="10O-Wn-tVc"/>
+                            <constraint firstItem="bC8-Fs-tT1" firstAttribute="top" secondItem="deX-Fq-EHt" secondAttribute="bottom" id="4fL-4s-XR7"/>
+                            <constraint firstItem="deX-Fq-EHt" firstAttribute="leading" secondItem="OdY-9I-JeV" secondAttribute="leading" id="XIo-B2-a81"/>
+                            <constraint firstAttribute="trailing" secondItem="deX-Fq-EHt" secondAttribute="trailing" id="ka8-aE-qzg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="t4A-8Y-wVc"/>
+                    <connections>
+                        <outlet property="tableView" destination="deX-Fq-EHt" id="CnX-8H-5xs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf8-60-3Wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2390" y="1047"/>
+            <point key="canvasLocation" x="2389.5999999999999" y="1046.6266866566718"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="3gK-HK-mDd">

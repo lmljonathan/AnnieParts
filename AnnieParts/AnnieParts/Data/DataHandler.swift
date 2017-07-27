@@ -19,6 +19,7 @@ let ADD_TO_CART_URL = "appAddGoods2Cart.php?"
 let UPDATE_CART_URL = "appAddGoods2Cart.php?"
 let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
+let ORDERS_URL = "appGetOrderInfo.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
@@ -248,6 +249,80 @@ func checkout_request(completion: @escaping (String) -> Void) {
             {
                 let order_number = json["sn"].stringValue
                 completion(order_number)
+            }
+        }
+    }
+}
+func order_list_request(completion: @escaping([[Order]]) -> Void) {
+    let query_url = BASE_URL + ORDERS_URL
+    var all_orders: [[Order]] = []
+    Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil)
+        {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1)
+            {
+                var orders_array: [Order] = []
+                let customer_orders = json["customerOrder"].arrayValue
+                for order in customer_orders {
+                    let order_id = order["order_id"].intValue
+                    let user_id = order["user_id"].intValue
+                    let sn = order["order_sn"].stringValue
+                    let total = order["goods_amount"].doubleValue
+                    let status = order["status"].stringValue
+                    orders_array.append(
+                        Order(
+                            order_id: order_id,
+                            user_id: user_id,
+                            serial_number: sn,
+                            total: total,
+                            status: status
+                        )
+                    )
+                }
+                all_orders.append(orders_array)
+                orders_array.removeAll()
+
+                let unprocessed_orders = json["unprocessedOrder"].arrayValue
+                for order in unprocessed_orders {
+                    let order_id = order["order_id"].intValue
+                    let user_id = order["user_id"].intValue
+                    let sn = order["order_sn"].stringValue
+                    let total = order["goods_amount"].doubleValue
+                    let status = order["status"].stringValue
+                    orders_array.append(
+                        Order(
+                            order_id: order_id,
+                            user_id: user_id,
+                            serial_number: sn,
+                            total: total,
+                            status: status
+                        )
+                    )
+                }
+                all_orders.append(orders_array)
+                orders_array.removeAll()
+
+                let processed_orders = json["processedOrder"].arrayValue
+                for order in processed_orders {
+                    let order_id = order["order_id"].intValue
+                    let user_id = order["user_id"].intValue
+                    let sn = order["order_sn"].stringValue
+                    let total = order["goods_amount"].doubleValue
+                    let status = order["status"].stringValue
+                    orders_array.append(
+                        Order(
+                            order_id: order_id,
+                            user_id: user_id,
+                            serial_number: sn,
+                            total: total,
+                            status: status
+                        )
+                    )
+                }
+                all_orders.append(orders_array)
+                orders_array.removeAll()
+                completion(all_orders)
             }
         }
     }

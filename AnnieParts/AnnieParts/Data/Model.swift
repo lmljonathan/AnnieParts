@@ -185,32 +185,22 @@ class Product {
             return nil
         }
     }
-    func printProduct()
-    {
-        print("Product id: \(_product_id)")
-        print("Model ids: \(_model_ids)")
-        print("Make id: \(_make_id)")
-        print("install_file_titles: \(_install_file_titles)")
-        print("install_file_paths: \(_install_file_paths)")
-        print("video paths: \(_video_paths)")
-        print("all images: \(_all_images)")
-    }
 }
 
 class ShoppingProduct
 {
-    private var _product_id: Int = -1
-    private var _model_ids: [Int] = []
-    private var _make_id: Int = -1
+    private var _product_id: Int!
+    private var _model_ids: [Int]!
+    private var _make_id: Int!
 
-    private var _name: String = ""
-    private var _serial_number: String = ""
-    private var _start_year: String = ""
-    private var _end_year: String = ""
-    private var _thumb_image_path: String = ""
+    private var _name: String!
+    private var _serial_number: String!
+    private var _start_year: String!
+    private var _end_year: String!
+    private var _thumb_image_path: String!
 
-    private var _price: Double = 0
-    private var _quantity: Int = 0
+    private var _price: Double!
+    private var _quantity: Int!
 
     var product_id: Int {
         return _product_id
@@ -265,4 +255,42 @@ class ShoppingProduct
     func updateQuantity(quantity: Int) {
         _quantity = quantity
     }
+}
+
+class Order {
+    private var _order_id: Int!
+    private var _user_id: Int!
+    private var _serial_number: String!
+    private var _total: Double!
+    private var _status: String!
+
+    var order_id: Int {
+        return _order_id
+    }
+
+    var user_id: Int {
+        return _user_id
+    }
+
+    var serial_number: String {
+        return _serial_number
+    }
+
+    var total: Double {
+        return _total
+    }
+
+    var status: String {
+        return _status
+    }
+
+    init(order_id: Int, user_id: Int, serial_number: String, total: Double, status: String) {
+        _order_id = order_id
+        _user_id = user_id
+        _serial_number = serial_number
+        _total = total
+        _status = status
+    }
+
+
 }
