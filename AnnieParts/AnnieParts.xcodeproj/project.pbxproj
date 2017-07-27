@@ -32,6 +32,8 @@
 		3CB01C501E2472BE00EE22F6 /* AnniePartsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C4F1E2472BE00EE22F6 /* AnniePartsTests.swift */; };
 		3CB01C5B1E2472BE00EE22F6 /* AnniePartsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */; };
 		3CC0E0C71E29AA0000A3E86E /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */; };
+		3CD4F9501F296DAA00433D9C /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4F94E1F296DAA00433D9C /* OrderCell.swift */; };
+		3CD4F9511F296DAA00433D9C /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD4F94F1F296DAA00433D9C /* OrderCell.xib */; };
 		3CF6D5CA1F1D7C8A00A466A2 /* ShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CF6D5C91F1D7C8A00A466A2 /* ShoppingCartCell.xib */; };
 		3CF6D5CC1F1D7CB200A466A2 /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6D5CB1F1D7CB200A466A2 /* ShoppingCartCell.swift */; };
 		3CF6D5CE1F1D82DF00A466A2 /* ShoppingCartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6D5CD1F1D82DF00A466A2 /* ShoppingCartVC.swift */; };
@@ -91,6 +93,8 @@
 		3CB01C5A1E2472BE00EE22F6 /* AnniePartsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnniePartsUITests.swift; sourceTree = "<group>"; };
 		3CB01C5C1E2472BE00EE22F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CC0E0C61E29AA0000A3E86E /* ProductCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		3CD4F94E1F296DAA00433D9C /* OrderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		3CD4F94F1F296DAA00433D9C /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderCell.xib; path = ../Cells/OrderCell.xib; sourceTree = "<group>"; };
 		3CF6D5C91F1D7C8A00A466A2 /* ShoppingCartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartCell.xib; sourceTree = "<group>"; };
 		3CF6D5CB1F1D7CB200A466A2 /* ShoppingCartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
 		3CF6D5CD1F1D82DF00A466A2 /* ShoppingCartVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartVC.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				3C33AA321E35855100BE7F13 /* ProductDetailCell.swift */,
 				3C0CD7FB1E29732C00F70652 /* SearchHeaderCell.swift */,
 				3CF6D5CB1F1D7CB200A466A2 /* ShoppingCartCell.swift */,
+				3CD4F94E1F296DAA00433D9C /* OrderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				3CF7E0E61F1C04F900CF1448 /* LabelCell.xib */,
+				3CD4F94F1F296DAA00433D9C /* OrderCell.xib */,
 				3C8723F31F19720600F2A1BC /* ProductCell.xib */,
 				3CF7E0E21F1C049500CF1448 /* ProductDescriptionCell.xib */,
 				3CF7E0DF1F1C040000CF1448 /* ProductDetailCell.xib */,
@@ -388,6 +394,7 @@
 				3CF6D5CA1F1D7C8A00A466A2 /* ShoppingCartCell.xib in Resources */,
 				3CB01C401E2472BE00EE22F6 /* Main.storyboard in Resources */,
 				3C5356211F159240007659B3 /* Popups.storyboard in Resources */,
+				3CD4F9511F296DAA00433D9C /* OrderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +469,7 @@
 			files = (
 				3C0CD8001E29783700F70652 /* UIHelperFunctions.swift in Sources */,
 				3C15C7FE1E3A9B1400BDB31A /* ProductDetailsVC.swift in Sources */,
+				3CD4F9501F296DAA00433D9C /* OrderCell.swift in Sources */,
 				3C0CD7F81E29723000F70652 /* ProductListVC.swift in Sources */,
 				3CA951A81E283E1500F92D42 /* SearchVC.swift in Sources */,
 				3CABAA081E25E7EC002AA0ED /* LoginVC.swift in Sources */,

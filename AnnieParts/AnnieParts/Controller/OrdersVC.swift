@@ -11,14 +11,26 @@ import UIKit
 class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+
+    var orders: [[Order]]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        // Do any additional setup after loading the view.
+        order_list_request { (orders) in
+            self.orders = orders
+            self.tableView.reloadData()
+        }
     }
     func configureTableView() {
         tableView.delegate = self
+        let nib = UINib(nibName: "OrderCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "OrderCell")
+    }
 
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        tableView.reloadData()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -26,18 +38,22 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return orders[segmentedControl.selectedSegmentIndex].count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath) as? OrderCell {
+            cell.initialize(order: orders[segmentedControl.selectedSegmentIndex][indexPath.row])
+            return cell
+        }
         return UITableViewCell()
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
     }
 }

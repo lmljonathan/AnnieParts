@@ -326,7 +326,7 @@
             </objects>
             <point key="canvasLocation" x="2390" y="346"/>
         </scene>
-        <!--OrdersVC-->
+        <!--Orders-->
         <scene sceneID="GVJ-lW-X5v">
             <objects>
                 <viewController id="5bG-77-mpX" customClass="OrdersVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -339,20 +339,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deX-Fq-EHt">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" id="5sL-kw-otQ" customClass="OrderCell" customModule="AnnieParts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5sL-kw-otQ" id="Rpd-DQ-5d8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eIR-jN-psG">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Pv1-fp-1eP"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Customer"/>
+                                    <segment title="Unprocessed"/>
+                                    <segment title="Processed"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlValueChanged:" destination="5bG-77-mpX" eventType="valueChanged" id="fTC-9s-963"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="deX-Fq-EHt" firstAttribute="top" secondItem="a2B-TS-71b" secondAttribute="bottom" id="10O-Wn-tVc"/>
                             <constraint firstItem="bC8-Fs-tT1" firstAttribute="top" secondItem="deX-Fq-EHt" secondAttribute="bottom" id="4fL-4s-XR7"/>
+                            <constraint firstItem="eIR-jN-psG" firstAttribute="trailing" secondItem="OdY-9I-JeV" secondAttribute="trailingMargin" id="HKv-za-zGf"/>
+                            <constraint firstItem="eIR-jN-psG" firstAttribute="leading" secondItem="OdY-9I-JeV" secondAttribute="leadingMargin" id="PhI-Xg-qex"/>
                             <constraint firstItem="deX-Fq-EHt" firstAttribute="leading" secondItem="OdY-9I-JeV" secondAttribute="leading" id="XIo-B2-a81"/>
+                            <constraint firstItem="eIR-jN-psG" firstAttribute="top" secondItem="a2B-TS-71b" secondAttribute="bottom" constant="8" id="YqU-Hd-QK3"/>
                             <constraint firstAttribute="trailing" secondItem="deX-Fq-EHt" secondAttribute="trailing" id="ka8-aE-qzg"/>
+                            <constraint firstItem="deX-Fq-EHt" firstAttribute="top" secondItem="eIR-jN-psG" secondAttribute="bottom" constant="8" id="tQC-aH-GbT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="t4A-8Y-wVc"/>
+                    <navigationItem key="navigationItem" title="Orders" id="t4A-8Y-wVc">
+                        <barButtonItem key="rightBarButtonItem" title="cart" id="tiU-nC-4er">
+                            <connections>
+                                <segue destination="CTd-FD-47Y" kind="show" id="LG5-jY-cW4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="segmentedControl" destination="eIR-jN-psG" id="PF1-hK-fJz"/>
                         <outlet property="tableView" destination="deX-Fq-EHt" id="CnX-8H-5xs"/>
                     </connections>
                 </viewController>
@@ -567,7 +601,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3253.5999999999999" y="-367.46626686656674"/>
+            <point key="canvasLocation" x="5748" y="1047"/>
         </scene>
         <!--Product DetailsVC-->
         <scene sceneID="OJm-NN-wU8">
@@ -799,6 +833,6 @@
         <image name="anniepartslogo" width="500" height="500"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cNn-PV-Eq5"/>
+        <segue reference="LG5-jY-cW4"/>
     </inferredMetricsTieBreakers>
 </document>

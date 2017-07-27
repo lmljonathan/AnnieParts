@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="60" id="KGk-i7-Jjw" customClass="OrderCell" customModule="AnnieParts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER NUMBER &gt;..sdafasdklfjasld" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMf-w8-L6M">
+                        <rect key="frame" x="8" y="8" width="304" height="27"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWJ-6i-ipk">
+                        <rect key="frame" x="106" y="37" width="206" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aF-fe-f5J">
+                        <rect key="frame" x="8" y="37" width="90" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="d97-if-59V"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NMf-w8-L6M" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AiJ-7q-hNO"/>
+                    <constraint firstItem="5aF-fe-f5J" firstAttribute="top" secondItem="NMf-w8-L6M" secondAttribute="bottom" constant="2" id="DwN-66-6OL"/>
+                    <constraint firstItem="NMf-w8-L6M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="cSb-Z2-E5J"/>
+                    <constraint firstItem="IWJ-6i-ipk" firstAttribute="top" secondItem="NMf-w8-L6M" secondAttribute="bottom" constant="2" id="eMT-l3-IWt"/>
+                    <constraint firstAttribute="trailing" secondItem="IWJ-6i-ipk" secondAttribute="trailing" constant="8" id="jsT-ej-nyF"/>
+                    <constraint firstItem="IWJ-6i-ipk" firstAttribute="leading" secondItem="5aF-fe-f5J" secondAttribute="trailing" constant="8" id="mdO-0g-g8D"/>
+                    <constraint firstAttribute="bottom" secondItem="5aF-fe-f5J" secondAttribute="bottom" constant="7.5" id="moL-vv-L78"/>
+                    <constraint firstAttribute="bottom" secondItem="IWJ-6i-ipk" secondAttribute="bottom" constant="7.5" id="pdk-ee-aTv"/>
+                    <constraint firstItem="NMf-w8-L6M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="spc-IP-Ftq"/>
+                    <constraint firstItem="5aF-fe-f5J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="xV5-Cd-Apd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="date" destination="5aF-fe-f5J" id="dEu-sc-PNh"/>
+                <outlet property="order_number" destination="NMf-w8-L6M" id="6Xt-hp-D9R"/>
+                <outlet property="total" destination="IWJ-6i-ipk" id="eIZ-ef-nUG"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

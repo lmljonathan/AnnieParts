@@ -291,6 +291,25 @@ class Order {
         _total = total
         _status = status
     }
+}
 
+class OrderItem {
+    private var _name: String!
+    private var _quantity: Int!
+    private var _price: Double!
 
+    var name: String {
+        return _name
+    }
+    var quantity: Int {
+        return _quantity
+    }
+    var price: Double {
+        return _price
+    }
+    init (name: String, quantity: Int, price: Double) {
+        _name = name
+        _quantity = quantity
+        _price = price
+    }
 }

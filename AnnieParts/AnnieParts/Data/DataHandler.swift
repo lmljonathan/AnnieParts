@@ -20,6 +20,7 @@ let UPDATE_CART_URL = "appAddGoods2Cart.php?"
 let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
 let ORDERS_URL = "appGetOrderInfo.php"
+let ORDER_INFO_URL = "appGetOrderInfo.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
@@ -323,6 +324,35 @@ func order_list_request(completion: @escaping([[Order]]) -> Void) {
                 all_orders.append(orders_array)
                 orders_array.removeAll()
                 completion(all_orders)
+            }
+        }
+    }
+}
+
+func order_info_request(order_id: Int, completion: @escaping([OrderItem]) -> Void) {
+    let query_url = BASE_URL + ORDER_INFO_URL
+    var order_products: [OrderItem] = []
+    Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil)
+        {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1)
+            {
+                let items = json["rlist"].arrayValue
+                for item in items {
+                    let name = item["goods_name"].stringValue
+                    let quantity = item["quantity"].intValue
+                    let price = item["unit_price"].doubleValue
+
+                    order_products.append(
+                        OrderItem(
+                            name: name,
+                            quantity: quantity,
+                            price: price
+                        )
+                    )
+                }
+                completion(order_products)
             }
         }
     }
