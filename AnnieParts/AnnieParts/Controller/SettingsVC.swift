@@ -33,6 +33,13 @@ class SettingsVC: UIViewController {
     }
 
     @IBAction func logout(_ sender: UIButton) {
-
+        logout_request { (success) in
+            if (success) {
+                performLogin(vc: self)  
+            }
+            else {
+                print("logout failed")
+            }
+        }
     }
 }

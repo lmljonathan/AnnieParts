@@ -29,11 +29,16 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         configureTextField()
 
         let loading = startActivityIndicator(view: self.view)
-        shopping_cart_request { (products) in
-            self.products = products
-            self.calculateSubtotal()
-            self.tableView.reloadData()
-            loading.stopAnimating()
+        shopping_cart_request { (success, products) in
+            if (success) {
+                self.products = products
+                self.calculateSubtotal()
+                self.tableView.reloadData()
+                loading.stopAnimating()
+            }
+            else {
+                performLogin(vc: self)
+            }
         }
     }
 

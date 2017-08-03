@@ -19,10 +19,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        let presenter = Presentr(presentationType: .fullScreen)
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderInfoVC") as? OrderInfoVC {
-            customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
-        }
         
 //        order_list_request { (orders) in
 //            self.orders = orders
@@ -57,7 +53,10 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-
+        let presenter = Presentr(presentationType: .fullScreen)
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderInfoVC") as? OrderInfoVC {
+            customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

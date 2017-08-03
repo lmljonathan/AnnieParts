@@ -12,6 +12,7 @@ import SwiftyJSON
 
 let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
+let LOGOUT_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
 let PRODUCTS_URL = "bppSearch.php"
 let DELETE_FROM_CART_URL = "appDeleteFromCart.php?"
@@ -42,7 +43,22 @@ func login_request(username: String, password: String, completion: @escaping (Bo
     }
 }
 
-func configureIDS(completion: @escaping() -> Void) {
+func logout_request(completion: @escaping(Bool) -> Void) {
+    let query_url = BASE_URL + LOGOUT_URL
+    Alamofire.request(query_url, method: .get, parameters: ["act":"logout"], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1) {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        }
+    }
+}
+
+func configureIDS(completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + SEARCH_OPTIONS_URL
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
 
@@ -60,7 +76,10 @@ func configureIDS(completion: @escaping() -> Void) {
                 if let models = data["models"] as? [[String:Any]] {
                     (CONSTANTS.IDS.MODELS, CONSTANTS.IDS.MODEL_IDS) = extract_options(data: models)
                 }
-                completion()
+                completion(true)
+            }
+            else {
+                completion(false)
             }
         }
     }
@@ -89,16 +108,20 @@ func search_options_request(completion: @escaping (Search) -> Void) {
     }
 }
 
-func product_list_request(search_query: String, completion: @escaping ([Product]) -> Void) {
+func product_list_request(search_query: String, completion: @escaping (Bool, [Product]) -> Void) {
     let query_url = BASE_URL + PRODUCTS_URL + "?" + search_query
-    var product_list: [Product] = []
     print(query_url)
+
+    var product_list: [Product] = []
+    var success = false
+
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)
             if (json["status"].intValue == 1)
             {
+                success = true
                 let products = json["rlist"].arrayValue
                 for product in products
                 {
@@ -140,8 +163,8 @@ func product_list_request(search_query: String, completion: @escaping ([Product]
                         )
                     )
                 }
-                completion(product_list)
             }
+            completion(success, product_list)
         }
     }
 }
@@ -195,16 +218,20 @@ func delete_product_from_cart_request(product_id: Int, completion: @escaping(Boo
     }
 }
 
-func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
+func shopping_cart_request(completion: @escaping (Bool, [ShoppingProduct]) -> Void) {
     let query_url = BASE_URL + SHOPPING_URL
     print(query_url)
+
     var shopping_product_list: [ShoppingProduct] = []
+    var success = false
+
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)
             if (json["status"].intValue == 1)
             {
+                success = true
                 let products = json["rlist"].arrayValue
                 for product in products
                 {
@@ -234,14 +261,15 @@ func shopping_cart_request(completion: @escaping ([ShoppingProduct]) -> Void) {
                         )
                     )
                 }
-                completion(shopping_product_list)
             }
+            completion(success, shopping_product_list)
         }
     }
 }
-func checkout_request(completion: @escaping (String) -> Void) {
+func checkout_request(completion: @escaping (Bool, String) -> Void) {
     let query_url = BASE_URL + CHECKOUT_URL
     print(query_url)
+
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
@@ -249,20 +277,26 @@ func checkout_request(completion: @escaping (String) -> Void) {
             if (json["status"].intValue == 1)
             {
                 let order_number = json["sn"].stringValue
-                completion(order_number)
+                completion(true, order_number)
             }
+            completion(false, "")
         }
     }
 }
-func order_list_request(completion: @escaping([[Order]]) -> Void) {
+func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
     let query_url = BASE_URL + ORDERS_URL
+    print(query_url)
+
     var all_orders: [[Order]] = []
+    var success = false
+
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)
             if (json["status"].intValue == 1)
             {
+                success = true
                 var orders_array: [Order] = []
                 let customer_orders = json["customerOrder"].arrayValue
                 for order in customer_orders {
@@ -323,21 +357,27 @@ func order_list_request(completion: @escaping([[Order]]) -> Void) {
                 }
                 all_orders.append(orders_array)
                 orders_array.removeAll()
-                completion(all_orders)
+
             }
+            completion(success, all_orders)
         }
     }
 }
 
-func order_info_request(order_id: Int, completion: @escaping([OrderItem]) -> Void) {
+func order_info_request(order_id: Int, completion: @escaping(Bool, [OrderItem]) -> Void) {
     let query_url = BASE_URL + ORDER_INFO_URL
+    print(query_url)
+
     var order_products: [OrderItem] = []
+    var success = false
+
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)
             if (json["status"].intValue == 1)
             {
+                success = true
                 let items = json["rlist"].arrayValue
                 for item in items {
                     let name = item["goods_name"].stringValue
@@ -352,8 +392,8 @@ func order_info_request(order_id: Int, completion: @escaping([OrderItem]) -> Voi
                         )
                     )
                 }
-                completion(order_products)
             }
+            completion(success, order_products)
         }
     }
 }

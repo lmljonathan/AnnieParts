@@ -17,10 +17,15 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         super.viewDidLoad()
         configureTableView()
         let loading = startActivityIndicator(view: self.view)
-        product_list_request(search_query: search_query, completion: { (products) in
-            self.products = products
-            self.tableView.reloadData()
-            loading.stopAnimating()
+        product_list_request(search_query: search_query, completion: { (success, products) in
+            if (success) {
+                self.products = products
+                self.tableView.reloadData()
+                loading.stopAnimating()
+            }
+            else {
+                performLogin(vc: self)
+            }
         })
     }
 

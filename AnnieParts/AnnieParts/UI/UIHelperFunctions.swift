@@ -19,3 +19,9 @@ func startActivityIndicator(view: UIView) -> UIActivityIndicatorView {
     view.bringSubview(toFront: loading)
     return loading
 }
+
+func performLogin(vc: UIViewController) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+    vc.present(loginVC, animated: true, completion: nil)
+}
