@@ -213,7 +213,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="iLt-Of-U64">
             <objects>
-                <tabBarController id="Bzz-4Z-xll" sceneMemberID="viewController">
+                <tabBarController modalTransitionStyle="flipHorizontal" id="Bzz-4Z-xll" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hHO-5h-bw8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -338,15 +338,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="deX-Fq-EHt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="72" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="deX-Fq-EHt">
                                 <rect key="frame" x="0.0" y="108" width="375" height="510"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" id="5sL-kw-otQ" customClass="OrderCell" customModule="AnnieParts" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5sL-kw-otQ" id="Rpd-DQ-5d8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -397,7 +397,7 @@
         <!--Order InfoVC-->
         <scene sceneID="RzB-Fe-3Ex">
             <objects>
-                <viewController storyboardIdentifier="OrderInfoVC" id="Jcx-wc-xOd" customClass="OrderInfoVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderInfoVC" modalTransitionStyle="crossDissolve" id="Jcx-wc-xOd" customClass="OrderInfoVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zAp-Xq-9d2"/>
                         <viewControllerLayoutGuide type="bottom" id="633-Pe-qUZ"/>
@@ -432,7 +432,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="mqd-mD-6ix" secondAttribute="trailing" constant="3" id="3OE-rl-uxL"/>
                             <constraint firstItem="0nb-G9-lfM" firstAttribute="centerY" secondItem="1cg-ij-RdR" secondAttribute="centerY" constant="-32" id="TOj-OT-6i0"/>

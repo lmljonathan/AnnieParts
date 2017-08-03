@@ -11,29 +11,35 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="60" id="KGk-i7-Jjw" customClass="OrderCell" customModule="AnnieParts" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="72" id="KGk-i7-Jjw" customClass="OrderCell" customModule="AnnieParts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER NUMBER &gt;..sdafasdklfjasld" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMf-w8-L6M">
-                        <rect key="frame" x="8" y="8" width="304" height="27"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="hi my name is ryan and this is my first order" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMf-w8-L6M">
+                        <rect key="frame" x="8" y="8" width="304" height="41"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="41" id="mmJ-ku-msQ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWJ-6i-ipk">
-                        <rect key="frame" x="106" y="37" width="206" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aF-fe-f5J">
+                        <rect key="frame" x="8" y="52" width="90" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="HVZ-zR-w8c"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aF-fe-f5J">
-                        <rect key="frame" x="8" y="37" width="90" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWJ-6i-ipk">
+                        <rect key="frame" x="106" y="52" width="206" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="90" id="d97-if-59V"/>
+                            <constraint firstAttribute="width" constant="206" id="Uba-yE-BS1"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
@@ -41,23 +47,22 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="NMf-w8-L6M" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="AiJ-7q-hNO"/>
-                    <constraint firstItem="5aF-fe-f5J" firstAttribute="top" secondItem="NMf-w8-L6M" secondAttribute="bottom" constant="2" id="DwN-66-6OL"/>
-                    <constraint firstItem="NMf-w8-L6M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="cSb-Z2-E5J"/>
-                    <constraint firstItem="IWJ-6i-ipk" firstAttribute="top" secondItem="NMf-w8-L6M" secondAttribute="bottom" constant="2" id="eMT-l3-IWt"/>
-                    <constraint firstAttribute="trailing" secondItem="IWJ-6i-ipk" secondAttribute="trailing" constant="8" id="jsT-ej-nyF"/>
-                    <constraint firstItem="IWJ-6i-ipk" firstAttribute="leading" secondItem="5aF-fe-f5J" secondAttribute="trailing" constant="8" id="mdO-0g-g8D"/>
-                    <constraint firstAttribute="bottom" secondItem="5aF-fe-f5J" secondAttribute="bottom" constant="7.5" id="moL-vv-L78"/>
-                    <constraint firstAttribute="bottom" secondItem="IWJ-6i-ipk" secondAttribute="bottom" constant="7.5" id="pdk-ee-aTv"/>
-                    <constraint firstItem="NMf-w8-L6M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="spc-IP-Ftq"/>
-                    <constraint firstItem="5aF-fe-f5J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="xV5-Cd-Apd"/>
+                    <constraint firstItem="IWJ-6i-ipk" firstAttribute="centerY" secondItem="5aF-fe-f5J" secondAttribute="centerY" id="KQ5-Us-BIY"/>
+                    <constraint firstItem="NMf-w8-L6M" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Qtb-6Z-hUI"/>
+                    <constraint firstItem="5aF-fe-f5J" firstAttribute="top" secondItem="NMf-w8-L6M" secondAttribute="bottom" constant="3" id="VPU-E3-Dc0"/>
+                    <constraint firstAttribute="trailing" secondItem="IWJ-6i-ipk" secondAttribute="trailing" constant="8" id="fhP-XO-jhp"/>
+                    <constraint firstItem="5aF-fe-f5J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="h2E-e7-Im6"/>
+                    <constraint firstItem="NMf-w8-L6M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="zvU-q3-VnG"/>
+                    <constraint firstItem="NMf-w8-L6M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="zve-Mf-qK8"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="date" destination="5aF-fe-f5J" id="dEu-sc-PNh"/>
                 <outlet property="order_number" destination="NMf-w8-L6M" id="6Xt-hp-D9R"/>
                 <outlet property="total" destination="IWJ-6i-ipk" id="eIZ-ef-nUG"/>
             </connections>
+            <point key="canvasLocation" x="34" y="60"/>
         </tableViewCell>
     </objects>
 </document>
