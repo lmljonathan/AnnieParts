@@ -215,9 +215,11 @@ class ShoppingProduct
         return _thumb_image_path
     }
     var make: String {
-        if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) as Int! {
-            return CONSTANTS.IDS.MANUFACTURERS[index]
-        }
+//        if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) {
+//            if (index >= 0 && index < CONSTANTS.IDS.MANUFACTURERS.count) {
+//                return CONSTANTS.IDS.MANUFACTURERS[index]
+//            }
+//        }
         return ""
     }
     var years: String {
@@ -226,7 +228,7 @@ class ShoppingProduct
     var models: String {
         var model_string = ""
         for id in _model_ids {
-            if let index = CONSTANTS.IDS.MODEL_IDS.index(of: id) as Int! {
+            if let index = CONSTANTS.IDS.MODEL_IDS.index(of: id) {
                 model_string += CONSTANTS.IDS.MODELS[index] + ", "
             }
         }

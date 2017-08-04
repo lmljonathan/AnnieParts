@@ -22,7 +22,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let o1 = Order(order_id: 100, user_id: 100, serial_number: "slkfjdsdfj", total: 39, status: "shipping")
         let o2 = Order(order_id: 100, user_id: 100, serial_number: "slkfjdsdfj", total: 39, status: "shipping")
         let o3 = Order(order_id: 100, user_id: 100, serial_number: "slkfjdsdfj", total: 39, status: "shipping")
-        self.orders = [[o1, o2], [o3]]
+        self.orders = [[o1, o2], [o3], []]
         tableView.reloadData()
 //        order_list_request { (success, orders) in
 //            if (success) {

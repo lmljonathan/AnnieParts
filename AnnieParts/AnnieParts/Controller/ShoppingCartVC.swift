@@ -180,7 +180,9 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("CANCEL!!")
             }
             let okAction = AlertAction(title: "Confirm", style: .default) { alert in
-                checkout_request { (order_number) in
+                checkout_request { (success, order_number) in
+                    alertController.dismiss(animated: true, completion: nil)
+
                     let presenter2 = Presentr(presentationType: .alert)
                     var alertController2: AlertViewController {
                         let alertController2 = Presentr.alertViewController(title: "Order Completed", body: "\(order_number)")
@@ -190,6 +192,8 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                     self.customPresentViewController(presenter2, viewController: alertController2, animated: true, completion: nil)
                     self.products.removeAll()
+                    self.tableView.reloadData()
+                    self.calculateSubtotal()
                 }
             }
             alertController.addAction(cancelAction)
