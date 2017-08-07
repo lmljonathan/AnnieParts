@@ -139,6 +139,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func deleteItem(_ sender: UIButton) {
+        self.quantityTextField.resignFirstResponder()
         delete_product_from_cart_request(product_id: products[sender.tag].product_id) { (success) in
             if (success) {
                 self.products.remove(at: sender.tag)

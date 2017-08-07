@@ -15,12 +15,10 @@ class ShoppingCartCell: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var serial_number: UILabel!
-    @IBOutlet weak var make: UILabel!
-    @IBOutlet weak var years: UILabel!
-    @IBOutlet weak var models: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var quantityButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var quantity: UILabel!
 
 
     func initialize(data: ShoppingProduct) {
@@ -28,9 +26,7 @@ class ShoppingCartCell: UITableViewCell {
         img.kf.setImage(with: image_url)
         name.text = data.name
         serial_number.text = data.serial_number
-        make.text = data.make
-        years.text = data.years
-        models.text = data.models
+        quantity.text = "Quantity: " + String(data.quantity)
         price.text = data.price.formattedPrice
     }
 }

@@ -213,7 +213,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="iLt-Of-U64">
             <objects>
-                <tabBarController modalTransitionStyle="flipHorizontal" id="Bzz-4Z-xll" sceneMemberID="viewController">
+                <tabBarController modalTransitionStyle="crossDissolve" id="Bzz-4Z-xll" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="hHO-5h-bw8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -614,7 +614,7 @@
                                     <action selector="checkout:" destination="CTd-FD-47Y" eventType="touchUpInside" id="p2I-5F-nqL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart subtotal (0 items): $0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-YX-KN0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cart subtotal (0 items): $0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC4-YX-KN0">
                                 <rect key="frame" x="16" y="72" width="343" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
