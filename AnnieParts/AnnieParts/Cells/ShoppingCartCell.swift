@@ -16,8 +16,8 @@ class ShoppingCartCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var serial_number: UILabel!
     @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var quantityButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var quantityButton: RoundedButton!
+    @IBOutlet weak var deleteButton: RoundedButton!
     @IBOutlet weak var quantity: UILabel!
 
 

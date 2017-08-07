@@ -31,7 +31,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANNIEPARTS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-Cj-Y2M">
-                                <rect key="frame" x="107.5" y="145" width="161.5" height="29.5"/>
+                                <rect key="frame" x="107" y="145" width="161.5" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -426,7 +426,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="mBj-dc-2bs"/>
                                 </constraints>
-                                <state key="normal" title="Exit"/>
+                                <state key="normal" title="Exit">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="closePopup:" destination="Jcx-wc-xOd" eventType="touchUpInside" id="dNH-hF-w3L"/>
                                 </connections>
@@ -585,23 +587,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
-                                <rect key="frame" x="0.0" y="98" width="375" height="478"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
+                                <rect key="frame" x="0.0" y="98" width="375" height="450"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="ShoppingCartCell" id="nCn-cH-PN8" customClass="ShoppingCartCell" customModule="AnnieParts" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nCn-cH-PN8" id="JbF-JN-h8F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-Fv-kMU">
-                                <rect key="frame" x="0.0" y="573" width="375" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ab-Fv-kMU" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
+                                <rect key="frame" x="5" y="558" width="365" height="50"/>
                                 <color key="backgroundColor" red="0.59512418509999998" green="0.049755223100000003" blue="0.062657751139999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5IZ-1e-77k"/>
@@ -623,7 +625,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84G-Nc-spb">
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKa-Ew-zQk">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKa-Ew-zQk" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
                                         <rect key="frame" x="255" y="10" width="100" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -679,15 +681,15 @@
                             <constraint firstItem="84G-Nc-spb" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leading" id="46z-Br-Kg2"/>
                             <constraint firstItem="Aue-8b-qE2" firstAttribute="top" secondItem="84G-Nc-spb" secondAttribute="bottom" id="52n-ut-SnC"/>
                             <constraint firstAttribute="trailing" secondItem="Kqw-ox-I6O" secondAttribute="trailing" id="84n-bT-Ivs"/>
-                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="top" secondItem="Kqw-ox-I6O" secondAttribute="bottom" constant="-3" id="DJN-N1-wZf"/>
+                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="top" secondItem="Kqw-ox-I6O" secondAttribute="bottom" constant="10" id="DJN-N1-wZf"/>
                             <constraint firstItem="Kqw-ox-I6O" firstAttribute="top" secondItem="oC4-YX-KN0" secondAttribute="bottom" constant="8" id="Kjx-F9-K2H"/>
-                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leading" id="NCF-dl-jR5"/>
+                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leading" constant="5" id="NCF-dl-jR5"/>
                             <constraint firstItem="oC4-YX-KN0" firstAttribute="leading" secondItem="uVC-Y7-ReI" secondAttribute="leadingMargin" id="Ng4-iM-Nm3"/>
                             <constraint firstItem="oC4-YX-KN0" firstAttribute="trailing" secondItem="uVC-Y7-ReI" secondAttribute="trailingMargin" id="WCZ-V2-dlg"/>
                             <constraint firstAttribute="trailing" secondItem="84G-Nc-spb" secondAttribute="trailing" id="aEJ-Lj-7W7"/>
                             <constraint firstItem="oC4-YX-KN0" firstAttribute="top" secondItem="HMV-NI-mIJ" secondAttribute="bottom" constant="8" id="kjq-Dc-vSr"/>
-                            <constraint firstAttribute="trailing" secondItem="9ab-Fv-kMU" secondAttribute="trailing" id="oJd-Gz-dFd"/>
-                            <constraint firstItem="Aue-8b-qE2" firstAttribute="top" secondItem="9ab-Fv-kMU" secondAttribute="bottom" constant="-5" id="rEL-vJ-Gez"/>
+                            <constraint firstAttribute="trailing" secondItem="9ab-Fv-kMU" secondAttribute="trailing" constant="5" id="oJd-Gz-dFd"/>
+                            <constraint firstItem="9ab-Fv-kMU" firstAttribute="bottom" secondItem="Aue-8b-qE2" secondAttribute="top" constant="-10" id="rEL-vJ-Gez"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Nw7-Gb-33v" appends="YES" id="6p0-Zi-Bj9"/>
@@ -765,7 +767,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWA-7s-GTt">
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-hP-IwL">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-hP-IwL" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
                                         <rect key="frame" x="255" y="10" width="100" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>

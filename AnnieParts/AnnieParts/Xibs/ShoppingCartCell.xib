@@ -25,24 +25,26 @@
                             <constraint firstAttribute="width" constant="70" id="Y9R-ko-4UL"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Hh-vLz">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Hh-vLz" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
                         <rect key="frame" x="86" y="76" width="65" height="30"/>
                         <color key="backgroundColor" red="0.76154408028455278" green="0.76154408028455278" blue="0.76154408028455278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="KKx-1N-bLs"/>
                             <constraint firstAttribute="width" constant="65" id="fqF-WQ-yVw"/>
                         </constraints>
-                        <state key="normal" title="EDIT"/>
+                        <state key="normal" title="EDIT">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbB-So-ssH">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbB-So-ssH" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
                         <rect key="frame" x="159" y="76" width="65" height="30"/>
-                        <color key="backgroundColor" red="0.76154408029999998" green="0.76154408029999998" blue="0.76154408029999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.59607843140000005" green="0.050980392159999999" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="8Wf-ha-rwg"/>
                             <constraint firstAttribute="width" constant="65" id="QkF-aX-CKz"/>
                         </constraints>
                         <state key="normal" title="DELETE">
-                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="x4t-3d-eJ6">

@@ -25,3 +25,11 @@ func performLogin(vc: UIViewController) {
     let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
     vc.present(loginVC, animated: true, completion: nil)
 }
+
+class RoundedButton: UIButton {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.layer.cornerRadius = 4
+        self.clipsToBounds = true
+    }
+}
