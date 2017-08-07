@@ -50,7 +50,7 @@ extension OrderInfoVC {
             }
             else {
                 cell.initalize(orderitem: orderinfo[indexPath.row])
-                total += orderinfo[indexPath.row].price
+                total += orderinfo[indexPath.row].price * Double(orderinfo[indexPath.row].quantity)
             }
             return cell
         }
@@ -64,7 +64,7 @@ extension OrderInfoVC {
         title.text = ordernumber
         title.textAlignment = .center
         title.textColor = UIColor.darkGray
-        title.font = UIFont.systemFont(ofSize: 16)
+        title.font = UIFont.systemFont(ofSize: 18)
         return title
     }
 }
