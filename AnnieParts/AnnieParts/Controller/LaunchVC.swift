@@ -15,11 +15,8 @@ class LaunchVC: UIViewController {
 
         configureIDS { (success) in
             if (success) {
-                search_options_request(completion: { (search_result) in
-                    CONSTANTS.search = search_result
-                    let search = self.storyboard?.instantiateViewController(withIdentifier: "TabVC") as! UITabBarController
-                    self.present(search, animated: true, completion: nil)
-                })
+                let search = self.storyboard?.instantiateViewController(withIdentifier: "TabVC") as! UITabBarController
+                self.present(search, animated: true, completion: nil)
             }
             else {
                 performLogin(vc: self)

@@ -21,12 +21,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.login_button.setTitleColor(UIColor.lightGray, for: .selected)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
-        self.navigationController?.isNavigationBarHidden = true
+
         self.username_field.delegate = self
         self.password_field.delegate = self
+        self.username_field.layer.cornerRadius = 20
+        self.password_field.layer.cornerRadius = 20
+        self.login_button.layer.cornerRadius = 20
     }
 
     override func viewDidAppear(_ animated: Bool) {

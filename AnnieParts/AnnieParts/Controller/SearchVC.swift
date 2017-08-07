@@ -15,6 +15,14 @@ class SearchVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureIDS { (success) in
+            if (success) {
+                search_options_request(completion: { (search_result) in
+                    CONSTANTS.search = search_result
+                    self.tableView.reloadData()
+                })
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

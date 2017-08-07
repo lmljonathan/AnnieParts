@@ -27,7 +27,9 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         configureTableView()
         configureTextField()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
         let loading = startActivityIndicator(view: self.view)
         shopping_cart_request { (success, products) in
             if (success) {

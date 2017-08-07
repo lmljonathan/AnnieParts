@@ -92,6 +92,9 @@ func search_options_request(completion: @escaping (Search) -> Void) {
     var option1: Search.Option = Search.Option()
     var option2: Search.Option = Search.Option()
     var option3: Search.Option = Search.Option()
+
+    print(query_url)
+
     Alamofire.request(query_url, method: .get, parameters: [:], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if let data = response.result.value as? [String:Any] {
             if (check_status(response: data)) {
