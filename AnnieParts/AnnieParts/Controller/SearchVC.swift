@@ -12,12 +12,13 @@ class SearchVC: UITableViewController {
     private let SEARCH_OPTIONS_TITLES = ["车型", "品牌", "产品"]
     private var selected_search_option_id: Int = -1
     private var selected_category: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == CONSTANTS.SEGUES.PRODUCTS) {
+        if (segue.identifier == "showProductList") {
             let destinationVC = segue.destination as? ProductListVC
             destinationVC?.search_query = selected_category + "=" + String(selected_search_option_id)
         }
@@ -61,7 +62,7 @@ class SearchVC: UITableViewController {
             if (option_ids.count > 0) {
                 selected_search_option_id = option_ids[indexPath.row - 1]
                 selected_category = search_option.category
-                self.performSegue(withIdentifier: CONSTANTS.SEGUES.PRODUCTS, sender: nil)
+                self.performSegue(withIdentifier: "showProductList", sender: nil)
                 self.tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .none)
                 self.tableView.deselectRow(at: indexPath, animated: true)
             }

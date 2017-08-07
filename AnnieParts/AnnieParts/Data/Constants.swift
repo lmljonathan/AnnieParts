@@ -12,7 +12,6 @@ struct CONSTANTS {
     static var search: Search = Search()
     struct SEGUES {
         static let SEARCH = "showSearch"
-        static let PRODUCTS = "showProductList"
         static let DETAIL = "showProductDetail"
     }
     struct IDS {

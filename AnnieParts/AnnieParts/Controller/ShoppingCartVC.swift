@@ -220,7 +220,6 @@ extension ShoppingCartVC {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell", for: indexPath) as? ShoppingCartCell {
             let product = products[indexPath.row]
             cell.initialize(data: product)
-            cell.quantityButton.titleLabel?.text = String(product.quantity)
             cell.quantityButton.addTarget(self, action: #selector(self.editItem(_:)), for: .touchUpInside)
             cell.deleteButton.addTarget(self, action: #selector(self.deleteItem(_:)), for: .touchUpInside)
             return cell

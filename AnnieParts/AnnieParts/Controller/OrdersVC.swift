@@ -85,6 +85,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
                 let confirmAction = SwipeAction(style: .default, title: "Confirm") { action, indexPath in
                     self.confirmOrder(order: order)
                 }
+                confirmAction.backgroundColor = UIColor(colorLiteralRed: 0, green: 204.0/255.0, blue: 0, alpha: 1)
                 return [confirmAction]
             }
             else {

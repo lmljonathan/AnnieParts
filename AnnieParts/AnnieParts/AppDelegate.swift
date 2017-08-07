@@ -15,16 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        configureIDS { (success) in
-            if (success) {
-                search_options_request(completion: { (search_result) in
-                    CONSTANTS.search = search_result
-                })
-            }
-            else {
-                performLogin(vc: (self.window?.rootViewController)!)
-            }
-        }
         return true
     }
 

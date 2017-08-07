@@ -15,6 +15,9 @@ class User {
     var username: String = ""
     var company_name: String = ""
     var shopping_count = -1
+    var login_username: String = ""
+    var login_password: String = ""
+    var touch_id_setup: Bool = false
 
     private init () {}
 }
