@@ -22,6 +22,8 @@ let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
 let ORDERS_URL = "appGetOrderInfo.php"
 let ORDER_INFO_URL = "appGetOrderInfo.php"
+let CONFIRM_ORDER_URL = "appConfirmBorder.php"
+let CANCEL_ORDER_URL = "appCancelOrder.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL + "?"
@@ -396,6 +398,40 @@ func order_info_request(order_id: Int, completion: @escaping(Bool, [OrderItem]) 
                 }
             }
             completion(success, order_products)
+        }
+    }
+}
+
+func confirm_order_request(order_id: Int, completion: @escaping(Bool) -> Void) {
+    let query_url = BASE_URL + CONFIRM_ORDER_URL
+    print(query_url)
+
+    Alamofire.request(query_url, method: .get, parameters: ["order_id": order_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1) {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
+        }
+    }
+}
+
+func cancel_order_request(order_id: Int, completion: @escaping(Bool) -> Void) {
+    let query_url = BASE_URL + CANCEL_ORDER_URL
+    print(query_url)
+
+    Alamofire.request(query_url, method: .get, parameters: ["order_id": order_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1) {
+                completion(true)
+            }
+            else {
+                completion(false)
+            }
         }
     }
 }

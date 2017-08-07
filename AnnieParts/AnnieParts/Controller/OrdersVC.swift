@@ -8,8 +8,9 @@
 
 import UIKit
 import Presentr
+import SwipeCellKit
 
-class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -59,6 +60,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "OrderCell", for: indexPath) as? OrderCell {
             cell.initialize(order: orders[segmentedControl.selectedSegmentIndex][indexPath.row])
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -72,5 +74,46 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+
+        let order = self.orders[segmentedControl.selectedSegmentIndex][indexPath.row]
+
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            if (orientation == .right) {
+                let confirmAction = SwipeAction(style: .default, title: "Confirm") { action, indexPath in
+                    self.confirmOrder(order: order)
+                }
+                return [confirmAction]
+            }
+            else {
+                let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                    self.cancelOrder(order: order)
+                }
+                return [deleteAction]
+            }
+        }
+        else if (segmentedControl.selectedSegmentIndex == 1) {
+            if (orientation == .left) {
+                let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                    self.cancelOrder(order: order)
+                }
+                return [deleteAction]
+            }
+        }
+        return []
+    }
+
+    func confirmOrder(order: Order) {
+        confirm_order_request(order_id: order.order_id) { (success) in
+            
+        }
+    }
+
+    func cancelOrder(order: Order) {
+        cancel_order_request(order_id: order.order_id) { (success) in
+
+        }
     }
 }

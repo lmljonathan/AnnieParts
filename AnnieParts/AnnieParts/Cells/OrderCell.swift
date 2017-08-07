@@ -8,8 +8,9 @@
 
 import UIKit
 import SwiftyUtils
+import SwipeCellKit
 
-class OrderCell: UITableViewCell {
+class OrderCell: SwipeTableViewCell{
 
     @IBOutlet weak var order_number: UILabel!
     @IBOutlet weak var date: UILabel!
