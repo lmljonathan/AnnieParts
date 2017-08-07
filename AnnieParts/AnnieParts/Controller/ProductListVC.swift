@@ -30,7 +30,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == CONSTANTS.SEGUES.DETAIL) {
+        if (segue.identifier == "showProductDetail") {
             if let destinationVC = segue.destination as? ProductDetailsVC{
                 let index = tableView.indexPathForSelectedRow
                 destinationVC.product = products[(index?.row)!]
@@ -66,7 +66,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: CONSTANTS.SEGUES.DETAIL, sender: nil)
+        performSegue(withIdentifier: "showProductDetail", sender: nil)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

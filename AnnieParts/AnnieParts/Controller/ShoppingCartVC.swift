@@ -35,7 +35,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             if (success) {
                 self.products = products
                 self.calculateSubtotal()
-                self.tableView.reloadData()
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                 loading.stopAnimating()
             }
             else {
@@ -75,6 +75,9 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         subtotal_amount = price_amount
         subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
+
+        User.sharedInstance.shopping_count = quantity
+        self.tabBarController?.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
     }
 
     func deleteItem(row: Int) {

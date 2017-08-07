@@ -33,10 +33,18 @@ func login_request(username: String, password: String, completion: @escaping (Bo
             let json = JSON(data: response.data!)
             if (json["status"].intValue == 1)
             {
-                User.sharedInstance.username = json["uname"].stringValue
-                User.sharedInstance.user_rank = json["user_rank"].intValue
-                User.sharedInstance.company_name = json["cname"].stringValue
-                User.sharedInstance.shopping_count = json["shopping_cnt"].intValue
+                let user = User.sharedInstance
+                user.username = json["uname"].stringValue
+                user.user_rank = json["user_rank"].intValue
+                user.company_name = json["cname"].stringValue
+                user.shopping_count = json["shopping_cnt"].intValue
+
+                let defaults = UserDefaults.standard
+                defaults.set(user.username, forKey: "username")
+                defaults.set(user.user_rank, forKey: "user_rank")
+                defaults.set(user.company_name, forKey: "company")
+                defaults.set(user.shopping_count, forKey: "shopping_count")
+
                 completion(true)
                 return
             }

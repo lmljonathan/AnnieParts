@@ -17,6 +17,15 @@ class LaunchVC: UIViewController {
             if (success) {
                 let search = self.storyboard?.instantiateViewController(withIdentifier: "TabVC") as! UITabBarController
                 self.present(search, animated: true, completion: nil)
+
+                let user = User.sharedInstance
+                let defaults = UserDefaults.standard
+                user.username = defaults.string(forKey: "username")!
+                user.user_rank = defaults.integer(forKey: "user_rank")
+                user.company_name = defaults.string(forKey: "company")!
+                user.shopping_count = defaults.integer(forKey: "shopping_count")
+
+                search.tabBar.items![2].badgeValue = "\(user.shopping_count)"
             }
             else {
                 performLogin(vc: self)

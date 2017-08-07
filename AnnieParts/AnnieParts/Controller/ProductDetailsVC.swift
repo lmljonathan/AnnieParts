@@ -112,6 +112,8 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     return alertController
                 }
                 self.customPresentViewController(presenter, viewController: alertController, animated: true, completion: nil)
+                User.sharedInstance.shopping_count += quantity
+                self.tabBarController?.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
             }
         }
     }

@@ -103,7 +103,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             login_request(username: username, password: password, completion: { (status) in
                 if (status) {
 
-                    self.performSegue(withIdentifier: CONSTANTS.SEGUES.SEARCH, sender: nil)
+                    self.performSegue(withIdentifier: "showSearch", sender: nil)
                 } else {
                     self.login_button.isSelected = false
                     self.loading.stopAnimating()

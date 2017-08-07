@@ -569,7 +569,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
                                 <rect key="frame" x="0.0" y="98" width="375" height="470"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -943,7 +943,7 @@
         <scene sceneID="SKJ-MC-2Qe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yhf-vf-Rdj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart" selectedImage="shopping-cart" id="Rww-3P-NVl"/>
+                    <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart" badgeValue="1" selectedImage="shopping-cart" id="Rww-3P-NVl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zxZ-OU-Ue6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -10,10 +10,6 @@ import Foundation
 
 struct CONSTANTS {
     static var search: Search = Search()
-    struct SEGUES {
-        static let SEARCH = "showSearch"
-        static let DETAIL = "showProductDetail"
-    }
     struct IDS {
         static var ATTRIBUTES: [String] = []
         static var ATTRIBUTE_IDS: [Int] = []
