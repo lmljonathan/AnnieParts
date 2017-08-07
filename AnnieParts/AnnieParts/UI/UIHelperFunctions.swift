@@ -29,7 +29,7 @@ func performLogin(vc: UIViewController) {
 class RoundedButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = 3
         self.clipsToBounds = true
     }
 }
