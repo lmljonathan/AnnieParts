@@ -86,12 +86,14 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
                     self.confirmOrder(order: order)
                 }
                 confirmAction.backgroundColor = UIColor(colorLiteralRed: 0, green: 204.0/255.0, blue: 0, alpha: 1)
+                confirmAction.image = UIImage(named: "check")
                 return [confirmAction]
             }
             else {
                 let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                     self.cancelOrder(order: order)
                 }
+                deleteAction.image = UIImage(named: "trash")
                 return [deleteAction]
             }
         }

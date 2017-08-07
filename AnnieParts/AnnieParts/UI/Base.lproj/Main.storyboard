@@ -885,7 +885,7 @@
         <scene sceneID="nuj-AI-YiM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M8T-QF-y2o" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" selectedImage="search" id="XAE-4N-YhZ"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="search" selectedImage="search" id="XAE-4N-YhZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZQR-ja-tMj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -904,7 +904,7 @@
         <scene sceneID="8nZ-Rf-2FT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hnh-pK-DSF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Orders" selectedImage="hamburger-menu" id="xSJ-pB-F3N"/>
+                    <tabBarItem key="tabBarItem" title="Orders" image="hamburger-menu" selectedImage="hamburger-menu" id="xSJ-pB-F3N"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pDb-Q7-5yf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -923,7 +923,7 @@
         <scene sceneID="mMN-1k-LTX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z4o-yM-vTG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" selectedImage="gear" id="GHE-rR-tpC"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="GHE-rR-tpC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KmR-sJ-4D7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -959,10 +959,10 @@
     </scenes>
     <resources>
         <image name="anniepartslogo" width="500" height="500"/>
-        <image name="gear" width="25" height="25"/>
         <image name="hamburger-menu" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
-        <image name="shopping-cart" width="32" height="25"/>
+        <image name="settings" width="25" height="25"/>
+        <image name="shopping-cart" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cNn-PV-Eq5"/>
