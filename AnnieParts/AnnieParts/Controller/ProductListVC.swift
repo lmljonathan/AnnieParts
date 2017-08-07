@@ -62,9 +62,6 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductCell
         cell.initialize(data: products[indexPath.row])
-        cell.setNeedsUpdateConstraints()
-        cell.updateConstraintsIfNeeded()
-        cell.layoutSubviews()
         return cell
     }
 
