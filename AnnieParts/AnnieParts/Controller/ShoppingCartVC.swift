@@ -14,7 +14,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subtotal: UILabel!
-    @IBOutlet weak var checkout_button: RoundedButton!
+    @IBOutlet weak var checkout_button: UIButton!
     @IBOutlet weak var bottomBarView: UIView!
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet var dismissKeyboard: UITapGestureRecognizer!

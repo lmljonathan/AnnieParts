@@ -49,7 +49,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 self.annieparts_label.isHidden = true
                 UIView.animate(withDuration: 0.5, animations: {
                     self.username_field.makeTranslation(x: self.username_field.x, y: 50)
-                    self.password_field.makeTranslation(x: self.password_field.x, y: self.username_field.frame.maxY + 3)
+                    self.password_field.makeTranslation(x: self.password_field.x, y: self.username_field.frame.maxY + 10)
                     self.login_button.makeTranslation(x: self.login_button.x, y: self.password_field.frame.maxY + 13)
                     self.loading.makeTranslation(x: self.loading.x, y: self.login_button.centerY - 10)
                 })
