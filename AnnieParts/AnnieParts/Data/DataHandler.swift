@@ -27,6 +27,10 @@ let ORDER_INFO_URL = "appGetOrderInfo.php"
 let CONFIRM_ORDER_URL = "appConfirmBorder.php"
 let CANCEL_ORDER_URL = "appCancelOrder.php"
 
+struct RequestHandler {
+    static var cart_refresh: Bool = true
+}
+
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
     let query_url = BASE_URL + LOGIN_URL
     print(query_url)

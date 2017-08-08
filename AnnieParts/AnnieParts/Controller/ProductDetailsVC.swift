@@ -104,6 +104,7 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
 
         add_product_to_cart_request(product_id: product.product_id, quantity: quantity) { (success) in
             if (success) {
+                RequestHandler.cart_refresh = true
                 let presenter = Presentr(presentationType: .alert)
                 var alertController: AlertViewController {
                     let alertController = Presentr.alertViewController(title: "Product Added", body: "You added \(quantity) of \(self.product.name) to your cart")
@@ -112,8 +113,7 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
                     return alertController
                 }
                 self.customPresentViewController(presenter, viewController: alertController, animated: true, completion: nil)
-                User.sharedInstance.shopping_count += quantity
-                self.tabBarController?.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
+                updateCartBadge(tab: self.tabBarController!, increase: quantity)
             }
         }
     }

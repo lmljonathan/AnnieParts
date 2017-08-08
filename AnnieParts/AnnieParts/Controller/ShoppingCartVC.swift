@@ -30,16 +30,19 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        let loading = startActivityIndicator(view: self.view)
-        shopping_cart_request { (success, products) in
-            if (success) {
-                self.products = products
-                self.calculateSubtotal()
-                self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                loading.stopAnimating()
-            }
-            else {
-                performLogin(vc: self)
+        if (RequestHandler.cart_refresh) {
+            let loading = startActivityIndicator(view: self.view)
+            shopping_cart_request { (success, products) in
+                if (success) {
+                    self.products = products
+                    self.calculateSubtotal()
+                    self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                    RequestHandler.cart_refresh = false
+                    loading.stopAnimating()
+                }
+                else {
+                    performLogin(vc: self)
+                }
             }
         }
     }
@@ -82,33 +85,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             subtotal.text = "Cart: \(quantity) items"
         }
 
-
-        User.sharedInstance.shopping_count = quantity
-        self.tabBarController?.tabBar.items![User.sharedInstance.cart_position].badgeValue = "\(User.sharedInstance.shopping_count)"
-    }
-
-    func deleteItem(row: Int) {
-        let id = products[row].product_id
-        delete_product_from_cart_request(product_id: id, completion: { success in
-            if (success) {
-                self.products.remove(at: row)
-            }
-            else {
-                print("ERROR DELETING PRODUCT")
-            }
-        })
-    }
-
-    func changeQuantityForItem(row: Int, new_quantity: Int) {
-        let id = products[row].product_id
-        update_cart_request(product_id: id, new_quantity: new_quantity, completion: { success in
-            if (success) {
-                // reload the view
-            }
-            else {
-                print("ERROR DELETING PRODUCT")
-            }
-        })
+        updateCartBadge(tab: self.tabBarController!, total: quantity)
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
