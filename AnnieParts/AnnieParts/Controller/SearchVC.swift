@@ -15,11 +15,14 @@ class SearchVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let loading = startActivityIndicator(view: self.view)
         configureIDS { (success) in
             if (success) {
                 search_options_request(completion: { (search_result) in
                     CONSTANTS.search = search_result
                     self.tableView.reloadData()
+                    loading.stopAnimating()
                 })
             }
         }

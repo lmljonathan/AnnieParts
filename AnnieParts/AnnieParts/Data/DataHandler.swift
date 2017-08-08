@@ -387,8 +387,6 @@ func shopping_cart_request(completion: @escaping (Bool, [ShoppingProduct]) -> Vo
                     let price = product["goods_price"].doubleValue
                     let quantity = product["goods_number"].intValue
 
-                    print(make_id)
-
                     shopping_product_list.append(
                         ShoppingProduct(
                             product_id: id,

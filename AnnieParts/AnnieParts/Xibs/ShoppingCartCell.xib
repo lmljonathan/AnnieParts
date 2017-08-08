@@ -26,11 +26,11 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Hh-vLz" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
-                        <rect key="frame" x="86" y="76" width="65" height="30"/>
+                        <rect key="frame" x="86" y="76" width="75" height="30"/>
                         <color key="backgroundColor" red="0.76154408028455278" green="0.76154408028455278" blue="0.76154408028455278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="KKx-1N-bLs"/>
-                            <constraint firstAttribute="width" constant="65" id="fqF-WQ-yVw"/>
+                            <constraint firstAttribute="width" constant="75" id="fqF-WQ-yVw"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="EDIT">
@@ -38,11 +38,11 @@
                         </state>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbB-So-ssH" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
-                        <rect key="frame" x="159" y="76" width="65" height="30"/>
+                        <rect key="frame" x="169" y="76" width="75" height="30"/>
                         <color key="backgroundColor" red="0.59607843140000005" green="0.050980392159999999" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="8Wf-ha-rwg"/>
-                            <constraint firstAttribute="width" constant="65" id="QkF-aX-CKz"/>
+                            <constraint firstAttribute="width" constant="75" id="QkF-aX-CKz"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="DELETE">
@@ -80,16 +80,25 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="yRS-sM-3oU">
+                        <rect key="frame" x="345" y="47" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4y2-q2-T2N"/>
+                            <constraint firstAttribute="width" constant="20" id="niN-YI-dhw"/>
+                        </constraints>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="vC3-Hh-vLz" secondAttribute="bottom" constant="0.5" id="1MJ-Sn-pU0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="x4t-3d-eJ6" secondAttribute="trailing" id="3tb-CH-6A8"/>
+                    <constraint firstAttribute="trailing" secondItem="yRS-sM-3oU" secondAttribute="trailing" constant="10" id="7eX-3P-FRQ"/>
                     <constraint firstItem="XN3-pj-OuH" firstAttribute="leading" secondItem="kmC-Hz-clq" secondAttribute="leadingMargin" id="EZJ-ra-P3I"/>
                     <constraint firstItem="XN3-pj-OuH" firstAttribute="top" secondItem="kmC-Hz-clq" secondAttribute="topMargin" id="I4F-a8-tdf"/>
                     <constraint firstItem="x4t-3d-eJ6" firstAttribute="top" secondItem="kmC-Hz-clq" secondAttribute="topMargin" id="MKD-pD-8HO"/>
                     <constraint firstItem="vC3-Hh-vLz" firstAttribute="top" secondItem="x4t-3d-eJ6" secondAttribute="bottom" constant="5" id="RkB-jN-030"/>
                     <constraint firstItem="x4t-3d-eJ6" firstAttribute="leading" secondItem="XN3-pj-OuH" secondAttribute="trailing" constant="8" id="SXI-3A-gZe"/>
                     <constraint firstItem="KbB-So-ssH" firstAttribute="centerY" secondItem="vC3-Hh-vLz" secondAttribute="centerY" id="ScX-eJ-GgV"/>
+                    <constraint firstItem="yRS-sM-3oU" firstAttribute="centerY" secondItem="kmC-Hz-clq" secondAttribute="centerY" id="Waa-ZK-Sqv"/>
                     <constraint firstItem="vC3-Hh-vLz" firstAttribute="leading" secondItem="XN3-pj-OuH" secondAttribute="trailing" constant="8" id="cg7-MD-cBD"/>
                     <constraint firstItem="KbB-So-ssH" firstAttribute="leading" secondItem="vC3-Hh-vLz" secondAttribute="trailing" constant="8" id="sE8-si-3nW"/>
                     <constraint firstItem="x4t-3d-eJ6" firstAttribute="leading" secondItem="XN3-pj-OuH" secondAttribute="trailing" constant="8" id="vCH-y5-9G5"/>
@@ -98,6 +107,7 @@
             <connections>
                 <outlet property="deleteButton" destination="KbB-So-ssH" id="rcU-Hf-Om8"/>
                 <outlet property="img" destination="XN3-pj-OuH" id="G9V-IA-OO4"/>
+                <outlet property="loading" destination="yRS-sM-3oU" id="XhH-HT-1eK"/>
                 <outlet property="name" destination="Jsb-YD-8O6" id="s4S-jX-Klg"/>
                 <outlet property="price" destination="Vg6-Eu-de4" id="8Wo-3t-zIQ"/>
                 <outlet property="quantity" destination="PXn-PY-bAx" id="nYj-Dr-2TV"/>

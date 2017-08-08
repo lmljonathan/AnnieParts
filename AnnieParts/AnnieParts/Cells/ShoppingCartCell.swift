@@ -19,9 +19,12 @@ class ShoppingCartCell: UITableViewCell {
     @IBOutlet weak var quantityButton: RoundedButton!
     @IBOutlet weak var deleteButton: RoundedButton!
     @IBOutlet weak var quantity: UILabel!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
 
 
     func initialize(data: ShoppingProduct) {
+        loading.isHidden = true
+        
         let image_url = URL(string: data.thumb_image_path)
         img.kf.setImage(with: image_url)
         name.text = data.name

@@ -251,11 +251,18 @@ extension ShoppingCartVC {
         return 1
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = products[indexPath.row]
-        product_id_search_request(product_id: item.product_id) { (success, product) in
-            if (success) {
-                self.performSegue(withIdentifier: "showProductDetail", sender: product)
+        if let cell = tableView.cellForRow(at: indexPath) as? ShoppingCartCell {
+            cell.loading.isHidden = false
+            cell.loading.startAnimating()
+            let item = products[indexPath.row]
+            product_id_search_request(product_id: item.product_id) { (success, product) in
+                if (success) {
+                    self.performSegue(withIdentifier: "showProductDetail", sender: product)
+                    cell.loading.stopAnimating()
+                }
             }
+            usleep(200000)
+            self.tableView.deselectRow(at: indexPath, animated: false)
         }
     }
 }
