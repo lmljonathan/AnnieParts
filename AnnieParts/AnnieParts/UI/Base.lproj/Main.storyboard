@@ -380,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jf8-60-3Wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2389.5999999999999" y="1046.6266866566718"/>
+            <point key="canvasLocation" x="2390" y="1047"/>
         </scene>
         <!--Order InfoVC-->
         <scene sceneID="RzB-Fe-3Ex">
@@ -441,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uFO-WC-qLQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3237.5999999999999" y="1046.6266866566718"/>
+            <point key="canvasLocation" x="3254" y="1047"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="3gK-HK-mDd">
@@ -570,7 +570,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" canCancelContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="115" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Kqw-ox-I6O">
                                 <rect key="frame" x="0.0" y="98" width="375" height="470"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -686,6 +686,7 @@
                         <outlet property="quantityTextField" destination="0cL-CL-nP5" id="wnW-vy-kdt"/>
                         <outlet property="subtotal" destination="oC4-YX-KN0" id="WBJ-0h-8ZE"/>
                         <outlet property="tableView" destination="Kqw-ox-I6O" id="us4-ez-P3j"/>
+                        <segue destination="59c-9O-tDr" kind="show" identifier="showProductDetail" id="dqS-41-rlm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6tU-Le-K6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -871,7 +872,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M8T-QF-y2o" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="search" selectedImage="search" id="XAE-4N-YhZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQR-ja-tMj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZQR-ja-tMj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -890,7 +891,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hnh-pK-DSF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="hamburger-menu" selectedImage="hamburger-menu" id="xSJ-pB-F3N"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pDb-Q7-5yf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pDb-Q7-5yf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -909,7 +910,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z4o-yM-vTG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="GHE-rR-tpC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KmR-sJ-4D7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KmR-sJ-4D7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -946,7 +947,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yhf-vf-Rdj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart" selectedImage="shopping-cart" id="Rww-3P-NVl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zxZ-OU-Ue6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zxZ-OU-Ue6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -967,4 +968,7 @@
         <image name="settings" width="25" height="25"/>
         <image name="shopping-cart" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dqS-41-rlm"/>
+    </inferredMetricsTieBreakers>
 </document>

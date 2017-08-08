@@ -14,10 +14,11 @@ let BASE_URL = "http://www.annieparts.com/"
 let LOGIN_URL = "appLogin.php"
 let LOGOUT_URL = "appLogin.php"
 let SEARCH_OPTIONS_URL = "appGetCfg.php"
-let PRODUCTS_URL = "bppSearch.php"
-let DELETE_FROM_CART_URL = "appDeleteFromCart.php?"
-let ADD_TO_CART_URL = "appAddGoods2Cart.php?"
-let UPDATE_CART_URL = "appAddGoods2Cart.php?"
+let PRODUCT_LIST_URL = "bppSearch.php"
+let PRODUCT_ID_SEARCH_URL = "appGetGoodsInfo.php"
+let DELETE_FROM_CART_URL = "appDeleteFromCart.php"
+let ADD_TO_CART_URL = "appAddGoods2Cart.php"
+let UPDATE_CART_URL = "appAddGoods2Cart.php"
 let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
 let ORDERS_URL = "appGetOrderInfo.php"
@@ -122,7 +123,7 @@ func search_options_request(completion: @escaping (Search) -> Void) {
 }
 
 func product_list_request(search_query: String, completion: @escaping (Bool, [Product]) -> Void) {
-    let query_url = BASE_URL + PRODUCTS_URL + "?" + search_query
+    let query_url = BASE_URL + PRODUCT_LIST_URL + "?" + search_query
     print(query_url)
 
     var product_list: [Product] = []
@@ -182,8 +183,63 @@ func product_list_request(search_query: String, completion: @escaping (Bool, [Pr
     }
 }
 
+func product_id_search_request(product_id: Int, completion: @escaping(Bool, Product) -> Void) {
+    let query_url = BASE_URL + PRODUCT_ID_SEARCH_URL
+    print(query_url)
+
+    var product: Product = Product()
+    var success: Bool = false
+
+    Alamofire.request(query_url, method: .get, parameters: ["goods_id":product_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
+        if (response.data != nil) {
+            let json = JSON(data: response.data!)
+            if (json["status"].intValue == 1) {
+                success = true
+
+                let id = json["id"].intValue
+                let model_ids = json["model_list"].arrayValue.map{$0.intValue}
+                let make_id = json["brand_id"].intValue
+                let name = json["name"].stringValue
+                let serial_number = json["sn"].stringValue
+                let start_year = json["start_time"].stringValue
+                let end_year = json["end_time"].stringValue
+                let image = json["img"].stringValue
+                let price = json["shop_price"].doubleValue
+                let brief_description = json["brief"].stringValue
+                let description = json["desc"].stringValue
+                let install_titles = json["ins"].arrayValue.map{$0["title"].stringValue}
+                let install_paths = json["ins"].arrayValue.map{$0["href"].stringValue}
+                let video_titles = json["video"].arrayValue.map{$0["title"].stringValue}
+                let video_paths = json["video"].arrayValue.map{$0["href"].stringValue}
+                let image_paths = json["thumb_url"].arrayValue.map{$0.stringValue}
+
+                product = Product(
+                    product_id: id,
+                    model_ids: model_ids,
+                    make_id: make_id,
+                    name: name,
+                    serial_number: serial_number,
+                    start_year: start_year,
+                    end_year: end_year,
+                    image: image,
+                    price: price,
+                    brief: brief_description,
+                    description: description,
+                    install_titles: install_titles,
+                    install_paths: install_paths,
+                    video_titles: video_titles,
+                    video_paths: video_paths,
+                    all_images: image_paths
+                )
+            }
+        }
+        completion(success, product)
+    }
+}
+
 func add_product_to_cart_request(product_id: Int, quantity: Int, completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + ADD_TO_CART_URL
+    print(query_url)
     Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id, "cnt": quantity], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil) {
             let json = JSON(data: response.data!)

@@ -24,6 +24,7 @@ class ProductDetailCell: UITableViewCell, SKPhotoBrowserDelegate {
     @IBOutlet weak var product_years: UILabel!
     @IBOutlet weak var product_models: UILabel!
     @IBOutlet weak var product_description: UILabel!
+    @IBOutlet weak var product_price: UILabel!
     
     func initialize(data: Product, parent: ProductDetailsVC) {
         
@@ -38,6 +39,7 @@ class ProductDetailCell: UITableViewCell, SKPhotoBrowserDelegate {
         product_years.text = data.years
         product_models.text = data.models
         product_description.text = data.brief_description
+        product_price.text = data.price.formattedPrice
         configureSlideshow(imageURLs: data.images)
     }
     

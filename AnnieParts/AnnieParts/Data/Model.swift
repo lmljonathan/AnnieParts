@@ -139,7 +139,13 @@ class Product {
         return _brief_description
     }
     var description: String {
-        return _description
+        do {
+            return try NSAttributedString(data: _description.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!, options: [NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute:String.Encoding.utf8.rawValue], documentAttributes: nil).string
+        }
+        catch let error {
+            print(error.localizedDescription)
+            return ""
+        }
     }
     var install_titles: [String] {
         return _install_file_titles
@@ -156,6 +162,10 @@ class Product {
     var images: [String] {
         return _all_images
     }
+
+    init() {
+
+    }
     
     init(product_id: Int, model_ids: [Int], make_id: Int, name: String, serial_number: String, start_year: String, end_year: String, image: String, price: Double, brief: String, description: String, install_titles: [String], install_paths: [String], video_titles: [String], video_paths: [String], all_images: [String]) {
         _product_id = product_id
@@ -169,7 +179,7 @@ class Product {
 
         _price = price
         _brief_description = brief
-        _description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget tellus nec nisi tincidunt dapibus bibendum quis nibh. Nunc diam justo, fermentum et risus nec, consequat scelerisque nisl. Nulla vitae porttitor erat. Nulla dapibus nulla non nibh feugiat fermentum. Praesent vestibulum tortor lectus, eu vestibulum nisi ultricies eget. Aliquam auctor eleifend tincidunt. Nulla nisi augue, blandit eget turpis et, tristique convallis libero. Nulla dictum condimentum laoreet."
+        _description = description
         _all_images = all_images
         _install_file_titles = install_titles
         _install_file_paths = install_paths
@@ -218,11 +228,11 @@ class ShoppingProduct
         return _thumb_image_path
     }
     var make: String {
-//        if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) {
-//            if (index >= 0 && index < CONSTANTS.IDS.MANUFACTURERS.count) {
-//                return CONSTANTS.IDS.MANUFACTURERS[index]
-//            }
-//        }
+        if let index = CONSTANTS.IDS.MANUFACTURER_IDS.index(of: _make_id) {
+            if (index >= 0 && index < CONSTANTS.IDS.MANUFACTURERS.count) {
+                return CONSTANTS.IDS.MANUFACTURERS[index]
+            }
+        }
         return ""
     }
     var years: String {

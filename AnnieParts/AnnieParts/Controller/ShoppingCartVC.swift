@@ -211,6 +211,14 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func finishedEditingQuantity(_ sender: UITapGestureRecognizer) {
         quantityTextField.resignFirstResponder()
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showProductDetail") {
+            if let destination = segue.destination as? ProductDetailsVC {
+                destination.product = sender as? Product
+            }
+        }
+    }
 }
 
 extension ShoppingCartVC {
@@ -233,5 +241,13 @@ extension ShoppingCartVC {
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = products[indexPath.row]
+        product_id_search_request(product_id: item.product_id) { (success, product) in
+            if (success) {
+                self.performSegue(withIdentifier: "showProductDetail", sender: product)
+            }
+        }
     }
 }

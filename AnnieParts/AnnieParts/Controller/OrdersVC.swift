@@ -15,25 +15,26 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
-    var orders: [[Order]]!
+    var orders: [[Order]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        let o1 = Order(order_id: 100, user_id: 100, serial_number: "slkfjdsdfj", total: 39, status: "shipping")
-        let o2 = Order(order_id: 100, user_id: 100, serial_number: "slkfjdsdfj", total: 39, status: "shipping")
-        let o3 = Order(order_id: 100, user_id: 100, serial_number: "slkfjdsdfj", total: 39, status: "shipping")
-        self.orders = [[o1, o2], [o3], []]
-        tableView.reloadData()
-//        order_list_request { (success, orders) in
-//            if (success) {
-//                self.orders = orders
-//                self.tableView.reloadData()
-//            }
-//            else {
-//                performLogin(vc: self)
-//            }
-//        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let loading = startActivityIndicator(view: self.view)
+        order_list_request { (success, orders) in
+            if (success) {
+                self.orders = orders
+                self.tableView.reloadData()
+                loading.stopAnimating()
+            }
+            else {
+                performLogin(vc: self)
+            }
+        }
     }
     func configureTableView() {
         tableView.delegate = self
@@ -53,7 +54,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(orders[segmentedControl.selectedSegmentIndex].count)
+        if (orders.count == 0) {
+            return 0
+        }
         return orders[segmentedControl.selectedSegmentIndex].count
     }
 

@@ -70,7 +70,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="About" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-pl-dUr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="About" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VI-pl-dUr">
                                 <rect key="frame" x="0.0" y="78.5" width="357" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -110,6 +110,7 @@
                 <outlet property="product_make" destination="Cn1-Gz-zYS" id="mse-8T-lGb"/>
                 <outlet property="product_models" destination="iOA-X3-1wS" id="UFA-Hc-TWP"/>
                 <outlet property="product_name" destination="pao-IB-9nW" id="snY-Zy-09p"/>
+                <outlet property="product_price" destination="fh0-Ga-0r1" id="qJ5-XJ-0HY"/>
                 <outlet property="product_serial" destination="p6B-s0-LuR" id="adi-it-VHl"/>
                 <outlet property="product_years" destination="Nlk-oc-uaF" id="dmY-Fu-atL"/>
                 <outlet property="slideshowIndicator" destination="50o-Ei-33n" id="GNY-5Q-d0H"/>
