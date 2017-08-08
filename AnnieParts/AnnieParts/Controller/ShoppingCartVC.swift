@@ -166,7 +166,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         var checkout_message: String
         if (User.sharedInstance.user_rank > 1) {
-            checkout_message = "Cart Subtotal: \(subtotal_amount.formattedPrice)"
+            checkout_message = "Cart subtotal: \(subtotal_amount.formattedPrice)"
         }
         else {
             checkout_message = "Cart: \(total_quantity) item(s)"
