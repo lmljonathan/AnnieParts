@@ -14,16 +14,16 @@ class OrderInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 
     var orderinfo: [OrderItem] = []
     var total: Double = 0
-    var ordernumber: String = "Order #"
+    var order_number: String = "Order #"
+    var order_id: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        let oi1 = OrderItem(name: "brakelsdkjflasdlkflkasdf1", quantity: 2, price: 20.0)
-        let oi2 = OrderItem(name: "brake2", quantity: 4, price: 10.0)
-        let oi3 = OrderItem(name: "brakefds3", quantity: 600, price: 90.0)
-        orderinfo = [oi1, oi2, oi3]
-        tableView.reloadData()
+        order_info_request(order_id: order_id) { (success, orderinfo) in
+            self.orderinfo = orderinfo
+            self.tableView.reloadData()
+        }
     }
 
     func configureTableView() {
@@ -61,7 +61,7 @@ extension OrderInfoVC {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let title = UILabel()
-        title.text = ordernumber
+        title.text = order_number
         title.textAlignment = .center
         title.textColor = UIColor.darkGray
         title.font = UIFont.systemFont(ofSize: 18)

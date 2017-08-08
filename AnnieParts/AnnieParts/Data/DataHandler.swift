@@ -21,13 +21,15 @@ let ADD_TO_CART_URL = "appAddGoods2Cart.php"
 let UPDATE_CART_URL = "appAddGoods2Cart.php"
 let SHOPPING_URL = "appGetShoppingCart.php"
 let CHECKOUT_URL = "appFinishShopping.php"
-let ORDERS_URL = "appGetOrderInfo.php"
+let ORDERS_URL = "bppGetOrderList.php"
 let ORDER_INFO_URL = "appGetOrderInfo.php"
 let CONFIRM_ORDER_URL = "appConfirmBorder.php"
 let CANCEL_ORDER_URL = "appCancelOrder.php"
 
 func login_request(username: String, password: String, completion: @escaping (Bool) -> Void) {
-    let query_url = BASE_URL + LOGIN_URL + "?"
+    let query_url = BASE_URL + LOGIN_URL
+    print(query_url)
+
     Alamofire.request(query_url, method: .get, parameters: ["act": "login", "u": username, "p": password], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
@@ -56,6 +58,8 @@ func login_request(username: String, password: String, completion: @escaping (Bo
 
 func logout_request(completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + LOGOUT_URL
+    print(query_url)
+
     Alamofire.request(query_url, method: .get, parameters: ["act":"logout"], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil) {
             let json = JSON(data: response.data!)
@@ -71,6 +75,8 @@ func logout_request(completion: @escaping(Bool) -> Void) {
 
 func configureIDS(completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + SEARCH_OPTIONS_URL
+    print(query_url)
+
     Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
 
         if let data = response.result.value as? [String:Any] {
@@ -255,6 +261,8 @@ func add_product_to_cart_request(product_id: Int, quantity: Int, completion: @es
 
 func update_cart_request(product_id: Int, new_quantity: Int, completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + UPDATE_CART_URL
+    print(query_url)
+
     Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id, "cnt": new_quantity, "act":"set"], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
@@ -273,6 +281,8 @@ func update_cart_request(product_id: Int, new_quantity: Int, completion: @escapi
 
 func delete_product_from_cart_request(product_id: Int, completion: @escaping(Bool) -> Void) {
     let query_url = BASE_URL + DELETE_FROM_CART_URL
+    print(query_url)
+
     Alamofire.request(query_url, method: .get, parameters: ["goods_id": product_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
@@ -374,6 +384,8 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                     let order_id = order["order_id"].intValue
                     let user_id = order["user_id"].intValue
                     let sn = order["order_sn"].stringValue
+                    let time = order["add_time"].doubleValue
+                    print(time)
                     let total = order["goods_amount"].doubleValue
                     let status = order["status"].stringValue
                     orders_array.append(
@@ -381,6 +393,7 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                             order_id: order_id,
                             user_id: user_id,
                             serial_number: sn,
+                            time: time,
                             total: total,
                             status: status
                         )
@@ -394,6 +407,7 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                     let order_id = order["order_id"].intValue
                     let user_id = order["user_id"].intValue
                     let sn = order["order_sn"].stringValue
+                    let time = order["add_time"].doubleValue
                     let total = order["goods_amount"].doubleValue
                     let status = order["status"].stringValue
                     orders_array.append(
@@ -401,6 +415,7 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                             order_id: order_id,
                             user_id: user_id,
                             serial_number: sn,
+                            time: time,
                             total: total,
                             status: status
                         )
@@ -414,6 +429,7 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                     let order_id = order["order_id"].intValue
                     let user_id = order["user_id"].intValue
                     let sn = order["order_sn"].stringValue
+                    let time = order["add_time"].doubleValue
                     let total = order["goods_amount"].doubleValue
                     let status = order["status"].stringValue
                     orders_array.append(
@@ -421,6 +437,7 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                             order_id: order_id,
                             user_id: user_id,
                             serial_number: sn,
+                            time: time,
                             total: total,
                             status: status
                         )
@@ -442,7 +459,7 @@ func order_info_request(order_id: Int, completion: @escaping(Bool, [OrderItem]) 
     var order_products: [OrderItem] = []
     var success = false
 
-    Alamofire.request(query_url, method: .get, encoding: URLEncoding.default).validate().responseJSON { (response) in
+    Alamofire.request(query_url, method: .get, parameters: ["order_id":order_id], encoding: URLEncoding.default).validate().responseJSON { (response) in
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)

@@ -28,7 +28,7 @@ class OrderCell: SwipeTableViewCell{
     }
     func initialize(order: Order) {
         order_number.text = order.serial_number
-        date.text = ""
+        date.text = order.time  
         total.text = "Order Total: \(order.total.formattedPrice)"
     }
     

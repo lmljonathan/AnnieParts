@@ -71,6 +71,9 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let presenter = Presentr(presentationType: .fullScreen)
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderInfoVC") as? OrderInfoVC {
+            let order = orders[segmentedControl.selectedSegmentIndex][indexPath.row]
+            vc.order_id = order.order_id
+            vc.order_number = order.serial_number
             customPresentViewController(presenter, viewController: vc, animated: true, completion: nil)
         }
         self.tableView.deselectRow(at: indexPath, animated: true)

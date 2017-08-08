@@ -278,6 +278,7 @@ class Order {
     private var _serial_number: String!
     private var _total: Double!
     private var _status: String!
+    private var _time: Double!
 
     var order_id: Int {
         return _order_id
@@ -299,10 +300,18 @@ class Order {
         return _status
     }
 
-    init(order_id: Int, user_id: Int, serial_number: String, total: Double, status: String) {
+    var time: String {
+        let date = Date(timeIntervalSince1970: _time)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        return dateFormatter.string(from: date)
+    }
+
+    init(order_id: Int, user_id: Int, serial_number: String, time:Double, total: Double, status: String) {
         _order_id = order_id
         _user_id = user_id
         _serial_number = serial_number
+        _time = time
         _total = total
         _status = status
     }
