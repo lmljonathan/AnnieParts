@@ -419,12 +419,13 @@ func checkout_request(completion: @escaping (Bool, String) -> Void) {
         if (response.data != nil)
         {
             let json = JSON(data: response.data!)
-            if (json["status"].intValue == 1)
-            {
+            if (json["status"].intValue == 1) {
                 let order_number = json["sn"].stringValue
                 completion(true, order_number)
             }
-            completion(false, "")
+            else {
+                completion(false, "")
+            }
         }
     }
 }

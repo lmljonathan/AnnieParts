@@ -39,6 +39,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        RequestHandler.cart_refresh = true
         self.original_frames = [self.username_field: self.username_field.y, self.password_field: self.password_field.y, self.login_button: self.login_button.y, self.loading: self.loading.y]
     }
 

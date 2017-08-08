@@ -169,9 +169,12 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("CANCEL!!")
             }
             let okAction = AlertAction(title: "Confirm", style: .default) { alert in
+                print("Confirmed")
+                let loading = startActivityIndicator(view: self.view)
                 checkout_request { (success, order_number) in
                     if (success) {
                         alertController.dismiss(animated: true, completion: {
+                            loading.stopAnimating()
                             self.products.removeAll()
                             self.tableView.reloadData()
                             self.calculateSubtotal()
