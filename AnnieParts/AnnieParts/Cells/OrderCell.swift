@@ -15,6 +15,7 @@ class OrderCell: SwipeTableViewCell{
     @IBOutlet weak var order_number: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var total: UILabel!
+    @IBOutlet weak var status: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,9 @@ class OrderCell: SwipeTableViewCell{
         order_number.text = order.serial_number
         date.text = order.time  
         total.text = "Order Total: \(order.total.formattedPrice)"
+        if (!order.status.isEmpty) {
+            status.text = "Status: \(order.status)"
+        }
     }
     
 }

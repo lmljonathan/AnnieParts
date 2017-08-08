@@ -385,9 +385,8 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                     let user_id = order["user_id"].intValue
                     let sn = order["order_sn"].stringValue
                     let time = order["add_time"].doubleValue
-                    print(time)
                     let total = order["goods_amount"].doubleValue
-                    let status = order["status"].stringValue
+                    let status = ""
                     orders_array.append(
                         Order(
                             order_id: order_id,
@@ -409,7 +408,7 @@ func order_list_request(completion: @escaping(Bool, [[Order]]) -> Void) {
                     let sn = order["order_sn"].stringValue
                     let time = order["add_time"].doubleValue
                     let total = order["goods_amount"].doubleValue
-                    let status = order["status"].stringValue
+                    let status = ""
                     orders_array.append(
                         Order(
                             order_id: order_id,
