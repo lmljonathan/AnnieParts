@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShoppingCartCell" rowHeight="115" id="JIZ-Jc-GX0" customClass="ShoppingCartCell" customModule="AnnieParts" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShoppingCartCell" rowHeight="120" id="JIZ-Jc-GX0" customClass="ShoppingCartCell" customModule="AnnieParts" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JIZ-Jc-GX0" id="kmC-Hz-clq">
@@ -26,27 +26,15 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Hh-vLz" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
-                        <rect key="frame" x="86" y="76" width="75" height="30"/>
+                        <rect key="frame" x="86" y="76" width="85" height="35"/>
                         <color key="backgroundColor" red="0.76154408028455278" green="0.76154408028455278" blue="0.76154408028455278" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="KKx-1N-bLs"/>
-                            <constraint firstAttribute="width" constant="75" id="fqF-WQ-yVw"/>
+                            <constraint firstAttribute="height" constant="35" id="KKx-1N-bLs"/>
+                            <constraint firstAttribute="width" constant="85" id="fqF-WQ-yVw"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="EDIT">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbB-So-ssH" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
-                        <rect key="frame" x="169" y="76" width="75" height="30"/>
-                        <color key="backgroundColor" red="0.59607843140000005" green="0.050980392159999999" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="8Wf-ha-rwg"/>
-                            <constraint firstAttribute="width" constant="75" id="QkF-aX-CKz"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="DELETE">
-                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="x4t-3d-eJ6">
@@ -87,9 +75,21 @@
                             <constraint firstAttribute="width" constant="20" id="niN-YI-dhw"/>
                         </constraints>
                     </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbB-So-ssH" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
+                        <rect key="frame" x="179" y="76" width="85" height="35"/>
+                        <color key="backgroundColor" red="0.59607843140000005" green="0.050980392159999999" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="8Wf-ha-rwg"/>
+                            <constraint firstAttribute="width" constant="85" id="QkF-aX-CKz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="DELETE">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="vC3-Hh-vLz" secondAttribute="bottom" constant="0.5" id="1MJ-Sn-pU0"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="vC3-Hh-vLz" secondAttribute="bottom" constant="-4.5" id="1MJ-Sn-pU0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="x4t-3d-eJ6" secondAttribute="trailing" id="3tb-CH-6A8"/>
                     <constraint firstAttribute="trailing" secondItem="yRS-sM-3oU" secondAttribute="trailing" constant="10" id="7eX-3P-FRQ"/>
                     <constraint firstItem="XN3-pj-OuH" firstAttribute="leading" secondItem="kmC-Hz-clq" secondAttribute="leadingMargin" id="EZJ-ra-P3I"/>
