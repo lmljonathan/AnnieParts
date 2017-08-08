@@ -28,5 +28,6 @@ class ShoppingCartCell: UITableViewCell {
         serial_number.text = data.serial_number
         quantity.text = "Quantity: " + String(data.quantity)
         price.text = data.price.formattedPrice
+        price.isHidden = (User.sharedInstance.user_rank <= 1)
     }
 }

@@ -27,6 +27,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         configureTableView()
         configureTextField()
+        subtotal.isHidden = (User.sharedInstance.user_rank <= 1)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -228,7 +229,6 @@ extension ShoppingCartVC {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(self.products.count)
         return self.products.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -72,4 +72,7 @@ class ProductListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1.0
     }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
 }

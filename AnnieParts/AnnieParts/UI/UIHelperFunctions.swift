@@ -26,6 +26,22 @@ func performLogin(vc: UIViewController) {
     vc.present(loginVC, animated: true, completion: nil)
 }
 
+func configureTabBar(tab: UITabBarController) {
+
+        var viewControllers = tab.viewControllers
+        if (User.sharedInstance.user_rank <= 1) {
+            viewControllers?.remove(at: 2)
+            tab.viewControllers = viewControllers
+            User.sharedInstance.cart_position = 2
+        }
+        else {
+            User.sharedInstance.cart_position = 3
+        }
+
+        tab.setViewControllers(viewControllers, animated: false)
+        tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = "\(User.sharedInstance.shopping_count)"
+}
+
 class RoundedButton: UIButton {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -18,6 +18,7 @@ class User {
     var login_username: String = ""
     var login_password: String = ""
     var touch_id_setup: Bool = false
+    var cart_position: Int = 3
 
     private init () {}
 }

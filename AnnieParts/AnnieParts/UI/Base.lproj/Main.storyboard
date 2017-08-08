@@ -219,6 +219,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="QDO-ea-PWf" kind="relationship" relationship="viewControllers" id="rJh-6r-NOn"/>
                         <segue destination="M8T-QF-y2o" kind="relationship" relationship="viewControllers" id="ffh-9g-DNZ"/>
                         <segue destination="hnh-pK-DSF" kind="relationship" relationship="viewControllers" id="gtd-hX-3F2"/>
                         <segue destination="yhf-vf-Rdj" kind="relationship" relationship="viewControllers" id="LCG-Nq-5Ku"/>
@@ -867,6 +868,52 @@
             </objects>
             <point key="canvasLocation" x="4853.6000000000004" y="345.87706146926541"/>
         </scene>
+        <!--New Products-->
+        <scene sceneID="cTG-4W-jHL">
+            <objects>
+                <viewController id="j0r-CI-PDY" customClass="HomeVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rFg-cy-Ir5"/>
+                        <viewControllerLayoutGuide type="bottom" id="GA1-dW-4Du"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LRC-aD-UTb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="cKE-7A-qzm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProductCell" rowHeight="130" id="7qR-wt-MdJ" customClass="ProductCell" customModule="AnnieParts" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7qR-wt-MdJ" id="Jgz-7R-kf8">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cKE-7A-qzm" secondAttribute="trailing" id="CnE-nD-b0X"/>
+                            <constraint firstItem="GA1-dW-4Du" firstAttribute="top" secondItem="cKE-7A-qzm" secondAttribute="bottom" id="F6P-hl-TWr"/>
+                            <constraint firstItem="cKE-7A-qzm" firstAttribute="leading" secondItem="LRC-aD-UTb" secondAttribute="leading" id="Jjo-iC-iam"/>
+                            <constraint firstItem="cKE-7A-qzm" firstAttribute="top" secondItem="rFg-cy-Ir5" secondAttribute="bottom" id="KaK-QE-AQf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Products" id="5te-3r-ct2"/>
+                    <connections>
+                        <outlet property="tableView" destination="cKE-7A-qzm" id="L1e-bi-oGj"/>
+                        <segue destination="59c-9O-tDr" kind="show" identifier="showProductDetail" id="gQ8-Q9-xTF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hzm-4O-ZIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2389.5999999999999" y="-353.07346326836586"/>
+        </scene>
         <!--Search-->
         <scene sceneID="nuj-AI-YiM">
             <objects>
@@ -940,7 +987,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YST-mh-J6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1303" y="1047"/>
+            <point key="canvasLocation" x="-1478" y="1047"/>
         </scene>
         <!--Cart-->
         <scene sceneID="SKJ-MC-2Qe">
@@ -961,15 +1008,35 @@
             </objects>
             <point key="canvasLocation" x="1558" y="1710"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="KiZ-Wy-HpH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QDO-ea-PWf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="aor-an-U9f"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUy-4U-uNd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="j0r-CI-PDY" kind="relationship" relationship="rootViewController" id="SuV-AU-erM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0n3-pL-mry" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1557.5999999999999" y="-353.07346326836586"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gear" width="25" height="25"/>
         <image name="hamburger-menu" width="25" height="25"/>
+        <image name="home" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
         <image name="shopping-cart" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dqS-41-rlm"/>
+        <segue reference="gQ8-Q9-xTF"/>
     </inferredMetricsTieBreakers>
 </document>

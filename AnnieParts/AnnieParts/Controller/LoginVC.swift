@@ -116,11 +116,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             login_failure()
         }
     }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showTabBar") {
             if let destination = segue.destination as? UITabBarController {
-                destination.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
+                configureTabBar(tab: destination)
             }
         }
     }

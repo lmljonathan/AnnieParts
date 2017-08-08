@@ -24,8 +24,7 @@ class LaunchVC: UIViewController {
                 user.user_rank = defaults.integer(forKey: "user_rank")
                 user.company_name = defaults.string(forKey: "company")!
                 user.shopping_count = defaults.integer(forKey: "shopping_count")
-
-                search.tabBar.items![2].badgeValue = "\(user.shopping_count)"
+                configureTabBar(tab: search)
             }
             else {
                 performLogin(vc: self)

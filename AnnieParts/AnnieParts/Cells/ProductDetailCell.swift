@@ -40,6 +40,7 @@ class ProductDetailCell: UITableViewCell, SKPhotoBrowserDelegate {
         product_models.text = data.models
         product_description.text = data.brief_description
         product_price.text = data.price.formattedPrice
+        product_price.isHidden = (User.sharedInstance.user_rank <= 1)
         configureSlideshow(imageURLs: data.images)
     }
     
