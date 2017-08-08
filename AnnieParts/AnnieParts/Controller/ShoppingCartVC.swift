@@ -84,7 +84,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
         User.sharedInstance.shopping_count = quantity
-        self.tabBarController?.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
+        self.tabBarController?.tabBar.items![User.sharedInstance.cart_position].badgeValue = "\(User.sharedInstance.shopping_count)"
     }
 
     func deleteItem(row: Int) {

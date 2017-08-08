@@ -31,9 +31,7 @@ class OrderCell: SwipeTableViewCell{
         order_number.text = order.serial_number
         date.text = order.time  
         total.text = "Order Total: \(order.total.formattedPrice)"
-        if (!order.status.isEmpty) {
-            status.text = "Status: \(order.status)"
-        }
+        status.text = order.status
     }
     
 }
