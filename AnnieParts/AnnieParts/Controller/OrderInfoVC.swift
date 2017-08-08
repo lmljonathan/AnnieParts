@@ -31,6 +31,8 @@ class OrderInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
         self.automaticallyAdjustsScrollViewInsets = false
         let nib = UINib(nibName: "OrderInfoCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "OrderInfoCell")
