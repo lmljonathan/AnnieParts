@@ -11,6 +11,11 @@ import UIKit
 class LaunchVC: UIViewController {
 
     override func viewDidLoad() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.bounds
+        gradient.colors = [UIColor(colorLiteralRed: 20.0/255.0, green: 24.0/255.0, blue: 35.0/255.0, alpha: 1).cgColor, UIColor(colorLiteralRed: 53.0/255.0, green: 53.0/255.0, blue: 73.0/255.0, alpha: 1).cgColor]
+        gradient.locations = [0.0, 1.0]
+        self.view.layer.addSublayer(gradient)
         super.viewDidLoad()
 
         configureIDS { (success) in

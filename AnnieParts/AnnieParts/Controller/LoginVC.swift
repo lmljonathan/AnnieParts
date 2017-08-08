@@ -20,9 +20,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     private var original_frames: [UIView: CGFloat]?
 
     override func viewDidLoad() {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.view.bounds
+        gradient.colors = [UIColor(colorLiteralRed: 20.0/255.0, green: 24.0/255.0, blue: 35.0/255.0, alpha: 1).cgColor, UIColor(colorLiteralRed: 53.0/255.0, green: 53.0/255.0, blue: 73.0/255.0, alpha: 1).cgColor]
+        gradient.locations = [0.0, 1.0]
+        self.view.layer.addSublayer(gradient)
         super.viewDidLoad()
 
-        self.login_button.setTitleColor(UIColor.lightGray, for: .selected)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
 

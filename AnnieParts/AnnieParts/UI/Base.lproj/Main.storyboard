@@ -28,13 +28,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AnnieParts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMn-Cj-Y2M">
-                                <rect key="frame" x="121.5" y="145" width="132.5" height="29.5"/>
+                                <rect key="frame" x="121.5" y="153" width="132.5" height="29.5"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gear" translatesAutoresizingMaskIntoConstraints="NO" id="xZv-2l-tIV">
-                                <rect key="frame" x="155.5" y="62" width="64" height="69"/>
+                                <rect key="frame" x="155.5" y="70" width="64" height="69"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="Nla-au-ccZ"/>
@@ -54,7 +54,7 @@
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="qTe-ia-4Ub">
-                                <rect key="frame" x="12" y="407.5" width="351" height="44"/>
+                                <rect key="frame" x="12" y="394" width="351" height="44"/>
                                 <color key="backgroundColor" red="0.59607843137254901" green="0.050980392156862744" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Yde-L5-jbE"/>
@@ -80,10 +80,10 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4hU-nO-9WO">
-                                <rect key="frame" x="333" y="417.5" width="20" height="20"/>
+                                <rect key="frame" x="333" y="404" width="20" height="20"/>
                             </activityIndicatorView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FtD-WY-k15">
-                                <rect key="frame" x="12" y="291" width="351" height="44"/>
+                                <rect key="frame" x="12" y="277.5" width="351" height="44"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="sFH-Er-ogL"/>
@@ -103,7 +103,7 @@
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYS-Mp-0IV">
-                                <rect key="frame" x="12" y="349" width="351" height="45"/>
+                                <rect key="frame" x="12" y="335.5" width="351" height="45"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="xuE-3F-pCb"/>
@@ -123,16 +123,16 @@
                                 </variation>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="qTe-ia-4Ub" firstAttribute="top" secondItem="ZYS-Mp-0IV" secondAttribute="bottom" constant="13.5" id="0t2-vc-wQm"/>
-                            <constraint firstItem="xZv-2l-tIV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="42" id="2PB-Id-qgq"/>
+                            <constraint firstItem="xZv-2l-tIV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="2PB-Id-qgq"/>
                             <constraint firstItem="xZv-2l-tIV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6zp-SB-VcU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FtD-WY-k15" secondAttribute="trailing" constant="-4" id="B9a-Hv-XSh"/>
                             <constraint firstItem="sMn-Cj-Y2M" firstAttribute="top" secondItem="xZv-2l-tIV" secondAttribute="bottom" constant="14" id="BjN-mG-ubz"/>
                             <constraint firstItem="ZYS-Mp-0IV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-4" id="EyD-IN-0uk"/>
                             <constraint firstItem="4hU-nO-9WO" firstAttribute="leading" secondItem="qTe-ia-4Ub" secondAttribute="trailing" constant="-30" id="M62-RG-NG5"/>
-                            <constraint firstItem="FtD-WY-k15" firstAttribute="top" secondItem="sMn-Cj-Y2M" secondAttribute="bottom" constant="117" id="SGs-IT-MUX"/>
+                            <constraint firstItem="FtD-WY-k15" firstAttribute="top" secondItem="sMn-Cj-Y2M" secondAttribute="bottom" constant="95" id="SGs-IT-MUX"/>
                             <constraint firstItem="sMn-Cj-Y2M" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SyX-Jf-bIK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZYS-Mp-0IV" secondAttribute="trailing" constant="-4" id="XHZ-Af-uYh"/>
                             <constraint firstItem="4hU-nO-9WO" firstAttribute="centerY" secondItem="qTe-ia-4Ub" secondAttribute="centerY" constant="-2" id="gTP-5B-gSo"/>
@@ -933,7 +933,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M8T-QF-y2o" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="search" selectedImage="search" id="XAE-4N-YhZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZQR-ja-tMj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQR-ja-tMj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -952,7 +952,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hnh-pK-DSF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="hamburger-menu" selectedImage="hamburger-menu" id="xSJ-pB-F3N"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pDb-Q7-5yf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pDb-Q7-5yf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -971,7 +971,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z4o-yM-vTG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="GHE-rR-tpC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KmR-sJ-4D7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KmR-sJ-4D7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -995,7 +995,7 @@
                     <view key="view" contentMode="scaleToFill" id="1Pl-vx-ZLN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YST-mh-J6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1008,7 +1008,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yhf-vf-Rdj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart" selectedImage="shopping-cart" id="Rww-3P-NVl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zxZ-OU-Ue6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zxZ-OU-Ue6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1027,7 +1027,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QDO-ea-PWf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New" image="home" selectedImage="home" id="aor-an-U9f"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUy-4U-uNd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUy-4U-uNd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1042,7 +1042,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" width="25" height="25"/>
+        <image name="gear" width="120" height="120"/>
         <image name="hamburger-menu" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
