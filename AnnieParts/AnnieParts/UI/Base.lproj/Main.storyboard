@@ -202,7 +202,7 @@
                         <outlet property="login_button" destination="qTe-ia-4Ub" id="4Sw-sR-W54"/>
                         <outlet property="password_field" destination="ZYS-Mp-0IV" id="es0-lU-5jt"/>
                         <outlet property="username_field" destination="FtD-WY-k15" id="IZ7-PS-CVe"/>
-                        <segue destination="Bzz-4Z-xll" kind="show" identifier="showSearch" id="cfb-w3-OEz"/>
+                        <segue destination="Bzz-4Z-xll" kind="show" identifier="showTabBar" id="cfb-w3-OEz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -229,7 +229,7 @@
             </objects>
             <point key="canvasLocation" x="482" y="1047"/>
         </scene>
-        <!--Browse-->
+        <!--Search-->
         <scene sceneID="MUJ-wR-yv9">
             <objects>
                 <tableViewController id="Jj8-zY-aiQ" customClass="SearchVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -311,7 +311,7 @@
                             <outlet property="delegate" destination="Jj8-zY-aiQ" id="Seb-3r-4Ix"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Browse" id="7x8-dV-NaS"/>
+                    <navigationItem key="navigationItem" title="Search" id="7x8-dV-NaS"/>
                     <connections>
                         <segue destination="gJn-Xy-NLp" kind="show" identifier="showProductList" id="bR3-Ht-0l7"/>
                     </connections>
@@ -558,7 +558,7 @@
             </objects>
             <point key="canvasLocation" x="3253.5999999999999" y="345.87706146926541"/>
         </scene>
-        <!--Shopping CartVC-->
+        <!--Shopping Cart-->
         <scene sceneID="9Qm-M4-RlR">
             <objects>
                 <viewController id="CTd-FD-47Y" customClass="ShoppingCartVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -609,10 +609,10 @@
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKa-Ew-zQk" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
-                                        <rect key="frame" x="255" y="10" width="100" height="30"/>
+                                        <rect key="frame" x="230" y="10" width="125" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="ffC-0a-HlM"/>
+                                            <constraint firstAttribute="width" constant="125" id="ffC-0a-HlM"/>
                                         </constraints>
                                         <size key="titleShadowOffset" width="-1" height="0.0"/>
                                         <state key="normal" title="Edit">
@@ -678,7 +678,7 @@
                             <outletCollection property="gestureRecognizers" destination="Nw7-Gb-33v" appends="YES" id="6p0-Zi-Bj9"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="elH-xU-SGW"/>
+                    <navigationItem key="navigationItem" title="Shopping Cart" id="elH-xU-SGW"/>
                     <connections>
                         <outlet property="bottomBarView" destination="84G-Nc-spb" id="rHO-ZD-pqy"/>
                         <outlet property="checkout_button" destination="9ab-Fv-kMU" id="gEp-QF-8Rs"/>
@@ -696,9 +696,9 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2390" y="1730"/>
+            <point key="canvasLocation" x="2390" y="1710"/>
         </scene>
-        <!--Product DetailsVC-->
+        <!--Product-->
         <scene sceneID="OJm-NN-wU8">
             <objects>
                 <viewController id="59c-9O-tDr" customClass="ProductDetailsVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
@@ -753,10 +753,10 @@
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-hP-IwL" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
-                                        <rect key="frame" x="255" y="10" width="100" height="30"/>
+                                        <rect key="frame" x="230" y="10" width="125" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="WKg-Lf-zDq"/>
+                                            <constraint firstAttribute="width" constant="125" id="WKg-Lf-zDq"/>
                                         </constraints>
                                         <size key="titleShadowOffset" width="-1" height="0.0"/>
                                         <state key="normal" title="Add To Cart">
@@ -815,6 +815,7 @@
                             <outletCollection property="gestureRecognizers" destination="fiP-Yh-kjw" appends="YES" id="RBd-kV-xnM"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Product" id="sUa-Gt-KKi"/>
                     <connections>
                         <outlet property="bottomBarView" destination="TWA-7s-GTt" id="m2q-Py-UaA"/>
                         <outlet property="dismissKeyboard" destination="fiP-Yh-kjw" id="Xxa-ey-7hh"/>

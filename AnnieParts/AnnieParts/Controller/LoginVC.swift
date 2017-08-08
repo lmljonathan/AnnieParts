@@ -100,10 +100,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         self.login_button.isSelected = true
         if (!username.isEmpty && !password.isEmpty) {
             self.loading.startAnimating()
-            login_request(username: username, password: password, completion: { (status) in
-                if (status) {
-
-                    self.performSegue(withIdentifier: "showSearch", sender: nil)
+            login_request(username: username, password: password, completion: { (success) in
+                if (success) {
+                    self.performSegue(withIdentifier: "showTabBar", sender: nil)
                 } else {
                     self.login_button.isSelected = false
                     self.loading.stopAnimating()
@@ -115,6 +114,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
         else {
             login_failure()
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showTabBar") {
+            if let destination = segue.destination as? UITabBarController {
+                destination.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
+            }
         }
     }
 }

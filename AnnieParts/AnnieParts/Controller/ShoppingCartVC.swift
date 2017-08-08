@@ -144,6 +144,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func deleteItem(_ sender: UIButton) {
+        sender.isEnabled = false
         self.quantityTextField.resignFirstResponder()
         delete_product_from_cart_request(product_id: products[sender.tag].product_id) { (success) in
             if (success) {
@@ -168,10 +169,8 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.calculateSubtotal()
                 self.tableView.reloadData()
                 self.quantityTextField.text = ""
-                print("updated")
             }
         })
-
         quantityTextField.resignFirstResponder()
     }
 
@@ -187,19 +186,22 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             let okAction = AlertAction(title: "Confirm", style: .default) { alert in
                 checkout_request { (success, order_number) in
-                    alertController.dismiss(animated: true, completion: nil)
+                    if (success) {
+                        alertController.dismiss(animated: true, completion: {
+                            self.products.removeAll()
+                            self.tableView.reloadData()
+                            self.calculateSubtotal()
 
-                    let presenter2 = Presentr(presentationType: .alert)
-                    var alertController2: AlertViewController {
-                        let alertController2 = Presentr.alertViewController(title: "Order Completed", body: "\(order_number)")
-                        let okAction2 = AlertAction(title: "Okay", style: .default, handler: nil)
-                        alertController2.addAction(okAction2)
-                        return alertController2
+                            let presenter2 = Presentr(presentationType: .alert)
+                            var alertController2: AlertViewController {
+                                let alertController2 = Presentr.alertViewController(title: "Order Completed", body: "\(order_number)")
+                                let okAction2 = AlertAction(title: "Okay", style: .default, handler: nil)
+                                alertController2.addAction(okAction2)
+                                return alertController2
+                            }
+                            self.customPresentViewController(presenter2, viewController: alertController2, animated: true, completion: nil)
+                        })
                     }
-                    self.customPresentViewController(presenter2, viewController: alertController2, animated: true, completion: nil)
-                    self.products.removeAll()
-                    self.tableView.reloadData()
-                    self.calculateSubtotal()
                 }
             }
             alertController.addAction(cancelAction)
