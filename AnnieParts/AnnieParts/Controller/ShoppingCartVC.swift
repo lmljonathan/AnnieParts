@@ -21,6 +21,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var products: [ShoppingProduct] = []
     var subtotal_amount: Double = 0
+    var total_quantity: Int = 0
     var row_in_edit: Int!
 
     override func viewDidLoad() {
@@ -77,12 +78,13 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             price_amount += (item.price * Double(item.quantity))
         }
         subtotal_amount = price_amount
+        total_quantity = quantity
 
         if (User.sharedInstance.user_rank > 1) {
             subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
         }
         else {
-            subtotal.text = "Cart: \(quantity) items"
+            subtotal.text = "Cart: \(quantity) item(s)"
         }
 
         updateCartBadge(tab: self.tabBarController!, total: quantity)
@@ -162,9 +164,17 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (products.isEmpty) {
             return
         }
+        var checkout_message: String
+        if (User.sharedInstance.user_rank > 1) {
+            checkout_message = "Cart Subtotal: \(subtotal_amount.formattedPrice)"
+        }
+        else {
+            checkout_message = "Cart: \(total_quantity) item(s)"
+        }
+
         let presenter = Presentr(presentationType: .alert)
         var alertController: AlertViewController {
-            let alertController = Presentr.alertViewController(title: "Checkout", body: "Cart Subtotal: \(subtotal_amount.formattedPrice)")
+            let alertController = Presentr.alertViewController(title: "Checkout", body: checkout_message)
             let cancelAction = AlertAction(title: "Cancel", style: .cancel) { alert in
                 print("CANCEL!!")
             }
@@ -173,7 +183,6 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 let loading = startActivityIndicator(view: self.view)
                 checkout_request { (success, order_number) in
                     if (success) {
-                        alertController.dismiss(animated: true, completion: {
                             loading.stopAnimating()
                             self.products.removeAll()
                             self.tableView.reloadData()
@@ -187,7 +196,6 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 return alertController2
                             }
                             self.customPresentViewController(presenter2, viewController: alertController2, animated: true, completion: nil)
-                        })
                     }
                 }
             }

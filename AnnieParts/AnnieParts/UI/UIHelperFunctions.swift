@@ -27,18 +27,24 @@ func performLogin(vc: UIViewController) {
 }
 
 func configureTabBar(tab: UITabBarController) {
-        var viewControllers = tab.viewControllers
-        if (User.sharedInstance.user_rank <= 1) {
-            viewControllers?.remove(at: 2)
-            tab.viewControllers = viewControllers
-            User.sharedInstance.cart_position = 2
-        }
-        else {
-            User.sharedInstance.cart_position = 3
-        }
+    var viewControllers = tab.viewControllers
+    if (User.sharedInstance.user_rank <= 1) {
+        viewControllers?.remove(at: 2)
+        tab.viewControllers = viewControllers
+        User.sharedInstance.cart_position = 2
+    }
+    else {
+        User.sharedInstance.cart_position = 3
+    }
 
-        tab.setViewControllers(viewControllers, animated: false)
+    tab.setViewControllers(viewControllers, animated: false)
+
+    if (User.sharedInstance.shopping_count == 0) {
+        tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = nil
+    }
+    else {
         tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = "\(User.sharedInstance.shopping_count)"
+    }
 }
 
 func updateCartBadge(tab: UITabBarController, increase: Int) {
@@ -48,7 +54,12 @@ func updateCartBadge(tab: UITabBarController, increase: Int) {
 
 func updateCartBadge(tab: UITabBarController, total: Int) {
     User.sharedInstance.shopping_count = total
-    tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = "\(User.sharedInstance.shopping_count)"
+    if (total == 0) {
+        tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = nil
+    }
+    else {
+        tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = "\(User.sharedInstance.shopping_count)"
+    }
 }
 
 class RoundedButton: UIButton {
