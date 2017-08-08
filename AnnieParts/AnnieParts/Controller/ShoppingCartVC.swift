@@ -27,7 +27,6 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         configureTableView()
         configureTextField()
-        subtotal.isHidden = (User.sharedInstance.user_rank <= 1)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +74,14 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             price_amount += (item.price * Double(item.quantity))
         }
         subtotal_amount = price_amount
-        subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
+
+        if (User.sharedInstance.user_rank > 1) {
+            subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
+        }
+        else {
+            subtotal.text = "Cart: \(quantity) items"
+        }
+
 
         User.sharedInstance.shopping_count = quantity
         self.tabBarController?.tabBar.items![2].badgeValue = "\(User.sharedInstance.shopping_count)"
