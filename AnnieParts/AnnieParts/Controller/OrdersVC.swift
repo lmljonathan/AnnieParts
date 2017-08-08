@@ -102,6 +102,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
                 let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                     self.cancelOrder(order: order)
                 }
+                deleteAction.image = UIImage(named: "trash")
                 return [deleteAction]
             }
         }
