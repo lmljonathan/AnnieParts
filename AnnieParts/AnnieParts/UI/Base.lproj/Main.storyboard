@@ -18,7 +18,7 @@
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginVC" title="LoginVC" definesPresentationContext="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" title="LoginVC" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -933,7 +933,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M8T-QF-y2o" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="search" selectedImage="search" id="XAE-4N-YhZ"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZQR-ja-tMj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZQR-ja-tMj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -952,7 +952,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hnh-pK-DSF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="hamburger-menu" selectedImage="hamburger-menu" id="xSJ-pB-F3N"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pDb-Q7-5yf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pDb-Q7-5yf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -971,7 +971,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Z4o-yM-vTG" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="GHE-rR-tpC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KmR-sJ-4D7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="KmR-sJ-4D7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -987,7 +987,7 @@
         <!--LaunchVC-->
         <scene sceneID="EBV-qN-Wj8">
             <objects>
-                <viewController id="Qvn-nL-T2a" customClass="LaunchVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="Qvn-nL-T2a" customClass="LaunchVC" customModule="AnnieParts" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qEE-hn-DEj"/>
                         <viewControllerLayoutGuide type="bottom" id="tgF-LY-wMO"/>
@@ -995,7 +995,35 @@
                     <view key="view" contentMode="scaleToFill" id="1Pl-vx-ZLN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="dI7-Tg-MpJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gear" translatesAutoresizingMaskIntoConstraints="NO" id="8y3-5V-glk">
+                                <rect key="frame" x="112" y="166" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Dvg-Mw-JiZ"/>
+                                    <constraint firstAttribute="height" constant="150" id="FuX-Lc-3yb"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AnnieParts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deA-3S-jXL">
+                                <rect key="frame" x="130" y="324" width="115" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="deA-3S-jXL" firstAttribute="top" secondItem="8y3-5V-glk" secondAttribute="bottom" constant="8" id="E6H-2T-dsS"/>
+                            <constraint firstItem="8y3-5V-glk" firstAttribute="centerX" secondItem="1Pl-vx-ZLN" secondAttribute="centerX" id="Gxa-IN-fu6"/>
+                            <constraint firstItem="tgF-LY-wMO" firstAttribute="top" secondItem="dI7-Tg-MpJ" secondAttribute="bottom" id="J6p-jJ-6jh"/>
+                            <constraint firstItem="deA-3S-jXL" firstAttribute="centerX" secondItem="8y3-5V-glk" secondAttribute="centerX" id="VsC-o0-cUs"/>
+                            <constraint firstItem="8y3-5V-glk" firstAttribute="top" secondItem="qEE-hn-DEj" secondAttribute="bottom" constant="146" id="XZS-NU-W73"/>
+                            <constraint firstItem="dI7-Tg-MpJ" firstAttribute="top" secondItem="1Pl-vx-ZLN" secondAttribute="top" id="hAP-aT-x7U"/>
+                            <constraint firstItem="dI7-Tg-MpJ" firstAttribute="leading" secondItem="1Pl-vx-ZLN" secondAttribute="leading" id="sgd-Qd-ont"/>
+                            <constraint firstAttribute="trailing" secondItem="dI7-Tg-MpJ" secondAttribute="trailing" id="xWa-Nr-aun"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YST-mh-J6R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1008,7 +1036,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yhf-vf-Rdj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Cart" image="shopping-cart" selectedImage="shopping-cart" id="Rww-3P-NVl"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zxZ-OU-Ue6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="zxZ-OU-Ue6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1027,7 +1055,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QDO-ea-PWf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="New" image="home" selectedImage="home" id="aor-an-U9f"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUy-4U-uNd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUy-4U-uNd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1045,6 +1073,7 @@
         <image name="gear" width="120" height="120"/>
         <image name="hamburger-menu" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
+        <image name="launch" width="374" height="648"/>
         <image name="search" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
         <image name="shopping-cart" width="24" height="24"/>
