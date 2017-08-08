@@ -20,7 +20,9 @@ class OrderInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        let loading = startActivityIndicator(view: self.view)
         order_info_request(order_id: order_id) { (success, orderinfo) in
+            loading.stopAnimating()
             self.orderinfo = orderinfo
             self.tableView.reloadData()
         }
@@ -40,7 +42,9 @@ class OrderInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
 }
 extension OrderInfoVC {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(orderinfo.count)
+        if (orderinfo.count == 0) {
+            return 0
+        }
         return orderinfo.count + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
