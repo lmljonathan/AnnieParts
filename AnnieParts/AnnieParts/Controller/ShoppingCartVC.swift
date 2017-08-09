@@ -156,21 +156,21 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func editQuantityConfirmed(_ sender: UIButton) {
         if (!(quantityTextField.text?.isEmpty)!) {
             let new_quantity = Int(quantityTextField.text!)!
-            update_cart_request(product_id: products[row_in_edit].product_id, new_quantity: new_quantity, completion: { (success) in
-                if (success) {
-                    if (new_quantity == 0) {
-                        self.products.remove(at: self.row_in_edit)
-                    }
-                    else {
+            if (new_quantity > 0) {
+                quantityTextField.resignFirstResponder()
+                update_cart_request(product_id: products[row_in_edit].product_id, new_quantity: new_quantity, completion: { (success) in
+                    if (success) {
                         self.products[self.row_in_edit].updateQuantity(quantity: new_quantity)
+                        self.calculateSubtotal()
+                        self.tableView.reloadDataInSection(section: 0)
+                        self.quantityTextField.text = ""
                     }
-                    self.calculateSubtotal()
-                    self.tableView.reloadDataInSection(section: 0)
-                    self.quantityTextField.text = ""
-                }
-            })
+                })
+            }
+            else {
+                sender.layer.shake()
+            }
         }
-        quantityTextField.resignFirstResponder()
     }
 
     @IBAction func checkout(_ sender: UIButton) {

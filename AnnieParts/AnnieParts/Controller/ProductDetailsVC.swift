@@ -106,26 +106,33 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         else {
             quantity = Int(quantityTextField.text!)!
         }
-        quantityTextField.resignFirstResponder()
+        if (quantity > 0) {
+            quantityTextField.resignFirstResponder()
+            let loadingvc = self.storyboard?.instantiateViewController(withIdentifier: "LoadingVC") as! LoadingVC
+            self.customPresentViewController(loading_presenter, viewController: loadingvc, animated: true, completion: nil)
+            loadingvc.startLoading()
 
-        let loadingvc = self.storyboard?.instantiateViewController(withIdentifier: "LoadingVC") as! LoadingVC
-        self.customPresentViewController(loading_presenter, viewController: loadingvc, animated: true, completion: nil)
-        loadingvc.startLoading()
-
-        add_product_to_cart_request(product_id: product.product_id, quantity: quantity) { (success) in
-            if (success) {
-                loadingvc.stopLoading(text: "You added \(quantity) of \(self.product.name) to your cart")
-                RequestHandler.cart_refresh = true
-                updateCartBadge(tab: self.tabBarController!, increase: quantity)
+            add_product_to_cart_request(product_id: product.product_id, quantity: quantity) { (success) in
+                if (success) {
+                    loadingvc.stopLoading(text: "You added \(quantity) of \(self.product.name) to your cart")
+                    RequestHandler.cart_refresh = true
+                    updateCartBadge(tab: self.tabBarController!, increase: quantity)
+                }
+                else {
+                    loadingvc.stopLoading(text: "ERROR - product cannot be added at this time")
+                }
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                    loadingvc.dismiss(animated: true, completion: nil)
+                })
             }
-            else {
-                loadingvc.stopLoading(text: "ERROR - product cannot be added at this time")
-            }
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                loadingvc.dismiss(animated: true, completion: nil)
-            })
+        }
+        else {
+            sender.layer.shake()
         }
     }
+
+
+
 
 
     @IBAction func finishedEditingQuantity(_ sender: UITapGestureRecognizer) {
