@@ -81,7 +81,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         total_quantity = quantity
 
         if (User.sharedInstance.user_rank > 1) {
-            subtotal.text = "Cart Subtotal (\(quantity) items): \(price_amount.formattedPrice)"
+            subtotal.text = "Cart subtotal (\(quantity) items): \(price_amount.formattedPrice)"
         }
         else {
             subtotal.text = "Cart: \(quantity) item(s)"
@@ -154,15 +154,22 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func editQuantityConfirmed(_ sender: UIButton) {
-        let new_quantity = Int(quantityTextField.text!)!
-        update_cart_request(product_id: products[row_in_edit].product_id, new_quantity: new_quantity, completion: { (success) in
-            if (success) {
-                self.products[self.row_in_edit].updateQuantity(quantity: new_quantity)
-                self.calculateSubtotal()
-                self.tableView.reloadDataInSection(section: 0)
-                self.quantityTextField.text = ""
-            }
-        })
+        if (!(quantityTextField.text?.isEmpty)!) {
+            let new_quantity = Int(quantityTextField.text!)!
+            update_cart_request(product_id: products[row_in_edit].product_id, new_quantity: new_quantity, completion: { (success) in
+                if (success) {
+                    if (new_quantity == 0) {
+                        self.products.remove(at: self.row_in_edit)
+                    }
+                    else {
+                        self.products[self.row_in_edit].updateQuantity(quantity: new_quantity)
+                    }
+                    self.calculateSubtotal()
+                    self.tableView.reloadDataInSection(section: 0)
+                    self.quantityTextField.text = ""
+                }
+            })
+        }
         quantityTextField.resignFirstResponder()
     }
 
@@ -258,8 +265,9 @@ extension ShoppingCartVC {
                     cell.loading.stopAnimating()
                 }
             }
-            usleep(200000)
-            self.tableView.deselectRow(at: indexPath, animated: false)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                self.tableView.deselectRow(at: indexPath, animated: false)
+            })
         }
     }
 }
