@@ -53,9 +53,9 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="qTe-ia-4Ub">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="qTe-ia-4Ub">
                                 <rect key="frame" x="12" y="394" width="351" height="44"/>
-                                <color key="backgroundColor" red="0.59607843137254901" green="0.050980392156862744" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.59607843140000005" green="0.050980392159999999" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Yde-L5-jbE"/>
                                 </constraints>
@@ -518,9 +518,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84G-Nc-spb">
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKa-Ew-zQk" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pKa-Ew-zQk" customClass="WhiteGradientRoundedButton" customModule="AnnieParts" customModuleProvider="target">
                                         <rect key="frame" x="230" y="10" width="125" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="125" id="ffC-0a-HlM"/>
                                         </constraints>
@@ -529,7 +529,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="editQuantityConfirmed:" destination="CTd-FD-47Y" eventType="touchUpInside" id="yDs-Ic-k1d"/>
+                                            <action selector="editQuantityConfirmed:" destination="CTd-FD-47Y" eventType="touchUpInside" id="nHx-2E-89A"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyT-Ph-btf">
@@ -662,7 +662,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWA-7s-GTt">
                                 <rect key="frame" x="0.0" y="568" width="375" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-hP-IwL" customClass="RoundedButton" customModule="AnnieParts" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mgt-hP-IwL" customClass="WhiteGradientRoundedButton" customModule="AnnieParts" customModuleProvider="target">
                                         <rect key="frame" x="230" y="10" width="125" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -790,10 +790,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJa-hf-W2H">
-                                <rect key="frame" x="87" y="270.5" width="200" height="125"/>
+                                <rect key="frame" x="46" y="258.5" width="283" height="150"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4R-rh-dR4">
-                                        <rect key="frame" x="12" y="12" width="176" height="101"/>
+                                        <rect key="frame" x="12" y="12" width="259" height="126"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -802,15 +802,14 @@
                                 <color key="backgroundColor" red="0.96700330284552849" green="0.96700330284552849" blue="0.96700330284552849" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="h4R-rh-dR4" secondAttribute="trailing" constant="12" id="8rw-f6-1sN"/>
-                                    <constraint firstAttribute="height" constant="125" id="FD7-n7-lEM"/>
                                     <constraint firstItem="h4R-rh-dR4" firstAttribute="leading" secondItem="KJa-hf-W2H" secondAttribute="leading" constant="12" id="Lc2-yk-2z0"/>
                                     <constraint firstAttribute="bottom" secondItem="h4R-rh-dR4" secondAttribute="bottom" constant="12" id="P8K-4v-Kq9"/>
-                                    <constraint firstAttribute="width" constant="200" id="ofw-tH-I5l"/>
+                                    <constraint firstAttribute="height" constant="150" id="fYa-MD-aBA"/>
                                     <constraint firstItem="h4R-rh-dR4" firstAttribute="top" secondItem="KJa-hf-W2H" secondAttribute="top" constant="12" id="t98-KM-IgI"/>
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RP1-fE-FHT">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <rect key="frame" x="169.5" y="315" width="37" height="37"/>
                                 <color key="color" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -820,6 +819,8 @@
                             <constraint firstItem="RP1-fE-FHT" firstAttribute="centerY" secondItem="KJa-hf-W2H" secondAttribute="centerY" id="J3l-AZ-Glg"/>
                             <constraint firstItem="KJa-hf-W2H" firstAttribute="centerY" secondItem="55m-9f-gVV" secondAttribute="centerY" id="JQa-UJ-dQe"/>
                             <constraint firstItem="RP1-fE-FHT" firstAttribute="centerX" secondItem="KJa-hf-W2H" secondAttribute="centerX" id="Wgm-Jh-92S"/>
+                            <constraint firstItem="KJa-hf-W2H" firstAttribute="leading" secondItem="55m-9f-gVV" secondAttribute="leadingMargin" constant="30" id="aVp-bC-IZd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KJa-hf-W2H" secondAttribute="trailing" constant="30" id="xoL-XV-3uN"/>
                         </constraints>
                     </view>
                     <connections>

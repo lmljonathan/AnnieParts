@@ -10,6 +10,23 @@ import Foundation
 import UIKit
 import CoreGraphics
 
+extension UIColor {
+    class func silver() -> UIColor {
+        return UIColor(colorLiteralRed: 220.0/255.0, green: 220.0/255.0, blue: 250.0/255.0, alpha: 1)
+    }
+    class func maroon() -> UIColor {
+        return UIColor(colorLiteralRed: 152.0/255.0, green: 13.0/255.0, blue: 16.0/255.0, alpha: 1)
+    }
+    class func light_maroon() -> UIColor {
+        return UIColor(colorLiteralRed: 176.0/255.0, green: 100.0/255.0, blue: 100.0/255.0, alpha: 1)
+    }
+    class func light_red() -> UIColor {
+        return UIColor(colorLiteralRed: 150.0/255.0, green: 80.0/255.0, blue: 80.0/255.0, alpha: 1)
+    }
+    class func darker_silver() -> UIColor {
+        return UIColor(colorLiteralRed: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 1)
+    }
+}
 extension UIView{
     var y: CGFloat! {
         get {
@@ -46,101 +63,11 @@ extension UIView{
             self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.width, height: height)
         }
     }
-
-    func addShadow(radius: CGFloat = 3, opacity: Float = 0.3, offset: CGSize = CGSize.zero, path: Bool = false){
-        if path{
-            self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        }
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = opacity
-        self.layer.shadowOffset = offset
-        self.layer.shadowRadius = radius
-
-        if self.superview?.clipsToBounds == true{
-            print("WARNING: Clips to bounds must be false in order for shadow to be drawn")
-        }
-    }
-
-    func hideShadow(){
-        self.layer.shadowOpacity = 0
-    }
-
-    func showShadow(opacity: Float){
-        self.layer.shadowOpacity = opacity
-    }
-
-
     func makeTranslation(x: CGFloat, y: CGFloat) {
         self.transform = CGAffineTransform(translationX: x - self.x, y: y - self.y)
     }
-
-    func disable(){
-        self.backgroundColor = .gray
-        self.isUserInteractionEnabled = false
-    }
-
-    func enable(color: UIColor){
-        self.backgroundColor = color
-        self.isUserInteractionEnabled = true
-    }
-
-    func highlight(){
-        UIView.animate(withDuration: 0.5) {
-            self.alpha = 0.6
-        }
-    }
-
-    func normalize(){
-        UIView.animate(withDuration: 0.5) {
-            self.alpha = 1
-        }
-    }
-
-    func addTapGestureRecgonizer(action: Selector, completion: (_ gr: UITapGestureRecognizer) -> Void){
-        let gr = UITapGestureRecognizer(target: self, action: action)
-        self.addGestureRecognizer(gr)
-        completion(gr)
-    }
-
-    func becomeFirstResponderWithOptions(completion: () -> Void){
-        self.becomeFirstResponder()
-        completion()
-    }
-
-    func changeWidth(constraint: NSLayoutConstraint, width: CGFloat){
-        self.layoutIfNeeded()
-        constraint.constant = width
-        self.layoutIfNeeded()
-    }
-
 }
 extension CALayer {
-
-    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
-
-        let border = CALayer()
-
-        switch edge {
-        case UIRectEdge.top:
-            border.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: thickness)
-            break
-        case UIRectEdge.bottom:
-            border.frame = CGRect(x: 0, y: self.frame.height - thickness, width: self.frame.width, height: thickness)
-            break
-        case UIRectEdge.left:
-            border.frame = CGRect(x: 0, y: 0, width: thickness, height: self.frame.height)
-            break
-        case UIRectEdge.right:
-            border.frame = CGRect(x: self.frame.width - thickness, y: 0, width: thickness, height: self.frame.height)
-            break
-        default:
-            break
-        }
-
-        border.backgroundColor = color.cgColor;
-
-        self.addSublayer(border)
-    }
     func shake(duration: TimeInterval = TimeInterval(0.5)) {
 
         let animationKey = "shake"
@@ -170,61 +97,12 @@ extension CALayer {
     
 }
 
-extension UITableView{
-
-    func reloadDataWithAutoSizingCells(){
-        self.reloadData()
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
-        self.reloadData()
-    }
-
-    func reloadSectionWithAutoSizingCells(section: Int, animation: UITableViewRowAnimation) {
-        self.reloadData()
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
-        self.reloadSections(NSIndexSet(index: section) as IndexSet, with: animation)
-    }
-
-
-    func hide(){
-        for cell in self.visibleCells{
-            cell.hide()
-        }
-    }
-
-    func show(){
-        for cell in self.visibleCells{
-            cell.show()
-        }
+extension UITableView {
+    func reloadDataInSection(section: Int){
+        self.beginUpdates()
+        self.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+        self.endUpdates()
     }
 }
 
-extension UITableViewCell{
-    func enable(){
-        self.isUserInteractionEnabled = true
-    }
-
-    override func disable() {
-        self.isUserInteractionEnabled = false
-    }
-
-    func hide(){
-        for view in (self.subviews){
-            view.isHidden = true
-        }
-    }
-
-    func show(){
-        for view in (self.subviews){
-            view.isHidden = false
-        }
-    }
-}
-
-extension UIFont{
-    public class func Montserrat(size: CGFloat = 12) -> UIFont{
-        return UIFont(name: "Montserrat-Regular", size: size)!
-    }
-}
 

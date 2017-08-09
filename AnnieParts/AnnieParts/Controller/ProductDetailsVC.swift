@@ -99,7 +99,13 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     @IBAction func addToCart(_ sender: UIButton) {
-        let quantity = Int(quantityTextField.text!)!
+        var quantity = 0
+        if (quantityTextField.text?.isEmpty ?? true) {
+            quantity = 1
+        }
+        else {
+            quantity = Int(quantityTextField.text!)!
+        }
         quantityTextField.resignFirstResponder()
 
         let loadingvc = self.storyboard?.instantiateViewController(withIdentifier: "LoadingVC") as! LoadingVC
@@ -193,7 +199,7 @@ extension ProductDetailsVC {
             }
             else {
                 details.detail_options[indexPath.section].expanded = !expanded
-                tableView.reloadSections(NSIndexSet(index: indexPath.section) as IndexSet, with: .automatic)
+                tableView.reloadDataInSection(section: indexPath.section)
                 tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
             tableView.deselectRow(at: indexPath, animated: false)

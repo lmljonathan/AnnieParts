@@ -16,12 +16,11 @@ class ShoppingCartCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var serial_number: UILabel!
     @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var quantityButton: RoundedButton!
-    @IBOutlet weak var deleteButton: RoundedButton!
+    @IBOutlet weak var quantityButton: WhiteGradientRoundedButton!
+    @IBOutlet weak var deleteButton: RedGradientRoundedButton!
     @IBOutlet weak var quantity: UILabel!
     @IBOutlet weak var loading: UIActivityIndicatorView!
-
-
+    
     func initialize(data: ShoppingProduct) {
         loading.isHidden = true
         

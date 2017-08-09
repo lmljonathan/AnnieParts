@@ -26,13 +26,11 @@ class LoadingVC: UIViewController {
     }
 
     func startLoading() {
-        print("start")
         self.status.isHidden = true
         self.loading.startAnimating()
     }
 
     func stopLoading(text: String) {
-        print("stop")
         self.loading.stopAnimating()
         self.status.isHidden = false
         self.status.text = text

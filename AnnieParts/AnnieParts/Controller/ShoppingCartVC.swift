@@ -37,7 +37,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if (success) {
                     self.products = products
                     self.calculateSubtotal()
-                    self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                    self.tableView.reloadDataInSection(section: 0)
                     RequestHandler.cart_refresh = false
                     loading.stopAnimating()
                 }
@@ -131,17 +131,23 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBAction func deleteItem(_ sender: UIButton) {
         sender.isEnabled = false
-        self.quantityTextField.resignFirstResponder()
-        delete_product_from_cart_request(product_id: products[sender.tag].product_id) { (success) in
+        quantityTextField.resignFirstResponder()
+
+        let index = tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
+        let shopping_cell = tableView.cellForRow(at: index!) as! ShoppingCartCell
+        shopping_cell.loading.startAnimating()
+
+        delete_product_from_cart_request(product_id: products[(index?.row)!].product_id) { (success) in
             if (success) {
-                self.products.remove(at: sender.tag)
+                shopping_cell.loading.stopAnimating()
+                self.products.remove(at: (index?.row)!)
                 self.calculateSubtotal()
-                let index = self.tableView.indexPathForRow(at: sender.convert(.zero, to: self.tableView))
                 self.tableView.beginUpdates()
                 self.tableView.deleteRows(at: [index!], with: .automatic)
                 self.tableView.endUpdates()
             }
             else {
+                sender.isEnabled = true
                 print("ERROR - cannot delete product from cart, please try again")
             }
         }
@@ -153,7 +159,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             if (success) {
                 self.products[self.row_in_edit].updateQuantity(quantity: new_quantity)
                 self.calculateSubtotal()
-                self.tableView.reloadData()
+                self.tableView.reloadDataInSection(section: 0)
                 self.quantityTextField.text = ""
             }
         })
@@ -185,7 +191,7 @@ class ShoppingCartVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                     if (success) {
                             loading.stopAnimating()
                             self.products.removeAll()
-                            self.tableView.reloadData()
+                            self.tableView.reloadDataInSection(section: 0)
                             self.calculateSubtotal()
 
                             let presenter2 = Presentr(presentationType: .alert)

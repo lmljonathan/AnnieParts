@@ -25,11 +25,6 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
         refresh()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-    }
-
     func configureRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
@@ -43,7 +38,7 @@ class OrdersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Sw
         order_list_request { (success, orders) in
             if (success) {
                 self.orders = orders
-                self.tableView.reloadData()
+                self.tableView.reloadDataInSection(section: 0)
                 self.refreshControl.endRefreshing()
             }
             else {

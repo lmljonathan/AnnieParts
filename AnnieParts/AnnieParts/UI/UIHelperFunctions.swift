@@ -80,3 +80,38 @@ class RoundedButton: UIButton {
         self.clipsToBounds = true
     }
 }
+
+class GradientRoundedButton: RoundedButton {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    func applyGradient(colors: [UIColor]) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = colors.map { $0.cgColor }
+        gradient.locations = [0.0, 1.0]
+        self.layer.insertSublayer(gradient, at: 0)
+    }
+}
+
+class RedGradientRoundedButton: GradientRoundedButton {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setTitleColor(UIColor.white, for: .normal)
+        self.setTitleColor(UIColor.maroon(), for: .highlighted)
+        self.setBackgroundImage(UIImage(named: "deletebutton_normal"), for: .normal)
+        self.setBackgroundImage(UIImage(named: "deletebutton_normal"), for: .selected)
+        self.setBackgroundImage(UIImage(named: "deletebutton_pressed"), for: .highlighted)
+    }
+}
+
+class WhiteGradientRoundedButton: GradientRoundedButton {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setTitleColor(UIColor.darkText, for: .normal)
+        self.setTitleColor(UIColor.darkGray, for: .highlighted)
+        self.setBackgroundImage(UIImage(named: "whitebutton_normal"), for: .normal)
+        self.setBackgroundImage(UIImage(named: "whitebutton_normal"), for: .selected)
+        self.setBackgroundImage(UIImage(named: "whitebutton_pressed"), for: .highlighted)
+    }
+}
