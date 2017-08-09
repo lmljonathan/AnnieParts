@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyUtils
 import Presentr
 
 class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate {
@@ -101,20 +102,22 @@ class ProductDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let quantity = Int(quantityTextField.text!)!
         quantityTextField.resignFirstResponder()
 
+        let loadingvc = self.storyboard?.instantiateViewController(withIdentifier: "LoadingVC") as! LoadingVC
+        self.customPresentViewController(loading_presenter, viewController: loadingvc, animated: true, completion: nil)
+        loadingvc.startLoading()
 
         add_product_to_cart_request(product_id: product.product_id, quantity: quantity) { (success) in
             if (success) {
+                loadingvc.stopLoading(text: "You added \(quantity) of \(self.product.name) to your cart")
                 RequestHandler.cart_refresh = true
-                let presenter = Presentr(presentationType: .alert)
-                var alertController: AlertViewController {
-                    let alertController = Presentr.alertViewController(title: "Product Added", body: "You added \(quantity) of \(self.product.name) to your cart")
-                    let okAction = AlertAction(title: "Okay", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    return alertController
-                }
-                self.customPresentViewController(presenter, viewController: alertController, animated: true, completion: nil)
                 updateCartBadge(tab: self.tabBarController!, increase: quantity)
             }
+            else {
+                loadingvc.stopLoading(text: "ERROR - product cannot be added at this time")
+            }
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
+                loadingvc.dismiss(animated: true, completion: nil)
+            })
         }
     }
 

@@ -8,6 +8,17 @@
 
 import Foundation
 import UIKit
+import Presentr
+
+var loading_presenter: Presentr {
+    let presenter = Presentr(presentationType: .fullScreen)
+    presenter.dismissOnSwipe = false
+    presenter.dismissOnTap = false
+    presenter.transitionType = .crossDissolve
+    presenter.dismissTransitionType = .crossDissolve
+    presenter.blurBackground = false
+    return presenter
+}
 
 func startActivityIndicator(view: UIView) -> UIActivityIndicatorView {
     let loading = UIActivityIndicatorView(frame: CGRect(x: view.center.x - 50.0, y: view.center.y - 100.0, width: 100.0, height: 100.0))
@@ -39,7 +50,7 @@ func configureTabBar(tab: UITabBarController) {
 
     tab.setViewControllers(viewControllers, animated: false)
 
-    if (User.sharedInstance.shopping_count == 0) {
+    if (User.sharedInstance.shopping_count <= 0) {
         tab.tabBar.items![User.sharedInstance.cart_position].badgeValue = nil
     }
     else {
