@@ -21,7 +21,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         new_products_request { (success, products) in
             loading.stopAnimating()
             self.products = products
-            self.tableView.reloadData()
+            self.tableView.reloadDataInSection(section: 0)
         }
     }
     func configureTableView() {

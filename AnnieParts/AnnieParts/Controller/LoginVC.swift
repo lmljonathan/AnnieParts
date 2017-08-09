@@ -36,7 +36,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         username_field.layer.cornerRadius = 20
         password_field.layer.cornerRadius = 20
         login_button.layer.cornerRadius = 20
-        login_button.setBackgroundImage(UIImage(named: "loginbutton_pressed"), for: .highlighted)
     }
 
     override func viewDidAppear(_ animated: Bool) {
